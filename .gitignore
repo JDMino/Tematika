@@ -1,0 +1,12 @@
+.vs/
+Tematika/bin/
+Tematika/obj/
+Tematika/*.user
+*.suo
+*.cache
+*.log
+*.dbmdl
+*.mdf
+*.ldf
+*.bak
+*.trn
