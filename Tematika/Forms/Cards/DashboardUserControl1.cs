@@ -33,5 +33,15 @@ namespace Tematika.Forms.Cards
             get => this.BackColor;
             set => this.BackColor = value;
         }
+
+        private void DashboardUserControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LInfoCard_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

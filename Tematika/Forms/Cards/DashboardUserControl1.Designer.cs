@@ -40,12 +40,13 @@
             LInfoCard.Size = new Size(41, 20);
             LInfoCard.TabIndex = 0;
             LInfoCard.Text = "Hola";
+            LInfoCard.Click += LInfoCard_Click;
             // 
             // LTituloCard
             // 
             LTituloCard.Location = new Point(43, 82);
             LTituloCard.Name = "LTituloCard";
-            LTituloCard.Size = new Size(50, 20);
+            LTituloCard.Size = new Size(104, 20);
             LTituloCard.TabIndex = 1;
             LTituloCard.Text = "Hola 2";
             // 
@@ -57,6 +58,7 @@
             Controls.Add(LTituloCard);
             Controls.Add(LInfoCard);
             Name = "DashboardUserControl1";
+            Load += DashboardUserControl1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
