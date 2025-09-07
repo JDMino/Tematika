@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panelSidebar = new Panel();
+            labelNombreUsuario = new Label();
+            btnCerrarSesion = new Button();
             labelRolEstudiante = new Label();
             btnNotes = new Button();
             btnEvaluations = new Button();
@@ -42,6 +44,8 @@
             // 
             // panelSidebar
             // 
+            panelSidebar.Controls.Add(labelNombreUsuario);
+            panelSidebar.Controls.Add(btnCerrarSesion);
             panelSidebar.Controls.Add(labelRolEstudiante);
             panelSidebar.Controls.Add(btnNotes);
             panelSidebar.Controls.Add(btnEvaluations);
@@ -55,12 +59,34 @@
             panelSidebar.Size = new Size(250, 749);
             panelSidebar.TabIndex = 0;
             // 
+            // labelNombreUsuario
+            // 
+            labelNombreUsuario.AutoSize = true;
+            labelNombreUsuario.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelNombreUsuario.ForeColor = Color.White;
+            labelNombreUsuario.Location = new Point(40, 566);
+            labelNombreUsuario.Name = "labelNombreUsuario";
+            labelNombreUsuario.Size = new Size(183, 30);
+            labelNombreUsuario.TabIndex = 8;
+            labelNombreUsuario.Text = "Nombre Usuario";
+            labelNombreUsuario.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnCerrarSesion
+            // 
+            btnCerrarSesion.BackColor = Color.Firebrick;
+            btnCerrarSesion.Location = new Point(62, 648);
+            btnCerrarSesion.Name = "btnCerrarSesion";
+            btnCerrarSesion.Size = new Size(116, 40);
+            btnCerrarSesion.TabIndex = 7;
+            btnCerrarSesion.Text = "Cerrar Sesión";
+            btnCerrarSesion.UseVisualStyleBackColor = false;
+            // 
             // labelRolEstudiante
             // 
             labelRolEstudiante.AutoSize = true;
             labelRolEstudiante.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelRolEstudiante.ForeColor = Color.White;
-            labelRolEstudiante.Location = new Point(62, 627);
+            labelRolEstudiante.Location = new Point(62, 607);
             labelRolEstudiante.Name = "labelRolEstudiante";
             labelRolEstudiante.Size = new Size(123, 30);
             labelRolEstudiante.TabIndex = 6;
@@ -160,5 +186,7 @@
         private Button btnExploreResources;
         private Panel panelMainContent;
         private Label labelRolEstudiante;
+        private Label labelNombreUsuario;
+        private Button btnCerrarSesion;
     }
 }

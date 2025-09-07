@@ -16,10 +16,5 @@ namespace Tematika.Forms
         {
             InitializeComponent();
         }
-
-        private void panelMainFavorites_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

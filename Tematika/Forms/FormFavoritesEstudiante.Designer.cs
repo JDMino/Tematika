@@ -51,7 +51,6 @@
             panelMainFavorites.Name = "panelMainFavorites";
             panelMainFavorites.Size = new Size(800, 450);
             panelMainFavorites.TabIndex = 0;
-            panelMainFavorites.Paint += panelMainFavorites_Paint;
             // 
             // DGVFavoritos
             // 
