@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
+            panelEncabezado = new Panel();
             LDashboard = new Label();
             panel2 = new Panel();
             tabControl1 = new TabControl();
             TBEstadisticas = new TabPage();
+            tableLayoutPanel1 = new TableLayoutPanel();
             LTitulo1 = new Label();
+            tlpTarjetas = new TableLayoutPanel();
             TBActividadRec = new TabPage();
             DGVRecursosRec = new DataGridView();
             Titulo = new DataGridViewTextBoxColumn();
@@ -46,29 +48,30 @@
             Rol = new DataGridViewTextBoxColumn();
             FechaRegistro = new DataGridViewTextBoxColumn();
             LTitulo2 = new Label();
-            panel1.SuspendLayout();
+            panelEncabezado.SuspendLayout();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
             TBEstadisticas.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             TBActividadRec.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DGVRecursosRec).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DGVUsuariosReg).BeginInit();
             SuspendLayout();
             // 
-            // panel1
+            // panelEncabezado
             // 
-            panel1.Controls.Add(LDashboard);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1055, 71);
-            panel1.TabIndex = 0;
+            panelEncabezado.Controls.Add(LDashboard);
+            panelEncabezado.Dock = DockStyle.Top;
+            panelEncabezado.Location = new Point(0, 0);
+            panelEncabezado.Name = "panelEncabezado";
+            panelEncabezado.Size = new Size(1055, 71);
+            panelEncabezado.TabIndex = 0;
             // 
             // LDashboard
             // 
             LDashboard.AutoSize = true;
             LDashboard.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LDashboard.Location = new Point(461, 21);
+            LDashboard.Location = new Point(4, 21);
             LDashboard.Name = "LDashboard";
             LDashboard.Size = new Size(159, 38);
             LDashboard.TabIndex = 0;
@@ -98,7 +101,7 @@
             // TBEstadisticas
             // 
             TBEstadisticas.BackColor = Color.Transparent;
-            TBEstadisticas.Controls.Add(LTitulo1);
+            TBEstadisticas.Controls.Add(tableLayoutPanel1);
             TBEstadisticas.Location = new Point(4, 29);
             TBEstadisticas.Name = "TBEstadisticas";
             TBEstadisticas.Padding = new Padding(3);
@@ -106,15 +109,46 @@
             TBEstadisticas.TabIndex = 0;
             TBEstadisticas.Text = "Estadisticas Generales";
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Controls.Add(LTitulo1, 0, 0);
+            tableLayoutPanel1.Controls.Add(tlpTarjetas, 0, 2);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(3, 3);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(1041, 509);
+            tableLayoutPanel1.TabIndex = 1;
+            // 
             // LTitulo1
             // 
             LTitulo1.AutoSize = true;
             LTitulo1.Font = new Font("Ebrima", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LTitulo1.Location = new Point(87, 20);
+            LTitulo1.Location = new Point(3, 0);
             LTitulo1.Name = "LTitulo1";
             LTitulo1.Size = new Size(211, 28);
-            LTitulo1.TabIndex = 0;
+            LTitulo1.TabIndex = 1;
             LTitulo1.Text = "Resumen del sistema";
+            // 
+            // tlpTarjetas
+            // 
+            tlpTarjetas.ColumnCount = 2;
+            tlpTarjetas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpTarjetas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpTarjetas.Dock = DockStyle.Fill;
+            tlpTarjetas.Location = new Point(3, 53);
+            tlpTarjetas.Name = "tlpTarjetas";
+            tlpTarjetas.RowCount = 2;
+            tlpTarjetas.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpTarjetas.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpTarjetas.Size = new Size(1035, 453);
+            tlpTarjetas.TabIndex = 2;
             // 
             // TBActividadRec
             // 
@@ -132,6 +166,7 @@
             // 
             // DGVRecursosRec
             // 
+            DGVRecursosRec.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             DGVRecursosRec.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVRecursosRec.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGVRecursosRec.Columns.AddRange(new DataGridViewColumn[] { Titulo, Tema, Tipo });
@@ -171,6 +206,7 @@
             // 
             // DGVUsuariosReg
             // 
+            DGVUsuariosReg.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             DGVUsuariosReg.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVUsuariosReg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGVUsuariosReg.Columns.AddRange(new DataGridViewColumn[] { nombre, Correo, Rol, FechaRegistro });
@@ -220,16 +256,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1055, 619);
             Controls.Add(panel2);
-            Controls.Add(panel1);
+            Controls.Add(panelEncabezado);
             Name = "FormDashboard";
             Text = "FormDashboard";
             Load += FormDashboard_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panelEncabezado.ResumeLayout(false);
+            panelEncabezado.PerformLayout();
             panel2.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             TBEstadisticas.ResumeLayout(false);
-            TBEstadisticas.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             TBActividadRec.ResumeLayout(false);
             TBActividadRec.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DGVRecursosRec).EndInit();
@@ -239,12 +276,11 @@
 
         #endregion
 
-        private Panel panel1;
+        private Panel panelEncabezado;
         private Panel panel2;
         private TabControl tabControl1;
         private TabPage TBEstadisticas;
         private TabPage TBActividadRec;
-        private Label LTitulo1;
         private DataGridView DGVUsuariosReg;
         private Label LTitulo2;
         private Label LDashboard;
@@ -257,5 +293,8 @@
         private DataGridViewTextBoxColumn Titulo;
         private DataGridViewTextBoxColumn Tema;
         private DataGridViewTextBoxColumn Tipo;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Label LTitulo1;
+        private TableLayoutPanel tlpTarjetas;
     }
 }

@@ -26,32 +26,14 @@ namespace Tematika
 
             BUsuarios.Click += (s, e) =>
             {
-                OpenChildForm(new Gestion_de_Usuarios());
+                OpenChildForm(new FormGestionUsuarios());
                 SetActiveButton(BUsuarios);
             };
 
-            BMaterias.Click += (s, e) =>
+            BGestionTematica.Click += (s, e) =>
             {
-                OpenChildForm(new Gestion_de_Materias());
-                SetActiveButton(BMaterias);
-            };
-
-            BRecursos.Click += (s, e) =>
-            {
-                OpenChildForm(new FormGestionRecursos());
-                SetActiveButton(BRecursos);
-            };
-
-            BTemas.Click += (s, e) =>
-            {
-                OpenChildForm(new Gestion_de_Temas());
-                SetActiveButton(BTemas);
-            };
-
-            BEvaluaciones.Click += (s, e) =>
-            {
-                OpenChildForm(new FormEvaluaciones());
-                SetActiveButton(BEvaluaciones);
+                OpenChildForm(new FormGestionTematica());
+                SetActiveButton(BGestionTematica);
             };
 
 
@@ -62,7 +44,8 @@ namespace Tematika
             };
 
         }
-        /*private void OpenChildForm(Form childForm)
+
+        private void OpenChildForm(Form childForm)
         {
             if (activeForm != null)
                 activeForm.Close();
@@ -74,26 +57,9 @@ namespace Tematika
             panelMain.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-        }*/
-
-        private void OpenChildForm(Form childForm)
-        {
-            if (activeForm != null)
-                activeForm.Close(); // Cierra el formulario activo actual
-            activeForm = childForm; // Asigna el nuevo formulario como activo
-            childForm.TopLevel = false; // Importante: indica que no es un formulario de nivel superior
-            childForm.FormBorderStyle = FormBorderStyle.None; // Elimina el borde del formulario hijo
-            childForm.Dock = DockStyle.Fill; // ¡Clave! Hace que el formulario hijo llene el panel contenedor
-
-            //int paddingSize = 10; // Por ejemplo, 10 píxeles en todos los lados
-            //childForm.Padding = new Padding(paddingSize);
-            panelMain.Controls.Add(childForm); // Añade el formulario hijo a los controles del panel
-            panelMain.Tag = childForm; // Opcional: guarda una referencia al formulario hijo en el Tag del panel
-            childForm.BringToFront(); // Asegura que el formulario hijo esté al frente
-            childForm.Show(); // Muestra el formulario hijo
         }
 
-        private void SetActiveButton(Button activeBtn)
+        /*private void SetActiveButton(Button activeBtn)
         {
             foreach (Control ctrl in sideBar.Controls)
             {
@@ -105,17 +71,35 @@ namespace Tematika
             }
             activeBtn.BackColor = Color.FromArgb(52, 152, 219); // Color activo
             activeBtn.ForeColor = Color.White;
+        }*/
+
+        private void SetActiveButton(Button activeBtn)
+        {
+            foreach (Control ctrl in sideBar.Controls)
+            {
+                if (ctrl is Button btn)
+                {
+                    btn.BackColor = ColorTranslator.FromHtml("#34495e"); // Fondo normal
+                    btn.ForeColor = ColorTranslator.FromHtml("#bdc3c7"); // Texto normal
+                }
+            }
+            activeBtn.BackColor = ColorTranslator.FromHtml("#2980b9"); // Fondo activo
+            activeBtn.ForeColor = Color.White; // Texto activo
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             sideBar.BackColor = ColorTranslator.FromHtml("#2c3e50");
 
+
             foreach (Control ctrl in sideBar.Controls)
             {
                 if (ctrl is Button btn)
                 {
-                    btn.BackColor = ColorTranslator.FromHtml("#dee6ed");
+                    //btn.BackColor = ColorTranslator.FromHtml("#dee6ed");
+                    btn.BackColor = ColorTranslator.FromHtml("#34495e");
+                    btn.ForeColor = ColorTranslator.FromHtml("#bdc3c7");
+
                 }
 
 

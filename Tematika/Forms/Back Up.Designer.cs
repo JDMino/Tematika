@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
+            panelMain = new Panel();
             BBackUp = new Button();
             BRuta = new Button();
             BConecatr = new Button();
@@ -36,55 +36,72 @@
             textBox2 = new TextBox();
             LBackUp2 = new Label();
             LBackUp1 = new Label();
-            PBackUp = new Panel();
+            panelEncabezado = new Panel();
             LTituloBackUp = new Label();
-            panel1.SuspendLayout();
-            PBackUp.SuspendLayout();
+            panelMain.SuspendLayout();
+            panelEncabezado.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // panelMain
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.BackColor = SystemColors.ActiveCaption;
-            panel1.Controls.Add(BBackUp);
-            panel1.Controls.Add(BRuta);
-            panel1.Controls.Add(BConecatr);
-            panel1.Controls.Add(CBBackUp);
-            panel1.Controls.Add(textBox2);
-            panel1.Controls.Add(LBackUp2);
-            panel1.Controls.Add(LBackUp1);
-            panel1.Controls.Add(PBackUp);
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(800, 450);
-            panel1.TabIndex = 0;
+            panelMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelMain.BackColor = SystemColors.ActiveCaption;
+            panelMain.Controls.Add(BBackUp);
+            panelMain.Controls.Add(BRuta);
+            panelMain.Controls.Add(BConecatr);
+            panelMain.Controls.Add(CBBackUp);
+            panelMain.Controls.Add(textBox2);
+            panelMain.Controls.Add(LBackUp2);
+            panelMain.Controls.Add(LBackUp1);
+            panelMain.Controls.Add(panelEncabezado);
+            panelMain.Location = new Point(0, 0);
+            panelMain.Name = "panelMain";
+            panelMain.Size = new Size(800, 450);
+            panelMain.TabIndex = 0;
             // 
             // BBackUp
             // 
+            BBackUp.BackColor = SystemColors.Highlight;
+            BBackUp.FlatAppearance.BorderSize = 0;
+            BBackUp.FlatStyle = FlatStyle.Flat;
+            BBackUp.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            BBackUp.ForeColor = SystemColors.ButtonHighlight;
             BBackUp.Location = new Point(600, 265);
             BBackUp.Name = "BBackUp";
             BBackUp.Size = new Size(94, 29);
             BBackUp.TabIndex = 8;
             BBackUp.Text = "Back Up";
-            BBackUp.UseVisualStyleBackColor = true;
+            BBackUp.UseVisualStyleBackColor = false;
             // 
             // BRuta
             // 
+            BRuta.BackColor = Color.Gray;
+            BRuta.FlatAppearance.BorderSize = 0;
+            BRuta.FlatStyle = FlatStyle.Flat;
+            BRuta.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            BRuta.ForeColor = SystemColors.ButtonHighlight;
             BRuta.Location = new Point(600, 173);
             BRuta.Name = "BRuta";
             BRuta.Size = new Size(94, 29);
             BRuta.TabIndex = 7;
             BRuta.Text = "Ruta";
-            BRuta.UseVisualStyleBackColor = true;
+            BRuta.UseVisualStyleBackColor = false;
             // 
             // BConecatr
             // 
+            BConecatr.BackColor = Color.ForestGreen;
+            BConecatr.FlatAppearance.BorderSize = 0;
+            BConecatr.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 125, 50);
+            BConecatr.FlatAppearance.MouseOverBackColor = Color.FromArgb(67, 160, 71);
+            BConecatr.FlatStyle = FlatStyle.Flat;
+            BConecatr.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            BConecatr.ForeColor = SystemColors.ButtonHighlight;
             BConecatr.Location = new Point(600, 127);
             BConecatr.Name = "BConecatr";
             BConecatr.Size = new Size(94, 29);
             BConecatr.TabIndex = 6;
             BConecatr.Text = "Conectar";
-            BConecatr.UseVisualStyleBackColor = true;
+            BConecatr.UseVisualStyleBackColor = false;
             // 
             // CBBackUp
             // 
@@ -104,36 +121,38 @@
             // LBackUp2
             // 
             LBackUp2.AutoSize = true;
+            LBackUp2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LBackUp2.Location = new Point(117, 177);
             LBackUp2.Name = "LBackUp2";
-            LBackUp2.Size = new Size(96, 20);
+            LBackUp2.Size = new Size(112, 23);
             LBackUp2.TabIndex = 2;
             LBackUp2.Text = "Ruta Guardar";
             // 
             // LBackUp1
             // 
             LBackUp1.AutoSize = true;
+            LBackUp1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LBackUp1.Location = new Point(117, 127);
             LBackUp1.Name = "LBackUp1";
-            LBackUp1.Size = new Size(102, 20);
+            LBackUp1.Size = new Size(116, 23);
             LBackUp1.TabIndex = 1;
             LBackUp1.Text = "Base de datos";
             // 
-            // PBackUp
+            // panelEncabezado
             // 
-            PBackUp.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            PBackUp.BackColor = SystemColors.ButtonFace;
-            PBackUp.Controls.Add(LTituloBackUp);
-            PBackUp.Location = new Point(0, 0);
-            PBackUp.Name = "PBackUp";
-            PBackUp.Size = new Size(800, 47);
-            PBackUp.TabIndex = 0;
+            panelEncabezado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panelEncabezado.BackColor = SystemColors.ButtonFace;
+            panelEncabezado.Controls.Add(LTituloBackUp);
+            panelEncabezado.Location = new Point(0, 0);
+            panelEncabezado.Name = "panelEncabezado";
+            panelEncabezado.Size = new Size(800, 63);
+            panelEncabezado.TabIndex = 0;
             // 
             // LTituloBackUp
             // 
             LTituloBackUp.AutoSize = true;
             LTituloBackUp.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LTituloBackUp.Location = new Point(409, 0);
+            LTituloBackUp.Location = new Point(12, 9);
             LTituloBackUp.Name = "LTituloBackUp";
             LTituloBackUp.Size = new Size(124, 38);
             LTituloBackUp.TabIndex = 0;
@@ -145,20 +164,22 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(panel1);
+            Controls.Add(panelMain);
             Name = "Back_Up";
             Text = "Back_Up";
             WindowState = FormWindowState.Maximized;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            PBackUp.ResumeLayout(false);
-            PBackUp.PerformLayout();
+            Load += Back_Up_Load;
+            LocationChanged += Back_Up_LocationChanged;
+            panelMain.ResumeLayout(false);
+            panelMain.PerformLayout();
+            panelEncabezado.ResumeLayout(false);
+            panelEncabezado.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
+        private Panel panelMain;
         private Button BBackUp;
         private Button BRuta;
         private Button BConecatr;
@@ -166,7 +187,7 @@
         private TextBox textBox2;
         private Label LBackUp2;
         private Label LBackUp1;
-        private Panel PBackUp;
+        private Panel panelEncabezado;
         private Label LTituloBackUp;
     }
 }

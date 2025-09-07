@@ -7,17 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Tematika.Styles;
 namespace Tematika.Forms
 {
-    public partial class Gestion_de_Usuarios : Form
+    public partial class FormGestionUsuarios : Form
     {
-
-
-        /*  private void label2_Click(object sender, EventArgs e)
-          {
-
-          }*/
+        public FormGestionUsuarios()
+        {
+            InitializeComponent();
+        }
 
         private void DGVUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -26,7 +24,7 @@ namespace Tematika.Forms
             if (e.RowIndex >= 0)
             {
                 // Ocultar botón Guardar
-                BGuardarUsuario.Visible = false;
+                BGuardar.Visible = false;
 
                 // Mostrar botones Modificar y Eliminar
                 BUModificar.Visible = true;
@@ -38,9 +36,20 @@ namespace Tematika.Forms
                 // Opcional: podés cargar los datos de la fila seleccionada en los campos
                 DataGridViewRow fila = DGVUsuarios.Rows[e.RowIndex];
                 TBNombreUsuario.Text = fila.Cells["Nombre"].Value?.ToString();
-                TBEmailUsuario.Text = fila.Cells["Email"].Value?.ToString();
+                //TBEmailUsuario.Text = fila.Cells["Email"].Value?.ToString();
                 // etc.
             }
+        }
+
+        private void FormGestionUsuarios_Load(object sender, EventArgs e)
+        {
+            EstiloEncabezado.Aplicar(panelEncabezado, LTituloUsuarios);
+            panelMain.BackColor = ColorTranslator.FromHtml("#cfd8dc");
+        }
+
+        private void panelCamposUsuarios_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

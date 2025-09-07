@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tematika.Styles;
 
 namespace Tematika.Forms
 {
@@ -15,6 +16,17 @@ namespace Tematika.Forms
         public Back_Up()
         {
             InitializeComponent();
+        }
+
+        private void Back_Up_LocationChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Back_Up_Load(object sender, EventArgs e)
+        {
+            EstiloEncabezado.Aplicar(panelEncabezado, LTituloBackUp);
+            panelMain.BackColor = ColorTranslator.FromHtml("#cfd8dc");
         }
     }
 }
