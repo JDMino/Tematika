@@ -21,5 +21,11 @@ namespace Tematika.Forms.Cards
         {
 
         }
+
+        private void buttonVerRecurso_Click(object sender, EventArgs e)
+        {
+            FormVisualizadorRecurso recurso = new FormVisualizadorRecurso();
+            recurso.Show();
+        }
     }
 }

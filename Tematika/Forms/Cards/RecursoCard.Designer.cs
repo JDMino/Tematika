@@ -62,6 +62,7 @@
             buttonVerRecurso.TabIndex = 2;
             buttonVerRecurso.Text = "Ver Recurso";
             buttonVerRecurso.UseVisualStyleBackColor = true;
+            buttonVerRecurso.Click += buttonVerRecurso_Click;
             // 
             // labelTemaRecurso
             // 
