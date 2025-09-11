@@ -43,6 +43,12 @@ namespace Tematika
                 SetActiveButton(BInformes);
             };
 
+            BLogin.Click += (s, e) =>
+            {
+                OpenChildForm(new FormLogin());
+                SetActiveButton(BLogin);
+            };
+
         }
 
         private void OpenChildForm(Form childForm)

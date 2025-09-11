@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tematika.Styles;
-
+using Tematika.Utils;
 
 namespace Tematika.Forms
 {
@@ -98,6 +98,57 @@ namespace Tematika.Forms
                 // Cancelar permanece visible
                 BCancelarMateria.Visible = true;
             }
+        }
+
+        //Gestion de Temas
+        private void TBNombreTema_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.ValidarSoloLetras(e);
+        }
+
+        private void TBDescripcionTema_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.ValidarSoloLetras(e);
+        }
+
+        private void BGuardarTema_Click(object sender, EventArgs e)
+        {
+            if (!Validaciones.ValidarCamposObligatorios(panelCamposTemas))
+                return;
+        }
+
+        //Gestion de Recursos
+        private void TBTituloRecurso_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.ValidarSoloLetras(e);
+        }
+
+        private void TBDescripcionRecurso_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.ValidarSoloLetras(e);
+        }
+
+        private void BGuardarRecurso_Click(object sender, EventArgs e)
+        {
+            if (!Validaciones.ValidarCamposObligatorios(panelCamposRecursos))
+                return;
+        }
+
+        //Gestion de Materias
+        private void TBNombreMateria_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.ValidarSoloLetras(e);
+        }
+
+        private void TBDescripcionMateria_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.ValidarSoloLetras(e);
+        }
+
+        private void BGuardarMateria_Click(object sender, EventArgs e)
+        {
+            if (!Validaciones.ValidarCamposObligatorios(panelCamposMaterias))
+                return;
         }
     }
 }

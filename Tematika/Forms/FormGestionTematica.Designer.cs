@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             TCGestionTematica = new TabControl();
             TBTemas = new TabPage();
             panelCamposTemas = new TableLayoutPanel();
@@ -80,13 +81,6 @@
             BCancelarRecurso = new Button();
             BModificarRecurso = new Button();
             DGVRecursos = new DataGridView();
-            id_recurso = new DataGridViewTextBoxColumn();
-            tituloRecurso = new DataGridViewTextBoxColumn();
-            TipoRecurso = new DataGridViewTextBoxColumn();
-            descripcionRecurso = new DataGridViewTextBoxColumn();
-            URLRecurso = new DataGridViewTextBoxColumn();
-            MateriaRecurso = new DataGridViewTextBoxColumn();
-            TemaRecurso = new DataGridViewTextBoxColumn();
             panelEncabezadoR = new FlowLayoutPanel();
             LTituloRecursos = new Label();
             TBPreguntas = new TabPage();
@@ -124,12 +118,12 @@
             LTituloPreguntas = new Label();
             TBMaterias = new TabPage();
             panelCamposMaterias = new TableLayoutPanel();
+            CBNivelMateria = new ComboBox();
             label5 = new Label();
             TBNombreMateria = new TextBox();
             label3 = new Label();
             TBDescripcionMateria = new TextBox();
             label4 = new Label();
-            TBNivelMateria = new TextBox();
             tableLayoutPanel6 = new TableLayoutPanel();
             TBBuscadorMaterias = new TextBox();
             BMateriasActivas = new Button();
@@ -146,6 +140,14 @@
             DescripcionMateria = new DataGridViewTextBoxColumn();
             panelEncabezadoM = new FlowLayoutPanel();
             LTituloMaterias = new Label();
+            id_recurso = new DataGridViewTextBoxColumn();
+            tituloRecurso = new DataGridViewTextBoxColumn();
+            TipoRecurso = new DataGridViewTextBoxColumn();
+            descripcionRecurso = new DataGridViewTextBoxColumn();
+            URLRecurso = new DataGridViewTextBoxColumn();
+            MateriaRecurso = new DataGridViewTextBoxColumn();
+            TemaRecurso = new DataGridViewTextBoxColumn();
+            Acciones = new DataGridViewButtonColumn();
             TCGestionTematica.SuspendLayout();
             TBTemas.SuspendLayout();
             panelCamposTemas.SuspendLayout();
@@ -258,6 +260,8 @@
             TBNombreTema.Name = "TBNombreTema";
             TBNombreTema.Size = new Size(248, 27);
             TBNombreTema.TabIndex = 18;
+            TBNombreTema.Tag = "Nombre";
+            TBNombreTema.KeyPress += TBNombreTema_KeyPress;
             // 
             // CBMaterias
             // 
@@ -266,6 +270,7 @@
             CBMaterias.Name = "CBMaterias";
             CBMaterias.Size = new Size(151, 28);
             CBMaterias.TabIndex = 19;
+            CBMaterias.Tag = "Materia asociada";
             // 
             // TBDescripcionTema
             // 
@@ -273,6 +278,8 @@
             TBDescripcionTema.Name = "TBDescripcionTema";
             TBDescripcionTema.Size = new Size(248, 27);
             TBDescripcionTema.TabIndex = 25;
+            TBDescripcionTema.Tag = "Descripcion";
+            TBDescripcionTema.KeyPress += TBDescripcionTema_KeyPress;
             // 
             // panelBuscador
             // 
@@ -373,6 +380,7 @@
             BGuardarTema.TabIndex = 88;
             BGuardarTema.Text = "Guardar";
             BGuardarTema.UseVisualStyleBackColor = false;
+            BGuardarTema.Click += BGuardarTema_Click;
             // 
             // BEliminarTema
             // 
@@ -532,6 +540,7 @@
             TBTituloRecurso.Name = "TBTituloRecurso";
             TBTituloRecurso.Size = new Size(125, 27);
             TBTituloRecurso.TabIndex = 28;
+            TBTituloRecurso.KeyPress += TBTituloRecurso_KeyPress;
             // 
             // LTipoRecurso
             // 
@@ -591,6 +600,7 @@
             TBDescripcionRecurso.Name = "TBDescripcionRecurso";
             TBDescripcionRecurso.Size = new Size(181, 29);
             TBDescripcionRecurso.TabIndex = 29;
+            TBDescripcionRecurso.KeyPress += TBDescripcionRecurso_KeyPress;
             // 
             // TBUrl
             // 
@@ -737,6 +747,7 @@
             BGuardarRecurso.TabIndex = 88;
             BGuardarRecurso.Text = "Guardar";
             BGuardarRecurso.UseVisualStyleBackColor = false;
+            BGuardarRecurso.Click += BGuardarRecurso_Click;
             // 
             // BEliminarRecurso
             // 
@@ -771,6 +782,7 @@
             // 
             BModificarRecurso.BackColor = SystemColors.Highlight;
             BModificarRecurso.FlatAppearance.BorderSize = 0;
+            BModificarRecurso.FlatStyle = FlatStyle.Flat;
             BModificarRecurso.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BModificarRecurso.ForeColor = SystemColors.ButtonHighlight;
             BModificarRecurso.Location = new Point(203, 3);
@@ -786,55 +798,13 @@
             DGVRecursos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DGVRecursos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVRecursos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVRecursos.Columns.AddRange(new DataGridViewColumn[] { id_recurso, tituloRecurso, TipoRecurso, descripcionRecurso, URLRecurso, MateriaRecurso, TemaRecurso });
+            DGVRecursos.Columns.AddRange(new DataGridViewColumn[] { id_recurso, tituloRecurso, TipoRecurso, descripcionRecurso, URLRecurso, MateriaRecurso, TemaRecurso, Acciones });
             DGVRecursos.Location = new Point(71, 494);
             DGVRecursos.Name = "DGVRecursos";
             DGVRecursos.RowHeadersWidth = 51;
             DGVRecursos.Size = new Size(814, 118);
             DGVRecursos.TabIndex = 33;
             DGVRecursos.CellClick += DGVRecursos_CellClick;
-            // 
-            // id_recurso
-            // 
-            id_recurso.HeaderText = "ID";
-            id_recurso.MinimumWidth = 6;
-            id_recurso.Name = "id_recurso";
-            // 
-            // tituloRecurso
-            // 
-            tituloRecurso.HeaderText = "Titulo";
-            tituloRecurso.MinimumWidth = 6;
-            tituloRecurso.Name = "tituloRecurso";
-            // 
-            // TipoRecurso
-            // 
-            TipoRecurso.HeaderText = "Tipo de Recurso";
-            TipoRecurso.MinimumWidth = 6;
-            TipoRecurso.Name = "TipoRecurso";
-            // 
-            // descripcionRecurso
-            // 
-            descripcionRecurso.HeaderText = "Descripcion";
-            descripcionRecurso.MinimumWidth = 6;
-            descripcionRecurso.Name = "descripcionRecurso";
-            // 
-            // URLRecurso
-            // 
-            URLRecurso.HeaderText = "URL";
-            URLRecurso.MinimumWidth = 6;
-            URLRecurso.Name = "URLRecurso";
-            // 
-            // MateriaRecurso
-            // 
-            MateriaRecurso.HeaderText = "Materia";
-            MateriaRecurso.MinimumWidth = 6;
-            MateriaRecurso.Name = "MateriaRecurso";
-            // 
-            // TemaRecurso
-            // 
-            TemaRecurso.HeaderText = "Tema";
-            TemaRecurso.MinimumWidth = 6;
-            TemaRecurso.Name = "TemaRecurso";
             // 
             // panelEncabezadoR
             // 
@@ -1240,12 +1210,12 @@
             panelCamposMaterias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             panelCamposMaterias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             panelCamposMaterias.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            panelCamposMaterias.Controls.Add(CBNivelMateria, 1, 1);
             panelCamposMaterias.Controls.Add(label5, 0, 0);
             panelCamposMaterias.Controls.Add(TBNombreMateria, 1, 0);
             panelCamposMaterias.Controls.Add(label3, 0, 1);
             panelCamposMaterias.Controls.Add(TBDescripcionMateria, 1, 2);
             panelCamposMaterias.Controls.Add(label4, 0, 2);
-            panelCamposMaterias.Controls.Add(TBNivelMateria, 1, 1);
             panelCamposMaterias.Location = new Point(92, 92);
             panelCamposMaterias.Name = "panelCamposMaterias";
             panelCamposMaterias.RowCount = 3;
@@ -1254,6 +1224,14 @@
             panelCamposMaterias.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             panelCamposMaterias.Size = new Size(561, 125);
             panelCamposMaterias.TabIndex = 98;
+            // 
+            // CBNivelMateria
+            // 
+            CBNivelMateria.FormattingEnabled = true;
+            CBNivelMateria.Location = new Point(283, 44);
+            CBNivelMateria.Name = "CBNivelMateria";
+            CBNivelMateria.Size = new Size(180, 28);
+            CBNivelMateria.TabIndex = 99;
             // 
             // label5
             // 
@@ -1271,6 +1249,7 @@
             TBNombreMateria.Name = "TBNombreMateria";
             TBNombreMateria.Size = new Size(180, 27);
             TBNombreMateria.TabIndex = 38;
+            TBNombreMateria.KeyPress += TBNombreMateria_KeyPress;
             // 
             // label3
             // 
@@ -1288,6 +1267,7 @@
             TBDescripcionMateria.Name = "TBDescripcionMateria";
             TBDescripcionMateria.Size = new Size(180, 27);
             TBDescripcionMateria.TabIndex = 43;
+            TBDescripcionMateria.KeyPress += TBDescripcionMateria_KeyPress;
             // 
             // label4
             // 
@@ -1297,14 +1277,6 @@
             label4.Size = new Size(87, 20);
             label4.TabIndex = 37;
             label4.Text = "Descripcion";
-            // 
-            // TBNivelMateria
-            // 
-            TBNivelMateria.Location = new Point(283, 44);
-            TBNivelMateria.MinimumSize = new Size(180, 27);
-            TBNivelMateria.Name = "TBNivelMateria";
-            TBNivelMateria.Size = new Size(180, 27);
-            TBNivelMateria.TabIndex = 42;
             // 
             // tableLayoutPanel6
             // 
@@ -1395,6 +1367,7 @@
             BGuardarMateria.TabIndex = 88;
             BGuardarMateria.Text = "Guardar";
             BGuardarMateria.UseVisualStyleBackColor = false;
+            BGuardarMateria.Click += BGuardarMateria_Click;
             // 
             // BEliminarMateria
             // 
@@ -1497,6 +1470,61 @@
             LTituloMaterias.TabIndex = 1;
             LTituloMaterias.Text = "Gestion de Materias";
             // 
+            // id_recurso
+            // 
+            id_recurso.HeaderText = "ID";
+            id_recurso.MinimumWidth = 6;
+            id_recurso.Name = "id_recurso";
+            // 
+            // tituloRecurso
+            // 
+            tituloRecurso.HeaderText = "Titulo";
+            tituloRecurso.MinimumWidth = 6;
+            tituloRecurso.Name = "tituloRecurso";
+            // 
+            // TipoRecurso
+            // 
+            TipoRecurso.HeaderText = "Tipo de Recurso";
+            TipoRecurso.MinimumWidth = 6;
+            TipoRecurso.Name = "TipoRecurso";
+            // 
+            // descripcionRecurso
+            // 
+            descripcionRecurso.HeaderText = "Descripcion";
+            descripcionRecurso.MinimumWidth = 6;
+            descripcionRecurso.Name = "descripcionRecurso";
+            // 
+            // URLRecurso
+            // 
+            URLRecurso.HeaderText = "URL";
+            URLRecurso.MinimumWidth = 6;
+            URLRecurso.Name = "URLRecurso";
+            // 
+            // MateriaRecurso
+            // 
+            MateriaRecurso.HeaderText = "Materia";
+            MateriaRecurso.MinimumWidth = 6;
+            MateriaRecurso.Name = "MateriaRecurso";
+            // 
+            // TemaRecurso
+            // 
+            TemaRecurso.HeaderText = "Tema";
+            TemaRecurso.MinimumWidth = 6;
+            TemaRecurso.Name = "TemaRecurso";
+            // 
+            // Acciones
+            // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            Acciones.DefaultCellStyle = dataGridViewCellStyle1;
+            Acciones.HeaderText = "Acciones";
+            Acciones.MinimumWidth = 6;
+            Acciones.Name = "Acciones";
+            Acciones.Resizable = DataGridViewTriState.True;
+            Acciones.SortMode = DataGridViewColumnSortMode.Automatic;
+            Acciones.Text = "Ver";
+            Acciones.UseColumnTextForButtonValue = true;
+            // 
             // FormGestionTematica
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1569,13 +1597,6 @@
         private Label LTituloRecursos;
         private ComboBox CBTipoRecurso;
         private DataGridView DGVRecursos;
-        private DataGridViewTextBoxColumn id_recurso;
-        private DataGridViewTextBoxColumn tituloRecurso;
-        private DataGridViewTextBoxColumn TipoRecurso;
-        private DataGridViewTextBoxColumn descripcionRecurso;
-        private DataGridViewTextBoxColumn URLRecurso;
-        private DataGridViewTextBoxColumn MateriaRecurso;
-        private DataGridViewTextBoxColumn TemaRecurso;
         private ComboBox CBTemaRecurso;
         private ComboBox CBMateriaRecurso;
         private TextBox TBUrl;
@@ -1612,7 +1633,6 @@
         private FlowLayoutPanel panelEncabezadoM;
         private Label LTituloMaterias;
         private TextBox TBDescripcionMateria;
-        private TextBox TBNivelMateria;
         private DataGridView DGVMaterias;
         private DataGridViewTextBoxColumn idMateria;
         private DataGridViewTextBoxColumn NombreMateria;
@@ -1665,5 +1685,14 @@
         private TableLayoutPanel panelCamposMaterias;
         private Button BFoto;
         private TextBox TBFoto;
+        private ComboBox CBNivelMateria;
+        private DataGridViewTextBoxColumn id_recurso;
+        private DataGridViewTextBoxColumn tituloRecurso;
+        private DataGridViewTextBoxColumn TipoRecurso;
+        private DataGridViewTextBoxColumn descripcionRecurso;
+        private DataGridViewTextBoxColumn URLRecurso;
+        private DataGridViewTextBoxColumn MateriaRecurso;
+        private DataGridViewTextBoxColumn TemaRecurso;
+        private DataGridViewButtonColumn Acciones;
     }
 }
