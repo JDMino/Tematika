@@ -1,6 +1,6 @@
 ﻿namespace Tematika
 {
-    partial class FormMain
+    partial class FormMainEstudiante
     {
         /// <summary>
         ///  Required designer variable.
@@ -159,14 +159,14 @@
             panelMainContent.Size = new Size(934, 749);
             panelMainContent.TabIndex = 1;
             // 
-            // FormMain
+            // FormMainEstudiante
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 749);
             Controls.Add(panelMainContent);
             Controls.Add(panelSidebar);
-            Name = "FormMain";
+            Name = "FormMainEstudiante";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Tematika";
             Load += FormMain_Load;

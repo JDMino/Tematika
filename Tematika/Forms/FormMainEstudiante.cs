@@ -5,11 +5,11 @@ using Tematika.Forms;
 
 namespace Tematika
 {
-    public partial class FormMain : Form
+    public partial class FormMainEstudiante : Form
     {
         private Form activeForm = null;
 
-        public FormMain()
+        public FormMainEstudiante()
         {
             InitializeComponent();
             // panelSidebar.BackColor = ColorTranslator.FromHtml("#2c3e50");
