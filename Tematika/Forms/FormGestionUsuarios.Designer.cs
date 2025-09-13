@@ -110,37 +110,37 @@
             // panelCamposUsuarios
             // 
             panelCamposUsuarios.ColumnCount = 5;
-            panelCamposUsuarios.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.3094978F));
-            panelCamposUsuarios.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.4240627F));
-            panelCamposUsuarios.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 29.8922329F));
-            panelCamposUsuarios.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15.374217F));
+            panelCamposUsuarios.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28.7372627F));
+            panelCamposUsuarios.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28.8578053F));
+            panelCamposUsuarios.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.2766762F));
+            panelCamposUsuarios.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18.1282539F));
             panelCamposUsuarios.ColumnStyles.Add(new ColumnStyle());
             panelCamposUsuarios.Controls.Add(LNombre, 0, 0);
             panelCamposUsuarios.Controls.Add(TBNombreUsuario, 1, 0);
             panelCamposUsuarios.Controls.Add(LApellido, 0, 1);
-            panelCamposUsuarios.Controls.Add(CBPerfil, 1, 5);
-            panelCamposUsuarios.Controls.Add(LContraseña, 0, 3);
-            panelCamposUsuarios.Controls.Add(LEmail, 0, 4);
-            panelCamposUsuarios.Controls.Add(LPerfil, 0, 5);
             panelCamposUsuarios.Controls.Add(TBApellidoUsuario, 1, 1);
             panelCamposUsuarios.Controls.Add(TBDNIUsuario, 3, 0);
-            panelCamposUsuarios.Controls.Add(TBContraseñaUsuario, 1, 3);
-            panelCamposUsuarios.Controls.Add(TBEmailUsuario, 1, 4);
             panelCamposUsuarios.Controls.Add(LTelefono, 2, 2);
             panelCamposUsuarios.Controls.Add(LDNI, 2, 0);
             panelCamposUsuarios.Controls.Add(LDireccion, 2, 4);
             panelCamposUsuarios.Controls.Add(LSexo, 2, 1);
             panelCamposUsuarios.Controls.Add(RBHombre, 3, 1);
             panelCamposUsuarios.Controls.Add(RBMujer, 4, 1);
+            panelCamposUsuarios.Controls.Add(LContraseña, 0, 2);
+            panelCamposUsuarios.Controls.Add(TBContraseñaUsuario, 1, 2);
+            panelCamposUsuarios.Controls.Add(LEmail, 0, 3);
+            panelCamposUsuarios.Controls.Add(TBEmailUsuario, 1, 3);
+            panelCamposUsuarios.Controls.Add(LPerfil, 0, 4);
+            panelCamposUsuarios.Controls.Add(CBPerfil, 1, 4);
             panelCamposUsuarios.Location = new Point(31, 6);
             panelCamposUsuarios.Name = "panelCamposUsuarios";
             panelCamposUsuarios.RowCount = 6;
-            panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666679F));
-            panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666679F));
-            panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666679F));
-            panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666679F));
-            panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666679F));
-            panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666679F));
+            panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             panelCamposUsuarios.Size = new Size(748, 219);
             panelCamposUsuarios.TabIndex = 94;
             panelCamposUsuarios.Paint += panelCamposUsuarios_Paint;
@@ -156,7 +156,7 @@
             // 
             // TBNombreUsuario
             // 
-            TBNombreUsuario.Location = new Point(196, 3);
+            TBNombreUsuario.Location = new Point(206, 3);
             TBNombreUsuario.Name = "TBNombreUsuario";
             TBNombreUsuario.Size = new Size(130, 27);
             TBNombreUsuario.TabIndex = 76;
@@ -174,7 +174,7 @@
             // CBPerfil
             // 
             CBPerfil.FormattingEnabled = true;
-            CBPerfil.Location = new Point(196, 183);
+            CBPerfil.Location = new Point(206, 147);
             CBPerfil.Name = "CBPerfil";
             CBPerfil.Size = new Size(130, 28);
             CBPerfil.TabIndex = 87;
@@ -182,7 +182,7 @@
             // LContraseña
             // 
             LContraseña.AutoSize = true;
-            LContraseña.Location = new Point(3, 108);
+            LContraseña.Location = new Point(3, 72);
             LContraseña.Name = "LContraseña";
             LContraseña.Size = new Size(83, 20);
             LContraseña.TabIndex = 68;
@@ -191,7 +191,7 @@
             // LEmail
             // 
             LEmail.AutoSize = true;
-            LEmail.Location = new Point(3, 144);
+            LEmail.Location = new Point(3, 108);
             LEmail.Name = "LEmail";
             LEmail.Size = new Size(46, 20);
             LEmail.TabIndex = 71;
@@ -200,7 +200,7 @@
             // LPerfil
             // 
             LPerfil.AutoSize = true;
-            LPerfil.Location = new Point(3, 180);
+            LPerfil.Location = new Point(3, 144);
             LPerfil.Name = "LPerfil";
             LPerfil.Size = new Size(42, 20);
             LPerfil.TabIndex = 69;
@@ -208,7 +208,7 @@
             // 
             // TBApellidoUsuario
             // 
-            TBApellidoUsuario.Location = new Point(196, 39);
+            TBApellidoUsuario.Location = new Point(206, 39);
             TBApellidoUsuario.Name = "TBApellidoUsuario";
             TBApellidoUsuario.Size = new Size(130, 27);
             TBApellidoUsuario.TabIndex = 77;
@@ -216,21 +216,21 @@
             // 
             // TBDNIUsuario
             // 
-            TBDNIUsuario.Location = new Point(600, 3);
+            TBDNIUsuario.Location = new Point(581, 3);
             TBDNIUsuario.Name = "TBDNIUsuario";
-            TBDNIUsuario.Size = new Size(102, 27);
+            TBDNIUsuario.Size = new Size(120, 27);
             TBDNIUsuario.TabIndex = 81;
             // 
             // TBContraseñaUsuario
             // 
-            TBContraseñaUsuario.Location = new Point(196, 111);
+            TBContraseñaUsuario.Location = new Point(206, 75);
             TBContraseñaUsuario.Name = "TBContraseñaUsuario";
             TBContraseñaUsuario.Size = new Size(130, 27);
             TBContraseñaUsuario.TabIndex = 79;
             // 
             // TBEmailUsuario
             // 
-            TBEmailUsuario.Location = new Point(196, 147);
+            TBEmailUsuario.Location = new Point(206, 111);
             TBEmailUsuario.Name = "TBEmailUsuario";
             TBEmailUsuario.Size = new Size(130, 27);
             TBEmailUsuario.TabIndex = 80;
@@ -239,7 +239,7 @@
             // LTelefono
             // 
             LTelefono.AutoSize = true;
-            LTelefono.Location = new Point(389, 72);
+            LTelefono.Location = new Point(410, 72);
             LTelefono.Name = "LTelefono";
             LTelefono.Size = new Size(0, 20);
             LTelefono.TabIndex = 73;
@@ -247,7 +247,7 @@
             // LDNI
             // 
             LDNI.AutoSize = true;
-            LDNI.Location = new Point(389, 0);
+            LDNI.Location = new Point(410, 0);
             LDNI.Name = "LDNI";
             LDNI.Size = new Size(35, 20);
             LDNI.TabIndex = 70;
@@ -256,7 +256,7 @@
             // LDireccion
             // 
             LDireccion.AutoSize = true;
-            LDireccion.Location = new Point(389, 144);
+            LDireccion.Location = new Point(410, 144);
             LDireccion.Name = "LDireccion";
             LDireccion.Size = new Size(0, 20);
             LDireccion.TabIndex = 72;
@@ -265,7 +265,7 @@
             // LSexo
             // 
             LSexo.AutoSize = true;
-            LSexo.Location = new Point(389, 36);
+            LSexo.Location = new Point(410, 36);
             LSexo.Name = "LSexo";
             LSexo.Size = new Size(41, 20);
             LSexo.TabIndex = 75;
@@ -274,7 +274,7 @@
             // RBHombre
             // 
             RBHombre.AutoSize = true;
-            RBHombre.Location = new Point(600, 39);
+            RBHombre.Location = new Point(581, 39);
             RBHombre.Name = "RBHombre";
             RBHombre.Size = new Size(43, 24);
             RBHombre.TabIndex = 86;
@@ -285,7 +285,7 @@
             // RBMujer
             // 
             RBMujer.AutoSize = true;
-            RBMujer.Location = new Point(708, 39);
+            RBMujer.Location = new Point(709, 39);
             RBMujer.Name = "RBMujer";
             RBMujer.Size = new Size(35, 24);
             RBMujer.TabIndex = 85;

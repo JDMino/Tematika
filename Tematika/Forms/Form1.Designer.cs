@@ -36,13 +36,11 @@
             BUsuarios = new Button();
             BBackUp = new Button();
             panelMain = new Panel();
-            BLogin = new Button();
             sideBar.SuspendLayout();
             SuspendLayout();
             // 
             // sideBar
             // 
-            sideBar.Controls.Add(BLogin);
             sideBar.Controls.Add(BSalir);
             sideBar.Controls.Add(BGestionTematica);
             sideBar.Controls.Add(BDashboard);
@@ -137,18 +135,6 @@
             panelMain.Size = new Size(694, 778);
             panelMain.TabIndex = 1;
             // 
-            // BLogin
-            // 
-            BLogin.FlatAppearance.BorderSize = 0;
-            BLogin.FlatStyle = FlatStyle.Flat;
-            BLogin.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BLogin.Location = new Point(33, 549);
-            BLogin.Name = "BLogin";
-            BLogin.Size = new Size(175, 40);
-            BLogin.TabIndex = 11;
-            BLogin.Text = "Login";
-            BLogin.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -174,6 +160,5 @@
         private Button BDashboard;
         private Button BGestionTematica;
         private Button BSalir;
-        private Button BLogin;
     }
 }
