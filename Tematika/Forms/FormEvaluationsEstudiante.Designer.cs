@@ -65,12 +65,14 @@
             // 
             // btnEmpezarEvaluacion
             // 
+            btnEmpezarEvaluacion.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEmpezarEvaluacion.Location = new Point(621, 112);
             btnEmpezarEvaluacion.Name = "btnEmpezarEvaluacion";
             btnEmpezarEvaluacion.Size = new Size(133, 23);
             btnEmpezarEvaluacion.TabIndex = 5;
             btnEmpezarEvaluacion.Text = "Empezar Evaluación";
             btnEmpezarEvaluacion.UseVisualStyleBackColor = true;
+            btnEmpezarEvaluacion.Click += btnEmpezarEvaluacion_Click;
             // 
             // labelRealizarEvaluacion
             // 
@@ -195,6 +197,7 @@
             Controls.Add(panelFiltroRecursos);
             Name = "FormEvaluationsEstudiante";
             Text = "FormEvaluationsEstudiante";
+            Load += FormEvaluationsEstudiante_Load;
             panelFiltroRecursos.ResumeLayout(false);
             panelFiltroRecursos.PerformLayout();
             panelHistorialEvaluaciones.ResumeLayout(false);

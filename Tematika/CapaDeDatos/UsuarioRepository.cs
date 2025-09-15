@@ -51,7 +51,7 @@ public class UsuarioRepository
     public Usuario? ObtenerPorId(int id)
     {
         using var connection = new SqlConnection(_connectionString);
-        var query = "SELECT * FROM usuario WHERE id_usuario = @id AND eliminado = 0";
+        var query = "SELECT * FROM usuario WHERE id_usuario = @id";
 
         using var command = new SqlCommand(query, connection);
         command.Parameters.AddWithValue("@id", id);

@@ -12,9 +12,21 @@ namespace Tematika.Forms
 {
     public partial class FormEvaluationsEstudiante : Form
     {
+
         public FormEvaluationsEstudiante()
         {
             InitializeComponent();
+        }
+
+        private void FormEvaluationsEstudiante_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEmpezarEvaluacion_Click(object sender, EventArgs e)
+        {
+            FormQuizEstudiante nuevoQuiz = new FormQuizEstudiante();
+            nuevoQuiz.Show();
         }
     }
 }
