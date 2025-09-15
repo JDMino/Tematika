@@ -22,52 +22,6 @@ namespace Tematika.Utils
             }
         }
 
-        /*public static bool ValidarCamposConDetalle(TableLayoutPanel panel)
-        {
-            List<string> errores = new List<string>();
-            int totalCampos = 0;
-            int camposVacios = 0;
-
-            foreach (Control ctrl in panel.Controls)
-            {
-                string nombreCampo = ctrl.Tag?.ToString() ?? ctrl.Name;
-
-                if (ctrl is TextBox txt)
-                {
-                    totalCampos++;
-                    if (string.IsNullOrWhiteSpace(txt.Text))
-                    {
-                        camposVacios++;
-                        errores.Add($"• El campo '{nombreCampo}' no puede estar vacío.");
-                    }
-                }
-                else if (ctrl is ComboBox cmb)
-                {
-                    totalCampos++;
-                    if (cmb.SelectedIndex == -1)
-                    {
-                        camposVacios++;
-                        errores.Add($"• Debe seleccionar una opción en '{nombreCampo}'.");
-                    }
-                }
-            }
-
-            if (camposVacios == totalCampos && totalCampos > 0)
-            {
-                MessageBox.Show("Todos los campos están vacíos. Por favor, complete al menos uno.", "Validación general", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (errores.Count > 0)
-            {
-                string mensaje = "Se encontraron los siguientes errores:\n\n" + string.Join("\n", errores);
-                MessageBox.Show(mensaje, "Validación de campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            return true;
-        }*/
-
         public static bool ValidarCamposObligatorios(TableLayoutPanel panel)
         {
             foreach (Control ctrl in panel.Controls)
@@ -102,6 +56,20 @@ namespace Tematika.Utils
 
             return true;
         }
+
+        public static void ValidarSoloNumeros(KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten números en este campo.", "Entrada inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
     }
 }
 

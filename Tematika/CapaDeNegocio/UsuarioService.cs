@@ -40,6 +40,7 @@ namespace Tematika.CapaDeNegocio
             _repository.Actualizar(usuario);
         }
 
+
         public void EliminarUsuario(int id)
         {
             _repository.Eliminar(id);

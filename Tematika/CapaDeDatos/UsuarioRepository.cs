@@ -51,7 +51,7 @@ public class UsuarioRepository
     public Usuario? ObtenerPorId(int id)
     {
         using var connection = new SqlConnection(_connectionString);
-        var query = "SELECT * FROM usuario WHERE id_usuario = @id AND eliminado = 0";
+        var query = "SELECT * FROM usuario WHERE id_usuario = @id";
 
         using var command = new SqlCommand(query, connection);
         command.Parameters.AddWithValue("@id", id);
@@ -84,8 +84,9 @@ public class UsuarioRepository
     {
         using var connection = new SqlConnection(_connectionString);
         var query = @"UPDATE usuario SET dni = @dni, nombre = @nombre, apellido = @apellido,
-                          correo = @correo, id_perfil = @idPerfil, contrasena_hash = @contrasenaHash, sexo = @sexo
-                          WHERE id_usuario = @id";
+                      correo = @correo, id_perfil = @idPerfil, contrasena_hash = @contrasenaHash,
+                      sexo = @sexo, eliminado = @eliminado
+                  WHERE id_usuario = @id";
 
         using var command = new SqlCommand(query, connection);
         command.Parameters.AddWithValue("@id", usuario.IdUsuario);
@@ -96,10 +97,12 @@ public class UsuarioRepository
         command.Parameters.AddWithValue("@idPerfil", usuario.IdPerfil);
         command.Parameters.AddWithValue("@contrasenaHash", usuario.ContrasenaHash);
         command.Parameters.AddWithValue("@sexo", usuario.Sexo);
+        command.Parameters.AddWithValue("@eliminado", usuario.Eliminado ? 1 : 0);
 
         connection.Open();
         command.ExecuteNonQuery();
     }
+
 
     public void Eliminar(int id)
     {

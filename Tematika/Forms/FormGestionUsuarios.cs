@@ -28,6 +28,14 @@ namespace Tematika.Forms
             panelMain.BackColor = ColorTranslator.FromHtml("#cfd8dc");
             CargarPerfiles();
             CargarUsuarios();
+
+            CBEliminado.Items.Clear();
+            CBEliminado.Items.Add("No");
+            CBEliminado.Items.Add("Sí");
+            CBEliminado.SelectedIndex = 0;
+
+            LEliminado.Visible = false;
+            CBEliminado.Visible = false;
         }
 
         private void CargarPerfiles()
@@ -54,6 +62,8 @@ namespace Tematika.Forms
             BUModificar.Visible = false;
             BUEliminar.Visible = false;
             BGuardar.Visible = true;
+            LEliminado.Visible = false;
+            CBEliminado.Visible = false;
         }
 
         private void LimpiarCampos()
@@ -66,6 +76,10 @@ namespace Tematika.Forms
             CBPerfil.SelectedIndex = 0;
             RBHombre.Checked = true;
             usuarioSeleccionadoId = null;
+
+            CBEliminado.SelectedIndex = 0;
+            LEliminado.Visible = false;
+            CBEliminado.Visible = false;
 
             BGuardar.Visible = true;
             BUModificar.Visible = false;
@@ -85,7 +99,7 @@ namespace Tematika.Forms
                 Correo = TBEmailUsuario.Text,
                 IdPerfil = Convert.ToInt32(CBPerfil.SelectedValue),
                 Sexo = RBHombre.Checked ? 'm' : 'f',
-                Eliminado = false
+                Eliminado = CBEliminado.SelectedItem?.ToString() == "Sí"
             };
 
             var contrasenaPlano = TBContraseñaUsuario.Text;
@@ -163,10 +177,18 @@ namespace Tematika.Forms
                     CBPerfil.SelectedValue = usuario.IdPerfil;
                     RBHombre.Checked = usuario.Sexo == 'm';
                     RBMujer.Checked = usuario.Sexo == 'f';
+                    CBEliminado.SelectedItem = usuario.Eliminado ? "Sí" : "No";
+
+                    var perfil = _perfilService.ListarPerfiles()
+                        .FirstOrDefault(p => p.IdPerfil == usuario.IdPerfil);
+
+                    bool esAdmin = perfil?.NombrePerfil.ToLower() == "admin";
 
                     BGuardar.Visible = false;
-                    BUModificar.Visible = true;
+                    BUModificar.Visible = !esAdmin;
                     BUEliminar.Visible = true;
+                    LEliminado.Visible = true;
+                    CBEliminado.Visible = true;
                 }
             }
         }
@@ -184,6 +206,11 @@ namespace Tematika.Forms
         private void TBApellidoUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validaciones.ValidarSoloLetras(e);
+        }
+
+        private void TBDNIUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.ValidarSoloNumeros(e);
         }
 
         private void panelCamposUsuarios_Paint(object sender, PaintEventArgs e) { }

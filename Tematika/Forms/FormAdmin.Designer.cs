@@ -1,6 +1,6 @@
 ﻿namespace Tematika
 {
-    partial class Form1
+    partial class FormAdmin
     {
         /// <summary>
         ///  Required designer variable.
@@ -135,14 +135,14 @@
             panelMain.Size = new Size(694, 778);
             panelMain.TabIndex = 1;
             // 
-            // Form1
+            // FormAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(938, 778);
             Controls.Add(panelMain);
             Controls.Add(sideBar);
-            Name = "Form1";
+            Name = "FormAdmin";
             Text = "Tematika";
             Load += Form1_Load;
             sideBar.ResumeLayout(false);
