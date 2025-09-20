@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             TCGestionTematica = new TabControl();
             TBTemas = new TabPage();
             panelCamposTemas = new TableLayoutPanel();
@@ -147,7 +146,7 @@
             URLRecurso = new DataGridViewTextBoxColumn();
             MateriaRecurso = new DataGridViewTextBoxColumn();
             TemaRecurso = new DataGridViewTextBoxColumn();
-            Acciones = new DataGridViewButtonColumn();
+            colAcciones = new DataGridViewButtonColumn();
             TCGestionTematica.SuspendLayout();
             TBTemas.SuspendLayout();
             panelCamposTemas.SuspendLayout();
@@ -798,7 +797,7 @@
             DGVRecursos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DGVRecursos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVRecursos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVRecursos.Columns.AddRange(new DataGridViewColumn[] { id_recurso, tituloRecurso, TipoRecurso, descripcionRecurso, URLRecurso, MateriaRecurso, TemaRecurso, Acciones });
+            DGVRecursos.Columns.AddRange(new DataGridViewColumn[] { id_recurso, tituloRecurso, TipoRecurso, descripcionRecurso, URLRecurso, MateriaRecurso, TemaRecurso, colAcciones });
             DGVRecursos.Location = new Point(71, 494);
             DGVRecursos.Name = "DGVRecursos";
             DGVRecursos.RowHeadersWidth = 51;
@@ -1512,18 +1511,13 @@
             TemaRecurso.MinimumWidth = 6;
             TemaRecurso.Name = "TemaRecurso";
             // 
-            // Acciones
+            // colAcciones
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            Acciones.DefaultCellStyle = dataGridViewCellStyle1;
-            Acciones.HeaderText = "Acciones";
-            Acciones.MinimumWidth = 6;
-            Acciones.Name = "Acciones";
-            Acciones.Resizable = DataGridViewTriState.True;
-            Acciones.SortMode = DataGridViewColumnSortMode.Automatic;
-            Acciones.Text = "Ver";
-            Acciones.UseColumnTextForButtonValue = true;
+            colAcciones.HeaderText = "Acciones";
+            colAcciones.MinimumWidth = 6;
+            colAcciones.Name = "colAcciones";
+            colAcciones.Text = "Ver ";
+            colAcciones.UseColumnTextForButtonValue = true;
             // 
             // FormGestionTematica
             // 
@@ -1693,6 +1687,6 @@
         private DataGridViewTextBoxColumn URLRecurso;
         private DataGridViewTextBoxColumn MateriaRecurso;
         private DataGridViewTextBoxColumn TemaRecurso;
-        private DataGridViewButtonColumn Acciones;
+        private DataGridViewButtonColumn colAcciones;
     }
 }

@@ -36,11 +36,17 @@
             BUsuarios = new Button();
             BBackUp = new Button();
             panelMain = new Panel();
+            LTituloForm = new Label();
+            LNombreUsuario = new Label();
+            LRol = new Label();
             sideBar.SuspendLayout();
             SuspendLayout();
             // 
             // sideBar
             // 
+            sideBar.Controls.Add(LNombreUsuario);
+            sideBar.Controls.Add(LRol);
+            sideBar.Controls.Add(LTituloForm);
             sideBar.Controls.Add(BSalir);
             sideBar.Controls.Add(BGestionTematica);
             sideBar.Controls.Add(BDashboard);
@@ -58,7 +64,7 @@
             BSalir.FlatAppearance.BorderSize = 0;
             BSalir.FlatStyle = FlatStyle.Flat;
             BSalir.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BSalir.Location = new Point(33, 482);
+            BSalir.Location = new Point(31, 714);
             BSalir.Name = "BSalir";
             BSalir.Size = new Size(175, 40);
             BSalir.TabIndex = 10;
@@ -71,7 +77,7 @@
             BGestionTematica.FlatAppearance.BorderSize = 0;
             BGestionTematica.FlatStyle = FlatStyle.Flat;
             BGestionTematica.Font = new Font("Segoe UI", 10F);
-            BGestionTematica.Location = new Point(33, 299);
+            BGestionTematica.Location = new Point(31, 369);
             BGestionTematica.Name = "BGestionTematica";
             BGestionTematica.Size = new Size(193, 40);
             BGestionTematica.TabIndex = 8;
@@ -84,7 +90,7 @@
             BDashboard.FlatStyle = FlatStyle.Flat;
             BDashboard.Font = new Font("Segoe UI", 10F);
             BDashboard.ForeColor = SystemColors.ActiveCaptionText;
-            BDashboard.Location = new Point(33, 29);
+            BDashboard.Location = new Point(31, 99);
             BDashboard.Name = "BDashboard";
             BDashboard.Size = new Size(176, 40);
             BDashboard.TabIndex = 7;
@@ -96,7 +102,7 @@
             BInformes.FlatAppearance.BorderSize = 0;
             BInformes.FlatStyle = FlatStyle.Flat;
             BInformes.Font = new Font("Segoe UI", 10F);
-            BInformes.Location = new Point(34, 390);
+            BInformes.Location = new Point(32, 460);
             BInformes.Name = "BInformes";
             BInformes.Size = new Size(175, 40);
             BInformes.TabIndex = 5;
@@ -108,7 +114,7 @@
             BUsuarios.FlatAppearance.BorderSize = 0;
             BUsuarios.FlatStyle = FlatStyle.Flat;
             BUsuarios.Font = new Font("Segoe UI", 10F);
-            BUsuarios.Location = new Point(33, 210);
+            BUsuarios.Location = new Point(31, 280);
             BUsuarios.Name = "BUsuarios";
             BUsuarios.Size = new Size(176, 40);
             BUsuarios.TabIndex = 1;
@@ -120,7 +126,7 @@
             BBackUp.FlatAppearance.BorderSize = 0;
             BBackUp.FlatStyle = FlatStyle.Flat;
             BBackUp.Font = new Font("Segoe UI", 10F);
-            BBackUp.Location = new Point(33, 118);
+            BBackUp.Location = new Point(31, 188);
             BBackUp.Name = "BBackUp";
             BBackUp.Size = new Size(176, 40);
             BBackUp.TabIndex = 0;
@@ -134,6 +140,42 @@
             panelMain.Name = "panelMain";
             panelMain.Size = new Size(694, 778);
             panelMain.TabIndex = 1;
+            // 
+            // LTituloForm
+            // 
+            LTituloForm.AutoSize = true;
+            LTituloForm.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LTituloForm.ForeColor = Color.White;
+            LTituloForm.Location = new Point(48, 24);
+            LTituloForm.Name = "LTituloForm";
+            LTituloForm.Size = new Size(146, 41);
+            LTituloForm.TabIndex = 11;
+            LTituloForm.Text = "Tematika";
+            LTituloForm.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // LNombreUsuario
+            // 
+            LNombreUsuario.AutoSize = true;
+            LNombreUsuario.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LNombreUsuario.ForeColor = Color.White;
+            LNombreUsuario.Location = new Point(12, 607);
+            LNombreUsuario.Name = "LNombreUsuario";
+            LNombreUsuario.Size = new Size(229, 37);
+            LNombreUsuario.TabIndex = 13;
+            LNombreUsuario.Text = "Nombre Usuario";
+            LNombreUsuario.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // LRol
+            // 
+            LRol.AutoSize = true;
+            LRol.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LRol.ForeColor = Color.White;
+            LRol.Location = new Point(92, 660);
+            LRol.Name = "LRol";
+            LRol.Size = new Size(59, 37);
+            LRol.TabIndex = 12;
+            LRol.Text = "Rol";
+            LRol.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FormAdmin
             // 
@@ -160,5 +202,8 @@
         private Button BDashboard;
         private Button BGestionTematica;
         private Button BSalir;
+        private Label LTituloForm;
+        private Label LNombreUsuario;
+        private Label LRol;
     }
 }
