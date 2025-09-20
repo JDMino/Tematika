@@ -80,6 +80,7 @@
             btnCerrarSesion.TabIndex = 7;
             btnCerrarSesion.Text = "Cerrar Sesión";
             btnCerrarSesion.UseVisualStyleBackColor = false;
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 
             // labelRolEstudiante
             // 

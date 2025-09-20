@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Tematika.Forms;
+using Tematika.Utils;
 
 namespace Tematika
 {
@@ -105,5 +106,11 @@ namespace Tematika
 
             }
         }
-    }
+
+        private void BSalir_Click(object sender, EventArgs e)
+        {
+            SesionManager.CerrarSesion();
+            this.Close(); // Al cerrarse, AppContext crea un nuevo login
+            }
+        }
 }

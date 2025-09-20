@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             sideBar = new Panel();
+            LNombreUsuario = new Label();
+            LRol = new Label();
+            LTituloForm = new Label();
             BSalir = new Button();
             BGestionTematica = new Button();
             BDashboard = new Button();
@@ -36,9 +39,6 @@
             BUsuarios = new Button();
             BBackUp = new Button();
             panelMain = new Panel();
-            LTituloForm = new Label();
-            LNombreUsuario = new Label();
-            LRol = new Label();
             sideBar.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,21 +55,60 @@
             sideBar.Controls.Add(BBackUp);
             sideBar.Dock = DockStyle.Left;
             sideBar.Location = new Point(0, 0);
+            sideBar.Margin = new Padding(3, 2, 3, 2);
             sideBar.Name = "sideBar";
-            sideBar.Size = new Size(244, 778);
+            sideBar.Size = new Size(214, 562);
             sideBar.TabIndex = 0;
+            // 
+            // LNombreUsuario
+            // 
+            LNombreUsuario.AutoSize = true;
+            LNombreUsuario.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LNombreUsuario.ForeColor = Color.White;
+            LNombreUsuario.Location = new Point(10, 455);
+            LNombreUsuario.Name = "LNombreUsuario";
+            LNombreUsuario.Size = new Size(183, 30);
+            LNombreUsuario.TabIndex = 13;
+            LNombreUsuario.Text = "Nombre Usuario";
+            LNombreUsuario.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // LRol
+            // 
+            LRol.AutoSize = true;
+            LRol.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LRol.ForeColor = Color.White;
+            LRol.Location = new Point(80, 495);
+            LRol.Name = "LRol";
+            LRol.Size = new Size(45, 30);
+            LRol.TabIndex = 12;
+            LRol.Text = "Rol";
+            LRol.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // LTituloForm
+            // 
+            LTituloForm.AutoSize = true;
+            LTituloForm.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LTituloForm.ForeColor = Color.White;
+            LTituloForm.Location = new Point(42, 18);
+            LTituloForm.Name = "LTituloForm";
+            LTituloForm.Size = new Size(116, 32);
+            LTituloForm.TabIndex = 11;
+            LTituloForm.Text = "Tematika";
+            LTituloForm.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // BSalir
             // 
             BSalir.FlatAppearance.BorderSize = 0;
             BSalir.FlatStyle = FlatStyle.Flat;
             BSalir.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BSalir.Location = new Point(31, 714);
+            BSalir.Location = new Point(27, 536);
+            BSalir.Margin = new Padding(3, 2, 3, 2);
             BSalir.Name = "BSalir";
-            BSalir.Size = new Size(175, 40);
+            BSalir.Size = new Size(153, 30);
             BSalir.TabIndex = 10;
             BSalir.Text = "Salir";
             BSalir.UseVisualStyleBackColor = true;
+            BSalir.Click += BSalir_Click;
             // 
             // BGestionTematica
             // 
@@ -77,9 +116,10 @@
             BGestionTematica.FlatAppearance.BorderSize = 0;
             BGestionTematica.FlatStyle = FlatStyle.Flat;
             BGestionTematica.Font = new Font("Segoe UI", 10F);
-            BGestionTematica.Location = new Point(31, 369);
+            BGestionTematica.Location = new Point(27, 277);
+            BGestionTematica.Margin = new Padding(3, 2, 3, 2);
             BGestionTematica.Name = "BGestionTematica";
-            BGestionTematica.Size = new Size(193, 40);
+            BGestionTematica.Size = new Size(169, 30);
             BGestionTematica.TabIndex = 8;
             BGestionTematica.Text = "Organizacion Tematica";
             BGestionTematica.UseVisualStyleBackColor = true;
@@ -90,9 +130,10 @@
             BDashboard.FlatStyle = FlatStyle.Flat;
             BDashboard.Font = new Font("Segoe UI", 10F);
             BDashboard.ForeColor = SystemColors.ActiveCaptionText;
-            BDashboard.Location = new Point(31, 99);
+            BDashboard.Location = new Point(27, 74);
+            BDashboard.Margin = new Padding(3, 2, 3, 2);
             BDashboard.Name = "BDashboard";
-            BDashboard.Size = new Size(176, 40);
+            BDashboard.Size = new Size(154, 30);
             BDashboard.TabIndex = 7;
             BDashboard.Text = "Dashboard";
             BDashboard.UseVisualStyleBackColor = true;
@@ -102,9 +143,10 @@
             BInformes.FlatAppearance.BorderSize = 0;
             BInformes.FlatStyle = FlatStyle.Flat;
             BInformes.Font = new Font("Segoe UI", 10F);
-            BInformes.Location = new Point(32, 460);
+            BInformes.Location = new Point(28, 345);
+            BInformes.Margin = new Padding(3, 2, 3, 2);
             BInformes.Name = "BInformes";
-            BInformes.Size = new Size(175, 40);
+            BInformes.Size = new Size(153, 30);
             BInformes.TabIndex = 5;
             BInformes.Text = "Informes";
             BInformes.UseVisualStyleBackColor = true;
@@ -114,9 +156,10 @@
             BUsuarios.FlatAppearance.BorderSize = 0;
             BUsuarios.FlatStyle = FlatStyle.Flat;
             BUsuarios.Font = new Font("Segoe UI", 10F);
-            BUsuarios.Location = new Point(31, 280);
+            BUsuarios.Location = new Point(27, 210);
+            BUsuarios.Margin = new Padding(3, 2, 3, 2);
             BUsuarios.Name = "BUsuarios";
-            BUsuarios.Size = new Size(176, 40);
+            BUsuarios.Size = new Size(154, 30);
             BUsuarios.TabIndex = 1;
             BUsuarios.Text = "Usuarios";
             BUsuarios.UseVisualStyleBackColor = true;
@@ -126,9 +169,10 @@
             BBackUp.FlatAppearance.BorderSize = 0;
             BBackUp.FlatStyle = FlatStyle.Flat;
             BBackUp.Font = new Font("Segoe UI", 10F);
-            BBackUp.Location = new Point(31, 188);
+            BBackUp.Location = new Point(27, 141);
+            BBackUp.Margin = new Padding(3, 2, 3, 2);
             BBackUp.Name = "BBackUp";
-            BBackUp.Size = new Size(176, 40);
+            BBackUp.Size = new Size(154, 30);
             BBackUp.TabIndex = 0;
             BBackUp.Text = "Back Up";
             BBackUp.UseVisualStyleBackColor = true;
@@ -136,54 +180,20 @@
             // panelMain
             // 
             panelMain.Dock = DockStyle.Fill;
-            panelMain.Location = new Point(244, 0);
+            panelMain.Location = new Point(214, 0);
+            panelMain.Margin = new Padding(3, 2, 3, 2);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(694, 778);
+            panelMain.Size = new Size(607, 562);
             panelMain.TabIndex = 1;
-            // 
-            // LTituloForm
-            // 
-            LTituloForm.AutoSize = true;
-            LTituloForm.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LTituloForm.ForeColor = Color.White;
-            LTituloForm.Location = new Point(48, 24);
-            LTituloForm.Name = "LTituloForm";
-            LTituloForm.Size = new Size(146, 41);
-            LTituloForm.TabIndex = 11;
-            LTituloForm.Text = "Tematika";
-            LTituloForm.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // LNombreUsuario
-            // 
-            LNombreUsuario.AutoSize = true;
-            LNombreUsuario.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LNombreUsuario.ForeColor = Color.White;
-            LNombreUsuario.Location = new Point(12, 607);
-            LNombreUsuario.Name = "LNombreUsuario";
-            LNombreUsuario.Size = new Size(229, 37);
-            LNombreUsuario.TabIndex = 13;
-            LNombreUsuario.Text = "Nombre Usuario";
-            LNombreUsuario.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // LRol
-            // 
-            LRol.AutoSize = true;
-            LRol.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LRol.ForeColor = Color.White;
-            LRol.Location = new Point(92, 660);
-            LRol.Name = "LRol";
-            LRol.Size = new Size(59, 37);
-            LRol.TabIndex = 12;
-            LRol.Text = "Rol";
-            LRol.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FormAdmin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(938, 778);
+            ClientSize = new Size(821, 562);
             Controls.Add(panelMain);
             Controls.Add(sideBar);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormAdmin";
             Text = "Tematika";
             Load += Form1_Load;

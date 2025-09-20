@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tematika.CapaDeNegocio;
+using Tematika.Models;
+using Tematika.Utils;
 
 namespace Tematika.Forms
 {
     public partial class FormLogin : Form
     {
+        public event Action? OnLoginSuccess;
+
         public FormLogin()
         {
             InitializeComponent();
+            BIniciarSesion.Click += BIniciarSesion_Click;
+            BInvitado.Click += BInvitado_Click;
+
         }
 
         private void FormLogin_Load(object sender, EventArgs e)
@@ -26,6 +28,34 @@ namespace Tematika.Forms
             BIniciarSesion.ForeColor = ColorTranslator.FromHtml("#bdc3c7");
             BInvitado.ForeColor = ColorTranslator.FromHtml("#bdc3c7");
         }
+
+        private void BIniciarSesion_Click(object sender, EventArgs e)
+        {
+            var correo = TBUsuario.Text.Trim();
+            var contrasena = TBContraseña.Text;
+
+            var servicio = new UsuarioService();
+            var (usuario, mensajeError) = servicio.ValidarCredenciales(correo, contrasena);
+
+            if (usuario == null)
+            {
+                MessageBox.Show(mensajeError, "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            SesionManager.IniciarSesion(usuario);
+            OnLoginSuccess?.Invoke(); // Notifica al AppContext
+            this.Close(); // Destruye el login
+        }
+
+        private void BInvitado_Click(object sender, EventArgs e)
+        {
+            SesionManager.IniciarSesion(null); // Marca como invitado
+
+            OnLoginSuccess?.Invoke(); // Notifica al AppContext que debe abrir el form principal
+            this.Close(); // Destruye el login
+        }
+
+
     }
 }
-

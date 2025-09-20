@@ -45,5 +45,26 @@ namespace Tematika.CapaDeNegocio
         {
             _repository.Eliminar(id);
         }
+
+        public (Usuario? usuario, string? mensajeError) ValidarCredenciales(string correo, string contrasenaPlano)
+        {
+            var usuarios = _repository.ObtenerTodos();
+            var usuario = usuarios.FirstOrDefault(u => u.Correo == correo);
+
+            if (usuario == null)
+                return (null, "Usuario no encontrado.");
+
+            if (usuario.Eliminado)
+                return (null, "El usuario está inactivo. Contacte al administrador.");
+
+            var hashIngresado = SeguridadHelper.HashContrasena(contrasenaPlano);
+            if (usuario.ContrasenaHash != hashIngresado)
+                return (null, "Contraseña incorrecta.");
+
+            return (usuario, null);
+        }
+
+
+
     }
 }

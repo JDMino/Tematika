@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Tematika.Forms;
+using Tematika.Utils;
 
 namespace Tematika
 {
@@ -29,21 +30,37 @@ namespace Tematika
 
             btnFavorites.Click += (s, e) =>
             {
+                if (SesionManager.EsInvitado)
+                {
+                    MessageBox.Show("Función no disponible en modo invitado.");
+                    return;
+                }
                 OpenChildForm(new FormFavoritesEstudiante());
                 SetActiveButton(btnFavorites);
             };
 
             btnEvaluations.Click += (s, e) =>
             {
+                if (SesionManager.EsInvitado)
+                {
+                    MessageBox.Show("Función no disponible en modo invitado.");
+                    return;
+                }
                 OpenChildForm(new FormEvaluationsEstudiante());
                 SetActiveButton(btnEvaluations);
             };
 
             btnNotes.Click += (s, e) =>
             {
+                if (SesionManager.EsInvitado)
+                {
+                    MessageBox.Show("Función no disponible en modo invitado.");
+                    return;
+                }
                 OpenChildForm(new FormNotesEstudiante());
                 SetActiveButton(btnNotes);
             };
+
 
         }
 
@@ -63,10 +80,8 @@ namespace Tematika
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            // Cambia el color de fondo del panel al color hexadecimal deseado
             panelSidebar.BackColor = ColorTranslator.FromHtml("#2c3e50");
 
-            //Aplica colores a botones (revisar SetActiveButton())
             foreach (Control ctrl in panelSidebar.Controls)
             {
                 if (ctrl is Button btn)
@@ -74,7 +89,32 @@ namespace Tematika
                     btn.BackColor = ColorTranslator.FromHtml("#dee6ed");
                 }
             }
+
+            if (SesionManager.EsInvitado)
+            {
+                labelNombreUsuario.Text = "Invitado";
+                labelRolEstudiante.Text = "Modo exploración";
+
+                //btnFavorites.Enabled = false;
+                //btnEvaluations.Enabled = false;
+                //btnNotes.Enabled = false;
+
+                //btnFavorites.Visible = false;
+                //btnEvaluations.Visible = false;
+                //btnNotes.Visible = false;
+
+                btnFavorites.BackColor = Color.LightGray;
+                btnEvaluations.BackColor = Color.LightGray;
+                btnNotes.BackColor = Color.LightGray;
+            }
+            else
+            {
+                var usuario = SesionManager.UsuarioActual!;
+                labelNombreUsuario.Text = usuario.Nombre;
+                labelRolEstudiante.Text = "Estudiante";
+            }
         }
+
 
         private void OpenChildForm(Form childForm)
         {
@@ -90,5 +130,10 @@ namespace Tematika
             childForm.Show();
         }
 
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            SesionManager.CerrarSesion();
+            this.Close(); // Al cerrarse, AppContext crea un nuevo login
+        }
     }
 }
