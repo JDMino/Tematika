@@ -17,4 +17,11 @@ public class PerfilService
     {
         return _repository.ObtenerTodos();
     }
+
+    public Perfil? ObtenerPerfil(int idPerfil)
+    {
+        var perfiles = _repository.ObtenerTodos();
+        return perfiles.FirstOrDefault(p => p.IdPerfil == idPerfil);
+    }
+
 }

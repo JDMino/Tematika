@@ -48,6 +48,9 @@ namespace Tematika
                     case 3:
                         destino = new FormMainEstudiante();
                         break;
+                    case 5:
+                        destino = new FormAdmin();
+                        break;
                     default:
                         MessageBox.Show("Perfil no reconocido.");
                         ExitThread();

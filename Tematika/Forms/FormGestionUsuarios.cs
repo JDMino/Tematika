@@ -41,10 +41,20 @@ namespace Tematika.Forms
         private void CargarPerfiles()
         {
             var perfiles = _perfilService.ListarPerfiles();
-            CBPerfil.DataSource = perfiles;
+            var usuarioActual = SesionManager.UsuarioActual;
+
+            bool esSuperAdmin = usuarioActual != null &&
+                                _perfilService.ObtenerPerfil(usuarioActual.IdPerfil)?.NombrePerfil.ToLower() == "superadmin";
+
+            var perfilesFiltrados = esSuperAdmin
+                ? perfiles
+                : perfiles.Where(p => p.NombrePerfil.ToLower() != "superadmin").ToList();
+
+            CBPerfil.DataSource = perfilesFiltrados;
             CBPerfil.DisplayMember = "NombrePerfil";
             CBPerfil.ValueMember = "IdPerfil";
         }
+
 
         private void CargarUsuarios()
         {
@@ -216,6 +226,7 @@ namespace Tematika.Forms
                 var usuario = _usuarioService.ObtenerUsuario(usuarioSeleccionadoId.Value);
                 if (usuario != null)
                 {
+                    // Cargar datos en los campos
                     TBNombreUsuario.Text = usuario.Nombre;
                     TBApellidoUsuario.Text = usuario.Apellido;
                     TBEmailUsuario.Text = usuario.Correo;
@@ -225,21 +236,27 @@ namespace Tematika.Forms
                     RBMujer.Checked = usuario.Sexo == 'f';
                     CBEliminado.SelectedItem = usuario.Eliminado ? "Sí" : "No";
 
-                    var perfil = _perfilService.ListarPerfiles()
-                        .FirstOrDefault(p => p.IdPerfil == usuario.IdPerfil);
-
-                    bool esAdmin = perfil?.NombrePerfil.ToLower() == "admin";
+                    // Obtener perfiles
                     var usuarioActual = SesionManager.UsuarioActual;
-                    bool esUsuarioActual = usuarioActual != null && usuario.IdUsuario == usuarioActual.IdUsuario;
+                    var perfilActual = _perfilService.ObtenerPerfil(usuarioActual.IdPerfil);
+                    var perfilSeleccionado = _perfilService.ObtenerPerfil(usuario.IdPerfil);
 
+                    // Evaluar roles
+                    bool esSuperAdmin = perfilActual?.NombrePerfil.ToLower() == "superadmin";
+                    bool esAdmin = perfilActual?.NombrePerfil.ToLower() == "admin";
+                    bool objetivoEsAdminOSuper = perfilSeleccionado?.NombrePerfil.ToLower() is "admin" or "superadmin";
+                    bool esUsuarioActual = usuarioActual.IdUsuario == usuario.IdUsuario;
+
+                    // Control de botones
                     BGuardar.Visible = false;
-                    BUModificar.Visible = !esAdmin;
-                    BUEliminar.Visible = !esUsuarioActual;
+                    BUModificar.Visible = esSuperAdmin || (esAdmin && !objetivoEsAdminOSuper);
+                    BUEliminar.Visible = esSuperAdmin || (esAdmin && !objetivoEsAdminOSuper && !esUsuarioActual);
                     LEliminado.Visible = true;
                     CBEliminado.Visible = true;
                 }
             }
         }
+
 
 
         private void TBEmailUsuario_Leave(object sender, EventArgs e)
