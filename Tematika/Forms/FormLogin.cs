@@ -55,7 +55,5 @@ namespace Tematika.Forms
             OnLoginSuccess?.Invoke(); // Notifica al AppContext que debe abrir el form principal
             this.Close(); // Destruye el login
         }
-
-
     }
 }

@@ -28,21 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             panelMainLogin = new Panel();
             panelBotones = new TableLayoutPanel();
             BIniciarSesion = new Button();
             BInvitado = new Button();
             panelLogo = new TableLayoutPanel();
             LTitulo = new Label();
+            label1 = new Label();
             panelCampos = new TableLayoutPanel();
             LUsuario = new Label();
             LContraseña = new Label();
             TBUsuario = new TextBox();
             TBContraseña = new TextBox();
+            pictureBoxUsuario = new PictureBox();
+            pictureBoxContraseña = new PictureBox();
             panelMainLogin.SuspendLayout();
             panelBotones.SuspendLayout();
             panelLogo.SuspendLayout();
             panelCampos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxUsuario).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxContraseña).BeginInit();
             SuspendLayout();
             // 
             // panelMainLogin
@@ -66,8 +72,8 @@
             panelBotones.Location = new Point(256, 318);
             panelBotones.Name = "panelBotones";
             panelBotones.RowCount = 2;
-            panelBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 42.8571434F));
-            panelBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 57.1428566F));
+            panelBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 44.5322647F));
+            panelBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 55.4677353F));
             panelBotones.Size = new Size(250, 95);
             panelBotones.TabIndex = 2;
             // 
@@ -79,11 +85,14 @@
             BIniciarSesion.FlatAppearance.MouseDownBackColor = Color.FromArgb(41, 128, 185);
             BIniciarSesion.FlatAppearance.MouseOverBackColor = Color.FromArgb(41, 128, 185);
             BIniciarSesion.FlatStyle = FlatStyle.Flat;
-            BIniciarSesion.Location = new Point(54, 4);
+            BIniciarSesion.Image = (Image)resources.GetObject("BIniciarSesion.Image");
+            BIniciarSesion.ImageAlign = ContentAlignment.MiddleLeft;
+            BIniciarSesion.Location = new Point(54, 3);
             BIniciarSesion.Name = "BIniciarSesion";
-            BIniciarSesion.Size = new Size(142, 32);
+            BIniciarSesion.Size = new Size(142, 36);
             BIniciarSesion.TabIndex = 0;
             BIniciarSesion.Text = "Iniciar sesion";
+            BIniciarSesion.TextImageRelation = TextImageRelation.ImageBeforeText;
             BIniciarSesion.UseVisualStyleBackColor = true;
             // 
             // BInvitado
@@ -94,7 +103,7 @@
             BInvitado.FlatAppearance.MouseDownBackColor = Color.FromArgb(41, 128, 185);
             BInvitado.FlatAppearance.MouseOverBackColor = Color.FromArgb(41, 128, 185);
             BInvitado.FlatStyle = FlatStyle.Flat;
-            BInvitado.Location = new Point(28, 53);
+            BInvitado.Location = new Point(28, 54);
             BInvitado.Name = "BInvitado";
             BInvitado.Size = new Size(193, 29);
             BInvitado.TabIndex = 1;
@@ -107,6 +116,7 @@
             panelLogo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             panelLogo.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             panelLogo.Controls.Add(LTitulo, 0, 1);
+            panelLogo.Controls.Add(label1, 0, 0);
             panelLogo.Location = new Point(253, 12);
             panelLogo.Name = "panelLogo";
             panelLogo.RowCount = 2;
@@ -125,19 +135,36 @@
             LTitulo.Name = "LTitulo";
             LTitulo.Size = new Size(244, 56);
             LTitulo.TabIndex = 0;
-            LTitulo.Text = "Tematika - Sistema academico";
-            LTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            LTitulo.Text = "Sistema academico";
+            LTitulo.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Dock = DockStyle.Fill;
+            label1.Font = new Font("Ebrima", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ButtonHighlight;
+            label1.Location = new Point(3, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(244, 56);
+            label1.TabIndex = 1;
+            label1.Text = "Tematika";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panelCampos
             // 
             panelCampos.BackColor = Color.Transparent;
-            panelCampos.ColumnCount = 2;
-            panelCampos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45.0549469F));
-            panelCampos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.9450531F));
-            panelCampos.Controls.Add(LUsuario, 0, 0);
-            panelCampos.Controls.Add(LContraseña, 0, 1);
-            panelCampos.Controls.Add(TBUsuario, 1, 0);
-            panelCampos.Controls.Add(TBContraseña, 1, 1);
+            panelCampos.BackgroundImageLayout = ImageLayout.Stretch;
+            panelCampos.ColumnCount = 3;
+            panelCampos.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
+            panelCampos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45.05495F));
+            panelCampos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.94505F));
+            panelCampos.Controls.Add(LUsuario, 1, 0);
+            panelCampos.Controls.Add(LContraseña, 1, 1);
+            panelCampos.Controls.Add(TBUsuario, 2, 0);
+            panelCampos.Controls.Add(TBContraseña, 2, 1);
+            panelCampos.Controls.Add(pictureBoxUsuario, 0, 0);
+            panelCampos.Controls.Add(pictureBoxContraseña, 0, 1);
             panelCampos.Location = new Point(200, 172);
             panelCampos.Name = "panelCampos";
             panelCampos.RowCount = 2;
@@ -150,7 +177,8 @@
             // 
             LUsuario.AutoSize = true;
             LUsuario.ForeColor = SystemColors.ButtonHighlight;
-            LUsuario.Location = new Point(3, 0);
+            LUsuario.ImageAlign = ContentAlignment.MiddleLeft;
+            LUsuario.Location = new Point(43, 0);
             LUsuario.Name = "LUsuario";
             LUsuario.Size = new Size(59, 20);
             LUsuario.TabIndex = 0;
@@ -161,7 +189,7 @@
             // 
             LContraseña.AutoSize = true;
             LContraseña.ForeColor = SystemColors.ButtonHighlight;
-            LContraseña.Location = new Point(3, 62);
+            LContraseña.Location = new Point(43, 62);
             LContraseña.Name = "LContraseña";
             LContraseña.Size = new Size(83, 20);
             LContraseña.TabIndex = 1;
@@ -169,18 +197,38 @@
             // 
             // TBUsuario
             // 
-            TBUsuario.Location = new Point(165, 3);
+            TBUsuario.Location = new Point(187, 3);
             TBUsuario.Name = "TBUsuario";
             TBUsuario.Size = new Size(152, 27);
             TBUsuario.TabIndex = 2;
             // 
             // TBContraseña
             // 
-            TBContraseña.Location = new Point(165, 65);
+            TBContraseña.Location = new Point(187, 65);
             TBContraseña.Name = "TBContraseña";
             TBContraseña.Size = new Size(152, 27);
             TBContraseña.TabIndex = 3;
             TBContraseña.UseSystemPasswordChar = true;
+            // 
+            // pictureBoxUsuario
+            // 
+            pictureBoxUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBoxUsuario.Image = (Image)resources.GetObject("pictureBoxUsuario.Image");
+            pictureBoxUsuario.Location = new Point(3, 3);
+            pictureBoxUsuario.Name = "pictureBoxUsuario";
+            pictureBoxUsuario.Size = new Size(34, 56);
+            pictureBoxUsuario.TabIndex = 4;
+            pictureBoxUsuario.TabStop = false;
+            // 
+            // pictureBoxContraseña
+            // 
+            pictureBoxContraseña.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBoxContraseña.Image = (Image)resources.GetObject("pictureBoxContraseña.Image");
+            pictureBoxContraseña.Location = new Point(3, 65);
+            pictureBoxContraseña.Name = "pictureBoxContraseña";
+            pictureBoxContraseña.Size = new Size(34, 57);
+            pictureBoxContraseña.TabIndex = 5;
+            pictureBoxContraseña.TabStop = false;
             // 
             // FormLogin
             // 
@@ -198,6 +246,8 @@
             panelLogo.PerformLayout();
             panelCampos.ResumeLayout(false);
             panelCampos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxUsuario).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxContraseña).EndInit();
             ResumeLayout(false);
         }
 
@@ -214,5 +264,8 @@
         private TableLayoutPanel panelBotones;
         private Button BIniciarSesion;
         private Button BInvitado;
+        private PictureBox pictureBoxUsuario;
+        private PictureBox pictureBoxContraseña;
+        private Label label1;
     }
 }

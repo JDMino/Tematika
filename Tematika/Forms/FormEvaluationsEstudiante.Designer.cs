@@ -59,16 +59,18 @@
             panelFiltroRecursos.Controls.Add(labelAsignatura);
             panelFiltroRecursos.Dock = DockStyle.Top;
             panelFiltroRecursos.Location = new Point(0, 0);
+            panelFiltroRecursos.Margin = new Padding(3, 4, 3, 4);
             panelFiltroRecursos.Name = "panelFiltroRecursos";
-            panelFiltroRecursos.Size = new Size(772, 142);
+            panelFiltroRecursos.Size = new Size(882, 189);
             panelFiltroRecursos.TabIndex = 2;
             // 
             // btnEmpezarEvaluacion
             // 
             btnEmpezarEvaluacion.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnEmpezarEvaluacion.Location = new Point(621, 112);
+            btnEmpezarEvaluacion.Location = new Point(710, 149);
+            btnEmpezarEvaluacion.Margin = new Padding(3, 4, 3, 4);
             btnEmpezarEvaluacion.Name = "btnEmpezarEvaluacion";
-            btnEmpezarEvaluacion.Size = new Size(133, 23);
+            btnEmpezarEvaluacion.Size = new Size(152, 31);
             btnEmpezarEvaluacion.TabIndex = 5;
             btnEmpezarEvaluacion.Text = "Empezar Evaluación";
             btnEmpezarEvaluacion.UseVisualStyleBackColor = true;
@@ -79,9 +81,9 @@
             labelRealizarEvaluacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelRealizarEvaluacion.AutoSize = true;
             labelRealizarEvaluacion.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelRealizarEvaluacion.Location = new Point(288, 9);
+            labelRealizarEvaluacion.Location = new Point(329, 12);
             labelRealizarEvaluacion.Name = "labelRealizarEvaluacion";
-            labelRealizarEvaluacion.Size = new Size(181, 25);
+            labelRealizarEvaluacion.Size = new Size(234, 32);
             labelRealizarEvaluacion.TabIndex = 4;
             labelRealizarEvaluacion.Text = "Realizar Evaluación";
             // 
@@ -89,27 +91,29 @@
             // 
             cmbTemas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cmbTemas.FormattingEnabled = true;
-            cmbTemas.Location = new Point(110, 77);
+            cmbTemas.Location = new Point(147, 103);
+            cmbTemas.Margin = new Padding(3, 4, 3, 4);
             cmbTemas.Name = "cmbTemas";
-            cmbTemas.Size = new Size(644, 23);
+            cmbTemas.Size = new Size(714, 28);
             cmbTemas.TabIndex = 3;
             // 
             // cmbAsignaturas
             // 
             cmbAsignaturas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cmbAsignaturas.FormattingEnabled = true;
-            cmbAsignaturas.Location = new Point(110, 47);
+            cmbAsignaturas.Location = new Point(147, 63);
+            cmbAsignaturas.Margin = new Padding(3, 4, 3, 4);
             cmbAsignaturas.Name = "cmbAsignaturas";
-            cmbAsignaturas.Size = new Size(644, 23);
+            cmbAsignaturas.Size = new Size(714, 28);
             cmbAsignaturas.TabIndex = 2;
             // 
             // labelTema
             // 
             labelTema.AutoSize = true;
             labelTema.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelTema.Location = new Point(41, 72);
+            labelTema.Location = new Point(47, 96);
             labelTema.Name = "labelTema";
-            labelTema.Size = new Size(63, 25);
+            labelTema.Size = new Size(81, 32);
             labelTema.TabIndex = 1;
             labelTema.Text = "Tema:";
             // 
@@ -117,9 +121,9 @@
             // 
             labelAsignatura.AutoSize = true;
             labelAsignatura.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelAsignatura.Location = new Point(0, 47);
+            labelAsignatura.Location = new Point(0, 63);
             labelAsignatura.Name = "labelAsignatura";
-            labelAsignatura.Size = new Size(114, 25);
+            labelAsignatura.Size = new Size(146, 32);
             labelAsignatura.TabIndex = 0;
             labelAsignatura.Text = "Asignatura:";
             // 
@@ -129,9 +133,10 @@
             panelHistorialEvaluaciones.BackColor = Color.SteelBlue;
             panelHistorialEvaluaciones.Controls.Add(DGVHistorialEvaluaciones);
             panelHistorialEvaluaciones.Controls.Add(labelHistorialEvaluaciones);
-            panelHistorialEvaluaciones.Location = new Point(0, 141);
+            panelHistorialEvaluaciones.Location = new Point(0, 188);
+            panelHistorialEvaluaciones.Margin = new Padding(3, 4, 3, 4);
             panelHistorialEvaluaciones.Name = "panelHistorialEvaluaciones";
-            panelHistorialEvaluaciones.Size = new Size(772, 301);
+            panelHistorialEvaluaciones.Size = new Size(882, 401);
             panelHistorialEvaluaciones.TabIndex = 3;
             // 
             // DGVHistorialEvaluaciones
@@ -148,32 +153,38 @@
             DGVHistorialEvaluaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             DGVHistorialEvaluaciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGVHistorialEvaluaciones.Columns.AddRange(new DataGridViewColumn[] { Fecha, Asignatura, Tema, Puntuacion });
-            DGVHistorialEvaluaciones.Location = new Point(0, 44);
+            DGVHistorialEvaluaciones.Location = new Point(0, 59);
+            DGVHistorialEvaluaciones.Margin = new Padding(3, 4, 3, 4);
             DGVHistorialEvaluaciones.Name = "DGVHistorialEvaluaciones";
-            DGVHistorialEvaluaciones.Size = new Size(772, 257);
+            DGVHistorialEvaluaciones.RowHeadersWidth = 51;
+            DGVHistorialEvaluaciones.Size = new Size(882, 343);
             DGVHistorialEvaluaciones.TabIndex = 7;
             // 
             // Fecha
             // 
             Fecha.HeaderText = "Fecha";
+            Fecha.MinimumWidth = 6;
             Fecha.Name = "Fecha";
             Fecha.ReadOnly = true;
             // 
             // Asignatura
             // 
             Asignatura.HeaderText = "Asignatura";
+            Asignatura.MinimumWidth = 6;
             Asignatura.Name = "Asignatura";
             Asignatura.ReadOnly = true;
             // 
             // Tema
             // 
             Tema.HeaderText = "Tema";
+            Tema.MinimumWidth = 6;
             Tema.Name = "Tema";
             Tema.ReadOnly = true;
             // 
             // Puntuacion
             // 
             Puntuacion.HeaderText = "Puntuación";
+            Puntuacion.MinimumWidth = 6;
             Puntuacion.Name = "Puntuacion";
             // 
             // labelHistorialEvaluaciones
@@ -181,20 +192,21 @@
             labelHistorialEvaluaciones.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelHistorialEvaluaciones.AutoSize = true;
             labelHistorialEvaluaciones.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelHistorialEvaluaciones.Location = new Point(278, 4);
+            labelHistorialEvaluaciones.Location = new Point(318, 5);
             labelHistorialEvaluaciones.Name = "labelHistorialEvaluaciones";
-            labelHistorialEvaluaciones.Size = new Size(205, 25);
+            labelHistorialEvaluaciones.Size = new Size(265, 32);
             labelHistorialEvaluaciones.TabIndex = 6;
             labelHistorialEvaluaciones.Text = "Historial Evaluaciones";
             // 
             // FormEvaluationsEstudiante
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(772, 441);
+            ClientSize = new Size(882, 588);
             Controls.Add(panelHistorialEvaluaciones);
             Controls.Add(panelFiltroRecursos);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormEvaluationsEstudiante";
             Text = "FormEvaluationsEstudiante";
             Load += FormEvaluationsEstudiante_Load;

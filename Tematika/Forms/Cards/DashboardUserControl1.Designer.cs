@@ -38,11 +38,11 @@
             // 
             LInfoCard.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             LInfoCard.AutoSize = true;
-            LInfoCard.Font = new Font("Ebrima", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LInfoCard.Font = new Font("Ebrima", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LInfoCard.ForeColor = Color.White;
-            LInfoCard.Location = new Point(3, 44);
+            LInfoCard.Location = new Point(3, 34);
             LInfoCard.Name = "LInfoCard";
-            LInfoCard.Size = new Size(144, 31);
+            LInfoCard.Size = new Size(144, 41);
             LInfoCard.TabIndex = 0;
             LInfoCard.Text = "label1";
             LInfoCard.TextAlign = ContentAlignment.TopCenter;

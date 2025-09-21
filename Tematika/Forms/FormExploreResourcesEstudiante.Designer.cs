@@ -45,8 +45,9 @@
             panelMainResources.Controls.Add(flpRecursos);
             panelMainResources.Dock = DockStyle.Fill;
             panelMainResources.Location = new Point(0, 0);
+            panelMainResources.Margin = new Padding(3, 4, 3, 4);
             panelMainResources.Name = "panelMainResources";
-            panelMainResources.Size = new Size(800, 450);
+            panelMainResources.Size = new Size(914, 600);
             panelMainResources.TabIndex = 0;
             // 
             // flpRecursos
@@ -54,36 +55,39 @@
             flpRecursos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             flpRecursos.AutoScroll = true;
             flpRecursos.BackColor = Color.Transparent;
-            flpRecursos.Location = new Point(0, 88);
+            flpRecursos.Location = new Point(0, 117);
+            flpRecursos.Margin = new Padding(3, 4, 3, 4);
             flpRecursos.Name = "flpRecursos";
-            flpRecursos.Size = new Size(800, 362);
+            flpRecursos.Size = new Size(914, 483);
             flpRecursos.TabIndex = 4;
             // 
             // cmbTemas
             // 
             cmbTemas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cmbTemas.FormattingEnabled = true;
-            cmbTemas.Location = new Point(113, 39);
+            cmbTemas.Location = new Point(155, 52);
+            cmbTemas.Margin = new Padding(3, 4, 3, 4);
             cmbTemas.Name = "cmbTemas";
-            cmbTemas.Size = new Size(644, 23);
+            cmbTemas.Size = new Size(709, 28);
             cmbTemas.TabIndex = 3;
             // 
             // cmbAsignaturas
             // 
             cmbAsignaturas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cmbAsignaturas.FormattingEnabled = true;
-            cmbAsignaturas.Location = new Point(113, 9);
+            cmbAsignaturas.Location = new Point(155, 12);
+            cmbAsignaturas.Margin = new Padding(3, 4, 3, 4);
             cmbAsignaturas.Name = "cmbAsignaturas";
-            cmbAsignaturas.Size = new Size(644, 23);
+            cmbAsignaturas.Size = new Size(709, 28);
             cmbAsignaturas.TabIndex = 2;
             // 
             // labelTema
             // 
             labelTema.AutoSize = true;
             labelTema.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelTema.Location = new Point(44, 34);
+            labelTema.Location = new Point(50, 45);
             labelTema.Name = "labelTema";
-            labelTema.Size = new Size(63, 25);
+            labelTema.Size = new Size(81, 32);
             labelTema.TabIndex = 1;
             labelTema.Text = "Tema:";
             // 
@@ -91,9 +95,9 @@
             // 
             labelAsignatura.AutoSize = true;
             labelAsignatura.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelAsignatura.Location = new Point(3, 9);
+            labelAsignatura.Location = new Point(3, 12);
             labelAsignatura.Name = "labelAsignatura";
-            labelAsignatura.Size = new Size(114, 25);
+            labelAsignatura.Size = new Size(146, 32);
             labelAsignatura.TabIndex = 0;
             labelAsignatura.Text = "Asignatura:";
             // 
@@ -106,18 +110,20 @@
             panelFiltroRecursos.Controls.Add(labelAsignatura);
             panelFiltroRecursos.Dock = DockStyle.Top;
             panelFiltroRecursos.Location = new Point(0, 0);
+            panelFiltroRecursos.Margin = new Padding(3, 4, 3, 4);
             panelFiltroRecursos.Name = "panelFiltroRecursos";
-            panelFiltroRecursos.Size = new Size(800, 90);
+            panelFiltroRecursos.Size = new Size(914, 120);
             panelFiltroRecursos.TabIndex = 1;
             // 
             // FormExploreResourcesEstudiante
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(panelFiltroRecursos);
             Controls.Add(panelMainResources);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormExploreResourcesEstudiante";
             Text = "FormExploreResourcesEstudiante";
             Load += FormExploreResourcesEstudiante_Load;

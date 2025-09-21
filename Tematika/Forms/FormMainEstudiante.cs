@@ -70,12 +70,12 @@ namespace Tematika
             {
                 if (ctrl is Button btn)
                 {
-                    btn.BackColor = Color.FromArgb(44, 62, 80); // Color normal
-                    btn.ForeColor = Color.FromArgb(189, 195, 199);
+                    btn.BackColor = ColorTranslator.FromHtml("#34495e"); // Fondo normal
+                    btn.ForeColor = ColorTranslator.FromHtml("#bdc3c7"); // Texto normal
                 }
             }
-            activeBtn.BackColor = Color.FromArgb(52, 152, 219); // Color activo
-            activeBtn.ForeColor = Color.White;
+            activeBtn.BackColor = ColorTranslator.FromHtml("#2980b9"); // Fondo activo
+            activeBtn.ForeColor = Color.White; // Texto activo
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -86,7 +86,8 @@ namespace Tematika
             {
                 if (ctrl is Button btn)
                 {
-                    btn.BackColor = ColorTranslator.FromHtml("#dee6ed");
+                    btn.BackColor = ColorTranslator.FromHtml("#34495e");
+                    btn.ForeColor = ColorTranslator.FromHtml("#bdc3c7");
                 }
             }
 
