@@ -81,17 +81,18 @@
             panelEncabezado.Controls.Add(LTituloUsuarios);
             panelEncabezado.Dock = DockStyle.Top;
             panelEncabezado.Location = new Point(0, 0);
+            panelEncabezado.Margin = new Padding(3, 2, 3, 2);
             panelEncabezado.Name = "panelEncabezado";
-            panelEncabezado.Size = new Size(884, 83);
+            panelEncabezado.Size = new Size(774, 62);
             panelEncabezado.TabIndex = 0;
             // 
             // LTituloUsuarios
             // 
             LTituloUsuarios.AutoSize = true;
             LTituloUsuarios.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LTituloUsuarios.Location = new Point(3, 30);
+            LTituloUsuarios.Location = new Point(3, 22);
             LTituloUsuarios.Name = "LTituloUsuarios";
-            LTituloUsuarios.Size = new Size(277, 38);
+            LTituloUsuarios.Size = new Size(219, 30);
             LTituloUsuarios.TabIndex = 1;
             LTituloUsuarios.Text = "Gestion de Usuarios";
             LTituloUsuarios.TextAlign = ContentAlignment.MiddleLeft;
@@ -104,9 +105,10 @@
             panelMain.Controls.Add(panelBotones);
             panelMain.Controls.Add(DGVUsuarios);
             panelMain.Dock = DockStyle.Fill;
-            panelMain.Location = new Point(0, 83);
+            panelMain.Location = new Point(0, 62);
+            panelMain.Margin = new Padding(3, 2, 3, 2);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(884, 475);
+            panelMain.Size = new Size(774, 356);
             panelMain.TabIndex = 1;
             // 
             // panelCamposUsuarios
@@ -136,7 +138,8 @@
             panelCamposUsuarios.Controls.Add(CBEliminado, 3, 2);
             panelCamposUsuarios.Controls.Add(LTelefono, 4, 0);
             panelCamposUsuarios.Controls.Add(LEliminado, 2, 2);
-            panelCamposUsuarios.Location = new Point(31, 6);
+            panelCamposUsuarios.Location = new Point(27, 4);
+            panelCamposUsuarios.Margin = new Padding(3, 2, 3, 2);
             panelCamposUsuarios.Name = "panelCamposUsuarios";
             panelCamposUsuarios.RowCount = 6;
             panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.66667F));
@@ -145,7 +148,7 @@
             panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             panelCamposUsuarios.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            panelCamposUsuarios.Size = new Size(748, 219);
+            panelCamposUsuarios.Size = new Size(654, 164);
             panelCamposUsuarios.TabIndex = 94;
             panelCamposUsuarios.Paint += panelCamposUsuarios_Paint;
             // 
@@ -154,76 +157,83 @@
             LNombre.AutoSize = true;
             LNombre.Location = new Point(3, 0);
             LNombre.Name = "LNombre";
-            LNombre.Size = new Size(64, 20);
+            LNombre.Size = new Size(51, 15);
             LNombre.TabIndex = 65;
             LNombre.Text = "Nombre";
             // 
             // TBNombreUsuario
             // 
-            TBNombreUsuario.Location = new Point(206, 3);
+            TBNombreUsuario.Location = new Point(180, 2);
+            TBNombreUsuario.Margin = new Padding(3, 2, 3, 2);
             TBNombreUsuario.Name = "TBNombreUsuario";
-            TBNombreUsuario.Size = new Size(130, 27);
+            TBNombreUsuario.Size = new Size(114, 23);
             TBNombreUsuario.TabIndex = 76;
+            TBNombreUsuario.Tag = "Nombre";
             TBNombreUsuario.KeyPress += TBNombreUsuario_KeyPress;
             // 
             // LApellido
             // 
             LApellido.AutoSize = true;
-            LApellido.Location = new Point(3, 36);
+            LApellido.Location = new Point(3, 27);
             LApellido.Name = "LApellido";
-            LApellido.Size = new Size(66, 20);
+            LApellido.Size = new Size(51, 15);
             LApellido.TabIndex = 66;
             LApellido.Text = "Apellido";
             // 
             // TBApellidoUsuario
             // 
-            TBApellidoUsuario.Location = new Point(206, 39);
+            TBApellidoUsuario.Location = new Point(180, 29);
+            TBApellidoUsuario.Margin = new Padding(3, 2, 3, 2);
             TBApellidoUsuario.Name = "TBApellidoUsuario";
-            TBApellidoUsuario.Size = new Size(130, 27);
+            TBApellidoUsuario.Size = new Size(114, 23);
             TBApellidoUsuario.TabIndex = 77;
+            TBApellidoUsuario.Tag = "Apellido";
             TBApellidoUsuario.KeyPress += TBApellidoUsuario_KeyPress;
             // 
             // TBDNIUsuario
             // 
-            TBDNIUsuario.Location = new Point(581, 3);
+            TBDNIUsuario.Location = new Point(508, 2);
+            TBDNIUsuario.Margin = new Padding(3, 2, 3, 2);
             TBDNIUsuario.Name = "TBDNIUsuario";
-            TBDNIUsuario.Size = new Size(120, 27);
+            TBDNIUsuario.Size = new Size(106, 23);
             TBDNIUsuario.TabIndex = 81;
+            TBDNIUsuario.Tag = "DNI";
             TBDNIUsuario.KeyPress += TBDNIUsuario_KeyPress;
             // 
             // LDNI
             // 
             LDNI.AutoSize = true;
-            LDNI.Location = new Point(410, 0);
+            LDNI.Location = new Point(358, 0);
             LDNI.Name = "LDNI";
-            LDNI.Size = new Size(35, 20);
+            LDNI.Size = new Size(27, 15);
             LDNI.TabIndex = 70;
             LDNI.Text = "DNI";
             // 
             // LDireccion
             // 
             LDireccion.AutoSize = true;
-            LDireccion.Location = new Point(410, 144);
+            LDireccion.Location = new Point(358, 108);
             LDireccion.Name = "LDireccion";
-            LDireccion.Size = new Size(0, 20);
+            LDireccion.Size = new Size(0, 15);
             LDireccion.TabIndex = 72;
             LDireccion.Click += LDireccion_Click;
             // 
             // LSexo
             // 
             LSexo.AutoSize = true;
-            LSexo.Location = new Point(410, 36);
+            LSexo.Location = new Point(358, 27);
             LSexo.Name = "LSexo";
-            LSexo.Size = new Size(41, 20);
+            LSexo.Size = new Size(32, 15);
             LSexo.TabIndex = 75;
             LSexo.Text = "Sexo";
             // 
             // RBHombre
             // 
             RBHombre.AutoSize = true;
-            RBHombre.Location = new Point(581, 39);
+            RBHombre.Location = new Point(508, 29);
+            RBHombre.Margin = new Padding(3, 2, 3, 2);
             RBHombre.Name = "RBHombre";
-            RBHombre.Size = new Size(43, 24);
+            RBHombre.Size = new Size(36, 19);
             RBHombre.TabIndex = 86;
             RBHombre.TabStop = true;
             RBHombre.Text = "m";
@@ -232,9 +242,10 @@
             // RBMujer
             // 
             RBMujer.AutoSize = true;
-            RBMujer.Location = new Point(709, 39);
+            RBMujer.Location = new Point(620, 29);
+            RBMujer.Margin = new Padding(3, 2, 3, 2);
             RBMujer.Name = "RBMujer";
-            RBMujer.Size = new Size(35, 24);
+            RBMujer.Size = new Size(29, 19);
             RBMujer.TabIndex = 85;
             RBMujer.TabStop = true;
             RBMujer.Text = "f";
@@ -243,75 +254,81 @@
             // LContraseña
             // 
             LContraseña.AutoSize = true;
-            LContraseña.Location = new Point(3, 72);
+            LContraseña.Location = new Point(3, 54);
             LContraseña.Name = "LContraseña";
-            LContraseña.Size = new Size(83, 20);
+            LContraseña.Size = new Size(67, 15);
             LContraseña.TabIndex = 68;
             LContraseña.Text = "Contraseña";
             // 
             // TBContraseñaUsuario
             // 
-            TBContraseñaUsuario.Location = new Point(206, 75);
+            TBContraseñaUsuario.Location = new Point(180, 56);
+            TBContraseñaUsuario.Margin = new Padding(3, 2, 3, 2);
             TBContraseñaUsuario.Name = "TBContraseñaUsuario";
-            TBContraseñaUsuario.Size = new Size(130, 27);
+            TBContraseñaUsuario.Size = new Size(114, 23);
             TBContraseñaUsuario.TabIndex = 79;
+            TBContraseñaUsuario.Tag = "Contraseña";
             // 
             // LEmail
             // 
             LEmail.AutoSize = true;
-            LEmail.Location = new Point(3, 108);
+            LEmail.Location = new Point(3, 81);
             LEmail.Name = "LEmail";
-            LEmail.Size = new Size(46, 20);
+            LEmail.Size = new Size(36, 15);
             LEmail.TabIndex = 71;
             LEmail.Text = "Email";
             // 
             // TBEmailUsuario
             // 
-            TBEmailUsuario.Location = new Point(206, 111);
+            TBEmailUsuario.Location = new Point(180, 83);
+            TBEmailUsuario.Margin = new Padding(3, 2, 3, 2);
             TBEmailUsuario.Name = "TBEmailUsuario";
-            TBEmailUsuario.Size = new Size(130, 27);
+            TBEmailUsuario.Size = new Size(114, 23);
             TBEmailUsuario.TabIndex = 80;
+            TBEmailUsuario.Tag = "Email";
             TBEmailUsuario.Leave += TBEmailUsuario_Leave;
             // 
             // LPerfil
             // 
             LPerfil.AutoSize = true;
-            LPerfil.Location = new Point(3, 144);
+            LPerfil.Location = new Point(3, 108);
             LPerfil.Name = "LPerfil";
-            LPerfil.Size = new Size(42, 20);
+            LPerfil.Size = new Size(34, 15);
             LPerfil.TabIndex = 69;
             LPerfil.Text = "Perfil";
             // 
             // CBPerfil
             // 
             CBPerfil.FormattingEnabled = true;
-            CBPerfil.Location = new Point(206, 147);
+            CBPerfil.Location = new Point(180, 110);
+            CBPerfil.Margin = new Padding(3, 2, 3, 2);
             CBPerfil.Name = "CBPerfil";
-            CBPerfil.Size = new Size(130, 28);
+            CBPerfil.Size = new Size(114, 23);
             CBPerfil.TabIndex = 87;
             // 
             // CBEliminado
             // 
             CBEliminado.FormattingEnabled = true;
-            CBEliminado.Location = new Point(581, 75);
+            CBEliminado.Location = new Point(508, 56);
+            CBEliminado.Margin = new Padding(3, 2, 3, 2);
             CBEliminado.Name = "CBEliminado";
-            CBEliminado.Size = new Size(122, 28);
+            CBEliminado.Size = new Size(106, 23);
             CBEliminado.TabIndex = 89;
             // 
             // LTelefono
             // 
             LTelefono.AutoSize = true;
-            LTelefono.Location = new Point(709, 0);
+            LTelefono.Location = new Point(620, 0);
             LTelefono.Name = "LTelefono";
-            LTelefono.Size = new Size(0, 20);
+            LTelefono.Size = new Size(0, 15);
             LTelefono.TabIndex = 73;
             // 
             // LEliminado
             // 
             LEliminado.AutoSize = true;
-            LEliminado.Location = new Point(410, 72);
+            LEliminado.Location = new Point(358, 54);
             LEliminado.Name = "LEliminado";
-            LEliminado.Size = new Size(76, 20);
+            LEliminado.Size = new Size(60, 15);
             LEliminado.TabIndex = 90;
             LEliminado.Text = "Eliminado";
             // 
@@ -325,19 +342,21 @@
             panelBuscador.Controls.Add(TBBuscadorUsuarios, 0, 0);
             panelBuscador.Controls.Add(BUActivos, 1, 0);
             panelBuscador.Controls.Add(BUInactivos, 2, 0);
-            panelBuscador.Location = new Point(28, 297);
+            panelBuscador.Location = new Point(24, 223);
+            panelBuscador.Margin = new Padding(3, 2, 3, 2);
             panelBuscador.Name = "panelBuscador";
             panelBuscador.RowCount = 1;
             panelBuscador.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            panelBuscador.Size = new Size(812, 40);
+            panelBuscador.Size = new Size(710, 30);
             panelBuscador.TabIndex = 93;
             // 
             // TBBuscadorUsuarios
             // 
-            TBBuscadorUsuarios.Location = new Point(3, 3);
+            TBBuscadorUsuarios.Location = new Point(3, 2);
+            TBBuscadorUsuarios.Margin = new Padding(3, 2, 3, 2);
             TBBuscadorUsuarios.Name = "TBBuscadorUsuarios";
             TBBuscadorUsuarios.PlaceholderText = "Buscar usuario..";
-            TBBuscadorUsuarios.Size = new Size(236, 27);
+            TBBuscadorUsuarios.Size = new Size(207, 23);
             TBBuscadorUsuarios.TabIndex = 62;
             // 
             // BUActivos
@@ -350,9 +369,10 @@
             BUActivos.FlatStyle = FlatStyle.Flat;
             BUActivos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BUActivos.ForeColor = SystemColors.ButtonHighlight;
-            BUActivos.Location = new Point(615, 3);
+            BUActivos.Location = new Point(537, 2);
+            BUActivos.Margin = new Padding(3, 2, 3, 2);
             BUActivos.Name = "BUActivos";
-            BUActivos.Size = new Size(94, 29);
+            BUActivos.Size = new Size(82, 22);
             BUActivos.TabIndex = 63;
             BUActivos.Text = "Activos";
             BUActivos.UseVisualStyleBackColor = false;
@@ -366,9 +386,10 @@
             BUInactivos.FlatStyle = FlatStyle.Flat;
             BUInactivos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BUInactivos.ForeColor = SystemColors.ButtonHighlight;
-            BUInactivos.Location = new Point(715, 3);
+            BUInactivos.Location = new Point(625, 2);
+            BUInactivos.Margin = new Padding(3, 2, 3, 2);
             BUInactivos.Name = "BUInactivos";
-            BUInactivos.Size = new Size(94, 29);
+            BUInactivos.Size = new Size(82, 22);
             BUInactivos.TabIndex = 64;
             BUInactivos.Text = "Inactivos";
             BUInactivos.UseVisualStyleBackColor = false;
@@ -385,11 +406,12 @@
             panelBotones.Controls.Add(BCancelar, 1, 0);
             panelBotones.Controls.Add(BUEliminar, 3, 0);
             panelBotones.Controls.Add(BUModificar, 2, 0);
-            panelBotones.Location = new Point(419, 231);
+            panelBotones.Location = new Point(367, 173);
+            panelBotones.Margin = new Padding(3, 2, 3, 2);
             panelBotones.Name = "panelBotones";
             panelBotones.RowCount = 1;
             panelBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            panelBotones.Size = new Size(421, 45);
+            panelBotones.Size = new Size(368, 34);
             panelBotones.TabIndex = 92;
             // 
             // BGuardar
@@ -401,9 +423,10 @@
             BGuardar.FlatStyle = FlatStyle.Flat;
             BGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BGuardar.ForeColor = SystemColors.ButtonHighlight;
-            BGuardar.Location = new Point(3, 3);
+            BGuardar.Location = new Point(3, 2);
+            BGuardar.Margin = new Padding(3, 2, 3, 2);
             BGuardar.Name = "BGuardar";
-            BGuardar.Size = new Size(94, 29);
+            BGuardar.Size = new Size(82, 22);
             BGuardar.TabIndex = 88;
             BGuardar.Text = "Guardar";
             BGuardar.UseVisualStyleBackColor = false;
@@ -416,9 +439,10 @@
             BCancelar.FlatStyle = FlatStyle.Flat;
             BCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BCancelar.ForeColor = SystemColors.ButtonHighlight;
-            BCancelar.Location = new Point(103, 3);
+            BCancelar.Location = new Point(91, 2);
+            BCancelar.Margin = new Padding(3, 2, 3, 2);
             BCancelar.Name = "BCancelar";
-            BCancelar.Size = new Size(94, 29);
+            BCancelar.Size = new Size(82, 22);
             BCancelar.TabIndex = 89;
             BCancelar.Text = "Cancelar";
             BCancelar.UseVisualStyleBackColor = false;
@@ -433,9 +457,10 @@
             BUEliminar.FlatStyle = FlatStyle.Flat;
             BUEliminar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BUEliminar.ForeColor = SystemColors.ButtonHighlight;
-            BUEliminar.Location = new Point(319, 3);
+            BUEliminar.Location = new Point(281, 2);
+            BUEliminar.Margin = new Padding(3, 2, 3, 2);
             BUEliminar.Name = "BUEliminar";
-            BUEliminar.Size = new Size(87, 29);
+            BUEliminar.Size = new Size(76, 22);
             BUEliminar.TabIndex = 91;
             BUEliminar.Text = "Eliminar";
             BUEliminar.UseVisualStyleBackColor = false;
@@ -451,9 +476,10 @@
             BUModificar.FlatStyle = FlatStyle.Flat;
             BUModificar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BUModificar.ForeColor = SystemColors.ButtonHighlight;
-            BUModificar.Location = new Point(203, 3);
+            BUModificar.Location = new Point(179, 2);
+            BUModificar.Margin = new Padding(3, 2, 3, 2);
             BUModificar.Name = "BUModificar";
-            BUModificar.Size = new Size(110, 29);
+            BUModificar.Size = new Size(96, 22);
             BUModificar.TabIndex = 90;
             BUModificar.Text = "Modificar";
             BUModificar.UseVisualStyleBackColor = false;
@@ -466,10 +492,11 @@
             DGVUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGVUsuarios.Columns.AddRange(new DataGridViewColumn[] { idUsuario, idPerfil, Nombre, Apellido, Correo, DNI, Sexo });
-            DGVUsuarios.Location = new Point(28, 356);
+            DGVUsuarios.Location = new Point(24, 267);
+            DGVUsuarios.Margin = new Padding(3, 2, 3, 2);
             DGVUsuarios.Name = "DGVUsuarios";
             DGVUsuarios.RowHeadersWidth = 51;
-            DGVUsuarios.Size = new Size(812, 107);
+            DGVUsuarios.Size = new Size(710, 80);
             DGVUsuarios.TabIndex = 61;
             DGVUsuarios.CellClick += DGVUsuarios_CellClick;
             // 
@@ -517,11 +544,12 @@
             // 
             // FormGestionUsuarios
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(884, 558);
+            ClientSize = new Size(774, 418);
             Controls.Add(panelMain);
             Controls.Add(panelEncabezado);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormGestionUsuarios";
             Text = "FormGestionUsuarios";
             Load += FormGestionUsuarios_Load;

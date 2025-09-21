@@ -88,7 +88,25 @@ namespace Tematika.Forms
 
         private void BGuardar_Click(object sender, EventArgs e)
         {
-            if (!Validaciones.ValidarCamposObligatorios(panelCamposUsuarios))
+            bool validacionExitosa;
+
+            if (usuarioSeleccionadoId == null)
+            {
+                // Alta: todos los campos obligatorios, incluyendo contraseña
+                validacionExitosa = Validaciones.ValidarCamposObligatorios(panelCamposUsuarios);
+            }
+            else
+            {
+                // Modificación: excluye la contraseña
+                var camposSinContraseña = panelCamposUsuarios.Controls
+                    .OfType<Control>()
+                    .Where(c => c.Name != "TBContraseñaUsuario")
+                    .ToList();
+
+                validacionExitosa = Validaciones.ValidarControlesObligatorios(camposSinContraseña);
+            }
+
+            if (!validacionExitosa)
                 return;
 
             var usuario = new Usuario
@@ -106,13 +124,27 @@ namespace Tematika.Forms
 
             if (usuarioSeleccionadoId == null)
             {
-                _usuarioService.CrearUsuario(usuario, contrasenaPlano);
+                var mensajeError = _usuarioService.CrearUsuario(usuario, contrasenaPlano);
+
+                if (mensajeError != null)
+                {
+                    MessageBox.Show(mensajeError, "Error de creación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 MessageBox.Show("Usuario creado correctamente.");
             }
             else
             {
                 usuario.IdUsuario = usuarioSeleccionadoId.Value;
-                _usuarioService.ActualizarUsuario(usuario, contrasenaPlano);
+                var mensajeError = _usuarioService.ActualizarUsuario(usuario, string.IsNullOrWhiteSpace(contrasenaPlano) ? null : contrasenaPlano);
+
+                if (mensajeError != null)
+                {
+                    MessageBox.Show(mensajeError, "Error de actualización", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 MessageBox.Show("Usuario actualizado correctamente.");
             }
 
@@ -120,20 +152,34 @@ namespace Tematika.Forms
             CargarUsuarios();
         }
 
+
+
         private void BUEliminar_Click(object sender, EventArgs e)
         {
-            if (usuarioSeleccionadoId != null)
+            if (usuarioSeleccionadoId == null)
             {
-                var confirm = MessageBox.Show("¿Estás seguro de que deseas eliminar este usuario?", "Confirmar", MessageBoxButtons.YesNo);
-                if (confirm == DialogResult.Yes)
-                {
-                    _usuarioService.EliminarUsuario(usuarioSeleccionadoId.Value);
-                    MessageBox.Show("Usuario eliminado.");
-                    LimpiarCampos();
-                    CargarUsuarios();
-                }
+                MessageBox.Show("Debe seleccionar un usuario para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var usuarioActual = SesionManager.UsuarioActual;
+
+            if (usuarioActual != null && usuarioSeleccionadoId.Value == usuarioActual.IdUsuario)
+            {
+                MessageBox.Show("No puede eliminar su propio usuario mientras está logueado.", "Acción no permitida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var confirmacion = MessageBox.Show("¿Está seguro de que desea eliminar este usuario?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmacion == DialogResult.Yes)
+            {
+                _usuarioService.EliminarUsuario(usuarioSeleccionadoId.Value);
+                MessageBox.Show("Usuario eliminado correctamente.");
+                LimpiarCampos();
+                CargarUsuarios();
             }
         }
+
 
         private void BUModificar_Click(object sender, EventArgs e)
         {
@@ -183,19 +229,24 @@ namespace Tematika.Forms
                         .FirstOrDefault(p => p.IdPerfil == usuario.IdPerfil);
 
                     bool esAdmin = perfil?.NombrePerfil.ToLower() == "admin";
+                    var usuarioActual = SesionManager.UsuarioActual;
+                    bool esUsuarioActual = usuarioActual != null && usuario.IdUsuario == usuarioActual.IdUsuario;
 
                     BGuardar.Visible = false;
                     BUModificar.Visible = !esAdmin;
-                    BUEliminar.Visible = true;
+                    BUEliminar.Visible = !esUsuarioActual;
                     LEliminado.Visible = true;
                     CBEliminado.Visible = true;
                 }
             }
         }
 
+
         private void TBEmailUsuario_Leave(object sender, EventArgs e)
         {
-            Validaciones.ValidarEmail(TBEmailUsuario);
+            string correo = TBEmailUsuario.Text;
+
+            Validaciones.ValidarEmail(correo);
         }
 
         private void TBNombreUsuario_KeyPress(object sender, KeyPressEventArgs e)
