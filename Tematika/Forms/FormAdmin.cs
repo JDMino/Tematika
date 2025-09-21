@@ -105,6 +105,27 @@ namespace Tematika
 
 
             }
+
+            var usuario = SesionManager.UsuarioActual;
+
+            if (usuario != null && usuario.IdPerfil == 2) // Docente
+            {
+                BDashboard.Visible = false;
+                BBackUp.Visible = false;
+                BUsuarios.Visible = false;
+                BInformes.Visible = false;
+                LRol.Text = "Docente";
+            }
+            else if (usuario != null)
+            {
+                LRol.Text = "Administrador";
+            }
+
+            if (usuario != null)
+            {
+                LNombreUsuario.Text = usuario.Nombre;
+            }
+
         }
 
         private void BSalir_Click(object sender, EventArgs e)

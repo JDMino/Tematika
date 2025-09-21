@@ -80,6 +80,14 @@
             BCancelarRecurso = new Button();
             BModificarRecurso = new Button();
             DGVRecursos = new DataGridView();
+            id_recurso = new DataGridViewTextBoxColumn();
+            tituloRecurso = new DataGridViewTextBoxColumn();
+            TipoRecurso = new DataGridViewTextBoxColumn();
+            descripcionRecurso = new DataGridViewTextBoxColumn();
+            URLRecurso = new DataGridViewTextBoxColumn();
+            MateriaRecurso = new DataGridViewTextBoxColumn();
+            TemaRecurso = new DataGridViewTextBoxColumn();
+            colAcciones = new DataGridViewButtonColumn();
             panelEncabezadoR = new FlowLayoutPanel();
             LTituloRecursos = new Label();
             TBPreguntas = new TabPage();
@@ -139,14 +147,6 @@
             DescripcionMateria = new DataGridViewTextBoxColumn();
             panelEncabezadoM = new FlowLayoutPanel();
             LTituloMaterias = new Label();
-            id_recurso = new DataGridViewTextBoxColumn();
-            tituloRecurso = new DataGridViewTextBoxColumn();
-            TipoRecurso = new DataGridViewTextBoxColumn();
-            descripcionRecurso = new DataGridViewTextBoxColumn();
-            URLRecurso = new DataGridViewTextBoxColumn();
-            MateriaRecurso = new DataGridViewTextBoxColumn();
-            TemaRecurso = new DataGridViewTextBoxColumn();
-            colAcciones = new DataGridViewButtonColumn();
             TCGestionTematica.SuspendLayout();
             TBTemas.SuspendLayout();
             panelCamposTemas.SuspendLayout();
@@ -182,9 +182,10 @@
             TCGestionTematica.Controls.Add(TBMaterias);
             TCGestionTematica.Dock = DockStyle.Fill;
             TCGestionTematica.Location = new Point(0, 0);
+            TCGestionTematica.Margin = new Padding(3, 2, 3, 2);
             TCGestionTematica.Name = "TCGestionTematica";
             TCGestionTematica.SelectedIndex = 0;
-            TCGestionTematica.Size = new Size(988, 690);
+            TCGestionTematica.Size = new Size(864, 518);
             TCGestionTematica.TabIndex = 1;
             // 
             // TBTemas
@@ -195,10 +196,11 @@
             TBTemas.Controls.Add(panelBotones);
             TBTemas.Controls.Add(DGVTemas);
             TBTemas.Controls.Add(panelEncabezadoT);
-            TBTemas.Location = new Point(4, 29);
+            TBTemas.Location = new Point(4, 24);
+            TBTemas.Margin = new Padding(3, 2, 3, 2);
             TBTemas.Name = "TBTemas";
-            TBTemas.Padding = new Padding(3);
-            TBTemas.Size = new Size(980, 657);
+            TBTemas.Padding = new Padding(3, 2, 3, 2);
+            TBTemas.Size = new Size(856, 490);
             TBTemas.TabIndex = 0;
             TBTemas.Text = "Temas";
             TBTemas.UseVisualStyleBackColor = true;
@@ -214,13 +216,14 @@
             panelCamposTemas.Controls.Add(TBNombreTema, 1, 0);
             panelCamposTemas.Controls.Add(CBMaterias, 1, 2);
             panelCamposTemas.Controls.Add(TBDescripcionTema, 1, 1);
-            panelCamposTemas.Location = new Point(88, 102);
+            panelCamposTemas.Location = new Point(77, 76);
+            panelCamposTemas.Margin = new Padding(3, 2, 3, 2);
             panelCamposTemas.Name = "panelCamposTemas";
             panelCamposTemas.RowCount = 3;
             panelCamposTemas.RowStyles.Add(new RowStyle());
             panelCamposTemas.RowStyles.Add(new RowStyle());
             panelCamposTemas.RowStyles.Add(new RowStyle());
-            panelCamposTemas.Size = new Size(550, 122);
+            panelCamposTemas.Size = new Size(481, 92);
             panelCamposTemas.TabIndex = 95;
             // 
             // LNombreTema
@@ -228,7 +231,7 @@
             LNombreTema.AutoSize = true;
             LNombreTema.Location = new Point(3, 0);
             LNombreTema.Name = "LNombreTema";
-            LNombreTema.Size = new Size(68, 20);
+            LNombreTema.Size = new Size(54, 15);
             LNombreTema.TabIndex = 16;
             LNombreTema.Text = "Nombre ";
             LNombreTema.TextAlign = ContentAlignment.MiddleCenter;
@@ -236,9 +239,9 @@
             // LDescripcionTema
             // 
             LDescripcionTema.AutoSize = true;
-            LDescripcionTema.Location = new Point(3, 33);
+            LDescripcionTema.Location = new Point(3, 27);
             LDescripcionTema.Name = "LDescripcionTema";
-            LDescripcionTema.Size = new Size(87, 20);
+            LDescripcionTema.Size = new Size(69, 15);
             LDescripcionTema.TabIndex = 24;
             LDescripcionTema.Text = "Descripcion";
             LDescripcionTema.TextAlign = ContentAlignment.MiddleCenter;
@@ -246,18 +249,19 @@
             // Materia
             // 
             Materia.AutoSize = true;
-            Materia.Location = new Point(3, 66);
+            Materia.Location = new Point(3, 54);
             Materia.Name = "Materia";
-            Materia.Size = new Size(123, 20);
+            Materia.Size = new Size(96, 15);
             Materia.TabIndex = 17;
             Materia.Text = "Materia asociada";
             Materia.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // TBNombreTema
             // 
-            TBNombreTema.Location = new Point(209, 3);
+            TBNombreTema.Location = new Point(183, 2);
+            TBNombreTema.Margin = new Padding(3, 2, 3, 2);
             TBNombreTema.Name = "TBNombreTema";
-            TBNombreTema.Size = new Size(248, 27);
+            TBNombreTema.Size = new Size(218, 23);
             TBNombreTema.TabIndex = 18;
             TBNombreTema.Tag = "Nombre";
             TBNombreTema.KeyPress += TBNombreTema_KeyPress;
@@ -265,17 +269,19 @@
             // CBMaterias
             // 
             CBMaterias.FormattingEnabled = true;
-            CBMaterias.Location = new Point(209, 69);
+            CBMaterias.Location = new Point(183, 56);
+            CBMaterias.Margin = new Padding(3, 2, 3, 2);
             CBMaterias.Name = "CBMaterias";
-            CBMaterias.Size = new Size(151, 28);
+            CBMaterias.Size = new Size(133, 23);
             CBMaterias.TabIndex = 19;
             CBMaterias.Tag = "Materia asociada";
             // 
             // TBDescripcionTema
             // 
-            TBDescripcionTema.Location = new Point(209, 36);
+            TBDescripcionTema.Location = new Point(183, 29);
+            TBDescripcionTema.Margin = new Padding(3, 2, 3, 2);
             TBDescripcionTema.Name = "TBDescripcionTema";
-            TBDescripcionTema.Size = new Size(248, 27);
+            TBDescripcionTema.Size = new Size(218, 23);
             TBDescripcionTema.TabIndex = 25;
             TBDescripcionTema.Tag = "Descripcion";
             TBDescripcionTema.KeyPress += TBDescripcionTema_KeyPress;
@@ -291,20 +297,22 @@
             panelBuscador.Controls.Add(BTemasActivos, 1, 0);
             panelBuscador.Controls.Add(BTemasInactivos, 2, 0);
             panelBuscador.Controls.Add(CBFiltroMaterias, 0, 1);
-            panelBuscador.Location = new Point(85, 365);
+            panelBuscador.Location = new Point(74, 274);
+            panelBuscador.Margin = new Padding(3, 2, 3, 2);
             panelBuscador.Name = "panelBuscador";
             panelBuscador.RowCount = 2;
             panelBuscador.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             panelBuscador.RowStyles.Add(new RowStyle());
-            panelBuscador.Size = new Size(812, 103);
+            panelBuscador.Size = new Size(710, 77);
             panelBuscador.TabIndex = 94;
             // 
             // TBBuscadorTema
             // 
-            TBBuscadorTema.Location = new Point(3, 3);
+            TBBuscadorTema.Location = new Point(3, 2);
+            TBBuscadorTema.Margin = new Padding(3, 2, 3, 2);
             TBBuscadorTema.Name = "TBBuscadorTema";
             TBBuscadorTema.PlaceholderText = "Buscar tema..";
-            TBBuscadorTema.Size = new Size(236, 27);
+            TBBuscadorTema.Size = new Size(207, 23);
             TBBuscadorTema.TabIndex = 62;
             // 
             // BTemasActivos
@@ -315,9 +323,10 @@
             BTemasActivos.FlatStyle = FlatStyle.Flat;
             BTemasActivos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             BTemasActivos.ForeColor = SystemColors.ButtonHighlight;
-            BTemasActivos.Location = new Point(615, 3);
+            BTemasActivos.Location = new Point(537, 2);
+            BTemasActivos.Margin = new Padding(3, 2, 3, 2);
             BTemasActivos.Name = "BTemasActivos";
-            BTemasActivos.Size = new Size(94, 29);
+            BTemasActivos.Size = new Size(82, 22);
             BTemasActivos.TabIndex = 63;
             BTemasActivos.Text = "Activos";
             BTemasActivos.UseVisualStyleBackColor = false;
@@ -330,9 +339,10 @@
             BTemasInactivos.FlatStyle = FlatStyle.Flat;
             BTemasInactivos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             BTemasInactivos.ForeColor = SystemColors.ButtonHighlight;
-            BTemasInactivos.Location = new Point(715, 3);
+            BTemasInactivos.Location = new Point(625, 2);
+            BTemasInactivos.Margin = new Padding(3, 2, 3, 2);
             BTemasInactivos.Name = "BTemasInactivos";
-            BTemasInactivos.Size = new Size(94, 29);
+            BTemasInactivos.Size = new Size(82, 22);
             BTemasInactivos.TabIndex = 64;
             BTemasInactivos.Text = "Inactivos";
             BTemasInactivos.UseVisualStyleBackColor = false;
@@ -340,9 +350,10 @@
             // CBFiltroMaterias
             // 
             CBFiltroMaterias.FormattingEnabled = true;
-            CBFiltroMaterias.Location = new Point(3, 72);
+            CBFiltroMaterias.Location = new Point(3, 52);
+            CBFiltroMaterias.Margin = new Padding(3, 2, 3, 2);
             CBFiltroMaterias.Name = "CBFiltroMaterias";
-            CBFiltroMaterias.Size = new Size(181, 28);
+            CBFiltroMaterias.Size = new Size(159, 23);
             CBFiltroMaterias.TabIndex = 28;
             // 
             // panelBotones
@@ -356,12 +367,13 @@
             panelBotones.Controls.Add(BEliminarTema, 3, 0);
             panelBotones.Controls.Add(BModificarTema, 2, 0);
             panelBotones.Controls.Add(BCancelarTema, 1, 0);
-            panelBotones.Location = new Point(473, 264);
+            panelBotones.Location = new Point(414, 198);
+            panelBotones.Margin = new Padding(3, 2, 3, 2);
             panelBotones.Name = "panelBotones";
             panelBotones.RowCount = 1;
             panelBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            panelBotones.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            panelBotones.Size = new Size(421, 50);
+            panelBotones.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
+            panelBotones.Size = new Size(368, 38);
             panelBotones.TabIndex = 93;
             // 
             // BGuardarTema
@@ -373,9 +385,10 @@
             BGuardarTema.FlatStyle = FlatStyle.Flat;
             BGuardarTema.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BGuardarTema.ForeColor = SystemColors.ButtonHighlight;
-            BGuardarTema.Location = new Point(3, 3);
+            BGuardarTema.Location = new Point(3, 2);
+            BGuardarTema.Margin = new Padding(3, 2, 3, 2);
             BGuardarTema.Name = "BGuardarTema";
-            BGuardarTema.Size = new Size(94, 29);
+            BGuardarTema.Size = new Size(82, 22);
             BGuardarTema.TabIndex = 88;
             BGuardarTema.Text = "Guardar";
             BGuardarTema.UseVisualStyleBackColor = false;
@@ -388,9 +401,10 @@
             BEliminarTema.FlatStyle = FlatStyle.Flat;
             BEliminarTema.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BEliminarTema.ForeColor = SystemColors.ButtonHighlight;
-            BEliminarTema.Location = new Point(317, 3);
+            BEliminarTema.Location = new Point(279, 2);
+            BEliminarTema.Margin = new Padding(3, 2, 3, 2);
             BEliminarTema.Name = "BEliminarTema";
-            BEliminarTema.Size = new Size(94, 29);
+            BEliminarTema.Size = new Size(82, 22);
             BEliminarTema.TabIndex = 91;
             BEliminarTema.Text = "Eliminar";
             BEliminarTema.UseVisualStyleBackColor = false;
@@ -403,9 +417,10 @@
             BModificarTema.FlatStyle = FlatStyle.Flat;
             BModificarTema.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BModificarTema.ForeColor = SystemColors.ButtonHighlight;
-            BModificarTema.Location = new Point(203, 3);
+            BModificarTema.Location = new Point(179, 2);
+            BModificarTema.Margin = new Padding(3, 2, 3, 2);
             BModificarTema.Name = "BModificarTema";
-            BModificarTema.Size = new Size(108, 29);
+            BModificarTema.Size = new Size(94, 22);
             BModificarTema.TabIndex = 90;
             BModificarTema.Text = "Modificar";
             BModificarTema.UseVisualStyleBackColor = false;
@@ -418,9 +433,10 @@
             BCancelarTema.FlatStyle = FlatStyle.Flat;
             BCancelarTema.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BCancelarTema.ForeColor = SystemColors.ButtonHighlight;
-            BCancelarTema.Location = new Point(103, 3);
+            BCancelarTema.Location = new Point(91, 2);
+            BCancelarTema.Margin = new Padding(3, 2, 3, 2);
             BCancelarTema.Name = "BCancelarTema";
-            BCancelarTema.Size = new Size(94, 29);
+            BCancelarTema.Size = new Size(82, 22);
             BCancelarTema.TabIndex = 89;
             BCancelarTema.Text = "Cancelar";
             BCancelarTema.UseVisualStyleBackColor = false;
@@ -431,10 +447,11 @@
             DGVTemas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVTemas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGVTemas.Columns.AddRange(new DataGridViewColumn[] { idTema, NombreTema, DescripcionTema });
-            DGVTemas.Location = new Point(85, 483);
+            DGVTemas.Location = new Point(74, 362);
+            DGVTemas.Margin = new Padding(3, 2, 3, 2);
             DGVTemas.Name = "DGVTemas";
             DGVTemas.RowHeadersWidth = 51;
-            DGVTemas.Size = new Size(812, 148);
+            DGVTemas.Size = new Size(710, 111);
             DGVTemas.TabIndex = 26;
             DGVTemas.CellClick += DGVTemas_CellClick;
             // 
@@ -460,9 +477,10 @@
             // 
             panelEncabezadoT.Controls.Add(LTituloTemas);
             panelEncabezadoT.Dock = DockStyle.Top;
-            panelEncabezadoT.Location = new Point(3, 3);
+            panelEncabezadoT.Location = new Point(3, 2);
+            panelEncabezadoT.Margin = new Padding(3, 2, 3, 2);
             panelEncabezadoT.Name = "panelEncabezadoT";
-            panelEncabezadoT.Size = new Size(974, 69);
+            panelEncabezadoT.Size = new Size(850, 52);
             panelEncabezadoT.TabIndex = 0;
             // 
             // LTituloTemas
@@ -472,7 +490,7 @@
             LTituloTemas.ForeColor = Color.Black;
             LTituloTemas.Location = new Point(3, 0);
             LTituloTemas.Name = "LTituloTemas";
-            LTituloTemas.Size = new Size(249, 38);
+            LTituloTemas.Size = new Size(197, 30);
             LTituloTemas.TabIndex = 1;
             LTituloTemas.Text = "Gestion de Temas";
             LTituloTemas.TextAlign = ContentAlignment.MiddleCenter;
@@ -485,10 +503,11 @@
             TBRecursos.Controls.Add(tableLayoutPanel1);
             TBRecursos.Controls.Add(DGVRecursos);
             TBRecursos.Controls.Add(panelEncabezadoR);
-            TBRecursos.Location = new Point(4, 29);
+            TBRecursos.Location = new Point(4, 24);
+            TBRecursos.Margin = new Padding(3, 2, 3, 2);
             TBRecursos.Name = "TBRecursos";
-            TBRecursos.Padding = new Padding(3);
-            TBRecursos.Size = new Size(980, 657);
+            TBRecursos.Padding = new Padding(3, 2, 3, 2);
+            TBRecursos.Size = new Size(856, 490);
             TBRecursos.TabIndex = 1;
             TBRecursos.Text = "Recursos";
             TBRecursos.UseVisualStyleBackColor = true;
@@ -514,14 +533,15 @@
             panelCamposRecursos.Controls.Add(LURLRecurso, 2, 0);
             panelCamposRecursos.Controls.Add(BFoto, 0, 3);
             panelCamposRecursos.Controls.Add(TBFoto, 1, 3);
-            panelCamposRecursos.Location = new Point(74, 75);
+            panelCamposRecursos.Location = new Point(65, 56);
+            panelCamposRecursos.Margin = new Padding(3, 2, 3, 2);
             panelCamposRecursos.Name = "panelCamposRecursos";
             panelCamposRecursos.RowCount = 4;
             panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 21.3486843F));
             panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 21.3486843F));
             panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 25.25135F));
             panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 32.0512848F));
-            panelCamposRecursos.Size = new Size(748, 168);
+            panelCamposRecursos.Size = new Size(654, 126);
             panelCamposRecursos.TabIndex = 96;
             // 
             // LNombreRecurso
@@ -529,100 +549,106 @@
             LNombreRecurso.AutoSize = true;
             LNombreRecurso.Location = new Point(3, 0);
             LNombreRecurso.Name = "LNombreRecurso";
-            LNombreRecurso.Size = new Size(47, 20);
+            LNombreRecurso.Size = new Size(37, 15);
             LNombreRecurso.TabIndex = 22;
             LNombreRecurso.Text = "Titulo";
             // 
             // TBTituloRecurso
             // 
-            TBTituloRecurso.Location = new Point(190, 3);
+            TBTituloRecurso.Location = new Point(166, 2);
+            TBTituloRecurso.Margin = new Padding(3, 2, 3, 2);
             TBTituloRecurso.Name = "TBTituloRecurso";
-            TBTituloRecurso.Size = new Size(125, 27);
+            TBTituloRecurso.Size = new Size(110, 23);
             TBTituloRecurso.TabIndex = 28;
             TBTituloRecurso.KeyPress += TBTituloRecurso_KeyPress;
             // 
             // LTipoRecurso
             // 
             LTipoRecurso.AutoSize = true;
-            LTipoRecurso.Location = new Point(3, 35);
+            LTipoRecurso.Location = new Point(3, 26);
             LTipoRecurso.Name = "LTipoRecurso";
-            LTipoRecurso.Size = new Size(116, 20);
+            LTipoRecurso.Size = new Size(91, 15);
             LTipoRecurso.TabIndex = 23;
             LTipoRecurso.Text = "Tipo de Recurso";
             // 
             // CBTipoRecurso
             // 
             CBTipoRecurso.FormattingEnabled = true;
-            CBTipoRecurso.Location = new Point(190, 38);
+            CBTipoRecurso.Location = new Point(166, 28);
+            CBTipoRecurso.Margin = new Padding(3, 2, 3, 2);
             CBTipoRecurso.Name = "CBTipoRecurso";
-            CBTipoRecurso.Size = new Size(151, 28);
+            CBTipoRecurso.Size = new Size(133, 23);
             CBTipoRecurso.TabIndex = 39;
             // 
             // CBTemaRecurso
             // 
             CBTemaRecurso.FormattingEnabled = true;
-            CBTemaRecurso.Location = new Point(564, 73);
+            CBTemaRecurso.Location = new Point(492, 54);
+            CBTemaRecurso.Margin = new Padding(3, 2, 3, 2);
             CBTemaRecurso.Name = "CBTemaRecurso";
-            CBTemaRecurso.Size = new Size(151, 28);
+            CBTemaRecurso.Size = new Size(133, 23);
             CBTemaRecurso.TabIndex = 32;
             // 
             // LDescripcionRecurso
             // 
             LDescripcionRecurso.AutoSize = true;
-            LDescripcionRecurso.Location = new Point(3, 70);
+            LDescripcionRecurso.Location = new Point(3, 52);
             LDescripcionRecurso.Name = "LDescripcionRecurso";
-            LDescripcionRecurso.Size = new Size(87, 20);
+            LDescripcionRecurso.Size = new Size(69, 15);
             LDescripcionRecurso.TabIndex = 26;
             LDescripcionRecurso.Text = "Descripcion";
             // 
             // LTemaRecurso
             // 
             LTemaRecurso.AutoSize = true;
-            LTemaRecurso.Location = new Point(377, 70);
+            LTemaRecurso.Location = new Point(329, 52);
             LTemaRecurso.Name = "LTemaRecurso";
-            LTemaRecurso.Size = new Size(45, 20);
+            LTemaRecurso.Size = new Size(35, 15);
             LTemaRecurso.TabIndex = 25;
             LTemaRecurso.Text = "Tema";
             // 
             // CBMateriaRecurso
             // 
             CBMateriaRecurso.FormattingEnabled = true;
-            CBMateriaRecurso.Location = new Point(564, 38);
+            CBMateriaRecurso.Location = new Point(492, 28);
+            CBMateriaRecurso.Margin = new Padding(3, 2, 3, 2);
             CBMateriaRecurso.Name = "CBMateriaRecurso";
-            CBMateriaRecurso.Size = new Size(151, 28);
+            CBMateriaRecurso.Size = new Size(133, 23);
             CBMateriaRecurso.TabIndex = 31;
             // 
             // TBDescripcionRecurso
             // 
-            TBDescripcionRecurso.Location = new Point(190, 73);
+            TBDescripcionRecurso.Location = new Point(166, 54);
+            TBDescripcionRecurso.Margin = new Padding(3, 2, 3, 2);
             TBDescripcionRecurso.Multiline = true;
             TBDescripcionRecurso.Name = "TBDescripcionRecurso";
-            TBDescripcionRecurso.Size = new Size(181, 29);
+            TBDescripcionRecurso.Size = new Size(157, 23);
             TBDescripcionRecurso.TabIndex = 29;
             TBDescripcionRecurso.KeyPress += TBDescripcionRecurso_KeyPress;
             // 
             // TBUrl
             // 
-            TBUrl.Location = new Point(564, 3);
+            TBUrl.Location = new Point(492, 2);
+            TBUrl.Margin = new Padding(3, 2, 3, 2);
             TBUrl.Name = "TBUrl";
-            TBUrl.Size = new Size(125, 27);
+            TBUrl.Size = new Size(110, 23);
             TBUrl.TabIndex = 30;
             // 
             // LMateriaRecurso
             // 
             LMateriaRecurso.AutoSize = true;
-            LMateriaRecurso.Location = new Point(377, 35);
+            LMateriaRecurso.Location = new Point(329, 26);
             LMateriaRecurso.Name = "LMateriaRecurso";
-            LMateriaRecurso.Size = new Size(60, 20);
+            LMateriaRecurso.Size = new Size(47, 15);
             LMateriaRecurso.TabIndex = 24;
             LMateriaRecurso.Text = "Materia";
             // 
             // LURLRecurso
             // 
             LURLRecurso.AutoSize = true;
-            LURLRecurso.Location = new Point(377, 0);
+            LURLRecurso.Location = new Point(329, 0);
             LURLRecurso.Name = "LURLRecurso";
-            LURLRecurso.Size = new Size(35, 20);
+            LURLRecurso.Size = new Size(28, 15);
             LURLRecurso.TabIndex = 27;
             LURLRecurso.Text = "URL";
             // 
@@ -633,18 +659,20 @@
             BFoto.FlatStyle = FlatStyle.Flat;
             BFoto.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BFoto.ForeColor = SystemColors.ButtonHighlight;
-            BFoto.Location = new Point(3, 115);
+            BFoto.Location = new Point(3, 85);
+            BFoto.Margin = new Padding(3, 2, 3, 2);
             BFoto.Name = "BFoto";
-            BFoto.Size = new Size(94, 29);
+            BFoto.Size = new Size(82, 22);
             BFoto.TabIndex = 40;
             BFoto.Text = "Foto";
             BFoto.UseVisualStyleBackColor = false;
             // 
             // TBFoto
             // 
-            TBFoto.Location = new Point(190, 115);
+            TBFoto.Location = new Point(166, 85);
+            TBFoto.Margin = new Padding(3, 2, 3, 2);
             TBFoto.Name = "TBFoto";
-            TBFoto.Size = new Size(181, 27);
+            TBFoto.Size = new Size(157, 23);
             TBFoto.TabIndex = 41;
             // 
             // tableLayoutPanel2
@@ -658,20 +686,22 @@
             tableLayoutPanel2.Controls.Add(BRecursosActivos, 1, 0);
             tableLayoutPanel2.Controls.Add(BRecursosInactivos, 2, 0);
             tableLayoutPanel2.Controls.Add(CBFiltrarTema, 0, 1);
-            tableLayoutPanel2.Location = new Point(71, 376);
+            tableLayoutPanel2.Location = new Point(62, 282);
+            tableLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle());
-            tableLayoutPanel2.Size = new Size(812, 103);
+            tableLayoutPanel2.Size = new Size(710, 77);
             tableLayoutPanel2.TabIndex = 95;
             // 
             // TBBuscadorRecurso
             // 
-            TBBuscadorRecurso.Location = new Point(3, 3);
+            TBBuscadorRecurso.Location = new Point(3, 2);
+            TBBuscadorRecurso.Margin = new Padding(3, 2, 3, 2);
             TBBuscadorRecurso.Name = "TBBuscadorRecurso";
             TBBuscadorRecurso.PlaceholderText = "Buscar recurso..";
-            TBBuscadorRecurso.Size = new Size(236, 27);
+            TBBuscadorRecurso.Size = new Size(207, 23);
             TBBuscadorRecurso.TabIndex = 62;
             // 
             // BRecursosActivos
@@ -682,9 +712,10 @@
             BRecursosActivos.FlatStyle = FlatStyle.Flat;
             BRecursosActivos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BRecursosActivos.ForeColor = SystemColors.ButtonHighlight;
-            BRecursosActivos.Location = new Point(615, 3);
+            BRecursosActivos.Location = new Point(537, 2);
+            BRecursosActivos.Margin = new Padding(3, 2, 3, 2);
             BRecursosActivos.Name = "BRecursosActivos";
-            BRecursosActivos.Size = new Size(94, 29);
+            BRecursosActivos.Size = new Size(82, 22);
             BRecursosActivos.TabIndex = 63;
             BRecursosActivos.Text = "Activos";
             BRecursosActivos.UseVisualStyleBackColor = false;
@@ -697,9 +728,10 @@
             BRecursosInactivos.FlatStyle = FlatStyle.Flat;
             BRecursosInactivos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BRecursosInactivos.ForeColor = SystemColors.ButtonHighlight;
-            BRecursosInactivos.Location = new Point(715, 3);
+            BRecursosInactivos.Location = new Point(625, 2);
+            BRecursosInactivos.Margin = new Padding(3, 2, 3, 2);
             BRecursosInactivos.Name = "BRecursosInactivos";
-            BRecursosInactivos.Size = new Size(94, 29);
+            BRecursosInactivos.Size = new Size(82, 22);
             BRecursosInactivos.TabIndex = 64;
             BRecursosInactivos.Text = "Inactivos";
             BRecursosInactivos.UseVisualStyleBackColor = false;
@@ -707,9 +739,10 @@
             // CBFiltrarTema
             // 
             CBFiltrarTema.FormattingEnabled = true;
-            CBFiltrarTema.Location = new Point(3, 72);
+            CBFiltrarTema.Location = new Point(3, 52);
+            CBFiltrarTema.Margin = new Padding(3, 2, 3, 2);
             CBFiltrarTema.Name = "CBFiltrarTema";
-            CBFiltrarTema.Size = new Size(181, 28);
+            CBFiltrarTema.Size = new Size(159, 23);
             CBFiltrarTema.TabIndex = 28;
             // 
             // tableLayoutPanel1
@@ -723,12 +756,13 @@
             tableLayoutPanel1.Controls.Add(BEliminarRecurso, 3, 0);
             tableLayoutPanel1.Controls.Add(BCancelarRecurso, 1, 0);
             tableLayoutPanel1.Controls.Add(BModificarRecurso, 2, 0);
-            tableLayoutPanel1.Location = new Point(464, 262);
+            tableLayoutPanel1.Location = new Point(406, 196);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(421, 50);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
+            tableLayoutPanel1.Size = new Size(368, 38);
             tableLayoutPanel1.TabIndex = 94;
             // 
             // BGuardarRecurso
@@ -740,9 +774,10 @@
             BGuardarRecurso.FlatStyle = FlatStyle.Flat;
             BGuardarRecurso.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BGuardarRecurso.ForeColor = SystemColors.ButtonHighlight;
-            BGuardarRecurso.Location = new Point(3, 3);
+            BGuardarRecurso.Location = new Point(3, 2);
+            BGuardarRecurso.Margin = new Padding(3, 2, 3, 2);
             BGuardarRecurso.Name = "BGuardarRecurso";
-            BGuardarRecurso.Size = new Size(94, 29);
+            BGuardarRecurso.Size = new Size(82, 22);
             BGuardarRecurso.TabIndex = 88;
             BGuardarRecurso.Text = "Guardar";
             BGuardarRecurso.UseVisualStyleBackColor = false;
@@ -755,9 +790,10 @@
             BEliminarRecurso.FlatStyle = FlatStyle.Flat;
             BEliminarRecurso.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BEliminarRecurso.ForeColor = SystemColors.ButtonHighlight;
-            BEliminarRecurso.Location = new Point(305, 3);
+            BEliminarRecurso.Location = new Point(269, 2);
+            BEliminarRecurso.Margin = new Padding(3, 2, 3, 2);
             BEliminarRecurso.Name = "BEliminarRecurso";
-            BEliminarRecurso.Size = new Size(94, 29);
+            BEliminarRecurso.Size = new Size(82, 22);
             BEliminarRecurso.TabIndex = 91;
             BEliminarRecurso.Text = "Eliminar";
             BEliminarRecurso.UseVisualStyleBackColor = false;
@@ -770,9 +806,10 @@
             BCancelarRecurso.FlatStyle = FlatStyle.Flat;
             BCancelarRecurso.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BCancelarRecurso.ForeColor = SystemColors.ButtonHighlight;
-            BCancelarRecurso.Location = new Point(103, 3);
+            BCancelarRecurso.Location = new Point(91, 2);
+            BCancelarRecurso.Margin = new Padding(3, 2, 3, 2);
             BCancelarRecurso.Name = "BCancelarRecurso";
-            BCancelarRecurso.Size = new Size(94, 29);
+            BCancelarRecurso.Size = new Size(82, 22);
             BCancelarRecurso.TabIndex = 89;
             BCancelarRecurso.Text = "Cancelar";
             BCancelarRecurso.UseVisualStyleBackColor = false;
@@ -784,9 +821,10 @@
             BModificarRecurso.FlatStyle = FlatStyle.Flat;
             BModificarRecurso.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BModificarRecurso.ForeColor = SystemColors.ButtonHighlight;
-            BModificarRecurso.Location = new Point(203, 3);
+            BModificarRecurso.Location = new Point(179, 2);
+            BModificarRecurso.Margin = new Padding(3, 2, 3, 2);
             BModificarRecurso.Name = "BModificarRecurso";
-            BModificarRecurso.Size = new Size(96, 29);
+            BModificarRecurso.Size = new Size(84, 22);
             BModificarRecurso.TabIndex = 90;
             BModificarRecurso.Text = "Modificar";
             BModificarRecurso.UseVisualStyleBackColor = false;
@@ -798,676 +836,13 @@
             DGVRecursos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVRecursos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGVRecursos.Columns.AddRange(new DataGridViewColumn[] { id_recurso, tituloRecurso, TipoRecurso, descripcionRecurso, URLRecurso, MateriaRecurso, TemaRecurso, colAcciones });
-            DGVRecursos.Location = new Point(71, 494);
+            DGVRecursos.Location = new Point(62, 370);
+            DGVRecursos.Margin = new Padding(3, 2, 3, 2);
             DGVRecursos.Name = "DGVRecursos";
             DGVRecursos.RowHeadersWidth = 51;
-            DGVRecursos.Size = new Size(814, 118);
+            DGVRecursos.Size = new Size(712, 88);
             DGVRecursos.TabIndex = 33;
             DGVRecursos.CellClick += DGVRecursos_CellClick;
-            // 
-            // panelEncabezadoR
-            // 
-            panelEncabezadoR.Controls.Add(LTituloRecursos);
-            panelEncabezadoR.Dock = DockStyle.Top;
-            panelEncabezadoR.Location = new Point(3, 3);
-            panelEncabezadoR.Name = "panelEncabezadoR";
-            panelEncabezadoR.Size = new Size(974, 66);
-            panelEncabezadoR.TabIndex = 0;
-            // 
-            // LTituloRecursos
-            // 
-            LTituloRecursos.AutoSize = true;
-            LTituloRecursos.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LTituloRecursos.Location = new Point(3, 0);
-            LTituloRecursos.Name = "LTituloRecursos";
-            LTituloRecursos.Size = new Size(280, 38);
-            LTituloRecursos.TabIndex = 1;
-            LTituloRecursos.Text = "Gestion de Recursos";
-            // 
-            // TBPreguntas
-            // 
-            TBPreguntas.AutoScroll = true;
-            TBPreguntas.Controls.Add(tableLayoutPanel4);
-            TBPreguntas.Controls.Add(panelCamposPreguntas);
-            TBPreguntas.Controls.Add(tableLayoutPanel3);
-            TBPreguntas.Controls.Add(DGVPreguntas);
-            TBPreguntas.Controls.Add(panelEncabezadoP);
-            TBPreguntas.Location = new Point(4, 29);
-            TBPreguntas.Name = "TBPreguntas";
-            TBPreguntas.Size = new Size(980, 657);
-            TBPreguntas.TabIndex = 2;
-            TBPreguntas.Text = "Preguntas";
-            TBPreguntas.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel4
-            // 
-            tableLayoutPanel4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tableLayoutPanel4.ColumnCount = 3;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel4.Controls.Add(TBBuscador, 0, 0);
-            tableLayoutPanel4.Controls.Add(BPActivos, 1, 0);
-            tableLayoutPanel4.Controls.Add(BPInactivos, 2, 0);
-            tableLayoutPanel4.Location = new Point(56, 415);
-            tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 1;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Size = new Size(812, 40);
-            tableLayoutPanel4.TabIndex = 96;
-            // 
-            // TBBuscador
-            // 
-            TBBuscador.Location = new Point(3, 3);
-            TBBuscador.Name = "TBBuscador";
-            TBBuscador.PlaceholderText = "Buscar pregunta..";
-            TBBuscador.Size = new Size(236, 27);
-            TBBuscador.TabIndex = 62;
-            // 
-            // BPActivos
-            // 
-            BPActivos.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            BPActivos.BackColor = SystemColors.Highlight;
-            BPActivos.FlatAppearance.BorderSize = 0;
-            BPActivos.FlatStyle = FlatStyle.Flat;
-            BPActivos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BPActivos.ForeColor = SystemColors.ButtonHighlight;
-            BPActivos.Location = new Point(615, 3);
-            BPActivos.Name = "BPActivos";
-            BPActivos.Size = new Size(94, 29);
-            BPActivos.TabIndex = 63;
-            BPActivos.Text = "Activos";
-            BPActivos.UseVisualStyleBackColor = false;
-            // 
-            // BPInactivos
-            // 
-            BPInactivos.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            BPInactivos.BackColor = Color.Gray;
-            BPInactivos.FlatAppearance.BorderSize = 0;
-            BPInactivos.FlatStyle = FlatStyle.Flat;
-            BPInactivos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BPInactivos.ForeColor = SystemColors.ButtonHighlight;
-            BPInactivos.Location = new Point(715, 3);
-            BPInactivos.Name = "BPInactivos";
-            BPInactivos.Size = new Size(94, 29);
-            BPInactivos.TabIndex = 64;
-            BPInactivos.Text = "Inactivos";
-            BPInactivos.UseVisualStyleBackColor = false;
-            // 
-            // panelCamposPreguntas
-            // 
-            panelCamposPreguntas.ColumnCount = 4;
-            panelCamposPreguntas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.22222F));
-            panelCamposPreguntas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.2222233F));
-            panelCamposPreguntas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.2222233F));
-            panelCamposPreguntas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
-            panelCamposPreguntas.Controls.Add(LPregunta, 0, 0);
-            panelCamposPreguntas.Controls.Add(LEnunciado, 0, 1);
-            panelCamposPreguntas.Controls.Add(textBox5, 1, 1);
-            panelCamposPreguntas.Controls.Add(CBMateria, 1, 3);
-            panelCamposPreguntas.Controls.Add(LOpcion3, 2, 4);
-            panelCamposPreguntas.Controls.Add(TBOp3, 3, 4);
-            panelCamposPreguntas.Controls.Add(LOpcion2, 2, 3);
-            panelCamposPreguntas.Controls.Add(LTemasPreg, 0, 2);
-            panelCamposPreguntas.Controls.Add(LOpcion1, 2, 2);
-            panelCamposPreguntas.Controls.Add(TBOp2, 3, 3);
-            panelCamposPreguntas.Controls.Add(LMateria, 0, 3);
-            panelCamposPreguntas.Controls.Add(TBOp1, 3, 2);
-            panelCamposPreguntas.Controls.Add(CBTemas, 1, 2);
-            panelCamposPreguntas.Controls.Add(TBOpcionCorrecta, 3, 1);
-            panelCamposPreguntas.Controls.Add(LOpcionCorrecta, 2, 1);
-            panelCamposPreguntas.Location = new Point(59, 78);
-            panelCamposPreguntas.Name = "panelCamposPreguntas";
-            panelCamposPreguntas.RowCount = 5;
-            panelCamposPreguntas.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            panelCamposPreguntas.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            panelCamposPreguntas.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            panelCamposPreguntas.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            panelCamposPreguntas.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            panelCamposPreguntas.Size = new Size(854, 230);
-            panelCamposPreguntas.TabIndex = 97;
-            // 
-            // LPregunta
-            // 
-            LPregunta.AutoSize = true;
-            LPregunta.Font = new Font("Ebrima", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LPregunta.Location = new Point(3, 0);
-            LPregunta.Name = "LPregunta";
-            LPregunta.Size = new Size(165, 28);
-            LPregunta.TabIndex = 22;
-            LPregunta.Text = "Nueva Pregunta";
-            // 
-            // LEnunciado
-            // 
-            LEnunciado.AutoSize = true;
-            LEnunciado.Location = new Point(3, 40);
-            LEnunciado.Name = "LEnunciado";
-            LEnunciado.Size = new Size(178, 20);
-            LEnunciado.TabIndex = 23;
-            LEnunciado.Text = "Enunciado de la Pregunta";
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(192, 43);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(173, 41);
-            textBox5.TabIndex = 34;
-            // 
-            // CBMateria
-            // 
-            CBMateria.FormattingEnabled = true;
-            CBMateria.Location = new Point(192, 137);
-            CBMateria.Name = "CBMateria";
-            CBMateria.Size = new Size(151, 28);
-            CBMateria.TabIndex = 42;
-            // 
-            // LOpcion3
-            // 
-            LOpcion3.AutoSize = true;
-            LOpcion3.Location = new Point(381, 181);
-            LOpcion3.Name = "LOpcion3";
-            LOpcion3.Size = new Size(69, 20);
-            LOpcion3.TabIndex = 29;
-            LOpcion3.Text = "Opcion 3";
-            // 
-            // TBOp3
-            // 
-            TBOp3.Location = new Point(570, 184);
-            TBOp3.Name = "TBOp3";
-            TBOp3.Size = new Size(125, 27);
-            TBOp3.TabIndex = 33;
-            // 
-            // LOpcion2
-            // 
-            LOpcion2.AutoSize = true;
-            LOpcion2.Location = new Point(381, 134);
-            LOpcion2.Name = "LOpcion2";
-            LOpcion2.Size = new Size(69, 20);
-            LOpcion2.TabIndex = 28;
-            LOpcion2.Text = "Opcion 2";
-            // 
-            // LTemasPreg
-            // 
-            LTemasPreg.AutoSize = true;
-            LTemasPreg.Location = new Point(3, 87);
-            LTemasPreg.Name = "LTemasPreg";
-            LTemasPreg.Size = new Size(45, 20);
-            LTemasPreg.TabIndex = 24;
-            LTemasPreg.Text = "Tema";
-            // 
-            // LOpcion1
-            // 
-            LOpcion1.AutoSize = true;
-            LOpcion1.Location = new Point(381, 87);
-            LOpcion1.Name = "LOpcion1";
-            LOpcion1.Size = new Size(69, 20);
-            LOpcion1.TabIndex = 27;
-            LOpcion1.Text = "Opcion 1";
-            // 
-            // TBOp2
-            // 
-            TBOp2.Location = new Point(570, 137);
-            TBOp2.Name = "TBOp2";
-            TBOp2.Size = new Size(125, 27);
-            TBOp2.TabIndex = 32;
-            // 
-            // LMateria
-            // 
-            LMateria.AutoSize = true;
-            LMateria.Location = new Point(3, 134);
-            LMateria.Name = "LMateria";
-            LMateria.Size = new Size(60, 20);
-            LMateria.TabIndex = 41;
-            LMateria.Text = "Materia";
-            // 
-            // TBOp1
-            // 
-            TBOp1.Location = new Point(570, 90);
-            TBOp1.Name = "TBOp1";
-            TBOp1.Size = new Size(125, 27);
-            TBOp1.TabIndex = 31;
-            // 
-            // CBTemas
-            // 
-            CBTemas.FormattingEnabled = true;
-            CBTemas.Location = new Point(192, 90);
-            CBTemas.Name = "CBTemas";
-            CBTemas.Size = new Size(151, 28);
-            CBTemas.TabIndex = 25;
-            // 
-            // TBOpcionCorrecta
-            // 
-            TBOpcionCorrecta.Location = new Point(570, 43);
-            TBOpcionCorrecta.Name = "TBOpcionCorrecta";
-            TBOpcionCorrecta.Size = new Size(125, 27);
-            TBOpcionCorrecta.TabIndex = 30;
-            // 
-            // LOpcionCorrecta
-            // 
-            LOpcionCorrecta.AutoSize = true;
-            LOpcionCorrecta.Location = new Point(381, 40);
-            LOpcionCorrecta.Name = "LOpcionCorrecta";
-            LOpcionCorrecta.Size = new Size(117, 20);
-            LOpcionCorrecta.TabIndex = 26;
-            LOpcionCorrecta.Text = "Opcion Correcta";
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.ColumnCount = 4;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel3.Controls.Add(BGuardarPreg, 0, 0);
-            tableLayoutPanel3.Controls.Add(BEliminarPreg, 3, 0);
-            tableLayoutPanel3.Controls.Add(BCancelarPreg, 1, 0);
-            tableLayoutPanel3.Controls.Add(BModificarPreg, 2, 0);
-            tableLayoutPanel3.Location = new Point(459, 348);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel3.Size = new Size(409, 54);
-            tableLayoutPanel3.TabIndex = 95;
-            // 
-            // BGuardarPreg
-            // 
-            BGuardarPreg.BackColor = Color.ForestGreen;
-            BGuardarPreg.FlatAppearance.BorderSize = 0;
-            BGuardarPreg.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 125, 50);
-            BGuardarPreg.FlatAppearance.MouseOverBackColor = Color.FromArgb(67, 160, 71);
-            BGuardarPreg.FlatStyle = FlatStyle.Flat;
-            BGuardarPreg.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            BGuardarPreg.ForeColor = SystemColors.ButtonHighlight;
-            BGuardarPreg.Location = new Point(3, 3);
-            BGuardarPreg.Name = "BGuardarPreg";
-            BGuardarPreg.Size = new Size(94, 29);
-            BGuardarPreg.TabIndex = 88;
-            BGuardarPreg.Text = "Guardar";
-            BGuardarPreg.UseVisualStyleBackColor = false;
-            // 
-            // BEliminarPreg
-            // 
-            BEliminarPreg.BackColor = Color.OrangeRed;
-            BEliminarPreg.FlatAppearance.BorderSize = 0;
-            BEliminarPreg.FlatStyle = FlatStyle.Flat;
-            BEliminarPreg.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            BEliminarPreg.ForeColor = SystemColors.ButtonHighlight;
-            BEliminarPreg.Location = new Point(312, 3);
-            BEliminarPreg.Name = "BEliminarPreg";
-            BEliminarPreg.Size = new Size(94, 29);
-            BEliminarPreg.TabIndex = 91;
-            BEliminarPreg.Text = "Eliminar";
-            BEliminarPreg.UseVisualStyleBackColor = false;
-            BEliminarPreg.Visible = false;
-            // 
-            // BCancelarPreg
-            // 
-            BCancelarPreg.BackColor = Color.Gray;
-            BCancelarPreg.FlatAppearance.BorderSize = 0;
-            BCancelarPreg.FlatStyle = FlatStyle.Flat;
-            BCancelarPreg.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            BCancelarPreg.ForeColor = SystemColors.ButtonHighlight;
-            BCancelarPreg.Location = new Point(103, 3);
-            BCancelarPreg.Name = "BCancelarPreg";
-            BCancelarPreg.Size = new Size(94, 29);
-            BCancelarPreg.TabIndex = 89;
-            BCancelarPreg.Text = "Cancelar";
-            BCancelarPreg.UseVisualStyleBackColor = false;
-            // 
-            // BModificarPreg
-            // 
-            BModificarPreg.BackColor = SystemColors.Highlight;
-            BModificarPreg.FlatAppearance.BorderSize = 0;
-            BModificarPreg.FlatStyle = FlatStyle.Flat;
-            BModificarPreg.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            BModificarPreg.ForeColor = SystemColors.ButtonHighlight;
-            BModificarPreg.Location = new Point(203, 3);
-            BModificarPreg.Name = "BModificarPreg";
-            BModificarPreg.Size = new Size(103, 29);
-            BModificarPreg.TabIndex = 90;
-            BModificarPreg.Text = "Modificar";
-            BModificarPreg.UseVisualStyleBackColor = false;
-            BModificarPreg.Visible = false;
-            // 
-            // DGVPreguntas
-            // 
-            DGVPreguntas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            DGVPreguntas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            DGVPreguntas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVPreguntas.Columns.AddRange(new DataGridViewColumn[] { IDPreg, EnunciadoPreg, TemaPreg, dataGridViewTextBoxColumn1 });
-            DGVPreguntas.Location = new Point(56, 481);
-            DGVPreguntas.Name = "DGVPreguntas";
-            DGVPreguntas.RowHeadersWidth = 51;
-            DGVPreguntas.Size = new Size(812, 120);
-            DGVPreguntas.TabIndex = 39;
-            DGVPreguntas.CellClick += DGVPreguntas_CellClick;
-            // 
-            // IDPreg
-            // 
-            IDPreg.HeaderText = "ID";
-            IDPreg.MinimumWidth = 6;
-            IDPreg.Name = "IDPreg";
-            // 
-            // EnunciadoPreg
-            // 
-            EnunciadoPreg.HeaderText = "Enunciado";
-            EnunciadoPreg.MinimumWidth = 6;
-            EnunciadoPreg.Name = "EnunciadoPreg";
-            // 
-            // TemaPreg
-            // 
-            TemaPreg.HeaderText = "Tema";
-            TemaPreg.MinimumWidth = 6;
-            TemaPreg.Name = "TemaPreg";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.HeaderText = "Materia";
-            dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // panelEncabezadoP
-            // 
-            panelEncabezadoP.Controls.Add(LTituloPreguntas);
-            panelEncabezadoP.Dock = DockStyle.Top;
-            panelEncabezadoP.Location = new Point(0, 0);
-            panelEncabezadoP.Name = "panelEncabezadoP";
-            panelEncabezadoP.Size = new Size(980, 69);
-            panelEncabezadoP.TabIndex = 0;
-            // 
-            // LTituloPreguntas
-            // 
-            LTituloPreguntas.AutoSize = true;
-            LTituloPreguntas.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LTituloPreguntas.Location = new Point(3, 0);
-            LTituloPreguntas.Name = "LTituloPreguntas";
-            LTituloPreguntas.Size = new Size(485, 38);
-            LTituloPreguntas.TabIndex = 1;
-            LTituloPreguntas.Text = "Gestion de Preguntas de Evaluacion";
-            LTituloPreguntas.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // TBMaterias
-            // 
-            TBMaterias.AutoScroll = true;
-            TBMaterias.Controls.Add(panelCamposMaterias);
-            TBMaterias.Controls.Add(tableLayoutPanel6);
-            TBMaterias.Controls.Add(tableLayoutPanel5);
-            TBMaterias.Controls.Add(DGVMaterias);
-            TBMaterias.Controls.Add(panelEncabezadoM);
-            TBMaterias.Location = new Point(4, 29);
-            TBMaterias.Name = "TBMaterias";
-            TBMaterias.Size = new Size(980, 657);
-            TBMaterias.TabIndex = 3;
-            TBMaterias.Text = "Materias";
-            TBMaterias.UseVisualStyleBackColor = true;
-            // 
-            // panelCamposMaterias
-            // 
-            panelCamposMaterias.ColumnCount = 2;
-            panelCamposMaterias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            panelCamposMaterias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            panelCamposMaterias.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            panelCamposMaterias.Controls.Add(CBNivelMateria, 1, 1);
-            panelCamposMaterias.Controls.Add(label5, 0, 0);
-            panelCamposMaterias.Controls.Add(TBNombreMateria, 1, 0);
-            panelCamposMaterias.Controls.Add(label3, 0, 1);
-            panelCamposMaterias.Controls.Add(TBDescripcionMateria, 1, 2);
-            panelCamposMaterias.Controls.Add(label4, 0, 2);
-            panelCamposMaterias.Location = new Point(92, 92);
-            panelCamposMaterias.Name = "panelCamposMaterias";
-            panelCamposMaterias.RowCount = 3;
-            panelCamposMaterias.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            panelCamposMaterias.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            panelCamposMaterias.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            panelCamposMaterias.Size = new Size(561, 125);
-            panelCamposMaterias.TabIndex = 98;
-            // 
-            // CBNivelMateria
-            // 
-            CBNivelMateria.FormattingEnabled = true;
-            CBNivelMateria.Location = new Point(283, 44);
-            CBNivelMateria.Name = "CBNivelMateria";
-            CBNivelMateria.Size = new Size(180, 28);
-            CBNivelMateria.TabIndex = 99;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(3, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(64, 20);
-            label5.TabIndex = 33;
-            label5.Text = "Nombre";
-            // 
-            // TBNombreMateria
-            // 
-            TBNombreMateria.Location = new Point(283, 3);
-            TBNombreMateria.MinimumSize = new Size(180, 27);
-            TBNombreMateria.Name = "TBNombreMateria";
-            TBNombreMateria.Size = new Size(180, 27);
-            TBNombreMateria.TabIndex = 38;
-            TBNombreMateria.KeyPress += TBNombreMateria_KeyPress;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(3, 41);
-            label3.Name = "label3";
-            label3.Size = new Size(43, 20);
-            label3.TabIndex = 34;
-            label3.Text = "Nivel";
-            // 
-            // TBDescripcionMateria
-            // 
-            TBDescripcionMateria.Location = new Point(283, 85);
-            TBDescripcionMateria.MinimumSize = new Size(180, 27);
-            TBDescripcionMateria.Name = "TBDescripcionMateria";
-            TBDescripcionMateria.Size = new Size(180, 27);
-            TBDescripcionMateria.TabIndex = 43;
-            TBDescripcionMateria.KeyPress += TBDescripcionMateria_KeyPress;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(3, 82);
-            label4.Name = "label4";
-            label4.Size = new Size(87, 20);
-            label4.TabIndex = 37;
-            label4.Text = "Descripcion";
-            // 
-            // tableLayoutPanel6
-            // 
-            tableLayoutPanel6.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tableLayoutPanel6.ColumnCount = 3;
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel6.Controls.Add(TBBuscadorMaterias, 0, 0);
-            tableLayoutPanel6.Controls.Add(BMateriasActivas, 1, 0);
-            tableLayoutPanel6.Controls.Add(BMateriasInactivas, 2, 0);
-            tableLayoutPanel6.Location = new Point(78, 333);
-            tableLayoutPanel6.Name = "tableLayoutPanel6";
-            tableLayoutPanel6.RowCount = 1;
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel6.Size = new Size(812, 40);
-            tableLayoutPanel6.TabIndex = 97;
-            // 
-            // TBBuscadorMaterias
-            // 
-            TBBuscadorMaterias.Location = new Point(3, 3);
-            TBBuscadorMaterias.Name = "TBBuscadorMaterias";
-            TBBuscadorMaterias.PlaceholderText = "Buscar materia..";
-            TBBuscadorMaterias.Size = new Size(236, 27);
-            TBBuscadorMaterias.TabIndex = 62;
-            // 
-            // BMateriasActivas
-            // 
-            BMateriasActivas.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            BMateriasActivas.BackColor = SystemColors.Highlight;
-            BMateriasActivas.FlatAppearance.BorderSize = 0;
-            BMateriasActivas.FlatStyle = FlatStyle.Flat;
-            BMateriasActivas.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BMateriasActivas.ForeColor = SystemColors.ButtonHighlight;
-            BMateriasActivas.Location = new Point(615, 3);
-            BMateriasActivas.Name = "BMateriasActivas";
-            BMateriasActivas.Size = new Size(94, 29);
-            BMateriasActivas.TabIndex = 63;
-            BMateriasActivas.Text = "Activos";
-            BMateriasActivas.UseVisualStyleBackColor = false;
-            // 
-            // BMateriasInactivas
-            // 
-            BMateriasInactivas.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            BMateriasInactivas.BackColor = Color.Gray;
-            BMateriasInactivas.FlatAppearance.BorderSize = 0;
-            BMateriasInactivas.FlatStyle = FlatStyle.Flat;
-            BMateriasInactivas.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BMateriasInactivas.ForeColor = SystemColors.ButtonHighlight;
-            BMateriasInactivas.Location = new Point(715, 3);
-            BMateriasInactivas.Name = "BMateriasInactivas";
-            BMateriasInactivas.Size = new Size(94, 29);
-            BMateriasInactivas.TabIndex = 64;
-            BMateriasInactivas.Text = "Inactivos";
-            BMateriasInactivas.UseVisualStyleBackColor = false;
-            // 
-            // tableLayoutPanel5
-            // 
-            tableLayoutPanel5.ColumnCount = 4;
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel5.Controls.Add(BGuardarMateria, 0, 0);
-            tableLayoutPanel5.Controls.Add(BEliminarMateria, 3, 0);
-            tableLayoutPanel5.Controls.Add(BCancelarMateria, 1, 0);
-            tableLayoutPanel5.Controls.Add(BModificarMateria, 2, 0);
-            tableLayoutPanel5.Location = new Point(478, 250);
-            tableLayoutPanel5.Name = "tableLayoutPanel5";
-            tableLayoutPanel5.RowCount = 1;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel5.Size = new Size(409, 54);
-            tableLayoutPanel5.TabIndex = 96;
-            // 
-            // BGuardarMateria
-            // 
-            BGuardarMateria.BackColor = Color.ForestGreen;
-            BGuardarMateria.FlatAppearance.BorderSize = 0;
-            BGuardarMateria.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 125, 50);
-            BGuardarMateria.FlatAppearance.MouseOverBackColor = Color.FromArgb(67, 160, 71);
-            BGuardarMateria.FlatStyle = FlatStyle.Flat;
-            BGuardarMateria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            BGuardarMateria.ForeColor = SystemColors.ButtonHighlight;
-            BGuardarMateria.Location = new Point(3, 3);
-            BGuardarMateria.Name = "BGuardarMateria";
-            BGuardarMateria.Size = new Size(94, 29);
-            BGuardarMateria.TabIndex = 88;
-            BGuardarMateria.Text = "Guardar";
-            BGuardarMateria.UseVisualStyleBackColor = false;
-            BGuardarMateria.Click += BGuardarMateria_Click;
-            // 
-            // BEliminarMateria
-            // 
-            BEliminarMateria.BackColor = Color.OrangeRed;
-            BEliminarMateria.FlatAppearance.BorderSize = 0;
-            BEliminarMateria.FlatStyle = FlatStyle.Flat;
-            BEliminarMateria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            BEliminarMateria.ForeColor = SystemColors.ButtonHighlight;
-            BEliminarMateria.Location = new Point(315, 3);
-            BEliminarMateria.Name = "BEliminarMateria";
-            BEliminarMateria.Size = new Size(94, 29);
-            BEliminarMateria.TabIndex = 91;
-            BEliminarMateria.Text = "Eliminar";
-            BEliminarMateria.UseVisualStyleBackColor = false;
-            BEliminarMateria.Visible = false;
-            // 
-            // BCancelarMateria
-            // 
-            BCancelarMateria.BackColor = Color.Gray;
-            BCancelarMateria.FlatAppearance.BorderSize = 0;
-            BCancelarMateria.FlatStyle = FlatStyle.Flat;
-            BCancelarMateria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            BCancelarMateria.ForeColor = SystemColors.ButtonHighlight;
-            BCancelarMateria.Location = new Point(103, 3);
-            BCancelarMateria.Name = "BCancelarMateria";
-            BCancelarMateria.Size = new Size(94, 29);
-            BCancelarMateria.TabIndex = 89;
-            BCancelarMateria.Text = "Cancelar";
-            BCancelarMateria.UseVisualStyleBackColor = false;
-            // 
-            // BModificarMateria
-            // 
-            BModificarMateria.BackColor = SystemColors.Highlight;
-            BModificarMateria.FlatAppearance.BorderSize = 0;
-            BModificarMateria.FlatStyle = FlatStyle.Flat;
-            BModificarMateria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            BModificarMateria.ForeColor = SystemColors.ButtonHighlight;
-            BModificarMateria.Location = new Point(203, 3);
-            BModificarMateria.Name = "BModificarMateria";
-            BModificarMateria.Size = new Size(106, 29);
-            BModificarMateria.TabIndex = 90;
-            BModificarMateria.Text = "Modificar";
-            BModificarMateria.UseVisualStyleBackColor = false;
-            BModificarMateria.Visible = false;
-            // 
-            // DGVMaterias
-            // 
-            DGVMaterias.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            DGVMaterias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            DGVMaterias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVMaterias.Columns.AddRange(new DataGridViewColumn[] { idMateria, NombreMateria, NivelMateria, DescripcionMateria });
-            DGVMaterias.Location = new Point(78, 400);
-            DGVMaterias.Name = "DGVMaterias";
-            DGVMaterias.RowHeadersWidth = 51;
-            DGVMaterias.Size = new Size(812, 249);
-            DGVMaterias.TabIndex = 41;
-            DGVMaterias.CellClick += DGVMaterias_CellClick;
-            // 
-            // idMateria
-            // 
-            idMateria.HeaderText = "ID_Materia";
-            idMateria.MinimumWidth = 6;
-            idMateria.Name = "idMateria";
-            // 
-            // NombreMateria
-            // 
-            NombreMateria.HeaderText = "Nombre";
-            NombreMateria.MinimumWidth = 6;
-            NombreMateria.Name = "NombreMateria";
-            // 
-            // NivelMateria
-            // 
-            NivelMateria.HeaderText = "Nivel";
-            NivelMateria.MinimumWidth = 6;
-            NivelMateria.Name = "NivelMateria";
-            // 
-            // DescripcionMateria
-            // 
-            DescripcionMateria.HeaderText = "Descripcion";
-            DescripcionMateria.MinimumWidth = 6;
-            DescripcionMateria.Name = "DescripcionMateria";
-            // 
-            // panelEncabezadoM
-            // 
-            panelEncabezadoM.Controls.Add(LTituloMaterias);
-            panelEncabezadoM.Dock = DockStyle.Top;
-            panelEncabezadoM.Location = new Point(0, 0);
-            panelEncabezadoM.Name = "panelEncabezadoM";
-            panelEncabezadoM.Size = new Size(980, 64);
-            panelEncabezadoM.TabIndex = 0;
-            // 
-            // LTituloMaterias
-            // 
-            LTituloMaterias.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            LTituloMaterias.AutoSize = true;
-            LTituloMaterias.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LTituloMaterias.Location = new Point(3, 0);
-            LTituloMaterias.Name = "LTituloMaterias";
-            LTituloMaterias.Size = new Size(279, 38);
-            LTituloMaterias.TabIndex = 1;
-            LTituloMaterias.Text = "Gestion de Materias";
             // 
             // id_recurso
             // 
@@ -1519,12 +894,714 @@
             colAcciones.Text = "Ver ";
             colAcciones.UseColumnTextForButtonValue = true;
             // 
+            // panelEncabezadoR
+            // 
+            panelEncabezadoR.Controls.Add(LTituloRecursos);
+            panelEncabezadoR.Dock = DockStyle.Top;
+            panelEncabezadoR.Location = new Point(3, 2);
+            panelEncabezadoR.Margin = new Padding(3, 2, 3, 2);
+            panelEncabezadoR.Name = "panelEncabezadoR";
+            panelEncabezadoR.Size = new Size(850, 50);
+            panelEncabezadoR.TabIndex = 0;
+            // 
+            // LTituloRecursos
+            // 
+            LTituloRecursos.AutoSize = true;
+            LTituloRecursos.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LTituloRecursos.Location = new Point(3, 0);
+            LTituloRecursos.Name = "LTituloRecursos";
+            LTituloRecursos.Size = new Size(222, 30);
+            LTituloRecursos.TabIndex = 1;
+            LTituloRecursos.Text = "Gestion de Recursos";
+            // 
+            // TBPreguntas
+            // 
+            TBPreguntas.AutoScroll = true;
+            TBPreguntas.Controls.Add(tableLayoutPanel4);
+            TBPreguntas.Controls.Add(panelCamposPreguntas);
+            TBPreguntas.Controls.Add(tableLayoutPanel3);
+            TBPreguntas.Controls.Add(DGVPreguntas);
+            TBPreguntas.Controls.Add(panelEncabezadoP);
+            TBPreguntas.Location = new Point(4, 24);
+            TBPreguntas.Margin = new Padding(3, 2, 3, 2);
+            TBPreguntas.Name = "TBPreguntas";
+            TBPreguntas.Size = new Size(856, 490);
+            TBPreguntas.TabIndex = 2;
+            TBPreguntas.Text = "Preguntas";
+            TBPreguntas.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel4.ColumnCount = 3;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel4.Controls.Add(TBBuscador, 0, 0);
+            tableLayoutPanel4.Controls.Add(BPActivos, 1, 0);
+            tableLayoutPanel4.Controls.Add(BPInactivos, 2, 0);
+            tableLayoutPanel4.Location = new Point(49, 311);
+            tableLayoutPanel4.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 1;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.Size = new Size(710, 30);
+            tableLayoutPanel4.TabIndex = 96;
+            // 
+            // TBBuscador
+            // 
+            TBBuscador.Location = new Point(3, 2);
+            TBBuscador.Margin = new Padding(3, 2, 3, 2);
+            TBBuscador.Name = "TBBuscador";
+            TBBuscador.PlaceholderText = "Buscar pregunta..";
+            TBBuscador.Size = new Size(207, 23);
+            TBBuscador.TabIndex = 62;
+            // 
+            // BPActivos
+            // 
+            BPActivos.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            BPActivos.BackColor = SystemColors.Highlight;
+            BPActivos.FlatAppearance.BorderSize = 0;
+            BPActivos.FlatStyle = FlatStyle.Flat;
+            BPActivos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BPActivos.ForeColor = SystemColors.ButtonHighlight;
+            BPActivos.Location = new Point(537, 2);
+            BPActivos.Margin = new Padding(3, 2, 3, 2);
+            BPActivos.Name = "BPActivos";
+            BPActivos.Size = new Size(82, 22);
+            BPActivos.TabIndex = 63;
+            BPActivos.Text = "Activos";
+            BPActivos.UseVisualStyleBackColor = false;
+            // 
+            // BPInactivos
+            // 
+            BPInactivos.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            BPInactivos.BackColor = Color.Gray;
+            BPInactivos.FlatAppearance.BorderSize = 0;
+            BPInactivos.FlatStyle = FlatStyle.Flat;
+            BPInactivos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BPInactivos.ForeColor = SystemColors.ButtonHighlight;
+            BPInactivos.Location = new Point(625, 2);
+            BPInactivos.Margin = new Padding(3, 2, 3, 2);
+            BPInactivos.Name = "BPInactivos";
+            BPInactivos.Size = new Size(82, 22);
+            BPInactivos.TabIndex = 64;
+            BPInactivos.Text = "Inactivos";
+            BPInactivos.UseVisualStyleBackColor = false;
+            // 
+            // panelCamposPreguntas
+            // 
+            panelCamposPreguntas.ColumnCount = 4;
+            panelCamposPreguntas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.22222F));
+            panelCamposPreguntas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.2222233F));
+            panelCamposPreguntas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.2222233F));
+            panelCamposPreguntas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            panelCamposPreguntas.Controls.Add(LPregunta, 0, 0);
+            panelCamposPreguntas.Controls.Add(LEnunciado, 0, 1);
+            panelCamposPreguntas.Controls.Add(textBox5, 1, 1);
+            panelCamposPreguntas.Controls.Add(CBMateria, 1, 3);
+            panelCamposPreguntas.Controls.Add(LOpcion3, 2, 4);
+            panelCamposPreguntas.Controls.Add(TBOp3, 3, 4);
+            panelCamposPreguntas.Controls.Add(LOpcion2, 2, 3);
+            panelCamposPreguntas.Controls.Add(LTemasPreg, 0, 2);
+            panelCamposPreguntas.Controls.Add(LOpcion1, 2, 2);
+            panelCamposPreguntas.Controls.Add(TBOp2, 3, 3);
+            panelCamposPreguntas.Controls.Add(LMateria, 0, 3);
+            panelCamposPreguntas.Controls.Add(TBOp1, 3, 2);
+            panelCamposPreguntas.Controls.Add(CBTemas, 1, 2);
+            panelCamposPreguntas.Controls.Add(TBOpcionCorrecta, 3, 1);
+            panelCamposPreguntas.Controls.Add(LOpcionCorrecta, 2, 1);
+            panelCamposPreguntas.Location = new Point(52, 58);
+            panelCamposPreguntas.Margin = new Padding(3, 2, 3, 2);
+            panelCamposPreguntas.Name = "panelCamposPreguntas";
+            panelCamposPreguntas.RowCount = 5;
+            panelCamposPreguntas.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            panelCamposPreguntas.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            panelCamposPreguntas.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            panelCamposPreguntas.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            panelCamposPreguntas.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            panelCamposPreguntas.Size = new Size(747, 172);
+            panelCamposPreguntas.TabIndex = 97;
+            // 
+            // LPregunta
+            // 
+            LPregunta.AutoSize = true;
+            LPregunta.Font = new Font("Ebrima", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LPregunta.Location = new Point(3, 0);
+            LPregunta.Name = "LPregunta";
+            LPregunta.Size = new Size(134, 21);
+            LPregunta.TabIndex = 22;
+            LPregunta.Text = "Nueva Pregunta";
+            // 
+            // LEnunciado
+            // 
+            LEnunciado.AutoSize = true;
+            LEnunciado.Location = new Point(3, 30);
+            LEnunciado.Name = "LEnunciado";
+            LEnunciado.Size = new Size(142, 15);
+            LEnunciado.TabIndex = 23;
+            LEnunciado.Text = "Enunciado de la Pregunta";
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(168, 32);
+            textBox5.Margin = new Padding(3, 2, 3, 2);
+            textBox5.Multiline = true;
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(152, 31);
+            textBox5.TabIndex = 34;
+            // 
+            // CBMateria
+            // 
+            CBMateria.FormattingEnabled = true;
+            CBMateria.Location = new Point(168, 102);
+            CBMateria.Margin = new Padding(3, 2, 3, 2);
+            CBMateria.Name = "CBMateria";
+            CBMateria.Size = new Size(133, 23);
+            CBMateria.TabIndex = 42;
+            // 
+            // LOpcion3
+            // 
+            LOpcion3.AutoSize = true;
+            LOpcion3.Location = new Point(334, 135);
+            LOpcion3.Name = "LOpcion3";
+            LOpcion3.Size = new Size(55, 15);
+            LOpcion3.TabIndex = 29;
+            LOpcion3.Text = "Opcion 3";
+            // 
+            // TBOp3
+            // 
+            TBOp3.Location = new Point(500, 137);
+            TBOp3.Margin = new Padding(3, 2, 3, 2);
+            TBOp3.Name = "TBOp3";
+            TBOp3.Size = new Size(110, 23);
+            TBOp3.TabIndex = 33;
+            // 
+            // LOpcion2
+            // 
+            LOpcion2.AutoSize = true;
+            LOpcion2.Location = new Point(334, 100);
+            LOpcion2.Name = "LOpcion2";
+            LOpcion2.Size = new Size(55, 15);
+            LOpcion2.TabIndex = 28;
+            LOpcion2.Text = "Opcion 2";
+            // 
+            // LTemasPreg
+            // 
+            LTemasPreg.AutoSize = true;
+            LTemasPreg.Location = new Point(3, 65);
+            LTemasPreg.Name = "LTemasPreg";
+            LTemasPreg.Size = new Size(35, 15);
+            LTemasPreg.TabIndex = 24;
+            LTemasPreg.Text = "Tema";
+            // 
+            // LOpcion1
+            // 
+            LOpcion1.AutoSize = true;
+            LOpcion1.Location = new Point(334, 65);
+            LOpcion1.Name = "LOpcion1";
+            LOpcion1.Size = new Size(55, 15);
+            LOpcion1.TabIndex = 27;
+            LOpcion1.Text = "Opcion 1";
+            // 
+            // TBOp2
+            // 
+            TBOp2.Location = new Point(500, 102);
+            TBOp2.Margin = new Padding(3, 2, 3, 2);
+            TBOp2.Name = "TBOp2";
+            TBOp2.Size = new Size(110, 23);
+            TBOp2.TabIndex = 32;
+            // 
+            // LMateria
+            // 
+            LMateria.AutoSize = true;
+            LMateria.Location = new Point(3, 100);
+            LMateria.Name = "LMateria";
+            LMateria.Size = new Size(47, 15);
+            LMateria.TabIndex = 41;
+            LMateria.Text = "Materia";
+            // 
+            // TBOp1
+            // 
+            TBOp1.Location = new Point(500, 67);
+            TBOp1.Margin = new Padding(3, 2, 3, 2);
+            TBOp1.Name = "TBOp1";
+            TBOp1.Size = new Size(110, 23);
+            TBOp1.TabIndex = 31;
+            // 
+            // CBTemas
+            // 
+            CBTemas.FormattingEnabled = true;
+            CBTemas.Location = new Point(168, 67);
+            CBTemas.Margin = new Padding(3, 2, 3, 2);
+            CBTemas.Name = "CBTemas";
+            CBTemas.Size = new Size(133, 23);
+            CBTemas.TabIndex = 25;
+            // 
+            // TBOpcionCorrecta
+            // 
+            TBOpcionCorrecta.Location = new Point(500, 32);
+            TBOpcionCorrecta.Margin = new Padding(3, 2, 3, 2);
+            TBOpcionCorrecta.Name = "TBOpcionCorrecta";
+            TBOpcionCorrecta.Size = new Size(110, 23);
+            TBOpcionCorrecta.TabIndex = 30;
+            // 
+            // LOpcionCorrecta
+            // 
+            LOpcionCorrecta.AutoSize = true;
+            LOpcionCorrecta.Location = new Point(334, 30);
+            LOpcionCorrecta.Name = "LOpcionCorrecta";
+            LOpcionCorrecta.Size = new Size(94, 15);
+            LOpcionCorrecta.TabIndex = 26;
+            LOpcionCorrecta.Text = "Opcion Correcta";
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 4;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel3.Controls.Add(BGuardarPreg, 0, 0);
+            tableLayoutPanel3.Controls.Add(BEliminarPreg, 3, 0);
+            tableLayoutPanel3.Controls.Add(BCancelarPreg, 1, 0);
+            tableLayoutPanel3.Controls.Add(BModificarPreg, 2, 0);
+            tableLayoutPanel3.Location = new Point(402, 261);
+            tableLayoutPanel3.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel3.Size = new Size(358, 40);
+            tableLayoutPanel3.TabIndex = 95;
+            // 
+            // BGuardarPreg
+            // 
+            BGuardarPreg.BackColor = Color.ForestGreen;
+            BGuardarPreg.FlatAppearance.BorderSize = 0;
+            BGuardarPreg.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 125, 50);
+            BGuardarPreg.FlatAppearance.MouseOverBackColor = Color.FromArgb(67, 160, 71);
+            BGuardarPreg.FlatStyle = FlatStyle.Flat;
+            BGuardarPreg.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            BGuardarPreg.ForeColor = SystemColors.ButtonHighlight;
+            BGuardarPreg.Location = new Point(3, 2);
+            BGuardarPreg.Margin = new Padding(3, 2, 3, 2);
+            BGuardarPreg.Name = "BGuardarPreg";
+            BGuardarPreg.Size = new Size(82, 22);
+            BGuardarPreg.TabIndex = 88;
+            BGuardarPreg.Text = "Guardar";
+            BGuardarPreg.UseVisualStyleBackColor = false;
+            // 
+            // BEliminarPreg
+            // 
+            BEliminarPreg.BackColor = Color.OrangeRed;
+            BEliminarPreg.FlatAppearance.BorderSize = 0;
+            BEliminarPreg.FlatStyle = FlatStyle.Flat;
+            BEliminarPreg.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            BEliminarPreg.ForeColor = SystemColors.ButtonHighlight;
+            BEliminarPreg.Location = new Point(275, 2);
+            BEliminarPreg.Margin = new Padding(3, 2, 3, 2);
+            BEliminarPreg.Name = "BEliminarPreg";
+            BEliminarPreg.Size = new Size(82, 22);
+            BEliminarPreg.TabIndex = 91;
+            BEliminarPreg.Text = "Eliminar";
+            BEliminarPreg.UseVisualStyleBackColor = false;
+            BEliminarPreg.Visible = false;
+            // 
+            // BCancelarPreg
+            // 
+            BCancelarPreg.BackColor = Color.Gray;
+            BCancelarPreg.FlatAppearance.BorderSize = 0;
+            BCancelarPreg.FlatStyle = FlatStyle.Flat;
+            BCancelarPreg.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            BCancelarPreg.ForeColor = SystemColors.ButtonHighlight;
+            BCancelarPreg.Location = new Point(91, 2);
+            BCancelarPreg.Margin = new Padding(3, 2, 3, 2);
+            BCancelarPreg.Name = "BCancelarPreg";
+            BCancelarPreg.Size = new Size(82, 22);
+            BCancelarPreg.TabIndex = 89;
+            BCancelarPreg.Text = "Cancelar";
+            BCancelarPreg.UseVisualStyleBackColor = false;
+            // 
+            // BModificarPreg
+            // 
+            BModificarPreg.BackColor = SystemColors.Highlight;
+            BModificarPreg.FlatAppearance.BorderSize = 0;
+            BModificarPreg.FlatStyle = FlatStyle.Flat;
+            BModificarPreg.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            BModificarPreg.ForeColor = SystemColors.ButtonHighlight;
+            BModificarPreg.Location = new Point(179, 2);
+            BModificarPreg.Margin = new Padding(3, 2, 3, 2);
+            BModificarPreg.Name = "BModificarPreg";
+            BModificarPreg.Size = new Size(90, 22);
+            BModificarPreg.TabIndex = 90;
+            BModificarPreg.Text = "Modificar";
+            BModificarPreg.UseVisualStyleBackColor = false;
+            BModificarPreg.Visible = false;
+            // 
+            // DGVPreguntas
+            // 
+            DGVPreguntas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            DGVPreguntas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DGVPreguntas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DGVPreguntas.Columns.AddRange(new DataGridViewColumn[] { IDPreg, EnunciadoPreg, TemaPreg, dataGridViewTextBoxColumn1 });
+            DGVPreguntas.Location = new Point(49, 361);
+            DGVPreguntas.Margin = new Padding(3, 2, 3, 2);
+            DGVPreguntas.Name = "DGVPreguntas";
+            DGVPreguntas.RowHeadersWidth = 51;
+            DGVPreguntas.Size = new Size(710, 90);
+            DGVPreguntas.TabIndex = 39;
+            DGVPreguntas.CellClick += DGVPreguntas_CellClick;
+            // 
+            // IDPreg
+            // 
+            IDPreg.HeaderText = "ID";
+            IDPreg.MinimumWidth = 6;
+            IDPreg.Name = "IDPreg";
+            // 
+            // EnunciadoPreg
+            // 
+            EnunciadoPreg.HeaderText = "Enunciado";
+            EnunciadoPreg.MinimumWidth = 6;
+            EnunciadoPreg.Name = "EnunciadoPreg";
+            // 
+            // TemaPreg
+            // 
+            TemaPreg.HeaderText = "Tema";
+            TemaPreg.MinimumWidth = 6;
+            TemaPreg.Name = "TemaPreg";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "Materia";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // panelEncabezadoP
+            // 
+            panelEncabezadoP.Controls.Add(LTituloPreguntas);
+            panelEncabezadoP.Dock = DockStyle.Top;
+            panelEncabezadoP.Location = new Point(0, 0);
+            panelEncabezadoP.Margin = new Padding(3, 2, 3, 2);
+            panelEncabezadoP.Name = "panelEncabezadoP";
+            panelEncabezadoP.Size = new Size(856, 52);
+            panelEncabezadoP.TabIndex = 0;
+            // 
+            // LTituloPreguntas
+            // 
+            LTituloPreguntas.AutoSize = true;
+            LTituloPreguntas.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LTituloPreguntas.Location = new Point(3, 0);
+            LTituloPreguntas.Name = "LTituloPreguntas";
+            LTituloPreguntas.Size = new Size(384, 30);
+            LTituloPreguntas.TabIndex = 1;
+            LTituloPreguntas.Text = "Gestion de Preguntas de Evaluacion";
+            LTituloPreguntas.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // TBMaterias
+            // 
+            TBMaterias.AutoScroll = true;
+            TBMaterias.Controls.Add(panelCamposMaterias);
+            TBMaterias.Controls.Add(tableLayoutPanel6);
+            TBMaterias.Controls.Add(tableLayoutPanel5);
+            TBMaterias.Controls.Add(DGVMaterias);
+            TBMaterias.Controls.Add(panelEncabezadoM);
+            TBMaterias.Location = new Point(4, 24);
+            TBMaterias.Margin = new Padding(3, 2, 3, 2);
+            TBMaterias.Name = "TBMaterias";
+            TBMaterias.Size = new Size(856, 490);
+            TBMaterias.TabIndex = 3;
+            TBMaterias.Text = "Materias";
+            TBMaterias.UseVisualStyleBackColor = true;
+            // 
+            // panelCamposMaterias
+            // 
+            panelCamposMaterias.ColumnCount = 2;
+            panelCamposMaterias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            panelCamposMaterias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            panelCamposMaterias.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 18F));
+            panelCamposMaterias.Controls.Add(CBNivelMateria, 1, 1);
+            panelCamposMaterias.Controls.Add(label5, 0, 0);
+            panelCamposMaterias.Controls.Add(TBNombreMateria, 1, 0);
+            panelCamposMaterias.Controls.Add(label3, 0, 1);
+            panelCamposMaterias.Controls.Add(TBDescripcionMateria, 1, 2);
+            panelCamposMaterias.Controls.Add(label4, 0, 2);
+            panelCamposMaterias.Location = new Point(80, 69);
+            panelCamposMaterias.Margin = new Padding(3, 2, 3, 2);
+            panelCamposMaterias.Name = "panelCamposMaterias";
+            panelCamposMaterias.RowCount = 3;
+            panelCamposMaterias.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            panelCamposMaterias.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            panelCamposMaterias.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            panelCamposMaterias.Size = new Size(491, 94);
+            panelCamposMaterias.TabIndex = 98;
+            // 
+            // CBNivelMateria
+            // 
+            CBNivelMateria.FormattingEnabled = true;
+            CBNivelMateria.Location = new Point(248, 33);
+            CBNivelMateria.Margin = new Padding(3, 2, 3, 2);
+            CBNivelMateria.Name = "CBNivelMateria";
+            CBNivelMateria.Size = new Size(158, 23);
+            CBNivelMateria.TabIndex = 99;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(3, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(51, 15);
+            label5.TabIndex = 33;
+            label5.Text = "Nombre";
+            // 
+            // TBNombreMateria
+            // 
+            TBNombreMateria.Location = new Point(248, 2);
+            TBNombreMateria.Margin = new Padding(3, 2, 3, 2);
+            TBNombreMateria.MinimumSize = new Size(158, 27);
+            TBNombreMateria.Name = "TBNombreMateria";
+            TBNombreMateria.Size = new Size(158, 27);
+            TBNombreMateria.TabIndex = 38;
+            TBNombreMateria.KeyPress += TBNombreMateria_KeyPress;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(3, 31);
+            label3.Name = "label3";
+            label3.Size = new Size(34, 15);
+            label3.TabIndex = 34;
+            label3.Text = "Nivel";
+            // 
+            // TBDescripcionMateria
+            // 
+            TBDescripcionMateria.Location = new Point(248, 64);
+            TBDescripcionMateria.Margin = new Padding(3, 2, 3, 2);
+            TBDescripcionMateria.MinimumSize = new Size(158, 27);
+            TBDescripcionMateria.Name = "TBDescripcionMateria";
+            TBDescripcionMateria.Size = new Size(158, 27);
+            TBDescripcionMateria.TabIndex = 43;
+            TBDescripcionMateria.KeyPress += TBDescripcionMateria_KeyPress;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(3, 62);
+            label4.Name = "label4";
+            label4.Size = new Size(69, 15);
+            label4.TabIndex = 37;
+            label4.Text = "Descripcion";
+            // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel6.ColumnCount = 3;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel6.Controls.Add(TBBuscadorMaterias, 0, 0);
+            tableLayoutPanel6.Controls.Add(BMateriasActivas, 1, 0);
+            tableLayoutPanel6.Controls.Add(BMateriasInactivas, 2, 0);
+            tableLayoutPanel6.Location = new Point(68, 250);
+            tableLayoutPanel6.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 1;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.Size = new Size(710, 30);
+            tableLayoutPanel6.TabIndex = 97;
+            // 
+            // TBBuscadorMaterias
+            // 
+            TBBuscadorMaterias.Location = new Point(3, 2);
+            TBBuscadorMaterias.Margin = new Padding(3, 2, 3, 2);
+            TBBuscadorMaterias.Name = "TBBuscadorMaterias";
+            TBBuscadorMaterias.PlaceholderText = "Buscar materia..";
+            TBBuscadorMaterias.Size = new Size(207, 23);
+            TBBuscadorMaterias.TabIndex = 62;
+            // 
+            // BMateriasActivas
+            // 
+            BMateriasActivas.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            BMateriasActivas.BackColor = SystemColors.Highlight;
+            BMateriasActivas.FlatAppearance.BorderSize = 0;
+            BMateriasActivas.FlatStyle = FlatStyle.Flat;
+            BMateriasActivas.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BMateriasActivas.ForeColor = SystemColors.ButtonHighlight;
+            BMateriasActivas.Location = new Point(537, 2);
+            BMateriasActivas.Margin = new Padding(3, 2, 3, 2);
+            BMateriasActivas.Name = "BMateriasActivas";
+            BMateriasActivas.Size = new Size(82, 22);
+            BMateriasActivas.TabIndex = 63;
+            BMateriasActivas.Text = "Activos";
+            BMateriasActivas.UseVisualStyleBackColor = false;
+            // 
+            // BMateriasInactivas
+            // 
+            BMateriasInactivas.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            BMateriasInactivas.BackColor = Color.Gray;
+            BMateriasInactivas.FlatAppearance.BorderSize = 0;
+            BMateriasInactivas.FlatStyle = FlatStyle.Flat;
+            BMateriasInactivas.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BMateriasInactivas.ForeColor = SystemColors.ButtonHighlight;
+            BMateriasInactivas.Location = new Point(625, 2);
+            BMateriasInactivas.Margin = new Padding(3, 2, 3, 2);
+            BMateriasInactivas.Name = "BMateriasInactivas";
+            BMateriasInactivas.Size = new Size(82, 22);
+            BMateriasInactivas.TabIndex = 64;
+            BMateriasInactivas.Text = "Inactivos";
+            BMateriasInactivas.UseVisualStyleBackColor = false;
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 4;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel5.Controls.Add(BGuardarMateria, 0, 0);
+            tableLayoutPanel5.Controls.Add(BEliminarMateria, 3, 0);
+            tableLayoutPanel5.Controls.Add(BCancelarMateria, 1, 0);
+            tableLayoutPanel5.Controls.Add(BModificarMateria, 2, 0);
+            tableLayoutPanel5.Location = new Point(418, 188);
+            tableLayoutPanel5.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 1;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel5.Size = new Size(358, 40);
+            tableLayoutPanel5.TabIndex = 96;
+            // 
+            // BGuardarMateria
+            // 
+            BGuardarMateria.BackColor = Color.ForestGreen;
+            BGuardarMateria.FlatAppearance.BorderSize = 0;
+            BGuardarMateria.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 125, 50);
+            BGuardarMateria.FlatAppearance.MouseOverBackColor = Color.FromArgb(67, 160, 71);
+            BGuardarMateria.FlatStyle = FlatStyle.Flat;
+            BGuardarMateria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            BGuardarMateria.ForeColor = SystemColors.ButtonHighlight;
+            BGuardarMateria.Location = new Point(3, 2);
+            BGuardarMateria.Margin = new Padding(3, 2, 3, 2);
+            BGuardarMateria.Name = "BGuardarMateria";
+            BGuardarMateria.Size = new Size(82, 22);
+            BGuardarMateria.TabIndex = 88;
+            BGuardarMateria.Text = "Guardar";
+            BGuardarMateria.UseVisualStyleBackColor = false;
+            BGuardarMateria.Click += BGuardarMateria_Click;
+            // 
+            // BEliminarMateria
+            // 
+            BEliminarMateria.BackColor = Color.OrangeRed;
+            BEliminarMateria.FlatAppearance.BorderSize = 0;
+            BEliminarMateria.FlatStyle = FlatStyle.Flat;
+            BEliminarMateria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            BEliminarMateria.ForeColor = SystemColors.ButtonHighlight;
+            BEliminarMateria.Location = new Point(278, 2);
+            BEliminarMateria.Margin = new Padding(3, 2, 3, 2);
+            BEliminarMateria.Name = "BEliminarMateria";
+            BEliminarMateria.Size = new Size(82, 22);
+            BEliminarMateria.TabIndex = 91;
+            BEliminarMateria.Text = "Eliminar";
+            BEliminarMateria.UseVisualStyleBackColor = false;
+            BEliminarMateria.Visible = false;
+            // 
+            // BCancelarMateria
+            // 
+            BCancelarMateria.BackColor = Color.Gray;
+            BCancelarMateria.FlatAppearance.BorderSize = 0;
+            BCancelarMateria.FlatStyle = FlatStyle.Flat;
+            BCancelarMateria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            BCancelarMateria.ForeColor = SystemColors.ButtonHighlight;
+            BCancelarMateria.Location = new Point(91, 2);
+            BCancelarMateria.Margin = new Padding(3, 2, 3, 2);
+            BCancelarMateria.Name = "BCancelarMateria";
+            BCancelarMateria.Size = new Size(82, 22);
+            BCancelarMateria.TabIndex = 89;
+            BCancelarMateria.Text = "Cancelar";
+            BCancelarMateria.UseVisualStyleBackColor = false;
+            // 
+            // BModificarMateria
+            // 
+            BModificarMateria.BackColor = SystemColors.Highlight;
+            BModificarMateria.FlatAppearance.BorderSize = 0;
+            BModificarMateria.FlatStyle = FlatStyle.Flat;
+            BModificarMateria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            BModificarMateria.ForeColor = SystemColors.ButtonHighlight;
+            BModificarMateria.Location = new Point(179, 2);
+            BModificarMateria.Margin = new Padding(3, 2, 3, 2);
+            BModificarMateria.Name = "BModificarMateria";
+            BModificarMateria.Size = new Size(93, 22);
+            BModificarMateria.TabIndex = 90;
+            BModificarMateria.Text = "Modificar";
+            BModificarMateria.UseVisualStyleBackColor = false;
+            BModificarMateria.Visible = false;
+            // 
+            // DGVMaterias
+            // 
+            DGVMaterias.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            DGVMaterias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DGVMaterias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DGVMaterias.Columns.AddRange(new DataGridViewColumn[] { idMateria, NombreMateria, NivelMateria, DescripcionMateria });
+            DGVMaterias.Location = new Point(68, 300);
+            DGVMaterias.Margin = new Padding(3, 2, 3, 2);
+            DGVMaterias.Name = "DGVMaterias";
+            DGVMaterias.RowHeadersWidth = 51;
+            DGVMaterias.Size = new Size(710, 187);
+            DGVMaterias.TabIndex = 41;
+            DGVMaterias.CellClick += DGVMaterias_CellClick;
+            // 
+            // idMateria
+            // 
+            idMateria.HeaderText = "ID_Materia";
+            idMateria.MinimumWidth = 6;
+            idMateria.Name = "idMateria";
+            // 
+            // NombreMateria
+            // 
+            NombreMateria.HeaderText = "Nombre";
+            NombreMateria.MinimumWidth = 6;
+            NombreMateria.Name = "NombreMateria";
+            // 
+            // NivelMateria
+            // 
+            NivelMateria.HeaderText = "Nivel";
+            NivelMateria.MinimumWidth = 6;
+            NivelMateria.Name = "NivelMateria";
+            // 
+            // DescripcionMateria
+            // 
+            DescripcionMateria.HeaderText = "Descripcion";
+            DescripcionMateria.MinimumWidth = 6;
+            DescripcionMateria.Name = "DescripcionMateria";
+            // 
+            // panelEncabezadoM
+            // 
+            panelEncabezadoM.Controls.Add(LTituloMaterias);
+            panelEncabezadoM.Dock = DockStyle.Top;
+            panelEncabezadoM.Location = new Point(0, 0);
+            panelEncabezadoM.Margin = new Padding(3, 2, 3, 2);
+            panelEncabezadoM.Name = "panelEncabezadoM";
+            panelEncabezadoM.Size = new Size(856, 48);
+            panelEncabezadoM.TabIndex = 0;
+            // 
+            // LTituloMaterias
+            // 
+            LTituloMaterias.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            LTituloMaterias.AutoSize = true;
+            LTituloMaterias.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LTituloMaterias.Location = new Point(3, 0);
+            LTituloMaterias.Name = "LTituloMaterias";
+            LTituloMaterias.Size = new Size(221, 30);
+            LTituloMaterias.TabIndex = 1;
+            LTituloMaterias.Text = "Gestion de Materias";
+            // 
             // FormGestionTematica
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(988, 690);
+            ClientSize = new Size(864, 518);
             Controls.Add(TCGestionTematica);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormGestionTematica";
             Text = "FormGestionTematica";
             Load += FormGestionTematica_Load;
