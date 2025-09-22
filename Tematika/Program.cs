@@ -48,7 +48,7 @@ namespace Tematika
                     case 3:
                         destino = new FormMainEstudiante();
                         break;
-                    case 5:
+                    case 4:
                         destino = new FormAdmin();
                         break;
                     default:
