@@ -26,6 +26,11 @@ namespace Tematika.Forms
             tpInteraccionTema.BackColor = ColorTranslator.FromHtml("#cfd8dc");
             tpUsuariosActivos.BackColor = ColorTranslator.FromHtml("#cfd8dc");
 
+            var usuario = SesionManager.UsuarioActual;
+            if (usuario != null && usuario.IdPerfil == 2) // 2 = Docente
+            {
+                tabControlInformes.TabPages.Remove(tpUsuariosActivos);
+            }
         }
 
         private void DGVInformeRecursosConsultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
