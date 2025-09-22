@@ -18,14 +18,19 @@ namespace Tematika
             //Botones del panel
             btnDashboard.Click += (s, e) =>
             {
+                if (SesionManager.EsInvitado)
+                {
+                    MessageBox.Show("Función no disponible en modo invitado.");
+                    return;
+                }
                 OpenChildForm(new FormDashboardEstudiante());
-                SetActiveButton(btnDashboard);
+                //SetActiveButton(btnDashboard);
             };
 
             btnExploreResources.Click += (s, e) =>
             {
                 OpenChildForm(new FormExploreResourcesEstudiante());
-                SetActiveButton(btnExploreResources);
+                //SetActiveButton(btnExploreResources);
             };
 
             btnFavorites.Click += (s, e) =>
@@ -36,7 +41,7 @@ namespace Tematika
                     return;
                 }
                 OpenChildForm(new FormFavoritesEstudiante());
-                SetActiveButton(btnFavorites);
+                //SetActiveButton(btnFavorites);
             };
 
             btnEvaluations.Click += (s, e) =>
@@ -47,7 +52,7 @@ namespace Tematika
                     return;
                 }
                 OpenChildForm(new FormEvaluationsEstudiante());
-                SetActiveButton(btnEvaluations);
+                //SetActiveButton(btnEvaluations);
             };
 
             btnNotes.Click += (s, e) =>
@@ -58,7 +63,7 @@ namespace Tematika
                     return;
                 }
                 OpenChildForm(new FormNotesEstudiante());
-                SetActiveButton(btnNotes);
+                //SetActiveButton(btnNotes);
             };
 
 
@@ -104,6 +109,7 @@ namespace Tematika
                 //btnEvaluations.Visible = false;
                 //btnNotes.Visible = false;
 
+                btnDashboard.BackColor = Color.LightGray;
                 btnFavorites.BackColor = Color.LightGray;
                 btnEvaluations.BackColor = Color.LightGray;
                 btnNotes.BackColor = Color.LightGray;

@@ -106,7 +106,7 @@
             panelContenidoRecurso.BackColor = SystemColors.ActiveCaption;
             panelContenidoRecurso.Location = new Point(0, 83);
             panelContenidoRecurso.Name = "panelContenidoRecurso";
-            panelContenidoRecurso.Size = new Size(950, 268);
+            panelContenidoRecurso.Size = new Size(933, 268);
             panelContenidoRecurso.TabIndex = 4;
             // 
             // labelNotaRecurso
@@ -126,7 +126,7 @@
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ScrollBars = ScrollBars.Vertical;
-            textBox1.Size = new Size(918, 45);
+            textBox1.Size = new Size(901, 45);
             textBox1.TabIndex = 12;
             // 
             // textBox2
@@ -136,7 +136,7 @@
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.ScrollBars = ScrollBars.Vertical;
-            textBox2.Size = new Size(918, 45);
+            textBox2.Size = new Size(901, 45);
             textBox2.TabIndex = 14;
             // 
             // labelComentarioRecurso
@@ -162,9 +162,9 @@
             // 
             button1.Location = new Point(20, 539);
             button1.Name = "button1";
-            button1.Size = new Size(98, 23);
+            button1.Size = new Size(114, 23);
             button1.TabIndex = 16;
-            button1.Text = "Guardar Nota";
+            button1.Text = "Enviar Comentario";
             button1.UseVisualStyleBackColor = true;
             // 
             // DGVComentariosRecursos
@@ -175,7 +175,7 @@
             DGVComentariosRecursos.Columns.AddRange(new DataGridViewColumn[] { FechaComentarioRecurso, NombreComentarioRecurso, Comentario });
             DGVComentariosRecursos.Location = new Point(20, 568);
             DGVComentariosRecursos.Name = "DGVComentariosRecursos";
-            DGVComentariosRecursos.Size = new Size(918, 119);
+            DGVComentariosRecursos.Size = new Size(901, 119);
             DGVComentariosRecursos.TabIndex = 17;
             // 
             // FechaComentarioRecurso
