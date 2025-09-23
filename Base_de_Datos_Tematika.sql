@@ -1,3 +1,6 @@
+
+--USAR CON SQL SERVER
+
 CREATE DATABASE Tematika;
 GO
 
@@ -200,7 +203,6 @@ VALUES
     ('admin', 'Perfil con acceso total al sistema: gestión de usuarios, materias, recursos y trazabilidad.'),
     ('docente', 'Perfil para docentes: permite gestionar materias, temas, recursos y evaluaciones.'),
     ('estudiante', 'Perfil para estudiantes: acceso a materias, temas, recursos, evaluaciones y participación académica.'),
-    --('invitado', 'Perfil de invitado: acceso limitado a recursos, sin participación ni personalización.'),
     ('superadmin', 'Perfil con privilegios máximos: puede gestionar y modificar cualquier usuario, incluyendo administradores.');
 
 -- Usuario principal superadmin
