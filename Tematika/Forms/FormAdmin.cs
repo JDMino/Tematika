@@ -33,7 +33,7 @@ namespace Tematika
 
             BGestionTematica.Click += (s, e) =>
             {
-                OpenChildForm(new FormGestionTematica());
+                OpenChildForm(new FormGestionContenidos());
                 SetActiveButton(BGestionTematica);
             };
 
