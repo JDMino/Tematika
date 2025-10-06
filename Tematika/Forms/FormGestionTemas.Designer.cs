@@ -30,12 +30,12 @@
         {
             panel1 = new Panel();
             panelCamposTemas = new TableLayoutPanel();
+            CBEliminado = new ComboBox();
+            labelEliminado = new Label();
             LNombreTema = new Label();
-            LDescripcionTema = new Label();
             Materia = new Label();
             TBNombreTema = new TextBox();
             CBMaterias = new ComboBox();
-            TBDescripcionTema = new TextBox();
             panelBuscador = new TableLayoutPanel();
             TBBuscadorTema = new TextBox();
             BTemasActivos = new Button();
@@ -47,11 +47,11 @@
             BModificarTema = new Button();
             BCancelarTema = new Button();
             DGVTemas = new DataGridView();
-            panelEncabezadoT = new FlowLayoutPanel();
-            LTituloTemas = new Label();
             idTema = new DataGridViewTextBoxColumn();
             Nombre = new DataGridViewTextBoxColumn();
-            Descripcion = new DataGridViewTextBoxColumn();
+            IdMateria = new DataGridViewTextBoxColumn();
+            panelEncabezadoT = new FlowLayoutPanel();
+            LTituloTemas = new Label();
             panel1.SuspendLayout();
             panelCamposTemas.SuspendLayout();
             panelBuscador.SuspendLayout();
@@ -79,21 +79,42 @@
             panelCamposTemas.ColumnCount = 2;
             panelCamposTemas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.5F));
             panelCamposTemas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62.5F));
+            panelCamposTemas.Controls.Add(CBEliminado, 1, 2);
+            panelCamposTemas.Controls.Add(labelEliminado, 0, 2);
             panelCamposTemas.Controls.Add(LNombreTema, 0, 0);
-            panelCamposTemas.Controls.Add(LDescripcionTema, 0, 1);
-            panelCamposTemas.Controls.Add(Materia, 0, 2);
+            panelCamposTemas.Controls.Add(Materia, 0, 1);
             panelCamposTemas.Controls.Add(TBNombreTema, 1, 0);
-            panelCamposTemas.Controls.Add(CBMaterias, 1, 2);
-            panelCamposTemas.Controls.Add(TBDescripcionTema, 1, 1);
+            panelCamposTemas.Controls.Add(CBMaterias, 1, 1);
             panelCamposTemas.Location = new Point(77, 65);
             panelCamposTemas.Margin = new Padding(3, 2, 3, 2);
             panelCamposTemas.Name = "panelCamposTemas";
             panelCamposTemas.RowCount = 3;
-            panelCamposTemas.RowStyles.Add(new RowStyle());
-            panelCamposTemas.RowStyles.Add(new RowStyle());
-            panelCamposTemas.RowStyles.Add(new RowStyle());
-            panelCamposTemas.Size = new Size(481, 92);
+            panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            panelCamposTemas.Size = new Size(481, 104);
             panelCamposTemas.TabIndex = 100;
+            // 
+            // CBEliminado
+            // 
+            CBEliminado.FormattingEnabled = true;
+            CBEliminado.Location = new Point(183, 70);
+            CBEliminado.Margin = new Padding(3, 2, 3, 2);
+            CBEliminado.Name = "CBEliminado";
+            CBEliminado.Size = new Size(47, 23);
+            CBEliminado.TabIndex = 27;
+            CBEliminado.Tag = "Materia asociada";
+            // 
+            // labelEliminado
+            // 
+            labelEliminado.AutoSize = true;
+            labelEliminado.Location = new Point(3, 68);
+            labelEliminado.Name = "labelEliminado";
+            labelEliminado.Size = new Size(60, 15);
+            labelEliminado.TabIndex = 26;
+            labelEliminado.Text = "Eliminado";
+            labelEliminado.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // LNombreTema
             // 
@@ -105,20 +126,10 @@
             LNombreTema.Text = "Nombre ";
             LNombreTema.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // LDescripcionTema
-            // 
-            LDescripcionTema.AutoSize = true;
-            LDescripcionTema.Location = new Point(3, 27);
-            LDescripcionTema.Name = "LDescripcionTema";
-            LDescripcionTema.Size = new Size(69, 15);
-            LDescripcionTema.TabIndex = 24;
-            LDescripcionTema.Text = "Descripcion";
-            LDescripcionTema.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // Materia
             // 
             Materia.AutoSize = true;
-            Materia.Location = new Point(3, 54);
+            Materia.Location = new Point(3, 34);
             Materia.Name = "Materia";
             Materia.Size = new Size(96, 15);
             Materia.TabIndex = 17;
@@ -130,28 +141,19 @@
             TBNombreTema.Location = new Point(183, 2);
             TBNombreTema.Margin = new Padding(3, 2, 3, 2);
             TBNombreTema.Name = "TBNombreTema";
-            TBNombreTema.Size = new Size(218, 23);
+            TBNombreTema.Size = new Size(295, 23);
             TBNombreTema.TabIndex = 18;
             TBNombreTema.Tag = "Nombre";
             // 
             // CBMaterias
             // 
             CBMaterias.FormattingEnabled = true;
-            CBMaterias.Location = new Point(183, 56);
+            CBMaterias.Location = new Point(183, 36);
             CBMaterias.Margin = new Padding(3, 2, 3, 2);
             CBMaterias.Name = "CBMaterias";
-            CBMaterias.Size = new Size(133, 23);
+            CBMaterias.Size = new Size(295, 23);
             CBMaterias.TabIndex = 19;
             CBMaterias.Tag = "Materia asociada";
-            // 
-            // TBDescripcionTema
-            // 
-            TBDescripcionTema.Location = new Point(183, 29);
-            TBDescripcionTema.Margin = new Padding(3, 2, 3, 2);
-            TBDescripcionTema.Name = "TBDescripcionTema";
-            TBDescripcionTema.Size = new Size(218, 23);
-            TBDescripcionTema.TabIndex = 25;
-            TBDescripcionTema.Tag = "Descripcion";
             // 
             // panelBuscador
             // 
@@ -220,7 +222,7 @@
             CBFiltroMaterias.Location = new Point(3, 52);
             CBFiltroMaterias.Margin = new Padding(3, 2, 3, 2);
             CBFiltroMaterias.Name = "CBFiltroMaterias";
-            CBFiltroMaterias.Size = new Size(159, 23);
+            CBFiltroMaterias.Size = new Size(343, 23);
             CBFiltroMaterias.TabIndex = 28;
             // 
             // panelBotones
@@ -312,13 +314,31 @@
             DGVTemas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DGVTemas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVTemas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVTemas.Columns.AddRange(new DataGridViewColumn[] { idTema, Nombre, Descripcion });
+            DGVTemas.Columns.AddRange(new DataGridViewColumn[] { idTema, Nombre, IdMateria });
             DGVTemas.Location = new Point(74, 351);
             DGVTemas.Margin = new Padding(3, 2, 3, 2);
             DGVTemas.Name = "DGVTemas";
             DGVTemas.RowHeadersWidth = 51;
             DGVTemas.Size = new Size(710, 111);
             DGVTemas.TabIndex = 97;
+            // 
+            // idTema
+            // 
+            idTema.HeaderText = "ID Tema";
+            idTema.MinimumWidth = 6;
+            idTema.Name = "idTema";
+            // 
+            // Nombre
+            // 
+            Nombre.HeaderText = "Nombre";
+            Nombre.MinimumWidth = 6;
+            Nombre.Name = "Nombre";
+            // 
+            // IdMateria
+            // 
+            IdMateria.HeaderText = "Materia Asociada";
+            IdMateria.Name = "IdMateria";
+            IdMateria.ReadOnly = true;
             // 
             // panelEncabezadoT
             // 
@@ -341,24 +361,6 @@
             LTituloTemas.TabIndex = 1;
             LTituloTemas.Text = "Gestion de Temas";
             LTituloTemas.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // idTema
-            // 
-            idTema.HeaderText = "ID Tema";
-            idTema.MinimumWidth = 6;
-            idTema.Name = "idTema";
-            // 
-            // Nombre
-            // 
-            Nombre.HeaderText = "Nombre";
-            Nombre.MinimumWidth = 6;
-            Nombre.Name = "Nombre";
-            // 
-            // Descripcion
-            // 
-            Descripcion.HeaderText = "Descripcion";
-            Descripcion.MinimumWidth = 6;
-            Descripcion.Name = "Descripcion";
             // 
             // FormGestionTemas
             // 
@@ -385,11 +387,9 @@
         private Panel panel1;
         private TableLayoutPanel panelCamposTemas;
         private Label LNombreTema;
-        private Label LDescripcionTema;
         private Label Materia;
         private TextBox TBNombreTema;
         private ComboBox CBMaterias;
-        private TextBox TBDescripcionTema;
         private TableLayoutPanel panelBuscador;
         private TextBox TBBuscadorTema;
         private Button BTemasActivos;
@@ -403,8 +403,10 @@
         private DataGridView DGVTemas;
         private FlowLayoutPanel panelEncabezadoT;
         private Label LTituloTemas;
+        private ComboBox CBEliminado;
+        private Label labelEliminado;
         private DataGridViewTextBoxColumn idTema;
         private DataGridViewTextBoxColumn Nombre;
-        private DataGridViewTextBoxColumn Descripcion;
+        private DataGridViewTextBoxColumn IdMateria;
     }
 }
