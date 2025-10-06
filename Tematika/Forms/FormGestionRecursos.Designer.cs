@@ -30,20 +30,20 @@
         {
             panel1 = new Panel();
             panelCamposRecursos = new TableLayoutPanel();
+            TBRuta = new TextBox();
+            TBUrl = new TextBox();
+            CBEliminado = new ComboBox();
+            labelEliminado = new Label();
+            TBTexto = new TextBox();
+            LTexto = new Label();
             LNombreRecurso = new Label();
             TBTituloRecurso = new TextBox();
             LTipoRecurso = new Label();
             CBTipoRecurso = new ComboBox();
+            LURL = new Label();
             CBTemaRecurso = new ComboBox();
-            LDescripcionRecurso = new Label();
             LTemaRecurso = new Label();
-            CBMateriaRecurso = new ComboBox();
-            TBDescripcionRecurso = new TextBox();
-            TBUrl = new TextBox();
-            LMateriaRecurso = new Label();
-            LURLRecurso = new Label();
-            BFoto = new Button();
-            TBFoto = new TextBox();
+            BRuta = new Button();
             tableLayoutPanel2 = new TableLayoutPanel();
             TBBuscadorRecurso = new TextBox();
             BRecursosActivos = new Button();
@@ -55,16 +55,16 @@
             BCancelarRecurso = new Button();
             BModificarRecurso = new Button();
             DGVRecursos = new DataGridView();
-            panelEncabezadoR = new FlowLayoutPanel();
-            LTituloRecursos = new Label();
             IdRecurso = new DataGridViewTextBoxColumn();
             titulo = new DataGridViewTextBoxColumn();
-            Tipo = new DataGridViewTextBoxColumn();
-            descripcion = new DataGridViewTextBoxColumn();
+            texto = new DataGridViewTextBoxColumn();
+            Ruta = new DataGridViewTextBoxColumn();
             url = new DataGridViewTextBoxColumn();
-            idMateria = new DataGridViewTextBoxColumn();
+            Tipo = new DataGridViewTextBoxColumn();
             idTema = new DataGridViewTextBoxColumn();
             colAcciones = new DataGridViewButtonColumn();
+            panelEncabezadoR = new FlowLayoutPanel();
+            LTituloRecursos = new Label();
             panel1.SuspendLayout();
             panelCamposRecursos.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -94,20 +94,20 @@
             panelCamposRecursos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             panelCamposRecursos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             panelCamposRecursos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            panelCamposRecursos.Controls.Add(TBRuta, 1, 3);
+            panelCamposRecursos.Controls.Add(TBUrl, 3, 0);
+            panelCamposRecursos.Controls.Add(CBEliminado, 3, 2);
+            panelCamposRecursos.Controls.Add(labelEliminado, 2, 2);
+            panelCamposRecursos.Controls.Add(TBTexto, 1, 2);
+            panelCamposRecursos.Controls.Add(LTexto, 0, 2);
             panelCamposRecursos.Controls.Add(LNombreRecurso, 0, 0);
             panelCamposRecursos.Controls.Add(TBTituloRecurso, 1, 0);
             panelCamposRecursos.Controls.Add(LTipoRecurso, 0, 1);
             panelCamposRecursos.Controls.Add(CBTipoRecurso, 1, 1);
-            panelCamposRecursos.Controls.Add(CBTemaRecurso, 3, 2);
-            panelCamposRecursos.Controls.Add(LDescripcionRecurso, 0, 2);
-            panelCamposRecursos.Controls.Add(LTemaRecurso, 2, 2);
-            panelCamposRecursos.Controls.Add(CBMateriaRecurso, 3, 1);
-            panelCamposRecursos.Controls.Add(TBDescripcionRecurso, 1, 2);
-            panelCamposRecursos.Controls.Add(TBUrl, 3, 0);
-            panelCamposRecursos.Controls.Add(LMateriaRecurso, 2, 1);
-            panelCamposRecursos.Controls.Add(LURLRecurso, 2, 0);
-            panelCamposRecursos.Controls.Add(BFoto, 0, 3);
-            panelCamposRecursos.Controls.Add(TBFoto, 1, 3);
+            panelCamposRecursos.Controls.Add(LURL, 2, 0);
+            panelCamposRecursos.Controls.Add(CBTemaRecurso, 3, 1);
+            panelCamposRecursos.Controls.Add(LTemaRecurso, 2, 1);
+            panelCamposRecursos.Controls.Add(BRuta, 0, 3);
             panelCamposRecursos.Location = new Point(65, 52);
             panelCamposRecursos.Margin = new Padding(3, 2, 3, 2);
             panelCamposRecursos.Name = "panelCamposRecursos";
@@ -118,6 +118,57 @@
             panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 32.0512848F));
             panelCamposRecursos.Size = new Size(654, 126);
             panelCamposRecursos.TabIndex = 101;
+            // 
+            // TBRuta
+            // 
+            TBRuta.Location = new Point(166, 85);
+            TBRuta.Margin = new Padding(3, 2, 3, 2);
+            TBRuta.Name = "TBRuta";
+            TBRuta.Size = new Size(157, 23);
+            TBRuta.TabIndex = 48;
+            // 
+            // TBUrl
+            // 
+            TBUrl.Location = new Point(492, 2);
+            TBUrl.Margin = new Padding(3, 2, 3, 2);
+            TBUrl.Name = "TBUrl";
+            TBUrl.Size = new Size(157, 23);
+            TBUrl.TabIndex = 46;
+            // 
+            // CBEliminado
+            // 
+            CBEliminado.FormattingEnabled = true;
+            CBEliminado.Location = new Point(492, 54);
+            CBEliminado.Margin = new Padding(3, 2, 3, 2);
+            CBEliminado.Name = "CBEliminado";
+            CBEliminado.Size = new Size(133, 23);
+            CBEliminado.TabIndex = 45;
+            // 
+            // labelEliminado
+            // 
+            labelEliminado.AutoSize = true;
+            labelEliminado.Location = new Point(329, 52);
+            labelEliminado.Name = "labelEliminado";
+            labelEliminado.Size = new Size(60, 15);
+            labelEliminado.TabIndex = 44;
+            labelEliminado.Text = "Eliminado";
+            // 
+            // TBTexto
+            // 
+            TBTexto.Location = new Point(166, 54);
+            TBTexto.Margin = new Padding(3, 2, 3, 2);
+            TBTexto.Name = "TBTexto";
+            TBTexto.Size = new Size(157, 23);
+            TBTexto.TabIndex = 43;
+            // 
+            // LTexto
+            // 
+            LTexto.AutoSize = true;
+            LTexto.Location = new Point(3, 52);
+            LTexto.Name = "LTexto";
+            LTexto.Size = new Size(35, 15);
+            LTexto.TabIndex = 42;
+            LTexto.Text = "Texto";
             // 
             // LNombreRecurso
             // 
@@ -133,7 +184,7 @@
             TBTituloRecurso.Location = new Point(166, 2);
             TBTituloRecurso.Margin = new Padding(3, 2, 3, 2);
             TBTituloRecurso.Name = "TBTituloRecurso";
-            TBTituloRecurso.Size = new Size(110, 23);
+            TBTituloRecurso.Size = new Size(157, 23);
             TBTituloRecurso.TabIndex = 28;
             // 
             // LTipoRecurso
@@ -148,105 +199,48 @@
             // CBTipoRecurso
             // 
             CBTipoRecurso.FormattingEnabled = true;
+            CBTipoRecurso.Items.AddRange(new object[] { "Texto", "Imagen", "PDF", "Recurso Web" });
             CBTipoRecurso.Location = new Point(166, 28);
             CBTipoRecurso.Margin = new Padding(3, 2, 3, 2);
             CBTipoRecurso.Name = "CBTipoRecurso";
-            CBTipoRecurso.Size = new Size(133, 23);
+            CBTipoRecurso.Size = new Size(157, 23);
             CBTipoRecurso.TabIndex = 39;
+            // 
+            // LURL
+            // 
+            LURL.AutoSize = true;
+            LURL.Location = new Point(329, 0);
+            LURL.Name = "LURL";
+            LURL.Size = new Size(28, 15);
+            LURL.TabIndex = 24;
+            LURL.Text = "URL";
             // 
             // CBTemaRecurso
             // 
             CBTemaRecurso.FormattingEnabled = true;
-            CBTemaRecurso.Location = new Point(492, 54);
+            CBTemaRecurso.Location = new Point(492, 28);
             CBTemaRecurso.Margin = new Padding(3, 2, 3, 2);
             CBTemaRecurso.Name = "CBTemaRecurso";
             CBTemaRecurso.Size = new Size(133, 23);
             CBTemaRecurso.TabIndex = 32;
             // 
-            // LDescripcionRecurso
-            // 
-            LDescripcionRecurso.AutoSize = true;
-            LDescripcionRecurso.Location = new Point(3, 52);
-            LDescripcionRecurso.Name = "LDescripcionRecurso";
-            LDescripcionRecurso.Size = new Size(69, 15);
-            LDescripcionRecurso.TabIndex = 26;
-            LDescripcionRecurso.Text = "Descripcion";
-            // 
             // LTemaRecurso
             // 
             LTemaRecurso.AutoSize = true;
-            LTemaRecurso.Location = new Point(329, 52);
+            LTemaRecurso.Location = new Point(329, 26);
             LTemaRecurso.Name = "LTemaRecurso";
             LTemaRecurso.Size = new Size(35, 15);
             LTemaRecurso.TabIndex = 25;
             LTemaRecurso.Text = "Tema";
             // 
-            // CBMateriaRecurso
+            // BRuta
             // 
-            CBMateriaRecurso.FormattingEnabled = true;
-            CBMateriaRecurso.Location = new Point(492, 28);
-            CBMateriaRecurso.Margin = new Padding(3, 2, 3, 2);
-            CBMateriaRecurso.Name = "CBMateriaRecurso";
-            CBMateriaRecurso.Size = new Size(133, 23);
-            CBMateriaRecurso.TabIndex = 31;
-            // 
-            // TBDescripcionRecurso
-            // 
-            TBDescripcionRecurso.Location = new Point(166, 54);
-            TBDescripcionRecurso.Margin = new Padding(3, 2, 3, 2);
-            TBDescripcionRecurso.Multiline = true;
-            TBDescripcionRecurso.Name = "TBDescripcionRecurso";
-            TBDescripcionRecurso.Size = new Size(157, 23);
-            TBDescripcionRecurso.TabIndex = 29;
-            // 
-            // TBUrl
-            // 
-            TBUrl.Location = new Point(492, 2);
-            TBUrl.Margin = new Padding(3, 2, 3, 2);
-            TBUrl.Name = "TBUrl";
-            TBUrl.Size = new Size(110, 23);
-            TBUrl.TabIndex = 30;
-            // 
-            // LMateriaRecurso
-            // 
-            LMateriaRecurso.AutoSize = true;
-            LMateriaRecurso.Location = new Point(329, 26);
-            LMateriaRecurso.Name = "LMateriaRecurso";
-            LMateriaRecurso.Size = new Size(47, 15);
-            LMateriaRecurso.TabIndex = 24;
-            LMateriaRecurso.Text = "Materia";
-            // 
-            // LURLRecurso
-            // 
-            LURLRecurso.AutoSize = true;
-            LURLRecurso.Location = new Point(329, 0);
-            LURLRecurso.Name = "LURLRecurso";
-            LURLRecurso.Size = new Size(28, 15);
-            LURLRecurso.TabIndex = 27;
-            LURLRecurso.Text = "URL";
-            // 
-            // BFoto
-            // 
-            BFoto.BackColor = Color.Gray;
-            BFoto.FlatAppearance.BorderSize = 0;
-            BFoto.FlatStyle = FlatStyle.Flat;
-            BFoto.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            BFoto.ForeColor = SystemColors.ButtonHighlight;
-            BFoto.Location = new Point(3, 85);
-            BFoto.Margin = new Padding(3, 2, 3, 2);
-            BFoto.Name = "BFoto";
-            BFoto.Size = new Size(82, 22);
-            BFoto.TabIndex = 40;
-            BFoto.Text = "Foto";
-            BFoto.UseVisualStyleBackColor = false;
-            // 
-            // TBFoto
-            // 
-            TBFoto.Location = new Point(166, 85);
-            TBFoto.Margin = new Padding(3, 2, 3, 2);
-            TBFoto.Name = "TBFoto";
-            TBFoto.Size = new Size(157, 23);
-            TBFoto.TabIndex = 41;
+            BRuta.Location = new Point(3, 86);
+            BRuta.Name = "BRuta";
+            BRuta.Size = new Size(91, 23);
+            BRuta.TabIndex = 47;
+            BRuta.Text = "Ruta Archivo:";
+            BRuta.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel2
             // 
@@ -407,13 +401,63 @@
             DGVRecursos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DGVRecursos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVRecursos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVRecursos.Columns.AddRange(new DataGridViewColumn[] { IdRecurso, titulo, Tipo, descripcion, url, idMateria, idTema, colAcciones });
+            DGVRecursos.Columns.AddRange(new DataGridViewColumn[] { IdRecurso, titulo, texto, Ruta, url, Tipo, idTema, colAcciones });
             DGVRecursos.Location = new Point(62, 366);
             DGVRecursos.Margin = new Padding(3, 2, 3, 2);
             DGVRecursos.Name = "DGVRecursos";
             DGVRecursos.RowHeadersWidth = 51;
             DGVRecursos.Size = new Size(712, 88);
             DGVRecursos.TabIndex = 98;
+            // 
+            // IdRecurso
+            // 
+            IdRecurso.HeaderText = "ID";
+            IdRecurso.MinimumWidth = 6;
+            IdRecurso.Name = "IdRecurso";
+            // 
+            // titulo
+            // 
+            titulo.HeaderText = "Titulo";
+            titulo.MinimumWidth = 6;
+            titulo.Name = "titulo";
+            // 
+            // texto
+            // 
+            texto.HeaderText = "Texto";
+            texto.Name = "texto";
+            texto.ReadOnly = true;
+            // 
+            // Ruta
+            // 
+            Ruta.HeaderText = "Ruta";
+            Ruta.Name = "Ruta";
+            Ruta.ReadOnly = true;
+            // 
+            // url
+            // 
+            url.HeaderText = "URL";
+            url.MinimumWidth = 6;
+            url.Name = "url";
+            // 
+            // Tipo
+            // 
+            Tipo.HeaderText = "Tipo de Recurso";
+            Tipo.MinimumWidth = 6;
+            Tipo.Name = "Tipo";
+            // 
+            // idTema
+            // 
+            idTema.HeaderText = "Tema";
+            idTema.MinimumWidth = 6;
+            idTema.Name = "idTema";
+            // 
+            // colAcciones
+            // 
+            colAcciones.HeaderText = "Acciones";
+            colAcciones.MinimumWidth = 6;
+            colAcciones.Name = "colAcciones";
+            colAcciones.Text = "Ver ";
+            colAcciones.UseColumnTextForButtonValue = true;
             // 
             // panelEncabezadoR
             // 
@@ -434,56 +478,6 @@
             LTituloRecursos.Size = new Size(222, 30);
             LTituloRecursos.TabIndex = 1;
             LTituloRecursos.Text = "Gestion de Recursos";
-            // 
-            // IdRecurso
-            // 
-            IdRecurso.HeaderText = "ID";
-            IdRecurso.MinimumWidth = 6;
-            IdRecurso.Name = "IdRecurso";
-            // 
-            // titulo
-            // 
-            titulo.HeaderText = "Titulo";
-            titulo.MinimumWidth = 6;
-            titulo.Name = "titulo";
-            // 
-            // Tipo
-            // 
-            Tipo.HeaderText = "Tipo de Recurso";
-            Tipo.MinimumWidth = 6;
-            Tipo.Name = "Tipo";
-            // 
-            // descripcion
-            // 
-            descripcion.HeaderText = "Descripcion";
-            descripcion.MinimumWidth = 6;
-            descripcion.Name = "descripcion";
-            // 
-            // url
-            // 
-            url.HeaderText = "URL";
-            url.MinimumWidth = 6;
-            url.Name = "url";
-            // 
-            // idMateria
-            // 
-            idMateria.HeaderText = "Materia";
-            idMateria.MinimumWidth = 6;
-            idMateria.Name = "idMateria";
-            // 
-            // idTema
-            // 
-            idTema.HeaderText = "Tema";
-            idTema.MinimumWidth = 6;
-            idTema.Name = "idTema";
-            // 
-            // colAcciones
-            // 
-            colAcciones.HeaderText = "Acciones";
-            colAcciones.MinimumWidth = 6;
-            colAcciones.Name = "colAcciones";
-            colAcciones.Text = "Ver ";
-            colAcciones.UseColumnTextForButtonValue = true;
             // 
             // FormGestionRecursos
             // 
@@ -518,11 +512,10 @@
         private Label LTemaRecurso;
         private ComboBox CBMateriaRecurso;
         private TextBox TBDescripcionRecurso;
-        private TextBox TBUrl;
-        private Label LMateriaRecurso;
+        private Label LURL;
         private Label LURLRecurso;
-        private Button BFoto;
-        private TextBox TBFoto;
+        private Button BURL;
+        //private TextBox //this.BRuta;
         private TableLayoutPanel tableLayoutPanel2;
         private TextBox TBBuscadorRecurso;
         private Button BRecursosActivos;
@@ -536,13 +529,20 @@
         private DataGridView DGVRecursos;
         private FlowLayoutPanel panelEncabezadoR;
         private Label LTituloRecursos;
+        private ComboBox CBEliminado;
+        private Label labelEliminado;
+        private TextBox TBTexto;
+        private Label LTexto;
+        private TextBox TBUrl;
         private DataGridViewTextBoxColumn IdRecurso;
         private DataGridViewTextBoxColumn titulo;
-        private DataGridViewTextBoxColumn Tipo;
-        private DataGridViewTextBoxColumn descripcion;
+        private DataGridViewTextBoxColumn texto;
+        private DataGridViewTextBoxColumn Ruta;
         private DataGridViewTextBoxColumn url;
-        private DataGridViewTextBoxColumn idMateria;
+        private DataGridViewTextBoxColumn Tipo;
         private DataGridViewTextBoxColumn idTema;
         private DataGridViewButtonColumn colAcciones;
+        private TextBox TBRuta;
+        private Button BRuta;
     }
 }
