@@ -30,6 +30,7 @@ namespace Tematika.Forms
             BRecursosActivos.Click += BRecursosActivos_Click;
             BRecursosInactivos.Click += BRecursosInactivos_Click;
             CBMateriaRecurso.SelectedIndexChanged += CBMateriaRecurso_SelectedIndexChanged;
+            CBFiltrarMateria.SelectedIndexChanged += CBFiltrarMateria_SelectedIndexChanged;
             CBFiltrarTema.SelectedIndexChanged += CBFiltrarTema_SelectedIndexChanged;
             BRuta.Click += BRuta_Click;
         }
@@ -49,54 +50,80 @@ namespace Tematika.Forms
 
             CBTipoRecurso.SelectedIndex = 0;
 
-            CargarMateriasCombo();
-            CBTemaRecurso.DataSource = null;
-            CargarTemasFiltrables();
+            CargarMateriasCombo(CBMateriaRecurso);
+            CargarMateriasCombo(CBFiltrarMateria);
+
+            ReiniciarCombo<Tema>(CBTemaRecurso, "Seleccionar tema...");
+            ReiniciarCombo<Tema>(CBFiltrarTema, "Seleccionar tema...");
+
             CargarRecursos();
         }
 
-        private void CargarMateriasCombo()
+        private void CargarMateriasCombo(ComboBox combo)
         {
             var materias = _materiaService.ListarMaterias()
                 .Where(m => !m.Eliminado)
                 .OrderBy(m => m.Nombre)
                 .ToList();
 
-            CBMateriaRecurso.DisplayMember = "Nombre";
-            CBMateriaRecurso.ValueMember = "IdMateria";
-            CBMateriaRecurso.DataSource = materias;
+            materias.Insert(0, new Materia { IdMateria = 0, Nombre = "Seleccionar materia..." });
+
+            combo.DisplayMember = "Nombre";
+            combo.ValueMember = "IdMateria";
+            combo.DataSource = materias;
         }
 
-        private void CargarTemasFiltrables()
+        private void CargarTemasCombo(ComboBox combo, int idMateria)
         {
             var temas = _temaService.ListarTemas()
-                .Where(t => !t.Eliminado)
+                .Where(t => t.IdMateria == idMateria && !t.Eliminado)
                 .OrderBy(t => t.Nombre)
                 .ToList();
 
-            CBFiltrarTema.DisplayMember = "Nombre";
-            CBFiltrarTema.ValueMember = "IdTema";
-            CBFiltrarTema.DataSource = temas;
+            temas.Insert(0, new Tema { IdTema = 0, Nombre = "Seleccionar tema..." });
+
+            combo.DisplayMember = "Nombre";
+            combo.ValueMember = "IdTema";
+            combo.DataSource = temas;
+        }
+
+        private void ReiniciarCombo<T>(ComboBox combo, string placeholder) where T : new()
+        {
+            var tipo = typeof(T);
+            var item = Activator.CreateInstance<T>();
+
+            if (tipo == typeof(Materia))
+                ((Materia)(object)item).IdMateria = 0;
+            else if (tipo == typeof(Tema))
+                ((Tema)(object)item).IdTema = 0;
+
+            tipo.GetProperty("Nombre")?.SetValue(item, placeholder);
+
+            combo.DataSource = new List<T> { item };
+            combo.DisplayMember = "Nombre";
+            combo.ValueMember = tipo == typeof(Materia) ? "IdMateria" : "IdTema";
+            combo.SelectedIndex = 0;
         }
 
         private void CBMateriaRecurso_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CBMateriaRecurso.SelectedValue is int idMateria)
-            {
-                var temas = _temaService.ListarTemas()
-                    .Where(t => t.IdMateria == idMateria && !t.Eliminado)
-                    .OrderBy(t => t.Nombre)
-                    .ToList();
+            if (CBMateriaRecurso.SelectedValue is int idMateria && idMateria != 0)
+                CargarTemasCombo(CBTemaRecurso, idMateria);
+            else
+                ReiniciarCombo<Tema>(CBTemaRecurso, "Seleccionar tema...");
+        }
 
-                CBTemaRecurso.DisplayMember = "Nombre";
-                CBTemaRecurso.ValueMember = "IdTema";
-                CBTemaRecurso.DataSource = temas;
-            }
+        private void CBFiltrarMateria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CBFiltrarMateria.SelectedValue is int idMateria && idMateria != 0)
+                CargarTemasCombo(CBFiltrarTema, idMateria);
+            else
+                ReiniciarCombo<Tema>(CBFiltrarTema, "Seleccionar tema...");
         }
 
         private void CBFiltrarTema_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CBFiltrarTema.SelectedValue is int idTema)
+            if (CBFiltrarTema.SelectedValue is int idTema && idTema != 0)
             {
                 var recursos = _recursoService.ListarRecursos()
                     .Where(r => r.IdTema == idTema && r.Eliminado != mostrarActivos)
@@ -141,7 +168,10 @@ namespace Tematika.Forms
             TBUrl.Clear();
             CBTipoRecurso.SelectedIndex = 0;
             CBMateriaRecurso.SelectedIndex = 0;
-            CBTemaRecurso.DataSource = null;
+            ReiniciarCombo<Tema>(CBFiltrarMateria, "Seleccionar materia...");
+            ReiniciarCombo<Tema>(CBFiltrarTema, "Seleccionar tema...");
+            ReiniciarCombo<Tema>(CBMateriaRecurso, "Seleccionar materia...");
+            ReiniciarCombo<Tema>(CBTemaRecurso, "Seleccionar tema...");
             CBEliminado.SelectedIndex = 0;
             recursoSeleccionadoId = null;
 
@@ -158,6 +188,13 @@ namespace Tematika.Forms
 
             if (!Validaciones.ValidarControlesObligatorios(controlesObligatorios))
                 return;
+
+            if ((int)CBTemaRecurso.SelectedValue == 0)
+            {
+                MessageBox.Show("Debe seleccionar un tema válido.");
+                CBTemaRecurso.Focus();
+                return;
+            }
 
             var recurso = new Recurso
             {
@@ -208,6 +245,8 @@ namespace Tematika.Forms
                     .OrderBy(t => t.Nombre)
                     .ToList();
 
+                temas.Insert(0, new Tema { IdTema = 0, Nombre = "Seleccionar tema..." });
+
                 CBTemaRecurso.DisplayMember = "Nombre";
                 CBTemaRecurso.ValueMember = "IdTema";
                 CBTemaRecurso.DataSource = temas;
@@ -223,6 +262,7 @@ namespace Tematika.Forms
             CBEliminado.Visible = true;
         }
 
+
         private void BModificarRecurso_Click(object sender, EventArgs e)
         {
             if (recursoSeleccionadoId == null) return;
@@ -231,6 +271,13 @@ namespace Tematika.Forms
 
             if (!Validaciones.ValidarControlesObligatorios(controlesObligatorios))
                 return;
+
+            if ((int)CBTemaRecurso.SelectedValue == 0)
+            {
+                MessageBox.Show("Debe seleccionar un tema válido.");
+                CBTemaRecurso.Focus();
+                return;
+            }
 
             var recurso = new Recurso
             {
@@ -305,12 +352,12 @@ namespace Tematika.Forms
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Evento para CBMateriaRecurso en el diseñador, no utilizado directamente
+            // Evento del diseñador para CBMateriaRecurso, no utilizado directamente
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-            // Evento para LMateriaRecurso en el diseñador, no utilizado directamente
+            // Evento del diseñador para LMateriaRecurso, no utilizado directamente
         }
     }
 }
