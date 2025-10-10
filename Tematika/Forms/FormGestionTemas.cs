@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Tematika.CapaDeNegocio;
 using Tematika.Models;
+using Tematika.Styles;
 using Tematika.Utils;
 
 namespace Tematika.Forms
@@ -30,6 +31,8 @@ namespace Tematika.Forms
 
         private void FormGestionTemas_Load(object sender, EventArgs e)
         {
+            EstiloEncabezado.Aplicar(panelEncabezadoT, LTituloTemas);
+            panelTema.BackColor = ColorTranslator.FromHtml("#cfd8dc");
             CBEliminado.Items.Clear();
             CBEliminado.Items.Add("No");
             CBEliminado.Items.Add("Sí");

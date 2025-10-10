@@ -86,12 +86,23 @@ CREATE TABLE pregunta (
     CONSTRAINT FK_Pregunta_Evaluacion FOREIGN KEY (id_evaluacion) REFERENCES evaluacion(id_evaluacion)
 );
 
+-- Tabla: opcion_pregunta
+CREATE TABLE opcion_pregunta (
+    id_opcion INT IDENTITY(1,1),
+    texto NVARCHAR(MAX) NOT NULL,
+    es_correcta BIT NOT NULL DEFAULT 0,
+    id_pregunta INT NOT NULL,
+    CONSTRAINT PK_OpcionPregunta PRIMARY KEY (id_opcion),
+    CONSTRAINT FK_OpcionPregunta_Pregunta FOREIGN KEY (id_pregunta) REFERENCES pregunta(id_pregunta)
+);
+
+
 -- Tabla: recurso
 CREATE TABLE recurso (
     id_recurso INT IDENTITY(1,1),
     titulo NVARCHAR(255) NOT NULL,
     texto NVARCHAR(MAX),
-    imagen_ruta NVARCHAR(255),
+    ruta NVARCHAR(255),
     url NVARCHAR(MAX),
     tipo NVARCHAR(50) NOT NULL,
     fecha_creacion DATETIME CONSTRAINT DF_Recurso_FechaCreacion DEFAULT (GETDATE()),
@@ -242,3 +253,109 @@ VALUES
 (46460672, 'Luana', 'Lopez', 'luana@gmail.com', 1, 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'f', 0),
 (43234234, 'Ignacio', 'Navarro', 'ignacio@gmail.com', 2, 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'm', 0),
 (38963397, 'Juan', 'Miño', 'juan@gmail.com', 3, 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'm', 0);
+
+
+INSERT INTO materia (nombre, nivel, descripcion, eliminado)
+VALUES
+-- PRIMER AÑO
+('Algoritmos y Estructuras de Datos I', 'Primer año', 'Fundamentos de programación y estructuras básicas', 0),
+('Álgebra', 'Primer año', 'Operaciones algebraicas y estructuras matemáticas', 0),
+('Algoritmos y Estructuras de Datos II', 'Primer año', 'Algoritmos avanzados y estructuras dinámicas', 0),
+('Lógica y Matemática Computacional', 'Primer año', 'Formalización lógica y razonamiento computacional', 0),
+('Sistemas y Organizaciones', 'Primer año', 'Introducción a sistemas organizacionales', 0),
+
+-- SEGUNDO AÑO
+('Paradigmas y Lenguajes', 'Segundo año', 'Estudio de paradigmas de programación', 0),
+('Arquitectura y Organización de Computadoras', 'Segundo año', 'Estructura interna y funcionamiento de computadoras', 0),
+('Cálculo Diferencial e Integral', 'Segundo año', 'Funciones, derivadas e integrales', 0),
+('Programación Orientada a Objetos', 'Segundo año', 'Principios de POO y diseño orientado a objetos', 0),
+('Sistemas Operativos', 'Segundo año', 'Gestión de recursos y procesos en sistemas operativos', 0),
+('Administración y Gestión de Organizaciones', 'Segundo año', 'Teoría organizacional y gestión empresarial', 0),
+
+-- TERCER AÑO
+('Taller de Programación I', 'Tercer año', 'Desarrollo práctico de aplicaciones', 0),
+('Comunicaciones de Datos', 'Tercer año', 'Protocolos y redes de comunicación', 0),
+('Ingeniería de Software I', 'Tercer año', 'Modelado y ciclo de vida del software', 0),
+('Taller de Programación II', 'Tercer año', 'Aplicaciones avanzadas y frameworks', 0),
+('Probabilidad y Estadística', 'Tercer año', 'Análisis estadístico y probabilístico', 0),
+('Bases de Datos I', 'Tercer año', 'Modelado relacional y consultas SQL', 0),
+('Inglés Técnico Informático', 'Tercer año', 'Lectura y comprensión de textos técnicos en inglés', 0),
+
+-- CUARTO AÑO
+('Ingeniería de Software II', 'Cuarto año', 'Gestión de proyectos y calidad de software', 0),
+('Economía Aplicada', 'Cuarto año', 'Principios económicos aplicados a sistemas', 0),
+('Teoría de la Computación', 'Cuarto año', 'Lenguajes formales y autómatas', 0),
+('Redes de Datos', 'Cuarto año', 'Diseño y administración de redes informáticas', 0),
+('Bases de Datos II', 'Cuarto año', 'Optimización, transacciones y seguridad en BD', 0),
+('Métodos Computacionales', 'Cuarto año', 'Algoritmos numéricos y simulación', 0),
+
+-- QUINTO AÑO
+('Proyecto Final de Carrera', 'Quinto año', 'Desarrollo e implementación de un proyecto integrador', 0),
+('Auditoría y Seguridad Informática', 'Quinto año', 'Evaluación de sistemas y protección de la información', 0);
+
+-- Primer Año
+INSERT INTO tema (nombre, id_materia, eliminado) VALUES
+('Variables y Tipos de Datos', 1, 0),
+('Estructuras Secuenciales y Condicionales', 1, 0),
+('Matrices y Determinantes', 2, 0),
+('Espacios Vectoriales', 2, 0),
+('Listas Enlazadas', 3, 0),
+('Recursividad', 3, 0),
+('Tablas de Verdad', 4, 0),
+('Álgebra de Boole', 4, 0),
+('Tipos de Sistemas', 5, 0),
+('Estructura Organizacional', 5, 0);
+
+-- Segundo Año
+INSERT INTO tema (nombre, id_materia, eliminado) VALUES
+('Paradigmas Imperativos', 6, 0),
+('Paradigmas Funcionales', 6, 0),
+('Unidad Central de Procesamiento', 7, 0),
+('Memoria y Periféricos', 7, 0),
+('Límites y Derivadas', 8, 0),
+('Integrales Definidas', 8, 0),
+('Encapsulamiento y Herencia', 9, 0),
+('Interfaces y Polimorfismo', 9, 0),
+('Gestión de Procesos', 10, 0),
+('Sistemas de Archivos', 10, 0),
+('Teoría Organizacional', 11, 0),
+('Gestión Estratégica', 11, 0);
+
+-- Tercer Año
+INSERT INTO tema (nombre, id_materia, eliminado) VALUES
+('Aplicaciones de Escritorio', 12, 0),
+('Aplicaciones Web', 12, 0),
+('Protocolos de Comunicación', 13, 0),
+('Topologías de Red', 13, 0),
+('Modelos de Desarrollo', 14, 0),
+('Diagramas UML', 14, 0),
+('Frameworks y Librerías', 15, 0),
+('Patrones de Diseño', 15, 0),
+('Distribuciones de Probabilidad', 16, 0),
+('Inferencia Estadística', 16, 0),
+('Modelo Relacional', 17, 0),
+('Consultas SQL', 17, 0),
+('Lectura Técnica', 18, 0),
+('Traducción de Documentación', 18, 0);
+
+-- Cuarto Año
+INSERT INTO tema (nombre, id_materia, eliminado) VALUES
+('Gestión de Proyectos', 19, 0),
+('Control de Calidad', 19, 0),
+('Microeconomía', 20, 0),
+('Macroeconomía', 20, 0),
+('Lenguajes Formales', 21, 0),
+('Autómatas Finitos', 21, 0),
+('Protocolos TCP/IP', 22, 0),
+('Configuración de Redes', 22, 0),
+('Normalización de Bases', 23, 0),
+('Transacciones y Seguridad', 23, 0),
+('Métodos Numéricos', 24, 0),
+('Simulación Computacional', 24, 0);
+
+-- Quinto Año
+INSERT INTO tema (nombre, id_materia, eliminado) VALUES
+('Definición del Proyecto', 25, 0),
+('Implementación y Evaluación', 25, 0),
+('Auditoría de Sistemas', 26, 0),
+('Seguridad Informática', 26, 0);

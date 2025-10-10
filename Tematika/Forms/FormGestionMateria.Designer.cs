@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
+            panelMateria = new Panel();
             tableLayoutPanel5 = new TableLayoutPanel();
             BGuardarMateria = new Button();
             BEliminarMateria = new Button();
@@ -54,7 +54,7 @@
             DescripcionMateria = new DataGridViewTextBoxColumn();
             panelEncabezadoM = new FlowLayoutPanel();
             LTituloMaterias = new Label();
-            panel1.SuspendLayout();
+            panelMateria.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             panelCamposMaterias.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
@@ -62,19 +62,20 @@
             panelEncabezadoM.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // panelMateria
             // 
-            panel1.BackColor = Color.Lime;
-            panel1.Controls.Add(tableLayoutPanel5);
-            panel1.Controls.Add(panelCamposMaterias);
-            panel1.Controls.Add(tableLayoutPanel6);
-            panel1.Controls.Add(DGVMaterias);
-            panel1.Controls.Add(panelEncabezadoM);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(800, 450);
-            panel1.TabIndex = 0;
+            panelMateria.BackColor = Color.Lime;
+            panelMateria.Controls.Add(tableLayoutPanel5);
+            panelMateria.Controls.Add(panelCamposMaterias);
+            panelMateria.Controls.Add(tableLayoutPanel6);
+            panelMateria.Controls.Add(DGVMaterias);
+            panelMateria.Controls.Add(panelEncabezadoM);
+            panelMateria.Dock = DockStyle.Fill;
+            panelMateria.Location = new Point(0, 0);
+            panelMateria.Margin = new Padding(3, 4, 3, 4);
+            panelMateria.Name = "panelMateria";
+            panelMateria.Size = new Size(914, 600);
+            panelMateria.TabIndex = 0;
             // 
             // tableLayoutPanel5
             // 
@@ -87,13 +88,12 @@
             tableLayoutPanel5.Controls.Add(BEliminarMateria, 3, 0);
             tableLayoutPanel5.Controls.Add(BCancelarMateria, 1, 0);
             tableLayoutPanel5.Controls.Add(BModificarMateria, 2, 0);
-            tableLayoutPanel5.Location = new Point(392, 179);
-            tableLayoutPanel5.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel5.Location = new Point(448, 239);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 1;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel5.Size = new Size(358, 40);
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 53F));
+            tableLayoutPanel5.Size = new Size(409, 53);
             tableLayoutPanel5.TabIndex = 108;
             // 
             // BGuardarMateria
@@ -105,10 +105,9 @@
             BGuardarMateria.FlatStyle = FlatStyle.Flat;
             BGuardarMateria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BGuardarMateria.ForeColor = SystemColors.ButtonHighlight;
-            BGuardarMateria.Location = new Point(3, 2);
-            BGuardarMateria.Margin = new Padding(3, 2, 3, 2);
+            BGuardarMateria.Location = new Point(3, 3);
             BGuardarMateria.Name = "BGuardarMateria";
-            BGuardarMateria.Size = new Size(82, 22);
+            BGuardarMateria.Size = new Size(94, 29);
             BGuardarMateria.TabIndex = 88;
             BGuardarMateria.Text = "Guardar";
             BGuardarMateria.UseVisualStyleBackColor = false;
@@ -120,10 +119,9 @@
             BEliminarMateria.FlatStyle = FlatStyle.Flat;
             BEliminarMateria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BEliminarMateria.ForeColor = SystemColors.ButtonHighlight;
-            BEliminarMateria.Location = new Point(278, 2);
-            BEliminarMateria.Margin = new Padding(3, 2, 3, 2);
+            BEliminarMateria.Location = new Point(315, 3);
             BEliminarMateria.Name = "BEliminarMateria";
-            BEliminarMateria.Size = new Size(82, 22);
+            BEliminarMateria.Size = new Size(94, 29);
             BEliminarMateria.TabIndex = 91;
             BEliminarMateria.Text = "Eliminar";
             BEliminarMateria.UseVisualStyleBackColor = false;
@@ -136,10 +134,9 @@
             BCancelarMateria.FlatStyle = FlatStyle.Flat;
             BCancelarMateria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BCancelarMateria.ForeColor = SystemColors.ButtonHighlight;
-            BCancelarMateria.Location = new Point(91, 2);
-            BCancelarMateria.Margin = new Padding(3, 2, 3, 2);
+            BCancelarMateria.Location = new Point(103, 3);
             BCancelarMateria.Name = "BCancelarMateria";
-            BCancelarMateria.Size = new Size(82, 22);
+            BCancelarMateria.Size = new Size(94, 29);
             BCancelarMateria.TabIndex = 89;
             BCancelarMateria.Text = "Cancelar";
             BCancelarMateria.UseVisualStyleBackColor = false;
@@ -151,10 +148,9 @@
             BModificarMateria.FlatStyle = FlatStyle.Flat;
             BModificarMateria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BModificarMateria.ForeColor = SystemColors.ButtonHighlight;
-            BModificarMateria.Location = new Point(179, 2);
-            BModificarMateria.Margin = new Padding(3, 2, 3, 2);
+            BModificarMateria.Location = new Point(203, 3);
             BModificarMateria.Name = "BModificarMateria";
-            BModificarMateria.Size = new Size(93, 22);
+            BModificarMateria.Size = new Size(106, 29);
             BModificarMateria.TabIndex = 90;
             BModificarMateria.Text = "Modificar";
             BModificarMateria.UseVisualStyleBackColor = false;
@@ -173,23 +169,22 @@
             panelCamposMaterias.Controls.Add(TBDescripcionMateria, 1, 2);
             panelCamposMaterias.Controls.Add(labelDescripcion, 0, 2);
             panelCamposMaterias.Controls.Add(comboBoxEliminado, 1, 3);
-            panelCamposMaterias.Location = new Point(80, 42);
-            panelCamposMaterias.Margin = new Padding(3, 2, 3, 2);
+            panelCamposMaterias.Location = new Point(93, 76);
             panelCamposMaterias.Name = "panelCamposMaterias";
             panelCamposMaterias.RowCount = 4;
             panelCamposMaterias.RowStyles.Add(new RowStyle());
             panelCamposMaterias.RowStyles.Add(new RowStyle());
             panelCamposMaterias.RowStyles.Add(new RowStyle());
             panelCamposMaterias.RowStyles.Add(new RowStyle());
-            panelCamposMaterias.Size = new Size(491, 118);
+            panelCamposMaterias.Size = new Size(561, 144);
             panelCamposMaterias.TabIndex = 107;
             // 
             // labelEliminado
             // 
             labelEliminado.AutoSize = true;
-            labelEliminado.Location = new Point(3, 89);
+            labelEliminado.Location = new Point(3, 100);
             labelEliminado.Name = "labelEliminado";
-            labelEliminado.Size = new Size(60, 15);
+            labelEliminado.Size = new Size(76, 20);
             labelEliminado.TabIndex = 100;
             labelEliminado.Text = "Eliminado";
             // 
@@ -197,10 +192,9 @@
             // 
             CBNivelMateria.FormattingEnabled = true;
             CBNivelMateria.Items.AddRange(new object[] { "Primer año", "Segundo año", "Tercer año", "Cuarto año", "Quinto año" });
-            CBNivelMateria.Location = new Point(248, 33);
-            CBNivelMateria.Margin = new Padding(3, 2, 3, 2);
+            CBNivelMateria.Location = new Point(283, 36);
             CBNivelMateria.Name = "CBNivelMateria";
-            CBNivelMateria.Size = new Size(158, 23);
+            CBNivelMateria.Size = new Size(269, 28);
             CBNivelMateria.TabIndex = 99;
             // 
             // labelNombre
@@ -208,52 +202,51 @@
             labelNombre.AutoSize = true;
             labelNombre.Location = new Point(3, 0);
             labelNombre.Name = "labelNombre";
-            labelNombre.Size = new Size(51, 15);
+            labelNombre.Size = new Size(64, 20);
             labelNombre.TabIndex = 33;
             labelNombre.Text = "Nombre";
             // 
             // TBNombreMateria
             // 
-            TBNombreMateria.Location = new Point(248, 2);
-            TBNombreMateria.Margin = new Padding(3, 2, 3, 2);
-            TBNombreMateria.MinimumSize = new Size(158, 27);
+            TBNombreMateria.Location = new Point(283, 3);
+            TBNombreMateria.MinimumSize = new Size(180, 27);
             TBNombreMateria.Name = "TBNombreMateria";
-            TBNombreMateria.Size = new Size(158, 27);
+            TBNombreMateria.Size = new Size(269, 27);
             TBNombreMateria.TabIndex = 38;
             // 
             // labelNivel
             // 
             labelNivel.AutoSize = true;
-            labelNivel.Location = new Point(3, 31);
+            labelNivel.Location = new Point(3, 33);
             labelNivel.Name = "labelNivel";
-            labelNivel.Size = new Size(34, 15);
+            labelNivel.Size = new Size(43, 20);
             labelNivel.TabIndex = 34;
             labelNivel.Text = "Nivel";
             // 
             // TBDescripcionMateria
             // 
-            TBDescripcionMateria.Location = new Point(248, 60);
-            TBDescripcionMateria.Margin = new Padding(3, 2, 3, 2);
-            TBDescripcionMateria.MinimumSize = new Size(158, 27);
+            TBDescripcionMateria.Location = new Point(283, 70);
+            TBDescripcionMateria.MinimumSize = new Size(180, 27);
             TBDescripcionMateria.Name = "TBDescripcionMateria";
-            TBDescripcionMateria.Size = new Size(158, 27);
+            TBDescripcionMateria.Size = new Size(269, 27);
             TBDescripcionMateria.TabIndex = 43;
             // 
             // labelDescripcion
             // 
             labelDescripcion.AutoSize = true;
-            labelDescripcion.Location = new Point(3, 58);
+            labelDescripcion.Location = new Point(3, 67);
             labelDescripcion.Name = "labelDescripcion";
-            labelDescripcion.Size = new Size(69, 15);
+            labelDescripcion.Size = new Size(87, 20);
             labelDescripcion.TabIndex = 37;
             labelDescripcion.Text = "Descripcion";
             // 
             // comboBoxEliminado
             // 
             comboBoxEliminado.FormattingEnabled = true;
-            comboBoxEliminado.Location = new Point(248, 92);
+            comboBoxEliminado.Location = new Point(283, 104);
+            comboBoxEliminado.Margin = new Padding(3, 4, 3, 4);
             comboBoxEliminado.Name = "comboBoxEliminado";
-            comboBoxEliminado.Size = new Size(121, 23);
+            comboBoxEliminado.Size = new Size(177, 28);
             comboBoxEliminado.TabIndex = 101;
             // 
             // tableLayoutPanel6
@@ -266,21 +259,19 @@
             tableLayoutPanel6.Controls.Add(TBBuscadorMaterias, 0, 0);
             tableLayoutPanel6.Controls.Add(BMateriasActivas, 1, 0);
             tableLayoutPanel6.Controls.Add(BMateriasInactivas, 2, 0);
-            tableLayoutPanel6.Location = new Point(68, 223);
-            tableLayoutPanel6.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel6.Location = new Point(78, 297);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 1;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel6.Size = new Size(710, 30);
+            tableLayoutPanel6.Size = new Size(811, 40);
             tableLayoutPanel6.TabIndex = 106;
             // 
             // TBBuscadorMaterias
             // 
-            TBBuscadorMaterias.Location = new Point(3, 2);
-            TBBuscadorMaterias.Margin = new Padding(3, 2, 3, 2);
+            TBBuscadorMaterias.Location = new Point(3, 3);
             TBBuscadorMaterias.Name = "TBBuscadorMaterias";
             TBBuscadorMaterias.PlaceholderText = "Buscar materia..";
-            TBBuscadorMaterias.Size = new Size(207, 23);
+            TBBuscadorMaterias.Size = new Size(236, 27);
             TBBuscadorMaterias.TabIndex = 62;
             // 
             // BMateriasActivas
@@ -291,10 +282,9 @@
             BMateriasActivas.FlatStyle = FlatStyle.Flat;
             BMateriasActivas.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BMateriasActivas.ForeColor = SystemColors.ButtonHighlight;
-            BMateriasActivas.Location = new Point(537, 2);
-            BMateriasActivas.Margin = new Padding(3, 2, 3, 2);
+            BMateriasActivas.Location = new Point(614, 3);
             BMateriasActivas.Name = "BMateriasActivas";
-            BMateriasActivas.Size = new Size(82, 22);
+            BMateriasActivas.Size = new Size(94, 29);
             BMateriasActivas.TabIndex = 63;
             BMateriasActivas.Text = "Activos";
             BMateriasActivas.UseVisualStyleBackColor = false;
@@ -307,10 +297,9 @@
             BMateriasInactivas.FlatStyle = FlatStyle.Flat;
             BMateriasInactivas.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BMateriasInactivas.ForeColor = SystemColors.ButtonHighlight;
-            BMateriasInactivas.Location = new Point(625, 2);
-            BMateriasInactivas.Margin = new Padding(3, 2, 3, 2);
+            BMateriasInactivas.Location = new Point(714, 3);
             BMateriasInactivas.Name = "BMateriasInactivas";
-            BMateriasInactivas.Size = new Size(82, 22);
+            BMateriasInactivas.Size = new Size(94, 29);
             BMateriasInactivas.TabIndex = 64;
             BMateriasInactivas.Text = "Inactivos";
             BMateriasInactivas.UseVisualStyleBackColor = false;
@@ -321,11 +310,10 @@
             DGVMaterias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVMaterias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGVMaterias.Columns.AddRange(new DataGridViewColumn[] { idMateria, Nombre, Nivel, DescripcionMateria });
-            DGVMaterias.Location = new Point(68, 273);
-            DGVMaterias.Margin = new Padding(3, 2, 3, 2);
+            DGVMaterias.Location = new Point(78, 364);
             DGVMaterias.Name = "DGVMaterias";
             DGVMaterias.RowHeadersWidth = 51;
-            DGVMaterias.Size = new Size(710, 187);
+            DGVMaterias.Size = new Size(811, 249);
             DGVMaterias.TabIndex = 105;
             // 
             // idMateria
@@ -357,9 +345,8 @@
             panelEncabezadoM.Controls.Add(LTituloMaterias);
             panelEncabezadoM.Dock = DockStyle.Top;
             panelEncabezadoM.Location = new Point(0, 0);
-            panelEncabezadoM.Margin = new Padding(3, 2, 3, 2);
             panelEncabezadoM.Name = "panelEncabezadoM";
-            panelEncabezadoM.Size = new Size(800, 48);
+            panelEncabezadoM.Size = new Size(914, 64);
             panelEncabezadoM.TabIndex = 104;
             // 
             // LTituloMaterias
@@ -369,20 +356,22 @@
             LTituloMaterias.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LTituloMaterias.Location = new Point(3, 0);
             LTituloMaterias.Name = "LTituloMaterias";
-            LTituloMaterias.Size = new Size(221, 30);
+            LTituloMaterias.Size = new Size(279, 38);
             LTituloMaterias.TabIndex = 1;
             LTituloMaterias.Text = "Gestion de Materias";
             // 
             // FormGestionMateria
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(panel1);
+            ClientSize = new Size(914, 600);
+            Controls.Add(panelMateria);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormGestionMateria";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormGestionMateria";
             Load += FormGestionMateria_Load;
-            panel1.ResumeLayout(false);
+            panelMateria.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
             panelCamposMaterias.ResumeLayout(false);
             panelCamposMaterias.PerformLayout();
@@ -396,7 +385,7 @@
 
         #endregion
 
-        private Panel panel1;
+        private Panel panelMateria;
         private TableLayoutPanel tableLayoutPanel5;
         private Button BGuardarMateria;
         private Button BEliminarMateria;

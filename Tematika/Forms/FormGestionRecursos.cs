@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Tematika.CapaDeNegocio;
 using Tematika.Models;
+using Tematika.Styles;
 using Tematika.Utils;
 
 namespace Tematika.Forms
@@ -12,6 +14,7 @@ namespace Tematika.Forms
     {
         private readonly RecursoService _recursoService = new RecursoService();
         private readonly TemaService _temaService = new TemaService();
+        private readonly MateriaService _materiaService = new MateriaService();
         private int? recursoSeleccionadoId = null;
         private bool mostrarActivos = true;
 
@@ -26,12 +29,16 @@ namespace Tematika.Forms
             BCancelarRecurso.Click += BCancelarRecurso_Click;
             BRecursosActivos.Click += BRecursosActivos_Click;
             BRecursosInactivos.Click += BRecursosInactivos_Click;
+            CBMateriaRecurso.SelectedIndexChanged += CBMateriaRecurso_SelectedIndexChanged;
             CBFiltrarTema.SelectedIndexChanged += CBFiltrarTema_SelectedIndexChanged;
             BRuta.Click += BRuta_Click;
         }
 
         private void FormGestionRecursos_Load(object sender, EventArgs e)
         {
+            EstiloEncabezado.Aplicar(panelEncabezadoR, LTituloRecursos);
+            panelRecurso.BackColor = ColorTranslator.FromHtml("#cfd8dc");
+
             CBEliminado.Items.Clear();
             CBEliminado.Items.Add("No");
             CBEliminado.Items.Add("Sí");
@@ -42,24 +49,67 @@ namespace Tematika.Forms
 
             CBTipoRecurso.SelectedIndex = 0;
 
-            CargarTemasCombo();
+            CargarMateriasCombo();
+            CBTemaRecurso.DataSource = null;
+            CargarTemasFiltrables();
             CargarRecursos();
         }
 
-        private void CargarTemasCombo()
+        private void CargarMateriasCombo()
+        {
+            var materias = _materiaService.ListarMaterias()
+                .Where(m => !m.Eliminado)
+                .OrderBy(m => m.Nombre)
+                .ToList();
+
+            CBMateriaRecurso.DisplayMember = "Nombre";
+            CBMateriaRecurso.ValueMember = "IdMateria";
+            CBMateriaRecurso.DataSource = materias;
+        }
+
+        private void CargarTemasFiltrables()
         {
             var temas = _temaService.ListarTemas()
                 .Where(t => !t.Eliminado)
                 .OrderBy(t => t.Nombre)
                 .ToList();
 
-            CBTemaRecurso.DisplayMember = "Nombre";
-            CBTemaRecurso.ValueMember = "IdTema";
-            CBTemaRecurso.DataSource = temas;
-
             CBFiltrarTema.DisplayMember = "Nombre";
             CBFiltrarTema.ValueMember = "IdTema";
-            CBFiltrarTema.DataSource = temas.ToList();
+            CBFiltrarTema.DataSource = temas;
+        }
+
+        private void CBMateriaRecurso_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CBMateriaRecurso.SelectedValue is int idMateria)
+            {
+                var temas = _temaService.ListarTemas()
+                    .Where(t => t.IdMateria == idMateria && !t.Eliminado)
+                    .OrderBy(t => t.Nombre)
+                    .ToList();
+
+                CBTemaRecurso.DisplayMember = "Nombre";
+                CBTemaRecurso.ValueMember = "IdTema";
+                CBTemaRecurso.DataSource = temas;
+            }
+        }
+
+        private void CBFiltrarTema_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CBFiltrarTema.SelectedValue is int idTema)
+            {
+                var recursos = _recursoService.ListarRecursos()
+                    .Where(r => r.IdTema == idTema && r.Eliminado != mostrarActivos)
+                    .ToList();
+
+                DGVRecursos.Rows.Clear();
+
+                foreach (var r in recursos)
+                {
+                    var tema = _temaService.ObtenerTema(r.IdTema);
+                    DGVRecursos.Rows.Add(r.IdRecurso, r.Titulo, r.Texto, r.Ruta, r.Url, r.Tipo, tema?.Nombre ?? "Sin tema");
+                }
+            }
         }
 
         private void CargarRecursos()
@@ -90,7 +140,8 @@ namespace Tematika.Forms
             TBRuta.Clear();
             TBUrl.Clear();
             CBTipoRecurso.SelectedIndex = 0;
-            CBTemaRecurso.SelectedIndex = 0;
+            CBMateriaRecurso.SelectedIndex = 0;
+            CBTemaRecurso.DataSource = null;
             CBEliminado.SelectedIndex = 0;
             recursoSeleccionadoId = null;
 
@@ -131,7 +182,6 @@ namespace Tematika.Forms
             LimpiarCampos();
         }
 
-
         private void DGVRecursos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -147,7 +197,23 @@ namespace Tematika.Forms
             TBRuta.Text = recurso.Ruta;
             TBUrl.Text = recurso.Url;
             CBTipoRecurso.SelectedItem = recurso.Tipo;
-            CBTemaRecurso.SelectedValue = recurso.IdTema;
+
+            var tema = _temaService.ObtenerTema(recurso.IdTema);
+            if (tema != null)
+            {
+                CBMateriaRecurso.SelectedValue = tema.IdMateria;
+
+                var temas = _temaService.ListarTemas()
+                    .Where(t => t.IdMateria == tema.IdMateria && !t.Eliminado)
+                    .OrderBy(t => t.Nombre)
+                    .ToList();
+
+                CBTemaRecurso.DisplayMember = "Nombre";
+                CBTemaRecurso.ValueMember = "IdTema";
+                CBTemaRecurso.DataSource = temas;
+                CBTemaRecurso.SelectedValue = recurso.IdTema;
+            }
+
             CBEliminado.SelectedItem = recurso.Eliminado ? "Sí" : "No";
 
             BGuardarRecurso.Visible = false;
@@ -190,7 +256,6 @@ namespace Tematika.Forms
             LimpiarCampos();
         }
 
-
         private void BEliminarRecurso_Click(object sender, EventArgs e)
         {
             if (recursoSeleccionadoId == null)
@@ -226,24 +291,6 @@ namespace Tematika.Forms
             CargarRecursos();
         }
 
-        private void CBFiltrarTema_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (CBFiltrarTema.SelectedValue is int idTema)
-            {
-                var recursos = _recursoService.ListarRecursos()
-                    .Where(r => r.IdTema == idTema && r.Eliminado != mostrarActivos)
-                    .ToList();
-
-                DGVRecursos.Rows.Clear();
-
-                foreach (var r in recursos)
-                {
-                    var tema = _temaService.ObtenerTema(r.IdTema);
-                    DGVRecursos.Rows.Add(r.IdRecurso, r.Titulo, r.Texto, r.Ruta, r.Url, r.Tipo, tema?.Nombre ?? "Sin tema");
-                }
-            }
-        }
-
         private void BRuta_Click(object sender, EventArgs e)
         {
             using var dialogo = new OpenFileDialog();
@@ -254,6 +301,16 @@ namespace Tematika.Forms
             {
                 TBRuta.Text = dialogo.FileName;
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Evento para CBMateriaRecurso en el diseñador, no utilizado directamente
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            // Evento para LMateriaRecurso en el diseñador, no utilizado directamente
         }
     }
 }

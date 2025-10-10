@@ -15,14 +15,25 @@ namespace Tematika
 
     public class AppContext : ApplicationContext
     {
+        private bool loginExitoso = false;
+
         public AppContext()
         {
+            MostrarLogin();
+        }
+
+        private void MostrarLogin()
+        {
             var loginForm = new FormLogin();
-            loginForm.OnLoginSuccess += AbrirFormPrincipal;
-            loginForm.FormClosed += (s, e) =>
-            {
-                if (!SesionManager.SesionActiva && !SesionManager.EsInvitado)
-                    ExitThread(); // Solo cierra si no hay sesión y no es invitado
+
+            loginForm.OnLoginSuccess += () => {
+                loginExitoso = true;
+                AbrirFormPrincipal();
+            };
+
+            loginForm.FormClosed += (s, e) => {
+                if (!loginExitoso)
+                    ExitThread(); // Cierra si el login fue cancelado
             };
 
             loginForm.Show();
@@ -43,13 +54,11 @@ namespace Tematika
                 {
                     case 1:
                     case 2:
+                    case 4:
                         destino = new FormAdmin();
                         break;
                     case 3:
                         destino = new FormMainEstudiante();
-                        break;
-                    case 4:
-                        destino = new FormAdmin();
                         break;
                     default:
                         MessageBox.Show("Perfil no reconocido.");
@@ -58,16 +67,14 @@ namespace Tematika
                 }
             }
 
-            destino.FormClosed += (s, e) =>
-            {
+            destino.FormClosed += (s, e) => {
                 SesionManager.CerrarSesion();
-                var nuevoLogin = new FormLogin();
-                nuevoLogin.OnLoginSuccess += AbrirFormPrincipal;
-                nuevoLogin.Show();
+                loginExitoso = false; // Reiniciamos el estado
+                MostrarLogin(); // Volvemos a mostrar el login
             };
 
             destino.Show();
         }
-
     }
+
 }

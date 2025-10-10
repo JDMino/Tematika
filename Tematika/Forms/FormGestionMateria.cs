@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Tematika.CapaDeNegocio;
 using Tematika.Models;
+using Tematika.Styles;
 using Tematika.Utils;
 
 namespace Tematika.Forms
@@ -28,6 +29,8 @@ namespace Tematika.Forms
 
         private void FormGestionMateria_Load(object sender, EventArgs e)
         {
+            EstiloEncabezado.Aplicar(panelEncabezadoM, LTituloMaterias);
+            panelMateria.BackColor = ColorTranslator.FromHtml("#cfd8dc");
             CBNivelMateria.SelectedIndex = 0;
 
             comboBoxEliminado.Items.Clear();
