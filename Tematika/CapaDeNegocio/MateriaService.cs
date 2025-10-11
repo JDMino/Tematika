@@ -54,5 +54,19 @@ namespace Tematika.CapaDeNegocio
         {
             _repository.Eliminar(id);
         }
+
+        public List<Materia> ListarMateriasPorDocente(int idUsuario)
+        {
+            var asignaciones = new DocenteMateriaService().ListarAsignaciones()
+                .Where(dm => dm.IdUsuario == idUsuario)
+                .Select(dm => dm.IdMateria)
+                .ToList();
+
+            return _repository.ObtenerTodas()
+                .Where(m => asignaciones.Contains(m.IdMateria) && !m.Eliminado)
+                .OrderBy(m => m.Nombre)
+                .ToList();
+        }
+
     }
 }

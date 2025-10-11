@@ -51,10 +51,21 @@ namespace Tematika.Forms
 
         private void CargarMaterias()
         {
-            var materias = _materiaService.ListarMaterias()
-                .Where(m => !m.Eliminado)
-                .OrderBy(m => m.Nombre)
-                .ToList();
+            List<Materia> materias;
+
+            if (SesionManager.SesionActiva && SesionManager.UsuarioActual!.IdPerfil == 2)
+            {
+                // Docente: solo sus materias
+                materias = _materiaService.ListarMateriasPorDocente(SesionManager.UsuarioActual.IdUsuario);
+            }
+            else
+            {
+                // Admin u otro perfil: todas las materias
+                materias = _materiaService.ListarMaterias()
+                    .Where(m => !m.Eliminado)
+                    .OrderBy(m => m.Nombre)
+                    .ToList();
+            }
 
             CBMateria.DisplayMember = "Nombre";
             CBMateria.ValueMember = "IdMateria";
@@ -62,6 +73,7 @@ namespace Tematika.Forms
 
             CBTemas.DataSource = null;
         }
+
 
         private void CBMateria_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -90,6 +102,15 @@ namespace Tematika.Forms
         private void CargarPreguntas()
         {
             var preguntas = _preguntaService.ListarPreguntas();
+            var materiasPermitidas = new List<int>();
+
+            if (SesionManager.SesionActiva && SesionManager.UsuarioActual!.IdPerfil == 2)
+            {
+                materiasPermitidas = new DocenteMateriaService().ListarAsignaciones()
+                    .Where(dm => dm.IdUsuario == SesionManager.UsuarioActual.IdUsuario)
+                    .Select(dm => dm.IdMateria)
+                    .ToList();
+            }
 
             DGVPreguntas.Rows.Clear();
 
@@ -101,8 +122,10 @@ namespace Tematika.Forms
 
                 if (evaluacion != null && tema != null && materia != null && evaluacion.Eliminado != mostrarActivos)
                 {
-                    //DGVPreguntas.Rows.Add(p.IdPregunta, p.Enunciado, tema.Nombre, materia.Nombre);
-                    DGVPreguntas.Rows.Add(p.IdEvaluacion, materia.Nombre, tema.Nombre, p.IdPregunta, p.Enunciado);
+                    if (materiasPermitidas.Count == 0 || materiasPermitidas.Contains(materia.IdMateria))
+                    {
+                        DGVPreguntas.Rows.Add(p.IdEvaluacion, materia.Nombre, tema.Nombre, p.IdPregunta, p.Enunciado);
+                    }
                 }
             }
 
@@ -110,6 +133,7 @@ namespace Tematika.Forms
             BModificarPreg.Visible = false;
             BEliminarEvaluacion.Visible = false;
         }
+
 
         private void LimpiarCampos()
         {
