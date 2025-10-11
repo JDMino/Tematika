@@ -10,8 +10,10 @@ using Tematika.Utils;
 
 namespace Tematika.Forms
 {
+
     public partial class FormGestionRecursos : Form
     {
+        private readonly DocenteMateriaService _docenteMateriaService = new DocenteMateriaService();
         private readonly RecursoService _recursoService = new RecursoService();
         private readonly TemaService _temaService = new TemaService();
         private readonly MateriaService _materiaService = new MateriaService();
@@ -66,12 +68,26 @@ namespace Tematika.Forms
                 .OrderBy(m => m.Nombre)
                 .ToList();
 
+            if (SesionManager.SesionActiva && SesionManager.UsuarioActual!.IdPerfil == 2)
+            {
+                var asignadas = _docenteMateriaService.ListarAsignaciones()
+                    .Where(dm => dm.IdUsuario == SesionManager.UsuarioActual.IdUsuario)
+                    .Select(dm => dm.IdMateria)
+                    .Distinct()
+                    .ToList();
+
+                materias = materias.Where(m => asignadas.Contains(m.IdMateria)).ToList();
+
+                combo.Enabled = materias.Count > 1;
+            }
+
             materias.Insert(0, new Materia { IdMateria = 0, Nombre = "Seleccionar materia..." });
 
             combo.DisplayMember = "Nombre";
             combo.ValueMember = "IdMateria";
             combo.DataSource = materias;
         }
+
 
         private void CargarTemasCombo(ComboBox combo, int idMateria)
         {
@@ -145,6 +161,22 @@ namespace Tematika.Forms
                 .Where(r => r.Eliminado != mostrarActivos)
                 .ToList();
 
+            if (SesionManager.SesionActiva && SesionManager.UsuarioActual!.IdPerfil == 2)
+            {
+                var materiasAsignadas = _docenteMateriaService.ListarAsignaciones()
+                    .Where(dm => dm.IdUsuario == SesionManager.UsuarioActual.IdUsuario)
+                    .Select(dm => dm.IdMateria)
+                    .Distinct()
+                    .ToList();
+
+                var temasPermitidos = _temaService.ListarTemas()
+                    .Where(t => materiasAsignadas.Contains(t.IdMateria) && !t.Eliminado)
+                    .Select(t => t.IdTema)
+                    .ToList();
+
+                recursos = recursos.Where(r => temasPermitidos.Contains(r.IdTema)).ToList();
+            }
+
             DGVRecursos.Rows.Clear();
 
             foreach (var r in recursos)
@@ -160,6 +192,7 @@ namespace Tematika.Forms
             CBEliminado.Visible = false;
         }
 
+
         private void LimpiarCampos()
         {
             TBTituloRecurso.Clear();
@@ -174,6 +207,11 @@ namespace Tematika.Forms
             ReiniciarCombo<Tema>(CBTemaRecurso, "Seleccionar tema...");
             CBEliminado.SelectedIndex = 0;
             recursoSeleccionadoId = null;
+
+            //vuelve a cargar las materias
+            CargarMateriasCombo(CBMateriaRecurso);
+            CargarMateriasCombo(CBFiltrarMateria);
+
 
             BGuardarRecurso.Visible = true;
             BModificarRecurso.Visible = false;

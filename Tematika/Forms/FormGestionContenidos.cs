@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tematika.Models;
 
 namespace Tematika.Forms
 {
@@ -39,6 +40,23 @@ namespace Tematika.Forms
         {
             FormGestionPreguntas gestionPreguntas = new FormGestionPreguntas();
             gestionPreguntas.Show();
+        }
+
+        private void btnAsignacionDocente_Click(object sender, EventArgs e)
+        {
+            FormGestionDocenteMateria gestionDocenteMateria = new FormGestionDocenteMateria();
+            gestionDocenteMateria.Show();
+        }
+
+        private void FormGestionContenidos_Load(object sender, EventArgs e)
+        {
+            var usuario = SesionManager.UsuarioActual;
+
+            if (usuario != null && usuario.IdPerfil == 2) // Docente
+            {
+                btnAsignacionDocente.Visible = false;
+                btnMaterias.Visible = false;
+            }
         }
     }
 }

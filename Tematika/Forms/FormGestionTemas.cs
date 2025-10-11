@@ -12,6 +12,7 @@ namespace Tematika.Forms
     {
         private readonly TemaService _temaService = new TemaService();
         private readonly MateriaService _materiaService = new MateriaService();
+        private readonly DocenteMateriaService _docenteMateriaService = new DocenteMateriaService();
         private int? temaSeleccionadoId = null;
         private bool mostrarActivos = true;
 
@@ -33,6 +34,7 @@ namespace Tematika.Forms
         {
             EstiloEncabezado.Aplicar(panelEncabezadoT, LTituloTemas);
             panelTema.BackColor = ColorTranslator.FromHtml("#cfd8dc");
+
             CBEliminado.Items.Clear();
             CBEliminado.Items.Add("No");
             CBEliminado.Items.Add("Sí");
@@ -47,20 +49,34 @@ namespace Tematika.Forms
 
         private void CargarMateriasCombo()
         {
-            var materias = _materiaService.ListarMaterias()
+            var todasMaterias = _materiaService.ListarMaterias()
                 .Where(m => !m.Eliminado)
-                .GroupBy(m => m.Nombre)
-                .Select(g => g.First())
                 .OrderBy(m => m.Nombre)
                 .ToList();
 
+            if (SesionManager.SesionActiva && SesionManager.UsuarioActual!.IdPerfil == 2)
+            {
+                var asignaciones = _docenteMateriaService.ListarAsignaciones()
+                    .Where(dm => dm.IdUsuario == SesionManager.UsuarioActual.IdUsuario)
+                    .Select(dm => dm.IdMateria)
+                    .Distinct()
+                    .ToList();
+
+                todasMaterias = todasMaterias
+                    .Where(m => asignaciones.Contains(m.IdMateria))
+                    .ToList();
+
+                CBMaterias.Enabled = todasMaterias.Count > 1;
+                CBFiltroMaterias.Enabled = todasMaterias.Count > 1;
+            }
+
             CBMaterias.DisplayMember = "Nombre";
             CBMaterias.ValueMember = "IdMateria";
-            CBMaterias.DataSource = materias;
+            CBMaterias.DataSource = todasMaterias;
 
             CBFiltroMaterias.DisplayMember = "Nombre";
             CBFiltroMaterias.ValueMember = "IdMateria";
-            CBFiltroMaterias.DataSource = materias.ToList();
+            CBFiltroMaterias.DataSource = todasMaterias.ToList();
         }
 
         private void CargarTemas()
@@ -68,6 +84,17 @@ namespace Tematika.Forms
             var temas = _temaService.ListarTemas()
                 .Where(t => t.Eliminado != mostrarActivos)
                 .ToList();
+
+            if (SesionManager.SesionActiva && SesionManager.UsuarioActual!.IdPerfil == 2)
+            {
+                var asignaciones = _docenteMateriaService.ListarAsignaciones()
+                    .Where(dm => dm.IdUsuario == SesionManager.UsuarioActual.IdUsuario)
+                    .Select(dm => dm.IdMateria)
+                    .Distinct()
+                    .ToList();
+
+                temas = temas.Where(t => asignaciones.Contains(t.IdMateria)).ToList();
+            }
 
             DGVTemas.Rows.Clear();
 
@@ -142,10 +169,9 @@ namespace Tematika.Forms
             labelEliminado.Visible = true;
             CBEliminado.Visible = true;
 
-            if (tema.Eliminado == true)
+            if (tema.Eliminado)
             {
                 BEliminarTema.Visible = false;
-                //BEliminarTema.Enabled = false;
             }
         }
 
