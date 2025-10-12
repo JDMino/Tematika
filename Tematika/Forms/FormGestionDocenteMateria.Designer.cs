@@ -30,6 +30,8 @@
         {
             panelDocenteMateria = new Panel();
             panelCamposTemas = new TableLayoutPanel();
+            CBDocente = new ComboBox();
+            labelDocente = new Label();
             Materia = new Label();
             CBMaterias = new ComboBox();
             panelBuscador = new TableLayoutPanel();
@@ -39,12 +41,10 @@
             BEliminarTema = new Button();
             BCancelarTema = new Button();
             DGVTemas = new DataGridView();
-            panelEncabezadoT = new FlowLayoutPanel();
-            LTituloDocenteMateria = new Label();
-            labelDocente = new Label();
-            CBDocente = new ComboBox();
             NombreDocente = new DataGridViewTextBoxColumn();
             IdMateria = new DataGridViewTextBoxColumn();
+            panelEncabezadoT = new FlowLayoutPanel();
+            LTituloDocenteMateria = new Label();
             panelDocenteMateria.SuspendLayout();
             panelCamposTemas.SuspendLayout();
             panelBuscador.SuspendLayout();
@@ -86,6 +86,26 @@
             panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             panelCamposTemas.Size = new Size(481, 104);
             panelCamposTemas.TabIndex = 105;
+            // 
+            // CBDocente
+            // 
+            CBDocente.FormattingEnabled = true;
+            CBDocente.Location = new Point(183, 2);
+            CBDocente.Margin = new Padding(3, 2, 3, 2);
+            CBDocente.Name = "CBDocente";
+            CBDocente.Size = new Size(295, 23);
+            CBDocente.TabIndex = 29;
+            CBDocente.Tag = "Materia asociada";
+            // 
+            // labelDocente
+            // 
+            labelDocente.AutoSize = true;
+            labelDocente.Location = new Point(3, 0);
+            labelDocente.Name = "labelDocente";
+            labelDocente.Size = new Size(51, 15);
+            labelDocente.TabIndex = 28;
+            labelDocente.Text = "Docente";
+            labelDocente.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Materia
             // 
@@ -213,6 +233,19 @@
             DGVTemas.Size = new Size(710, 125);
             DGVTemas.TabIndex = 102;
             // 
+            // NombreDocente
+            // 
+            NombreDocente.HeaderText = "Docente";
+            NombreDocente.MinimumWidth = 6;
+            NombreDocente.Name = "NombreDocente";
+            // 
+            // IdMateria
+            // 
+            IdMateria.HeaderText = "Materia Asociada";
+            IdMateria.MinimumWidth = 6;
+            IdMateria.Name = "IdMateria";
+            IdMateria.ReadOnly = true;
+            // 
             // panelEncabezadoT
             // 
             panelEncabezadoT.Controls.Add(LTituloDocenteMateria);
@@ -234,39 +267,6 @@
             LTituloDocenteMateria.TabIndex = 1;
             LTituloDocenteMateria.Text = "Asignación Docente - Materia";
             LTituloDocenteMateria.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelDocente
-            // 
-            labelDocente.AutoSize = true;
-            labelDocente.Location = new Point(3, 0);
-            labelDocente.Name = "labelDocente";
-            labelDocente.Size = new Size(96, 15);
-            labelDocente.TabIndex = 28;
-            labelDocente.Text = "Materia asociada";
-            labelDocente.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // CBDocente
-            // 
-            CBDocente.FormattingEnabled = true;
-            CBDocente.Location = new Point(183, 2);
-            CBDocente.Margin = new Padding(3, 2, 3, 2);
-            CBDocente.Name = "CBDocente";
-            CBDocente.Size = new Size(295, 23);
-            CBDocente.TabIndex = 29;
-            CBDocente.Tag = "Materia asociada";
-            // 
-            // NombreDocente
-            // 
-            NombreDocente.HeaderText = "Docente";
-            NombreDocente.MinimumWidth = 6;
-            NombreDocente.Name = "NombreDocente";
-            // 
-            // IdMateria
-            // 
-            IdMateria.HeaderText = "Materia Asociada";
-            IdMateria.MinimumWidth = 6;
-            IdMateria.Name = "IdMateria";
-            IdMateria.ReadOnly = true;
             // 
             // FormGestionDocenteMateria
             // 

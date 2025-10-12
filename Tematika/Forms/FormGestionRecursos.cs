@@ -78,7 +78,7 @@ namespace Tematika.Forms
 
                 materias = materias.Where(m => asignadas.Contains(m.IdMateria)).ToList();
 
-                combo.Enabled = materias.Count > 1;
+                //combo.Enabled = materias.Count > 1;
             }
 
             materias.Insert(0, new Materia { IdMateria = 0, Nombre = "Seleccionar materia..." });
