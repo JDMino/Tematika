@@ -17,7 +17,7 @@ namespace Tematika.Forms.Cards
 
         private void RecursoCard_Load(object sender, EventArgs e)
         {
-            // Opcional: estilos visuales
+            // Estilos opcionales
         }
 
         public void SetDatos(Recurso recurso, int cantidadVisitas, double? promedioValoracion)
@@ -39,7 +39,7 @@ namespace Tematika.Forms.Cards
 
             if (!SesionManager.SesionActiva || SesionManager.UsuarioActual == null)
             {
-                MessageBox.Show("Debe iniciar sesión para registrar la visita.", "Sesión no activa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Estás en modo invitado. La visita no será registrada.", "Modo Invitado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 visualizador.Show();
                 return;
             }
@@ -58,10 +58,7 @@ namespace Tematika.Forms.Cards
                 MessageBox.Show(error, "Error al registrar visita", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            //var visualizador = new FormVisualizadorRecurso(recursoActual);
             visualizador.Show();
         }
-
-
     }
 }

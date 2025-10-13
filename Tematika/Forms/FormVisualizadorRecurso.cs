@@ -13,7 +13,7 @@ namespace Tematika.Forms
         private readonly ValoracionService valoracionService = new ValoracionService();
         private readonly ComentarioService comentarioService = new ComentarioService();
         private readonly NotaService notaService = new NotaService();
-        private readonly Usuario usuario = SesionManager.UsuarioActual!;
+        private readonly Usuario? usuario = SesionManager.UsuarioActual;
 
         public FormVisualizadorRecurso(Recurso recurso)
         {
@@ -30,28 +30,44 @@ namespace Tematika.Forms
         {
             labelTituloVRecurso.Text = recurso.Titulo;
 
-            // Favorito
+            if (!SesionManager.SesionActiva || usuario == null)
+            {
+                btnMarcarFavorito.Enabled = false;
+                btnGuardarValoracion.Enabled = false;
+                comboBox1.Enabled = false;
+                btnGuardarNota.Enabled = false;
+                textBox1.Enabled = false;
+                button1.Enabled = false;
+                textBox2.Enabled = false;
+                MessageBox.Show("Estás en modo invitado. Algunas funciones están deshabilitadas.", "Modo Invitado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             var favoritos = favoritoService.ListarPorUsuario(usuario.IdUsuario);
             var favorito = favoritos.FirstOrDefault(f => f.IdRecurso == recurso.IdRecurso);
             btnMarcarFavorito.Text = favorito != null ? "Desmarcar como Favorito" : "Marcar como Favorito";
 
-            // Valoración
             var valoraciones = valoracionService.ListarPorRecurso(recurso.IdRecurso);
             var propia = valoraciones.FirstOrDefault(v => v.IdUsuario == usuario.IdUsuario);
             comboBox1.SelectedItem = propia?.Puntuacion.ToString();
 
-            // Comentarios
             var comentarios = comentarioService.ListarPorRecurso(recurso.IdRecurso);
             DGVComentariosRecursos.Rows.Clear();
             foreach (var c in comentarios)
             {
-                var nombre = "Usuario " + c.IdUsuario; // O usar UsuarioService si querés mostrar nombre real
+                var nombre = "Usuario " + c.IdUsuario;
                 DGVComentariosRecursos.Rows.Add(c.Fecha.ToShortDateString(), nombre, c.Texto);
             }
+
+
+            VisualizarContenido();
+
         }
 
         private void btnMarcarFavorito_Click(object sender, EventArgs e)
         {
+            if (usuario == null) return;
+
             var favoritos = favoritoService.ListarPorUsuario(usuario.IdUsuario);
             var favorito = favoritos.FirstOrDefault(f => f.IdRecurso == recurso.IdRecurso);
 
@@ -77,6 +93,8 @@ namespace Tematika.Forms
 
         private void btnGuardarValoracion_Click(object sender, EventArgs e)
         {
+            if (usuario == null) return;
+
             if (comboBox1.SelectedItem == null)
             {
                 MessageBox.Show("Debe seleccionar una puntuación.");
@@ -84,32 +102,25 @@ namespace Tematika.Forms
             }
 
             int puntuacion = int.Parse(comboBox1.SelectedItem.ToString()!);
-            var valoraciones = valoracionService.ListarPorRecurso(recurso.IdRecurso);
-            var propia = valoraciones.FirstOrDefault(v => v.IdUsuario == usuario.IdUsuario);
+            var valoracion = new Valoracion
+            {
+                IdUsuario = usuario.IdUsuario,
+                IdRecurso = recurso.IdRecurso,
+                Puntuacion = puntuacion,
+                Fecha = DateTime.Now
+            };
 
-            if (propia != null)
-            {
-                propia.Puntuacion = puntuacion;
-                propia.Fecha = DateTime.Now;
-                valoracionService.RegistrarValoracion(propia);
-                MessageBox.Show("Valoración actualizada.");
-            }
-            else
-            {
-                var nueva = new Valoracion
-                {
-                    IdUsuario = usuario.IdUsuario,
-                    IdRecurso = recurso.IdRecurso,
-                    Puntuacion = puntuacion,
-                    Fecha = DateTime.Now
-                };
-                valoracionService.RegistrarValoracion(nueva);
+            var error = valoracionService.RegistrarValoracion(valoracion);
+            if (error == null)
                 MessageBox.Show("Valoración registrada.");
-            }
+            else
+                MessageBox.Show(error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void btnGuardarNota_Click(object sender, EventArgs e)
         {
+            if (usuario == null) return;
+
             var nota = new Nota
             {
                 IdUsuario = usuario.IdUsuario,
@@ -124,6 +135,8 @@ namespace Tematika.Forms
 
         private void buttonEnviarComentario_Click(object sender, EventArgs e)
         {
+            if (usuario == null) return;
+
             var comentario = new Comentario
             {
                 IdUsuario = usuario.IdUsuario,
@@ -135,5 +148,115 @@ namespace Tematika.Forms
             comentarioService.CrearComentario(comentario);
             MessageBox.Show("Comentario enviado.");
         }
+
+
+        private void VisualizarContenido()
+        {
+            panelContenidoRecurso.Controls.Clear();
+
+            if (!string.IsNullOrWhiteSpace(recurso.Texto))
+            {
+                var tb = new TextBox
+                {
+                    Multiline = true,
+                    ReadOnly = true,
+                    ScrollBars = ScrollBars.Vertical,
+                    Dock = DockStyle.Fill,
+                    Text = recurso.Texto
+                };
+                panelContenidoRecurso.Controls.Add(tb);
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(recurso.Url))
+            {
+                var link = new LinkLabel
+                {
+                    Text = recurso.Url,
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+                link.Click += (s, e) => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = recurso.Url,
+                    UseShellExecute = true
+                });
+                panelContenidoRecurso.Controls.Add(link);
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(recurso.Ruta))
+            {
+                var ext = System.IO.Path.GetExtension(recurso.Ruta).ToLower();
+
+                if (ext == ".txt")
+                {
+                    var contenido = System.IO.File.ReadAllText(recurso.Ruta);
+                    var tb = new TextBox
+                    {
+                        Multiline = true,
+                        ReadOnly = true,
+                        ScrollBars = ScrollBars.Vertical,
+                        Dock = DockStyle.Fill,
+                        Text = contenido
+                    };
+                    panelContenidoRecurso.Controls.Add(tb);
+                }
+                else if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif")
+                {
+                    var pb = new PictureBox
+                    {
+                        Image = Image.FromFile(recurso.Ruta),
+                        SizeMode = PictureBoxSizeMode.Zoom,
+                        Dock = DockStyle.Fill
+                    };
+                    panelContenidoRecurso.Controls.Add(pb);
+                }
+                else if (ext == ".pdf")
+                {
+                    try
+                    {
+                        var pdfViewer = new PdfiumViewer.PdfViewer
+                        {
+                            Dock = DockStyle.Fill
+                        };
+                        var doc = PdfiumViewer.PdfDocument.Load(recurso.Ruta);
+                        pdfViewer.Document = doc;
+                        panelContenidoRecurso.Controls.Add(pdfViewer);
+                    }
+                    catch (Exception ex)
+                    {
+                        var errorLabel = new Label
+                        {
+                            Text = "No se pudo cargar el PDF: " + ex.Message,
+                            Dock = DockStyle.Fill,
+                            TextAlign = ContentAlignment.MiddleCenter
+                        };
+                        panelContenidoRecurso.Controls.Add(errorLabel);
+                    }
+                }
+                else
+                {
+                    var label = new Label
+                    {
+                        Text = "Tipo de archivo no soportado.",
+                        Dock = DockStyle.Fill,
+                        TextAlign = ContentAlignment.MiddleCenter
+                    };
+                    panelContenidoRecurso.Controls.Add(label);
+                }
+            }
+            else
+            {
+                var label = new Label
+                {
+                    Text = "No hay contenido disponible.",
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+                panelContenidoRecurso.Controls.Add(label);
+            }
+        }
+
     }
 }
