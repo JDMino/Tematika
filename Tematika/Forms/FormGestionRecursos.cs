@@ -384,7 +384,19 @@ namespace Tematika.Forms
 
             if (dialogo.ShowDialog() == DialogResult.OK)
             {
-                TBRuta.Text = dialogo.FileName;
+                string origen = dialogo.FileName;
+                string nombreArchivo = Path.GetFileName(origen);
+
+                // Ruta física del proyecto (sube desde bin/)
+                string rutaProyecto = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
+                string carpetaDestino = Path.Combine(rutaProyecto, "Recursos");
+                Directory.CreateDirectory(carpetaDestino); // Asegura existencia
+
+                string destino = Path.Combine(carpetaDestino, nombreArchivo);
+                File.Copy(origen, destino, overwrite: true);
+
+                // Guardar ruta relativa
+                TBRuta.Text = Path.Combine("Recursos", nombreArchivo).Replace("\\", "/");
             }
         }
 

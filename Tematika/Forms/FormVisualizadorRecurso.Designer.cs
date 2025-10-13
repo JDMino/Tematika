@@ -55,8 +55,9 @@
             panelTituloVisualizador.Controls.Add(labelTituloVRecurso);
             panelTituloVisualizador.Dock = DockStyle.Top;
             panelTituloVisualizador.Location = new Point(0, 0);
+            panelTituloVisualizador.Margin = new Padding(3, 4, 3, 4);
             panelTituloVisualizador.Name = "panelTituloVisualizador";
-            panelTituloVisualizador.Size = new Size(967, 39);
+            panelTituloVisualizador.Size = new Size(1104, 52);
             panelTituloVisualizador.TabIndex = 0;
             // 
             // labelTituloVRecurso
@@ -64,18 +65,19 @@
             labelTituloVRecurso.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelTituloVRecurso.AutoSize = true;
             labelTituloVRecurso.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelTituloVRecurso.Location = new Point(431, 9);
+            labelTituloVRecurso.Location = new Point(493, 12);
             labelTituloVRecurso.Name = "labelTituloVRecurso";
-            labelTituloVRecurso.Size = new Size(140, 25);
+            labelTituloVRecurso.Size = new Size(179, 32);
             labelTituloVRecurso.TabIndex = 6;
             labelTituloVRecurso.Text = "Titulo Recurso";
             labelTituloVRecurso.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnMarcarFavorito
             // 
-            btnMarcarFavorito.Location = new Point(20, 54);
+            btnMarcarFavorito.Location = new Point(23, 72);
+            btnMarcarFavorito.Margin = new Padding(3, 4, 3, 4);
             btnMarcarFavorito.Name = "btnMarcarFavorito";
-            btnMarcarFavorito.Size = new Size(138, 23);
+            btnMarcarFavorito.Size = new Size(158, 31);
             btnMarcarFavorito.TabIndex = 1;
             btnMarcarFavorito.Text = "Marcar como Favorito";
             btnMarcarFavorito.UseVisualStyleBackColor = true;
@@ -84,9 +86,9 @@
             // 
             labelValoracion.AutoSize = true;
             labelValoracion.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelValoracion.Location = new Point(183, 58);
+            labelValoracion.Location = new Point(209, 77);
             labelValoracion.Name = "labelValoracion";
-            labelValoracion.Size = new Size(67, 15);
+            labelValoracion.Size = new Size(86, 20);
             labelValoracion.TabIndex = 2;
             labelValoracion.Text = "Valoración:";
             // 
@@ -94,9 +96,10 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5" });
-            comboBox1.Location = new Point(265, 54);
+            comboBox1.Location = new Point(303, 72);
+            comboBox1.Margin = new Padding(3, 4, 3, 4);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(39, 23);
+            comboBox1.Size = new Size(44, 28);
             comboBox1.TabIndex = 3;
             // 
             // panelContenidoRecurso
@@ -104,65 +107,70 @@
             panelContenidoRecurso.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelContenidoRecurso.AutoScroll = true;
             panelContenidoRecurso.BackColor = SystemColors.ActiveCaption;
-            panelContenidoRecurso.Location = new Point(0, 83);
+            panelContenidoRecurso.Location = new Point(0, 111);
+            panelContenidoRecurso.Margin = new Padding(3, 4, 3, 4);
             panelContenidoRecurso.Name = "panelContenidoRecurso";
-            panelContenidoRecurso.Size = new Size(933, 268);
+            panelContenidoRecurso.Size = new Size(1045, 357);
             panelContenidoRecurso.TabIndex = 4;
             // 
             // labelNotaRecurso
             // 
             labelNotaRecurso.AutoSize = true;
             labelNotaRecurso.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelNotaRecurso.Location = new Point(20, 365);
+            labelNotaRecurso.Location = new Point(23, 487);
             labelNotaRecurso.Name = "labelNotaRecurso";
-            labelNotaRecurso.Size = new Size(98, 15);
+            labelNotaRecurso.Size = new Size(126, 20);
             labelNotaRecurso.TabIndex = 11;
             labelNotaRecurso.Text = "Mi Nota Privada:";
             // 
             // textBox1
             // 
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(20, 383);
+            textBox1.Location = new Point(23, 511);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ScrollBars = ScrollBars.Vertical;
-            textBox1.Size = new Size(901, 45);
+            textBox1.Size = new Size(1008, 59);
             textBox1.TabIndex = 12;
             // 
             // textBox2
             // 
             textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox2.Location = new Point(20, 488);
+            textBox2.Location = new Point(23, 651);
+            textBox2.Margin = new Padding(3, 4, 3, 4);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.ScrollBars = ScrollBars.Vertical;
-            textBox2.Size = new Size(901, 45);
+            textBox2.Size = new Size(1008, 59);
             textBox2.TabIndex = 14;
             // 
             // labelComentarioRecurso
             // 
             labelComentarioRecurso.AutoSize = true;
             labelComentarioRecurso.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelComentarioRecurso.Location = new Point(20, 470);
+            labelComentarioRecurso.Location = new Point(23, 627);
             labelComentarioRecurso.Name = "labelComentarioRecurso";
-            labelComentarioRecurso.Size = new Size(80, 15);
+            labelComentarioRecurso.Size = new Size(102, 20);
             labelComentarioRecurso.TabIndex = 13;
             labelComentarioRecurso.Text = "Comentarios:";
             // 
             // btnGuardarNota
             // 
-            btnGuardarNota.Location = new Point(20, 434);
+            btnGuardarNota.Location = new Point(23, 579);
+            btnGuardarNota.Margin = new Padding(3, 4, 3, 4);
             btnGuardarNota.Name = "btnGuardarNota";
-            btnGuardarNota.Size = new Size(98, 23);
+            btnGuardarNota.Size = new Size(112, 31);
             btnGuardarNota.TabIndex = 15;
             btnGuardarNota.Text = "Guardar Nota";
             btnGuardarNota.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            button1.Location = new Point(20, 539);
+            button1.Location = new Point(23, 719);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(114, 23);
+            button1.Size = new Size(130, 31);
             button1.TabIndex = 16;
             button1.Text = "Enviar Comentario";
             button1.UseVisualStyleBackColor = true;
@@ -173,21 +181,25 @@
             DGVComentariosRecursos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVComentariosRecursos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGVComentariosRecursos.Columns.AddRange(new DataGridViewColumn[] { FechaComentarioRecurso, NombreComentarioRecurso, Comentario });
-            DGVComentariosRecursos.Location = new Point(20, 568);
+            DGVComentariosRecursos.Location = new Point(23, 757);
+            DGVComentariosRecursos.Margin = new Padding(3, 4, 3, 4);
             DGVComentariosRecursos.Name = "DGVComentariosRecursos";
-            DGVComentariosRecursos.Size = new Size(901, 119);
+            DGVComentariosRecursos.RowHeadersWidth = 51;
+            DGVComentariosRecursos.Size = new Size(1009, 159);
             DGVComentariosRecursos.TabIndex = 17;
             // 
             // FechaComentarioRecurso
             // 
             FechaComentarioRecurso.FillWeight = 50F;
             FechaComentarioRecurso.HeaderText = "Fecha";
+            FechaComentarioRecurso.MinimumWidth = 6;
             FechaComentarioRecurso.Name = "FechaComentarioRecurso";
             FechaComentarioRecurso.ReadOnly = true;
             // 
             // NombreComentarioRecurso
             // 
             NombreComentarioRecurso.HeaderText = "Nombre";
+            NombreComentarioRecurso.MinimumWidth = 6;
             NombreComentarioRecurso.Name = "NombreComentarioRecurso";
             NombreComentarioRecurso.ReadOnly = true;
             // 
@@ -195,24 +207,26 @@
             // 
             Comentario.FillWeight = 150F;
             Comentario.HeaderText = "Comentario";
+            Comentario.MinimumWidth = 6;
             Comentario.Name = "Comentario";
             Comentario.ReadOnly = true;
             // 
             // btnGuardarValoracion
             // 
-            btnGuardarValoracion.Location = new Point(325, 54);
+            btnGuardarValoracion.Location = new Point(371, 72);
+            btnGuardarValoracion.Margin = new Padding(3, 4, 3, 4);
             btnGuardarValoracion.Name = "btnGuardarValoracion";
-            btnGuardarValoracion.Size = new Size(115, 23);
+            btnGuardarValoracion.Size = new Size(131, 31);
             btnGuardarValoracion.TabIndex = 18;
             btnGuardarValoracion.Text = "Guardar Valoración";
             btnGuardarValoracion.UseVisualStyleBackColor = true;
             // 
             // FormVisualizadorRecurso
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(984, 561);
+            ClientSize = new Size(1125, 748);
             Controls.Add(btnGuardarValoracion);
             Controls.Add(DGVComentariosRecursos);
             Controls.Add(button1);
@@ -226,6 +240,7 @@
             Controls.Add(labelValoracion);
             Controls.Add(btnMarcarFavorito);
             Controls.Add(panelTituloVisualizador);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormVisualizadorRecurso";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormVisualizadorRecurso";

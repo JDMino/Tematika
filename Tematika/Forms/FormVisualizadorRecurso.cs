@@ -188,30 +188,48 @@ namespace Tematika.Forms
 
             if (!string.IsNullOrWhiteSpace(recurso.Ruta))
             {
-                var ext = System.IO.Path.GetExtension(recurso.Ruta).ToLower();
+                // Reconstruir ruta absoluta desde ruta relativa
+                string rutaProyecto = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
+                string rutaCompleta = Path.Combine(rutaProyecto, recurso.Ruta);
+
+                var ext = Path.GetExtension(rutaCompleta).ToLower();
 
                 if (ext == ".txt")
                 {
-                    var contenido = System.IO.File.ReadAllText(recurso.Ruta);
-                    var tb = new TextBox
+                    if (File.Exists(rutaCompleta))
                     {
-                        Multiline = true,
-                        ReadOnly = true,
-                        ScrollBars = ScrollBars.Vertical,
-                        Dock = DockStyle.Fill,
-                        Text = contenido
-                    };
-                    panelContenidoRecurso.Controls.Add(tb);
+                        var contenido = File.ReadAllText(rutaCompleta);
+                        var tb = new TextBox
+                        {
+                            Multiline = true,
+                            ReadOnly = true,
+                            ScrollBars = ScrollBars.Vertical,
+                            Dock = DockStyle.Fill,
+                            Text = contenido
+                        };
+                        panelContenidoRecurso.Controls.Add(tb);
+                    }
+                    else
+                    {
+                        MostrarError("No se encontró el archivo de texto.");
+                    }
                 }
                 else if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif")
                 {
-                    var pb = new PictureBox
+                    if (File.Exists(rutaCompleta))
                     {
-                        Image = Image.FromFile(recurso.Ruta),
-                        SizeMode = PictureBoxSizeMode.Zoom,
-                        Dock = DockStyle.Fill
-                    };
-                    panelContenidoRecurso.Controls.Add(pb);
+                        var pb = new PictureBox
+                        {
+                            Image = Image.FromFile(rutaCompleta),
+                            SizeMode = PictureBoxSizeMode.Zoom,
+                            Dock = DockStyle.Fill
+                        };
+                        panelContenidoRecurso.Controls.Add(pb);
+                    }
+                    else
+                    {
+                        MostrarError("No se encontró la imagen.");
+                    }
                 }
                 else if (ext == ".pdf")
                 {
@@ -226,25 +244,26 @@ namespace Tematika.Forms
                 }
                 else
                 {
-                    var label = new Label
-                    {
-                        Text = "Tipo de archivo no soportado.",
-                        Dock = DockStyle.Fill,
-                        TextAlign = ContentAlignment.MiddleCenter
-                    };
-                    panelContenidoRecurso.Controls.Add(label);
+                    MostrarError("Tipo de archivo no soportado.");
                 }
             }
             else
             {
-                var label = new Label
-                {
-                    Text = "No hay contenido disponible.",
-                    Dock = DockStyle.Fill,
-                    TextAlign = ContentAlignment.MiddleCenter
-                };
-                panelContenidoRecurso.Controls.Add(label);
+                MostrarError("No hay contenido disponible.");
             }
+        }
+
+        private void MostrarError(string mensaje)
+        {
+            var label = new Label
+            {
+                Text = mensaje,
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleCenter,
+                ForeColor = Color.DarkRed,
+                Font = new Font("Segoe UI", 12, FontStyle.Italic)
+            };
+            panelContenidoRecurso.Controls.Add(label);
         }
 
 

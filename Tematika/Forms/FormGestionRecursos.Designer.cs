@@ -95,10 +95,10 @@
             // panelCamposRecursos
             // 
             panelCamposRecursos.ColumnCount = 4;
-            panelCamposRecursos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            panelCamposRecursos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            panelCamposRecursos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            panelCamposRecursos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            panelCamposRecursos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            panelCamposRecursos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            panelCamposRecursos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            panelCamposRecursos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             panelCamposRecursos.Controls.Add(CBMateriaRecurso, 3, 1);
             panelCamposRecursos.Controls.Add(TBRuta, 1, 3);
             panelCamposRecursos.Controls.Add(TBUrl, 3, 0);
@@ -115,21 +115,20 @@
             panelCamposRecursos.Controls.Add(CBEliminado, 3, 3);
             panelCamposRecursos.Controls.Add(LTemaRecurso, 2, 2);
             panelCamposRecursos.Controls.Add(CBTemaRecurso, 3, 2);
-            panelCamposRecursos.Location = new Point(74, 83);
+            panelCamposRecursos.Location = new Point(74, 73);
             panelCamposRecursos.Name = "panelCamposRecursos";
-            panelCamposRecursos.RowCount = 5;
-            panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 21.3486843F));
+            panelCamposRecursos.RowCount = 4;
+            panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 21.34868F));
             panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 21.3486843F));
             panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 25.25135F));
-            panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 32.0512848F));
-            panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
-            panelCamposRecursos.Size = new Size(747, 168);
+            panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 32.05128F));
+            panelCamposRecursos.Size = new Size(811, 178);
             panelCamposRecursos.TabIndex = 101;
             // 
             // CBMateriaRecurso
             // 
             CBMateriaRecurso.FormattingEnabled = true;
-            CBMateriaRecurso.Location = new Point(561, 33);
+            CBMateriaRecurso.Location = new Point(570, 41);
             CBMateriaRecurso.Name = "CBMateriaRecurso";
             CBMateriaRecurso.Size = new Size(179, 28);
             CBMateriaRecurso.TabIndex = 50;
@@ -137,14 +136,14 @@
             // 
             // TBRuta
             // 
-            TBRuta.Location = new Point(189, 98);
+            TBRuta.Location = new Point(165, 123);
             TBRuta.Name = "TBRuta";
-            TBRuta.Size = new Size(179, 27);
+            TBRuta.Size = new Size(156, 27);
             TBRuta.TabIndex = 48;
             // 
             // TBUrl
             // 
-            TBUrl.Location = new Point(561, 3);
+            TBUrl.Location = new Point(570, 3);
             TBUrl.Name = "TBUrl";
             TBUrl.Size = new Size(179, 27);
             TBUrl.TabIndex = 46;
@@ -152,7 +151,7 @@
             // LMateriaRecurso
             // 
             LMateriaRecurso.AutoSize = true;
-            LMateriaRecurso.Location = new Point(375, 30);
+            LMateriaRecurso.Location = new Point(408, 38);
             LMateriaRecurso.Name = "LMateriaRecurso";
             LMateriaRecurso.Size = new Size(60, 20);
             LMateriaRecurso.TabIndex = 49;
@@ -161,15 +160,15 @@
             // 
             // TBTexto
             // 
-            TBTexto.Location = new Point(189, 63);
+            TBTexto.Location = new Point(165, 79);
             TBTexto.Name = "TBTexto";
-            TBTexto.Size = new Size(179, 27);
+            TBTexto.Size = new Size(156, 27);
             TBTexto.TabIndex = 43;
             // 
             // LTexto
             // 
             LTexto.AutoSize = true;
-            LTexto.Location = new Point(3, 60);
+            LTexto.Location = new Point(3, 76);
             LTexto.Name = "LTexto";
             LTexto.Size = new Size(45, 20);
             LTexto.TabIndex = 42;
@@ -186,15 +185,15 @@
             // 
             // TBTituloRecurso
             // 
-            TBTituloRecurso.Location = new Point(189, 3);
+            TBTituloRecurso.Location = new Point(165, 3);
             TBTituloRecurso.Name = "TBTituloRecurso";
-            TBTituloRecurso.Size = new Size(179, 27);
+            TBTituloRecurso.Size = new Size(156, 27);
             TBTituloRecurso.TabIndex = 28;
             // 
             // LTipoRecurso
             // 
             LTipoRecurso.AutoSize = true;
-            LTipoRecurso.Location = new Point(3, 30);
+            LTipoRecurso.Location = new Point(3, 38);
             LTipoRecurso.Name = "LTipoRecurso";
             LTipoRecurso.Size = new Size(116, 20);
             LTipoRecurso.TabIndex = 23;
@@ -204,15 +203,15 @@
             // 
             CBTipoRecurso.FormattingEnabled = true;
             CBTipoRecurso.Items.AddRange(new object[] { "Texto", "Imagen", "PDF", "Recurso Web" });
-            CBTipoRecurso.Location = new Point(189, 33);
+            CBTipoRecurso.Location = new Point(165, 41);
             CBTipoRecurso.Name = "CBTipoRecurso";
-            CBTipoRecurso.Size = new Size(179, 28);
+            CBTipoRecurso.Size = new Size(156, 28);
             CBTipoRecurso.TabIndex = 39;
             // 
             // LURL
             // 
             LURL.AutoSize = true;
-            LURL.Location = new Point(375, 0);
+            LURL.Location = new Point(408, 0);
             LURL.Name = "LURL";
             LURL.Size = new Size(35, 20);
             LURL.TabIndex = 24;
@@ -225,10 +224,10 @@
             BRuta.FlatStyle = FlatStyle.Flat;
             BRuta.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BRuta.ForeColor = SystemColors.ButtonHighlight;
-            BRuta.Location = new Point(3, 99);
+            BRuta.Location = new Point(3, 124);
             BRuta.Margin = new Padding(3, 4, 3, 4);
             BRuta.Name = "BRuta";
-            BRuta.Size = new Size(130, 31);
+            BRuta.Size = new Size(130, 37);
             BRuta.TabIndex = 47;
             BRuta.Text = "Ruta Archivo:";
             BRuta.UseVisualStyleBackColor = false;
@@ -236,7 +235,7 @@
             // labelEliminado
             // 
             labelEliminado.AutoSize = true;
-            labelEliminado.Location = new Point(375, 95);
+            labelEliminado.Location = new Point(408, 120);
             labelEliminado.Name = "labelEliminado";
             labelEliminado.Size = new Size(76, 20);
             labelEliminado.TabIndex = 44;
@@ -245,7 +244,7 @@
             // CBEliminado
             // 
             CBEliminado.FormattingEnabled = true;
-            CBEliminado.Location = new Point(561, 98);
+            CBEliminado.Location = new Point(570, 123);
             CBEliminado.Name = "CBEliminado";
             CBEliminado.Size = new Size(151, 28);
             CBEliminado.TabIndex = 45;
@@ -253,7 +252,7 @@
             // LTemaRecurso
             // 
             LTemaRecurso.AutoSize = true;
-            LTemaRecurso.Location = new Point(375, 60);
+            LTemaRecurso.Location = new Point(408, 76);
             LTemaRecurso.Name = "LTemaRecurso";
             LTemaRecurso.Size = new Size(45, 20);
             LTemaRecurso.TabIndex = 25;
@@ -262,7 +261,7 @@
             // CBTemaRecurso
             // 
             CBTemaRecurso.FormattingEnabled = true;
-            CBTemaRecurso.Location = new Point(561, 63);
+            CBTemaRecurso.Location = new Point(570, 79);
             CBTemaRecurso.Name = "CBTemaRecurso";
             CBTemaRecurso.Size = new Size(179, 28);
             CBTemaRecurso.TabIndex = 32;
