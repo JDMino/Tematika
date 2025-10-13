@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Tematika.CapaDeNegocio;
 using Tematika.Models;
+using Tematika.Styles;
 
 namespace Tematika.Forms
 {
@@ -25,6 +26,8 @@ namespace Tematika.Forms
 
         private void FormGestionDocenteMateria_Load(object sender, EventArgs e)
         {
+            EstiloEncabezado.Aplicar(panelEncabezadoDM, LTituloDocenteMateria);
+            panelDocenteMateria.BackColor = ColorTranslator.FromHtml("#cfd8dc");
             CargarDocentes();
             CargarMaterias();
             CargarAsignaciones();

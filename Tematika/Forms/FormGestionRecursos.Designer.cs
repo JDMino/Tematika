@@ -87,8 +87,9 @@
             panelRecurso.Controls.Add(panelEncabezadoR);
             panelRecurso.Dock = DockStyle.Fill;
             panelRecurso.Location = new Point(0, 0);
+            panelRecurso.Margin = new Padding(3, 4, 3, 4);
             panelRecurso.Name = "panelRecurso";
-            panelRecurso.Size = new Size(800, 492);
+            panelRecurso.Size = new Size(914, 656);
             panelRecurso.TabIndex = 0;
             // 
             // panelCamposRecursos
@@ -114,68 +115,63 @@
             panelCamposRecursos.Controls.Add(CBEliminado, 3, 3);
             panelCamposRecursos.Controls.Add(LTemaRecurso, 2, 2);
             panelCamposRecursos.Controls.Add(CBTemaRecurso, 3, 2);
-            panelCamposRecursos.Location = new Point(65, 62);
-            panelCamposRecursos.Margin = new Padding(3, 2, 3, 2);
+            panelCamposRecursos.Location = new Point(74, 83);
             panelCamposRecursos.Name = "panelCamposRecursos";
             panelCamposRecursos.RowCount = 5;
             panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 21.3486843F));
             panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 21.3486843F));
             panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 25.25135F));
             panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Percent, 32.0512848F));
-            panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            panelCamposRecursos.Size = new Size(654, 126);
+            panelCamposRecursos.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            panelCamposRecursos.Size = new Size(747, 168);
             panelCamposRecursos.TabIndex = 101;
             // 
             // CBMateriaRecurso
             // 
             CBMateriaRecurso.FormattingEnabled = true;
-            CBMateriaRecurso.Location = new Point(492, 24);
-            CBMateriaRecurso.Margin = new Padding(3, 2, 3, 2);
+            CBMateriaRecurso.Location = new Point(561, 33);
             CBMateriaRecurso.Name = "CBMateriaRecurso";
-            CBMateriaRecurso.Size = new Size(157, 23);
+            CBMateriaRecurso.Size = new Size(179, 28);
             CBMateriaRecurso.TabIndex = 50;
             CBMateriaRecurso.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // TBRuta
             // 
-            TBRuta.Location = new Point(166, 72);
-            TBRuta.Margin = new Padding(3, 2, 3, 2);
+            TBRuta.Location = new Point(189, 98);
             TBRuta.Name = "TBRuta";
-            TBRuta.Size = new Size(157, 23);
+            TBRuta.Size = new Size(179, 27);
             TBRuta.TabIndex = 48;
             // 
             // TBUrl
             // 
-            TBUrl.Location = new Point(492, 2);
-            TBUrl.Margin = new Padding(3, 2, 3, 2);
+            TBUrl.Location = new Point(561, 3);
             TBUrl.Name = "TBUrl";
-            TBUrl.Size = new Size(157, 23);
+            TBUrl.Size = new Size(179, 27);
             TBUrl.TabIndex = 46;
             // 
             // LMateriaRecurso
             // 
             LMateriaRecurso.AutoSize = true;
-            LMateriaRecurso.Location = new Point(329, 22);
+            LMateriaRecurso.Location = new Point(375, 30);
             LMateriaRecurso.Name = "LMateriaRecurso";
-            LMateriaRecurso.Size = new Size(47, 15);
+            LMateriaRecurso.Size = new Size(60, 20);
             LMateriaRecurso.TabIndex = 49;
             LMateriaRecurso.Text = "Materia";
             LMateriaRecurso.Click += label1_Click;
             // 
             // TBTexto
             // 
-            TBTexto.Location = new Point(166, 46);
-            TBTexto.Margin = new Padding(3, 2, 3, 2);
+            TBTexto.Location = new Point(189, 63);
             TBTexto.Name = "TBTexto";
-            TBTexto.Size = new Size(157, 23);
+            TBTexto.Size = new Size(179, 27);
             TBTexto.TabIndex = 43;
             // 
             // LTexto
             // 
             LTexto.AutoSize = true;
-            LTexto.Location = new Point(3, 44);
+            LTexto.Location = new Point(3, 60);
             LTexto.Name = "LTexto";
-            LTexto.Size = new Size(35, 15);
+            LTexto.Size = new Size(45, 20);
             LTexto.TabIndex = 42;
             LTexto.Text = "Texto";
             // 
@@ -184,24 +180,23 @@
             LNombreRecurso.AutoSize = true;
             LNombreRecurso.Location = new Point(3, 0);
             LNombreRecurso.Name = "LNombreRecurso";
-            LNombreRecurso.Size = new Size(37, 15);
+            LNombreRecurso.Size = new Size(47, 20);
             LNombreRecurso.TabIndex = 22;
             LNombreRecurso.Text = "Titulo";
             // 
             // TBTituloRecurso
             // 
-            TBTituloRecurso.Location = new Point(166, 2);
-            TBTituloRecurso.Margin = new Padding(3, 2, 3, 2);
+            TBTituloRecurso.Location = new Point(189, 3);
             TBTituloRecurso.Name = "TBTituloRecurso";
-            TBTituloRecurso.Size = new Size(157, 23);
+            TBTituloRecurso.Size = new Size(179, 27);
             TBTituloRecurso.TabIndex = 28;
             // 
             // LTipoRecurso
             // 
             LTipoRecurso.AutoSize = true;
-            LTipoRecurso.Location = new Point(3, 22);
+            LTipoRecurso.Location = new Point(3, 30);
             LTipoRecurso.Name = "LTipoRecurso";
-            LTipoRecurso.Size = new Size(91, 15);
+            LTipoRecurso.Size = new Size(116, 20);
             LTipoRecurso.TabIndex = 23;
             LTipoRecurso.Text = "Tipo de Recurso";
             // 
@@ -209,31 +204,31 @@
             // 
             CBTipoRecurso.FormattingEnabled = true;
             CBTipoRecurso.Items.AddRange(new object[] { "Texto", "Imagen", "PDF", "Recurso Web" });
-            CBTipoRecurso.Location = new Point(166, 24);
-            CBTipoRecurso.Margin = new Padding(3, 2, 3, 2);
+            CBTipoRecurso.Location = new Point(189, 33);
             CBTipoRecurso.Name = "CBTipoRecurso";
-            CBTipoRecurso.Size = new Size(157, 23);
+            CBTipoRecurso.Size = new Size(179, 28);
             CBTipoRecurso.TabIndex = 39;
             // 
             // LURL
             // 
             LURL.AutoSize = true;
-            LURL.Location = new Point(329, 0);
+            LURL.Location = new Point(375, 0);
             LURL.Name = "LURL";
-            LURL.Size = new Size(28, 15);
+            LURL.Size = new Size(35, 20);
             LURL.TabIndex = 24;
             LURL.Text = "URL";
             // 
             // BRuta
             // 
-            BRuta.BackColor = SystemColors.AppWorkspace;
+            BRuta.BackColor = SystemColors.MenuHighlight;
             BRuta.FlatAppearance.BorderSize = 0;
             BRuta.FlatStyle = FlatStyle.Flat;
             BRuta.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BRuta.ForeColor = SystemColors.ButtonHighlight;
-            BRuta.Location = new Point(3, 73);
+            BRuta.Location = new Point(3, 99);
+            BRuta.Margin = new Padding(3, 4, 3, 4);
             BRuta.Name = "BRuta";
-            BRuta.Size = new Size(114, 23);
+            BRuta.Size = new Size(130, 31);
             BRuta.TabIndex = 47;
             BRuta.Text = "Ruta Archivo:";
             BRuta.UseVisualStyleBackColor = false;
@@ -241,37 +236,35 @@
             // labelEliminado
             // 
             labelEliminado.AutoSize = true;
-            labelEliminado.Location = new Point(329, 70);
+            labelEliminado.Location = new Point(375, 95);
             labelEliminado.Name = "labelEliminado";
-            labelEliminado.Size = new Size(60, 15);
+            labelEliminado.Size = new Size(76, 20);
             labelEliminado.TabIndex = 44;
             labelEliminado.Text = "Eliminado";
             // 
             // CBEliminado
             // 
             CBEliminado.FormattingEnabled = true;
-            CBEliminado.Location = new Point(492, 72);
-            CBEliminado.Margin = new Padding(3, 2, 3, 2);
+            CBEliminado.Location = new Point(561, 98);
             CBEliminado.Name = "CBEliminado";
-            CBEliminado.Size = new Size(133, 23);
+            CBEliminado.Size = new Size(151, 28);
             CBEliminado.TabIndex = 45;
             // 
             // LTemaRecurso
             // 
             LTemaRecurso.AutoSize = true;
-            LTemaRecurso.Location = new Point(329, 44);
+            LTemaRecurso.Location = new Point(375, 60);
             LTemaRecurso.Name = "LTemaRecurso";
-            LTemaRecurso.Size = new Size(35, 15);
+            LTemaRecurso.Size = new Size(45, 20);
             LTemaRecurso.TabIndex = 25;
             LTemaRecurso.Text = "Tema";
             // 
             // CBTemaRecurso
             // 
             CBTemaRecurso.FormattingEnabled = true;
-            CBTemaRecurso.Location = new Point(492, 46);
-            CBTemaRecurso.Margin = new Padding(3, 2, 3, 2);
+            CBTemaRecurso.Location = new Point(561, 63);
             CBTemaRecurso.Name = "CBTemaRecurso";
-            CBTemaRecurso.Size = new Size(157, 23);
+            CBTemaRecurso.Size = new Size(179, 28);
             CBTemaRecurso.TabIndex = 32;
             // 
             // tableLayoutPanel2
@@ -286,33 +279,30 @@
             tableLayoutPanel2.Controls.Add(BRecursosActivos, 1, 0);
             tableLayoutPanel2.Controls.Add(BRecursosInactivos, 2, 0);
             tableLayoutPanel2.Controls.Add(CBFiltrarTema, 0, 2);
-            tableLayoutPanel2.Location = new Point(62, 278);
-            tableLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel2.Location = new Point(71, 371);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 3;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel2.Size = new Size(710, 104);
+            tableLayoutPanel2.Size = new Size(811, 139);
             tableLayoutPanel2.TabIndex = 100;
             // 
             // CBFiltrarMateria
             // 
             CBFiltrarMateria.FormattingEnabled = true;
-            CBFiltrarMateria.Location = new Point(3, 36);
-            CBFiltrarMateria.Margin = new Padding(3, 2, 3, 2);
+            CBFiltrarMateria.Location = new Point(3, 49);
             CBFiltrarMateria.Name = "CBFiltrarMateria";
-            CBFiltrarMateria.Size = new Size(207, 23);
+            CBFiltrarMateria.Size = new Size(236, 28);
             CBFiltrarMateria.TabIndex = 51;
             CBFiltrarMateria.Text = "Filtrar por Materia...";
             // 
             // TBBuscadorRecurso
             // 
-            TBBuscadorRecurso.Location = new Point(3, 2);
-            TBBuscadorRecurso.Margin = new Padding(3, 2, 3, 2);
+            TBBuscadorRecurso.Location = new Point(3, 3);
             TBBuscadorRecurso.Name = "TBBuscadorRecurso";
             TBBuscadorRecurso.PlaceholderText = "Buscar recurso..";
-            TBBuscadorRecurso.Size = new Size(207, 23);
+            TBBuscadorRecurso.Size = new Size(236, 27);
             TBBuscadorRecurso.TabIndex = 62;
             // 
             // BRecursosActivos
@@ -323,10 +313,9 @@
             BRecursosActivos.FlatStyle = FlatStyle.Flat;
             BRecursosActivos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BRecursosActivos.ForeColor = SystemColors.ButtonHighlight;
-            BRecursosActivos.Location = new Point(537, 2);
-            BRecursosActivos.Margin = new Padding(3, 2, 3, 2);
+            BRecursosActivos.Location = new Point(614, 3);
             BRecursosActivos.Name = "BRecursosActivos";
-            BRecursosActivos.Size = new Size(82, 22);
+            BRecursosActivos.Size = new Size(94, 29);
             BRecursosActivos.TabIndex = 63;
             BRecursosActivos.Text = "Activos";
             BRecursosActivos.UseVisualStyleBackColor = false;
@@ -339,10 +328,9 @@
             BRecursosInactivos.FlatStyle = FlatStyle.Flat;
             BRecursosInactivos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BRecursosInactivos.ForeColor = SystemColors.ButtonHighlight;
-            BRecursosInactivos.Location = new Point(625, 2);
-            BRecursosInactivos.Margin = new Padding(3, 2, 3, 2);
+            BRecursosInactivos.Location = new Point(714, 3);
             BRecursosInactivos.Name = "BRecursosInactivos";
-            BRecursosInactivos.Size = new Size(82, 22);
+            BRecursosInactivos.Size = new Size(94, 29);
             BRecursosInactivos.TabIndex = 64;
             BRecursosInactivos.Text = "Inactivos";
             BRecursosInactivos.UseVisualStyleBackColor = false;
@@ -350,10 +338,9 @@
             // CBFiltrarTema
             // 
             CBFiltrarTema.FormattingEnabled = true;
-            CBFiltrarTema.Location = new Point(3, 70);
-            CBFiltrarTema.Margin = new Padding(3, 2, 3, 2);
+            CBFiltrarTema.Location = new Point(3, 95);
             CBFiltrarTema.Name = "CBFiltrarTema";
-            CBFiltrarTema.Size = new Size(207, 23);
+            CBFiltrarTema.Size = new Size(236, 28);
             CBFiltrarTema.TabIndex = 28;
             CBFiltrarTema.Text = "Filtrar por Tema...";
             // 
@@ -368,13 +355,12 @@
             tableLayoutPanel1.Controls.Add(BEliminarRecurso, 3, 0);
             tableLayoutPanel1.Controls.Add(BCancelarRecurso, 1, 0);
             tableLayoutPanel1.Controls.Add(BModificarRecurso, 2, 0);
-            tableLayoutPanel1.Location = new Point(406, 200);
-            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel1.Location = new Point(464, 267);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
-            tableLayoutPanel1.Size = new Size(368, 38);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 51F));
+            tableLayoutPanel1.Size = new Size(421, 51);
             tableLayoutPanel1.TabIndex = 99;
             // 
             // BGuardarRecurso
@@ -386,10 +372,9 @@
             BGuardarRecurso.FlatStyle = FlatStyle.Flat;
             BGuardarRecurso.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BGuardarRecurso.ForeColor = SystemColors.ButtonHighlight;
-            BGuardarRecurso.Location = new Point(3, 2);
-            BGuardarRecurso.Margin = new Padding(3, 2, 3, 2);
+            BGuardarRecurso.Location = new Point(3, 3);
             BGuardarRecurso.Name = "BGuardarRecurso";
-            BGuardarRecurso.Size = new Size(82, 22);
+            BGuardarRecurso.Size = new Size(94, 29);
             BGuardarRecurso.TabIndex = 88;
             BGuardarRecurso.Text = "Guardar";
             BGuardarRecurso.UseVisualStyleBackColor = false;
@@ -401,10 +386,9 @@
             BEliminarRecurso.FlatStyle = FlatStyle.Flat;
             BEliminarRecurso.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BEliminarRecurso.ForeColor = SystemColors.ButtonHighlight;
-            BEliminarRecurso.Location = new Point(269, 2);
-            BEliminarRecurso.Margin = new Padding(3, 2, 3, 2);
+            BEliminarRecurso.Location = new Point(305, 3);
             BEliminarRecurso.Name = "BEliminarRecurso";
-            BEliminarRecurso.Size = new Size(82, 22);
+            BEliminarRecurso.Size = new Size(94, 29);
             BEliminarRecurso.TabIndex = 91;
             BEliminarRecurso.Text = "Eliminar";
             BEliminarRecurso.UseVisualStyleBackColor = false;
@@ -417,10 +401,9 @@
             BCancelarRecurso.FlatStyle = FlatStyle.Flat;
             BCancelarRecurso.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BCancelarRecurso.ForeColor = SystemColors.ButtonHighlight;
-            BCancelarRecurso.Location = new Point(91, 2);
-            BCancelarRecurso.Margin = new Padding(3, 2, 3, 2);
+            BCancelarRecurso.Location = new Point(103, 3);
             BCancelarRecurso.Name = "BCancelarRecurso";
-            BCancelarRecurso.Size = new Size(82, 22);
+            BCancelarRecurso.Size = new Size(94, 29);
             BCancelarRecurso.TabIndex = 89;
             BCancelarRecurso.Text = "Cancelar";
             BCancelarRecurso.UseVisualStyleBackColor = false;
@@ -432,10 +415,9 @@
             BModificarRecurso.FlatStyle = FlatStyle.Flat;
             BModificarRecurso.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BModificarRecurso.ForeColor = SystemColors.ButtonHighlight;
-            BModificarRecurso.Location = new Point(179, 2);
-            BModificarRecurso.Margin = new Padding(3, 2, 3, 2);
+            BModificarRecurso.Location = new Point(203, 3);
             BModificarRecurso.Name = "BModificarRecurso";
-            BModificarRecurso.Size = new Size(84, 22);
+            BModificarRecurso.Size = new Size(96, 29);
             BModificarRecurso.TabIndex = 90;
             BModificarRecurso.Text = "Modificar";
             BModificarRecurso.UseVisualStyleBackColor = false;
@@ -448,11 +430,10 @@
             DGVRecursos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVRecursos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGVRecursos.Columns.AddRange(new DataGridViewColumn[] { IdRecurso, titulo, texto, Ruta, url, Tipo, idTema, colAcciones });
-            DGVRecursos.Location = new Point(60, 386);
-            DGVRecursos.Margin = new Padding(3, 2, 3, 2);
+            DGVRecursos.Location = new Point(69, 515);
             DGVRecursos.Name = "DGVRecursos";
             DGVRecursos.RowHeadersWidth = 51;
-            DGVRecursos.Size = new Size(712, 76);
+            DGVRecursos.Size = new Size(814, 101);
             DGVRecursos.TabIndex = 98;
             // 
             // IdRecurso
@@ -519,9 +500,8 @@
             panelEncabezadoR.Controls.Add(LTituloRecursos);
             panelEncabezadoR.Dock = DockStyle.Top;
             panelEncabezadoR.Location = new Point(0, 0);
-            panelEncabezadoR.Margin = new Padding(3, 2, 3, 2);
             panelEncabezadoR.Name = "panelEncabezadoR";
-            panelEncabezadoR.Size = new Size(800, 50);
+            panelEncabezadoR.Size = new Size(914, 67);
             panelEncabezadoR.TabIndex = 97;
             // 
             // LTituloRecursos
@@ -530,16 +510,17 @@
             LTituloRecursos.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LTituloRecursos.Location = new Point(3, 0);
             LTituloRecursos.Name = "LTituloRecursos";
-            LTituloRecursos.Size = new Size(222, 30);
+            LTituloRecursos.Size = new Size(280, 38);
             LTituloRecursos.TabIndex = 1;
             LTituloRecursos.Text = "Gestion de Recursos";
             // 
             // FormGestionRecursos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 492);
+            ClientSize = new Size(914, 656);
             Controls.Add(panelRecurso);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormGestionRecursos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormGestionRecursos";

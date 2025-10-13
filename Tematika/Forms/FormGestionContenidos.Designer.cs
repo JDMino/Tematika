@@ -46,8 +46,9 @@
             panelGestionContenidos.Controls.Add(TLPContenido);
             panelGestionContenidos.Dock = DockStyle.Fill;
             panelGestionContenidos.Location = new Point(0, 0);
+            panelGestionContenidos.Margin = new Padding(3, 4, 3, 4);
             panelGestionContenidos.Name = "panelGestionContenidos";
-            panelGestionContenidos.Size = new Size(800, 450);
+            panelGestionContenidos.Size = new Size(914, 600);
             panelGestionContenidos.TabIndex = 0;
             // 
             // TLPContenido
@@ -61,14 +62,13 @@
             TLPContenido.Controls.Add(btnTema, 1, 0);
             TLPContenido.Controls.Add(btnRecursos, 0, 1);
             TLPContenido.Controls.Add(btnAsignacionDocente, 0, 2);
-            TLPContenido.Location = new Point(74, 57);
-            TLPContenido.Margin = new Padding(3, 2, 3, 2);
+            TLPContenido.Location = new Point(85, 76);
             TLPContenido.Name = "TLPContenido";
             TLPContenido.RowCount = 3;
             TLPContenido.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             TLPContenido.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             TLPContenido.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            TLPContenido.Size = new Size(613, 325);
+            TLPContenido.Size = new Size(701, 433);
             TLPContenido.TabIndex = 4;
             // 
             // btnMaterias
@@ -81,11 +81,11 @@
             btnMaterias.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnMaterias.ForeColor = SystemColors.ButtonHighlight;
             btnMaterias.Image = (Image)resources.GetObject("btnMaterias.Image");
-            btnMaterias.Location = new Point(4, 3);
-            btnMaterias.Margin = new Padding(4, 3, 4, 3);
+            btnMaterias.Location = new Point(5, 4);
+            btnMaterias.Margin = new Padding(5, 4, 5, 4);
             btnMaterias.Name = "btnMaterias";
-            btnMaterias.Padding = new Padding(2);
-            btnMaterias.Size = new Size(298, 102);
+            btnMaterias.Padding = new Padding(2, 3, 2, 3);
+            btnMaterias.Size = new Size(340, 136);
             btnMaterias.TabIndex = 0;
             btnMaterias.Text = "Materias";
             btnMaterias.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -102,11 +102,11 @@
             btnPreguntas.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPreguntas.ForeColor = SystemColors.ButtonHighlight;
             btnPreguntas.Image = (Image)resources.GetObject("btnPreguntas.Image");
-            btnPreguntas.Location = new Point(310, 111);
-            btnPreguntas.Margin = new Padding(4, 3, 4, 3);
+            btnPreguntas.Location = new Point(355, 148);
+            btnPreguntas.Margin = new Padding(5, 4, 5, 4);
             btnPreguntas.Name = "btnPreguntas";
-            btnPreguntas.Padding = new Padding(2);
-            btnPreguntas.Size = new Size(299, 102);
+            btnPreguntas.Padding = new Padding(2, 3, 2, 3);
+            btnPreguntas.Size = new Size(341, 136);
             btnPreguntas.TabIndex = 3;
             btnPreguntas.Text = "Preguntas de Evaluación";
             btnPreguntas.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -123,11 +123,11 @@
             btnTema.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnTema.ForeColor = SystemColors.ButtonHighlight;
             btnTema.Image = (Image)resources.GetObject("btnTema.Image");
-            btnTema.Location = new Point(310, 3);
-            btnTema.Margin = new Padding(4, 3, 4, 3);
+            btnTema.Location = new Point(355, 4);
+            btnTema.Margin = new Padding(5, 4, 5, 4);
             btnTema.Name = "btnTema";
-            btnTema.Padding = new Padding(2);
-            btnTema.Size = new Size(299, 102);
+            btnTema.Padding = new Padding(2, 3, 2, 3);
+            btnTema.Size = new Size(341, 136);
             btnTema.TabIndex = 1;
             btnTema.Text = "Temas";
             btnTema.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -144,11 +144,11 @@
             btnRecursos.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRecursos.ForeColor = SystemColors.ButtonHighlight;
             btnRecursos.Image = (Image)resources.GetObject("btnRecursos.Image");
-            btnRecursos.Location = new Point(4, 111);
-            btnRecursos.Margin = new Padding(4, 3, 4, 3);
+            btnRecursos.Location = new Point(5, 148);
+            btnRecursos.Margin = new Padding(5, 4, 5, 4);
             btnRecursos.Name = "btnRecursos";
-            btnRecursos.Padding = new Padding(2);
-            btnRecursos.Size = new Size(298, 102);
+            btnRecursos.Padding = new Padding(2, 3, 2, 3);
+            btnRecursos.Size = new Size(340, 136);
             btnRecursos.TabIndex = 2;
             btnRecursos.Text = "Recursos";
             btnRecursos.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -162,20 +162,24 @@
             btnAsignacionDocente.FlatAppearance.BorderSize = 0;
             btnAsignacionDocente.FlatStyle = FlatStyle.Flat;
             btnAsignacionDocente.ForeColor = SystemColors.ButtonHighlight;
-            btnAsignacionDocente.Location = new Point(3, 219);
+            btnAsignacionDocente.Image = (Image)resources.GetObject("btnAsignacionDocente.Image");
+            btnAsignacionDocente.Location = new Point(3, 292);
+            btnAsignacionDocente.Margin = new Padding(3, 4, 3, 4);
             btnAsignacionDocente.Name = "btnAsignacionDocente";
-            btnAsignacionDocente.Size = new Size(300, 103);
+            btnAsignacionDocente.Size = new Size(344, 137);
             btnAsignacionDocente.TabIndex = 4;
             btnAsignacionDocente.Text = "Asignación Docente - Materias";
+            btnAsignacionDocente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAsignacionDocente.UseVisualStyleBackColor = false;
             btnAsignacionDocente.Click += btnAsignacionDocente_Click;
             // 
             // FormGestionContenidos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(panelGestionContenidos);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormGestionContenidos";
             Text = "FormGestionContenidos";
             Load += FormGestionContenidos_Load;
