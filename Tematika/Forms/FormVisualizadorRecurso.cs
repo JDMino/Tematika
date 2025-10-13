@@ -40,6 +40,7 @@ namespace Tematika.Forms
                 button1.Enabled = false;
                 textBox2.Enabled = false;
                 MessageBox.Show("Estás en modo invitado. Algunas funciones están deshabilitadas.", "Modo Invitado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                VisualizarContenido();
                 return;
             }
 
@@ -214,26 +215,14 @@ namespace Tematika.Forms
                 }
                 else if (ext == ".pdf")
                 {
-                    try
+                    var label = new Label
                     {
-                        var pdfViewer = new PdfiumViewer.PdfViewer
-                        {
-                            Dock = DockStyle.Fill
-                        };
-                        var doc = PdfiumViewer.PdfDocument.Load(recurso.Ruta);
-                        pdfViewer.Document = doc;
-                        panelContenidoRecurso.Controls.Add(pdfViewer);
-                    }
-                    catch (Exception ex)
-                    {
-                        var errorLabel = new Label
-                        {
-                            Text = "No se pudo cargar el PDF: " + ex.Message,
-                            Dock = DockStyle.Fill,
-                            TextAlign = ContentAlignment.MiddleCenter
-                        };
-                        panelContenidoRecurso.Controls.Add(errorLabel);
-                    }
+                        Text = "Archivo PDF",
+                        Dock = DockStyle.Fill,
+                        TextAlign = ContentAlignment.MiddleCenter,
+                        Font = new Font("Segoe UI", 14, FontStyle.Bold)
+                    };
+                    panelContenidoRecurso.Controls.Add(label);
                 }
                 else
                 {
@@ -257,6 +246,7 @@ namespace Tematika.Forms
                 panelContenidoRecurso.Controls.Add(label);
             }
         }
+
 
     }
 }
