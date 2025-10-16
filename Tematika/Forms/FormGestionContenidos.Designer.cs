@@ -161,6 +161,7 @@
             btnAsignacionDocente.Dock = DockStyle.Fill;
             btnAsignacionDocente.FlatAppearance.BorderSize = 0;
             btnAsignacionDocente.FlatStyle = FlatStyle.Flat;
+            btnAsignacionDocente.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAsignacionDocente.ForeColor = SystemColors.ButtonHighlight;
             btnAsignacionDocente.Image = (Image)resources.GetObject("btnAsignacionDocente.Image");
             btnAsignacionDocente.Location = new Point(3, 292);
@@ -168,7 +169,7 @@
             btnAsignacionDocente.Name = "btnAsignacionDocente";
             btnAsignacionDocente.Size = new Size(344, 137);
             btnAsignacionDocente.TabIndex = 4;
-            btnAsignacionDocente.Text = "Asignación Docente - Materias";
+            btnAsignacionDocente.Text = "Asignación\r\nDocente - Materias";
             btnAsignacionDocente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAsignacionDocente.UseVisualStyleBackColor = false;
             btnAsignacionDocente.Click += btnAsignacionDocente_Click;
