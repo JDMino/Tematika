@@ -51,7 +51,7 @@
             // 
             // panelTituloVisualizador
             // 
-            panelTituloVisualizador.BackColor = Color.RoyalBlue;
+            panelTituloVisualizador.BackColor = SystemColors.ActiveCaption;
             panelTituloVisualizador.Controls.Add(labelTituloVRecurso);
             panelTituloVisualizador.Dock = DockStyle.Top;
             panelTituloVisualizador.Location = new Point(0, 0);
@@ -74,19 +74,24 @@
             // 
             // btnMarcarFavorito
             // 
+            btnMarcarFavorito.BackColor = Color.Orange;
+            btnMarcarFavorito.FlatAppearance.BorderSize = 0;
+            btnMarcarFavorito.FlatStyle = FlatStyle.Flat;
+            btnMarcarFavorito.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnMarcarFavorito.ForeColor = SystemColors.ButtonHighlight;
             btnMarcarFavorito.Location = new Point(23, 72);
             btnMarcarFavorito.Margin = new Padding(3, 4, 3, 4);
             btnMarcarFavorito.Name = "btnMarcarFavorito";
-            btnMarcarFavorito.Size = new Size(158, 31);
+            btnMarcarFavorito.Size = new Size(199, 31);
             btnMarcarFavorito.TabIndex = 1;
             btnMarcarFavorito.Text = "Marcar como Favorito";
-            btnMarcarFavorito.UseVisualStyleBackColor = true;
+            btnMarcarFavorito.UseVisualStyleBackColor = false;
             // 
             // labelValoracion
             // 
             labelValoracion.AutoSize = true;
             labelValoracion.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelValoracion.Location = new Point(209, 77);
+            labelValoracion.Location = new Point(228, 77);
             labelValoracion.Name = "labelValoracion";
             labelValoracion.Size = new Size(86, 20);
             labelValoracion.TabIndex = 2;
@@ -96,7 +101,7 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5" });
-            comboBox1.Location = new Point(303, 72);
+            comboBox1.Location = new Point(322, 72);
             comboBox1.Margin = new Padding(3, 4, 3, 4);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(44, 28);
@@ -106,11 +111,11 @@
             // 
             panelContenidoRecurso.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelContenidoRecurso.AutoScroll = true;
-            panelContenidoRecurso.BackColor = SystemColors.ActiveCaption;
-            panelContenidoRecurso.Location = new Point(0, 111);
+            panelContenidoRecurso.BackColor = SystemColors.ActiveBorder;
+            panelContenidoRecurso.Location = new Point(23, 111);
             panelContenidoRecurso.Margin = new Padding(3, 4, 3, 4);
             panelContenidoRecurso.Name = "panelContenidoRecurso";
-            panelContenidoRecurso.Size = new Size(1045, 357);
+            panelContenidoRecurso.Size = new Size(961, 357);
             panelContenidoRecurso.TabIndex = 4;
             // 
             // labelNotaRecurso
@@ -131,7 +136,7 @@
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ScrollBars = ScrollBars.Vertical;
-            textBox1.Size = new Size(1008, 59);
+            textBox1.Size = new Size(924, 59);
             textBox1.TabIndex = 12;
             // 
             // textBox2
@@ -142,7 +147,7 @@
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.ScrollBars = ScrollBars.Vertical;
-            textBox2.Size = new Size(1008, 59);
+            textBox2.Size = new Size(924, 59);
             textBox2.TabIndex = 14;
             // 
             // labelComentarioRecurso
@@ -157,23 +162,33 @@
             // 
             // btnGuardarNota
             // 
+            btnGuardarNota.BackColor = Color.ForestGreen;
+            btnGuardarNota.FlatAppearance.BorderSize = 0;
+            btnGuardarNota.FlatStyle = FlatStyle.Flat;
+            btnGuardarNota.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGuardarNota.ForeColor = SystemColors.ButtonHighlight;
             btnGuardarNota.Location = new Point(23, 579);
             btnGuardarNota.Margin = new Padding(3, 4, 3, 4);
             btnGuardarNota.Name = "btnGuardarNota";
             btnGuardarNota.Size = new Size(112, 31);
             btnGuardarNota.TabIndex = 15;
             btnGuardarNota.Text = "Guardar Nota";
-            btnGuardarNota.UseVisualStyleBackColor = true;
+            btnGuardarNota.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
+            button1.BackColor = Color.RoyalBlue;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = SystemColors.ButtonHighlight;
             button1.Location = new Point(23, 719);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(130, 31);
+            button1.Size = new Size(149, 30);
             button1.TabIndex = 16;
             button1.Text = "Enviar Comentario";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             // 
             // DGVComentariosRecursos
             // 
@@ -185,7 +200,7 @@
             DGVComentariosRecursos.Margin = new Padding(3, 4, 3, 4);
             DGVComentariosRecursos.Name = "DGVComentariosRecursos";
             DGVComentariosRecursos.RowHeadersWidth = 51;
-            DGVComentariosRecursos.Size = new Size(1009, 159);
+            DGVComentariosRecursos.Size = new Size(925, 159);
             DGVComentariosRecursos.TabIndex = 17;
             // 
             // FechaComentarioRecurso
@@ -213,13 +228,18 @@
             // 
             // btnGuardarValoracion
             // 
-            btnGuardarValoracion.Location = new Point(371, 72);
+            btnGuardarValoracion.BackColor = Color.ForestGreen;
+            btnGuardarValoracion.FlatAppearance.BorderSize = 0;
+            btnGuardarValoracion.FlatStyle = FlatStyle.Flat;
+            btnGuardarValoracion.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGuardarValoracion.ForeColor = SystemColors.ButtonHighlight;
+            btnGuardarValoracion.Location = new Point(390, 72);
             btnGuardarValoracion.Margin = new Padding(3, 4, 3, 4);
             btnGuardarValoracion.Name = "btnGuardarValoracion";
-            btnGuardarValoracion.Size = new Size(131, 31);
+            btnGuardarValoracion.Size = new Size(165, 31);
             btnGuardarValoracion.TabIndex = 18;
             btnGuardarValoracion.Text = "Guardar Valoración";
-            btnGuardarValoracion.UseVisualStyleBackColor = true;
+            btnGuardarValoracion.UseVisualStyleBackColor = false;
             // 
             // FormVisualizadorRecurso
             // 

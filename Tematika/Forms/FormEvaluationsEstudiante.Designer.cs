@@ -67,13 +67,18 @@
             // btnEmpezarEvaluacion
             // 
             btnEmpezarEvaluacion.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnEmpezarEvaluacion.Location = new Point(710, 149);
+            btnEmpezarEvaluacion.BackColor = Color.RoyalBlue;
+            btnEmpezarEvaluacion.FlatAppearance.BorderSize = 0;
+            btnEmpezarEvaluacion.FlatStyle = FlatStyle.Flat;
+            btnEmpezarEvaluacion.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEmpezarEvaluacion.ForeColor = SystemColors.ButtonHighlight;
+            btnEmpezarEvaluacion.Location = new Point(688, 149);
             btnEmpezarEvaluacion.Margin = new Padding(3, 4, 3, 4);
             btnEmpezarEvaluacion.Name = "btnEmpezarEvaluacion";
-            btnEmpezarEvaluacion.Size = new Size(152, 31);
+            btnEmpezarEvaluacion.Size = new Size(174, 31);
             btnEmpezarEvaluacion.TabIndex = 5;
             btnEmpezarEvaluacion.Text = "Empezar Evaluación";
-            btnEmpezarEvaluacion.UseVisualStyleBackColor = true;
+            btnEmpezarEvaluacion.UseVisualStyleBackColor = false;
             btnEmpezarEvaluacion.Click += btnEmpezarEvaluacion_Click;
             // 
             // labelRealizarEvaluacion
@@ -130,7 +135,7 @@
             // panelHistorialEvaluaciones
             // 
             panelHistorialEvaluaciones.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelHistorialEvaluaciones.BackColor = Color.SteelBlue;
+            panelHistorialEvaluaciones.BackColor = SystemColors.ActiveCaption;
             panelHistorialEvaluaciones.Controls.Add(DGVHistorialEvaluaciones);
             panelHistorialEvaluaciones.Controls.Add(labelHistorialEvaluaciones);
             panelHistorialEvaluaciones.Location = new Point(0, 188);
