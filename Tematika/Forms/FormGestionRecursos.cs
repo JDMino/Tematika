@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Tematika.CapaDeNegocio;
@@ -10,7 +11,6 @@ using Tematika.Utils;
 
 namespace Tematika.Forms
 {
-
     public partial class FormGestionRecursos : Form
     {
         private readonly DocenteMateriaService _docenteMateriaService = new DocenteMateriaService();
@@ -77,8 +77,6 @@ namespace Tematika.Forms
                     .ToList();
 
                 materias = materias.Where(m => asignadas.Contains(m.IdMateria)).ToList();
-
-                //combo.Enabled = materias.Count > 1;
             }
 
             materias.Insert(0, new Materia { IdMateria = 0, Nombre = "Seleccionar materia..." });
@@ -87,7 +85,6 @@ namespace Tematika.Forms
             combo.ValueMember = "IdMateria";
             combo.DataSource = materias;
         }
-
 
         private void CargarTemasCombo(ComboBox combo, int idMateria)
         {
@@ -192,32 +189,80 @@ namespace Tematika.Forms
             CBEliminado.Visible = false;
         }
 
-
-        private void LimpiarCampos()
+        private void DGVRecursos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            TBTituloRecurso.Clear();
-            TBTexto.Clear();
-            TBRuta.Clear();
-            TBUrl.Clear();
-            CBTipoRecurso.SelectedIndex = 0;
-            CBMateriaRecurso.SelectedIndex = 0;
-            ReiniciarCombo<Tema>(CBFiltrarMateria, "Seleccionar materia...");
-            ReiniciarCombo<Tema>(CBFiltrarTema, "Seleccionar tema...");
-            ReiniciarCombo<Tema>(CBMateriaRecurso, "Seleccionar materia...");
-            ReiniciarCombo<Tema>(CBTemaRecurso, "Seleccionar tema...");
-            CBEliminado.SelectedIndex = 0;
-            recursoSeleccionadoId = null;
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            //vuelve a cargar las materias
-            CargarMateriasCombo(CBMateriaRecurso);
-            CargarMateriasCombo(CBFiltrarMateria);
+            // Si se hizo clic en el botón "Ver"
+            if (DGVRecursos.Columns[e.ColumnIndex].Name == "colAcciones")
+            {
+                var fila = DGVRecursos.Rows[e.RowIndex];
+                var idRecurso = Convert.ToInt32(fila.Cells["IdRecurso"].Value);
+                var recurso = _recursoService.ObtenerRecurso(idRecurso);
+                if (recurso == null) return;
 
+                var visualizador = new FormVisualizadorRecurso(recurso);
 
-            BGuardarRecurso.Visible = true;
-            BModificarRecurso.Visible = false;
-            BEliminarRecurso.Visible = false;
-            labelEliminado.Visible = false;
-            CBEliminado.Visible = false;
+                // Deshabilitar interacción
+                visualizador.btnMarcarFavorito.Enabled = false;
+                visualizador.btnMarcarFavorito.BackColor = Color.Gray;
+                visualizador.btnGuardarValoracion.Enabled = false;
+                visualizador.btnGuardarValoracion.BackColor = Color.Gray;
+                visualizador.comboBox1.Enabled = false;
+                visualizador.comboBox1.BackColor = Color.Gray;
+                visualizador.btnGuardarNota.Enabled = false;
+                visualizador.btnGuardarNota.BackColor = Color.Gray;
+                
+                if (SesionManager.SesionActiva && SesionManager.UsuarioActual!.IdPerfil != 2)
+                {
+                    visualizador.button1.Enabled = false;
+                    visualizador.button1.BackColor = Color.Gray;
+                }
+
+                visualizador.Show();
+                return;
+            }
+
+            // Carga para edición
+            var filaEdicion = DGVRecursos.Rows[e.RowIndex];
+            recursoSeleccionadoId = Convert.ToInt32(filaEdicion.Cells["IdRecurso"].Value);
+            var recursoEdit = _recursoService.ObtenerRecurso(recursoSeleccionadoId.Value);
+            if (recursoEdit == null) return;
+
+            TBTituloRecurso.Text = recursoEdit.Titulo;
+            TBTexto.Text = recursoEdit.Texto;
+            TBRuta.Text = recursoEdit.Ruta;
+            TBUrl.Text = recursoEdit.Url;
+            CBTipoRecurso.SelectedItem = recursoEdit.Tipo;
+
+            var tema = _temaService.ObtenerTema(recursoEdit.IdTema);
+            if (tema != null)
+            {
+                // Selecciona la materia correspondiente al tema
+                CBMateriaRecurso.SelectedValue = tema.IdMateria;
+
+                // Carga los temas de esa materia en el combo de temas
+                var temas = _temaService.ListarTemas()
+                    .Where(t => t.IdMateria == tema.IdMateria && !t.Eliminado)
+                    .OrderBy(t => t.Nombre)
+                    .ToList();
+
+                temas.Insert(0, new Tema { IdTema = 0, Nombre = "Seleccionar tema..." });
+
+                CBTemaRecurso.DisplayMember = "Nombre";
+                CBTemaRecurso.ValueMember = "IdTema";
+                CargarTemasCombo(CBTemaRecurso, tema.IdMateria);
+                CBTemaRecurso.SelectedValue = recursoEdit.IdTema;
+            }
+
+            CBEliminado.SelectedItem = recursoEdit.Eliminado ? "Sí" : "No";
+
+            // Muestra los botones de edición y eliminación
+            BGuardarRecurso.Visible = false;
+            BModificarRecurso.Visible = true;
+            BEliminarRecurso.Visible = true;
+            labelEliminado.Visible = true;
+            CBEliminado.Visible = true;
         }
 
         private void BGuardarRecurso_Click(object sender, EventArgs e)
@@ -256,50 +301,6 @@ namespace Tematika.Forms
             CargarRecursos();
             LimpiarCampos();
         }
-
-        private void DGVRecursos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            var fila = DGVRecursos.Rows[e.RowIndex];
-            recursoSeleccionadoId = Convert.ToInt32(fila.Cells["IdRecurso"].Value);
-
-            var recurso = _recursoService.ObtenerRecurso(recursoSeleccionadoId.Value);
-            if (recurso == null) return;
-
-            TBTituloRecurso.Text = recurso.Titulo;
-            TBTexto.Text = recurso.Texto;
-            TBRuta.Text = recurso.Ruta;
-            TBUrl.Text = recurso.Url;
-            CBTipoRecurso.SelectedItem = recurso.Tipo;
-
-            var tema = _temaService.ObtenerTema(recurso.IdTema);
-            if (tema != null)
-            {
-                CBMateriaRecurso.SelectedValue = tema.IdMateria;
-
-                var temas = _temaService.ListarTemas()
-                    .Where(t => t.IdMateria == tema.IdMateria && !t.Eliminado)
-                    .OrderBy(t => t.Nombre)
-                    .ToList();
-
-                temas.Insert(0, new Tema { IdTema = 0, Nombre = "Seleccionar tema..." });
-
-                CBTemaRecurso.DisplayMember = "Nombre";
-                CBTemaRecurso.ValueMember = "IdTema";
-                CBTemaRecurso.DataSource = temas;
-                CBTemaRecurso.SelectedValue = recurso.IdTema;
-            }
-
-            CBEliminado.SelectedItem = recurso.Eliminado ? "Sí" : "No";
-
-            BGuardarRecurso.Visible = false;
-            BModificarRecurso.Visible = true;
-            BEliminarRecurso.Visible = true;
-            labelEliminado.Visible = true;
-            CBEliminado.Visible = true;
-        }
-
 
         private void BModificarRecurso_Click(object sender, EventArgs e)
         {
@@ -379,7 +380,7 @@ namespace Tematika.Forms
         private void BRuta_Click(object sender, EventArgs e)
         {
             using var dialogo = new OpenFileDialog();
-            dialogo.Filter = "Archivos permitidos|*.pdf;*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.txt";
+            dialogo.Filter = "Archivos permitidos|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.txt";
             dialogo.Title = "Seleccionar archivo de recurso";
 
             if (dialogo.ShowDialog() == DialogResult.OK)
@@ -387,27 +388,47 @@ namespace Tematika.Forms
                 string origen = dialogo.FileName;
                 string nombreArchivo = Path.GetFileName(origen);
 
-                // Ruta física del proyecto (sube desde bin/)
                 string rutaProyecto = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
                 string carpetaDestino = Path.Combine(rutaProyecto, "Recursos");
-                Directory.CreateDirectory(carpetaDestino); // Asegura existencia
+                Directory.CreateDirectory(carpetaDestino);
 
                 string destino = Path.Combine(carpetaDestino, nombreArchivo);
                 File.Copy(origen, destino, overwrite: true);
 
-                // Guardar ruta relativa
                 TBRuta.Text = Path.Combine("Recursos", nombreArchivo).Replace("\\", "/");
             }
         }
 
+        private void LimpiarCampos()
+        {
+            TBTituloRecurso.Clear();
+            TBTexto.Clear();
+            TBRuta.Clear();
+            TBUrl.Clear();
+            CBTipoRecurso.SelectedIndex = 0;
+            CBMateriaRecurso.SelectedIndex = 0;
+            ReiniciarCombo<Tema>(CBTemaRecurso, "Seleccionar tema...");
+            CBEliminado.SelectedIndex = 0;
+            recursoSeleccionadoId = null;
+
+            CargarMateriasCombo(CBMateriaRecurso);
+            CargarMateriasCombo(CBFiltrarMateria);
+
+            BGuardarRecurso.Visible = true;
+            BModificarRecurso.Visible = false;
+            BEliminarRecurso.Visible = false;
+            labelEliminado.Visible = false;
+            CBEliminado.Visible = false;
+        }
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Evento del diseñador para CBMateriaRecurso, no utilizado directamente
+            // Evento del diseñador no utilizado
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-            // Evento del diseñador para LMateriaRecurso, no utilizado directamente
+            // Evento del diseñador no utilizado
         }
     }
 }

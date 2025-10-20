@@ -32,6 +32,7 @@ namespace Tematika.Forms
 
             if (!SesionManager.SesionActiva || usuario == null)
             {
+                // Deshabilita interacción en modo invitado
                 btnMarcarFavorito.Enabled = false;
                 btnGuardarValoracion.Enabled = false;
                 comboBox1.Enabled = false;
@@ -39,11 +40,13 @@ namespace Tematika.Forms
                 textBox1.Enabled = false;
                 button1.Enabled = false;
                 textBox2.Enabled = false;
+
                 MessageBox.Show("Estás en modo invitado. Algunas funciones están deshabilitadas.", "Modo Invitado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 VisualizarContenido();
                 return;
             }
 
+            // Cargar favoritos y valoración propia
             var favoritos = favoritoService.ListarPorUsuario(usuario.IdUsuario);
             var favorito = favoritos.FirstOrDefault(f => f.IdRecurso == recurso.IdRecurso);
             btnMarcarFavorito.Text = favorito != null ? "Desmarcar como Favorito" : "Marcar como Favorito";
@@ -52,17 +55,23 @@ namespace Tematika.Forms
             var propia = valoraciones.FirstOrDefault(v => v.IdUsuario == usuario.IdUsuario);
             comboBox1.SelectedItem = propia?.Puntuacion.ToString();
 
+            // Cargar comentarios con nombres
+            ActualizarComentarios();
+            VisualizarContenido();
+        }
+
+        private void ActualizarComentarios()
+        {
             var comentarios = comentarioService.ListarPorRecurso(recurso.IdRecurso);
+            var usuarios = new UsuarioService().ListarUsuarios();
+
             DGVComentariosRecursos.Rows.Clear();
             foreach (var c in comentarios)
             {
-                var nombre = "Usuario " + c.IdUsuario;
+                var autor = usuarios.FirstOrDefault(u => u.IdUsuario == c.IdUsuario);
+                var nombre = autor != null ? $"{autor.Nombre} {autor.Apellido}" : $"Usuario {c.IdUsuario}";
                 DGVComentariosRecursos.Rows.Add(c.Fecha.ToShortDateString(), nombre, c.Texto);
             }
-
-
-            VisualizarContenido();
-
         }
 
         private void btnMarcarFavorito_Click(object sender, EventArgs e)
@@ -146,8 +155,17 @@ namespace Tematika.Forms
                 Fecha = DateTime.Now
             };
 
-            comentarioService.CrearComentario(comentario);
-            MessageBox.Show("Comentario enviado.");
+            var error = comentarioService.CrearComentario(comentario);
+            if (error == null)
+            {
+                MessageBox.Show("Comentario enviado.");
+                textBox2.Clear();
+                ActualizarComentarios(); // 🔄 Refresca el DataGrid
+            }
+            else
+            {
+                MessageBox.Show(error, "Error al enviar comentario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 
@@ -230,17 +248,6 @@ namespace Tematika.Forms
                     {
                         MostrarError("No se encontró la imagen.");
                     }
-                }
-                else if (ext == ".pdf")
-                {
-                    var label = new Label
-                    {
-                        Text = "Archivo PDF",
-                        Dock = DockStyle.Fill,
-                        TextAlign = ContentAlignment.MiddleCenter,
-                        Font = new Font("Segoe UI", 14, FontStyle.Bold)
-                    };
-                    panelContenidoRecurso.Controls.Add(label);
                 }
                 else
                 {
