@@ -31,7 +31,7 @@
             panelMain = new Panel();
             BBackUp = new Button();
             BRuta = new Button();
-            BConecatr = new Button();
+            BConectar = new Button();
             CBBackUp = new ComboBox();
             textBox2 = new TextBox();
             LBackUp2 = new Label();
@@ -48,15 +48,16 @@
             panelMain.BackColor = SystemColors.ActiveCaption;
             panelMain.Controls.Add(BBackUp);
             panelMain.Controls.Add(BRuta);
-            panelMain.Controls.Add(BConecatr);
+            panelMain.Controls.Add(BConectar);
             panelMain.Controls.Add(CBBackUp);
             panelMain.Controls.Add(textBox2);
             panelMain.Controls.Add(LBackUp2);
             panelMain.Controls.Add(LBackUp1);
             panelMain.Controls.Add(panelEncabezado);
             panelMain.Location = new Point(0, 0);
+            panelMain.Margin = new Padding(3, 2, 3, 2);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(800, 450);
+            panelMain.Size = new Size(700, 338);
             panelMain.TabIndex = 0;
             // 
             // BBackUp
@@ -66,9 +67,10 @@
             BBackUp.FlatStyle = FlatStyle.Flat;
             BBackUp.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BBackUp.ForeColor = SystemColors.ButtonHighlight;
-            BBackUp.Location = new Point(600, 265);
+            BBackUp.Location = new Point(525, 199);
+            BBackUp.Margin = new Padding(3, 2, 3, 2);
             BBackUp.Name = "BBackUp";
-            BBackUp.Size = new Size(94, 29);
+            BBackUp.Size = new Size(82, 22);
             BBackUp.TabIndex = 8;
             BBackUp.Text = "Back Up";
             BBackUp.UseVisualStyleBackColor = false;
@@ -80,51 +82,55 @@
             BRuta.FlatStyle = FlatStyle.Flat;
             BRuta.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             BRuta.ForeColor = SystemColors.ButtonHighlight;
-            BRuta.Location = new Point(600, 173);
+            BRuta.Location = new Point(525, 130);
+            BRuta.Margin = new Padding(3, 2, 3, 2);
             BRuta.Name = "BRuta";
-            BRuta.Size = new Size(94, 29);
+            BRuta.Size = new Size(82, 22);
             BRuta.TabIndex = 7;
             BRuta.Text = "Ruta";
             BRuta.UseVisualStyleBackColor = false;
             // 
-            // BConecatr
+            // BConectar
             // 
-            BConecatr.BackColor = Color.ForestGreen;
-            BConecatr.FlatAppearance.BorderSize = 0;
-            BConecatr.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 125, 50);
-            BConecatr.FlatAppearance.MouseOverBackColor = Color.FromArgb(67, 160, 71);
-            BConecatr.FlatStyle = FlatStyle.Flat;
-            BConecatr.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            BConecatr.ForeColor = SystemColors.ButtonHighlight;
-            BConecatr.Location = new Point(600, 127);
-            BConecatr.Name = "BConecatr";
-            BConecatr.Size = new Size(94, 29);
-            BConecatr.TabIndex = 6;
-            BConecatr.Text = "Conectar";
-            BConecatr.UseVisualStyleBackColor = false;
+            BConectar.BackColor = Color.ForestGreen;
+            BConectar.FlatAppearance.BorderSize = 0;
+            BConectar.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 125, 50);
+            BConectar.FlatAppearance.MouseOverBackColor = Color.FromArgb(67, 160, 71);
+            BConectar.FlatStyle = FlatStyle.Flat;
+            BConectar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            BConectar.ForeColor = SystemColors.ButtonHighlight;
+            BConectar.Location = new Point(525, 95);
+            BConectar.Margin = new Padding(3, 2, 3, 2);
+            BConectar.Name = "BConectar";
+            BConectar.Size = new Size(82, 22);
+            BConectar.TabIndex = 6;
+            BConectar.Text = "Conectar";
+            BConectar.UseVisualStyleBackColor = false;
             // 
             // CBBackUp
             // 
             CBBackUp.FormattingEnabled = true;
-            CBBackUp.Location = new Point(273, 124);
+            CBBackUp.Location = new Point(239, 93);
+            CBBackUp.Margin = new Padding(3, 2, 3, 2);
             CBBackUp.Name = "CBBackUp";
-            CBBackUp.Size = new Size(277, 28);
+            CBBackUp.Size = new Size(243, 23);
             CBBackUp.TabIndex = 5;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(273, 174);
+            textBox2.Location = new Point(239, 130);
+            textBox2.Margin = new Padding(3, 2, 3, 2);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(277, 27);
+            textBox2.Size = new Size(243, 23);
             textBox2.TabIndex = 4;
             // 
             // LBackUp2
             // 
             LBackUp2.AutoSize = true;
             LBackUp2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LBackUp2.Location = new Point(117, 177);
+            LBackUp2.Location = new Point(102, 133);
             LBackUp2.Name = "LBackUp2";
-            LBackUp2.Size = new Size(112, 23);
+            LBackUp2.Size = new Size(91, 19);
             LBackUp2.TabIndex = 2;
             LBackUp2.Text = "Ruta Guardar";
             // 
@@ -132,9 +138,9 @@
             // 
             LBackUp1.AutoSize = true;
             LBackUp1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LBackUp1.Location = new Point(117, 127);
+            LBackUp1.Location = new Point(102, 95);
             LBackUp1.Name = "LBackUp1";
-            LBackUp1.Size = new Size(116, 23);
+            LBackUp1.Size = new Size(94, 19);
             LBackUp1.TabIndex = 1;
             LBackUp1.Text = "Base de datos";
             // 
@@ -144,27 +150,29 @@
             panelEncabezado.BackColor = SystemColors.ButtonFace;
             panelEncabezado.Controls.Add(LTituloBackUp);
             panelEncabezado.Location = new Point(0, 0);
+            panelEncabezado.Margin = new Padding(3, 2, 3, 2);
             panelEncabezado.Name = "panelEncabezado";
-            panelEncabezado.Size = new Size(800, 63);
+            panelEncabezado.Size = new Size(700, 47);
             panelEncabezado.TabIndex = 0;
             // 
             // LTituloBackUp
             // 
             LTituloBackUp.AutoSize = true;
             LTituloBackUp.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LTituloBackUp.Location = new Point(12, 9);
+            LTituloBackUp.Location = new Point(10, 7);
             LTituloBackUp.Name = "LTituloBackUp";
-            LTituloBackUp.Size = new Size(124, 38);
+            LTituloBackUp.Size = new Size(98, 30);
             LTituloBackUp.TabIndex = 0;
             LTituloBackUp.Text = "Back Up";
             LTituloBackUp.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Back_Up
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
             Controls.Add(panelMain);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Back_Up";
             Text = "Back_Up";
             WindowState = FormWindowState.Maximized;
@@ -182,7 +190,7 @@
         private Panel panelMain;
         private Button BBackUp;
         private Button BRuta;
-        private Button BConecatr;
+        private Button BConectar;
         private ComboBox CBBackUp;
         private TextBox textBox2;
         private Label LBackUp2;

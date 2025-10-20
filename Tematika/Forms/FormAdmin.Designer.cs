@@ -45,6 +45,7 @@
             // 
             // sideBar
             // 
+            sideBar.Controls.Add(BBackUp);
             sideBar.Controls.Add(LNombreUsuario);
             sideBar.Controls.Add(LRol);
             sideBar.Controls.Add(LTituloForm);
@@ -53,7 +54,6 @@
             sideBar.Controls.Add(BDashboard);
             sideBar.Controls.Add(BInformes);
             sideBar.Controls.Add(BUsuarios);
-            sideBar.Controls.Add(BBackUp);
             sideBar.Dock = DockStyle.Left;
             sideBar.Location = new Point(0, 0);
             sideBar.Margin = new Padding(3, 2, 3, 2);
@@ -122,7 +122,7 @@
             BGestionTematica.Font = new Font("Segoe UI", 10F);
             BGestionTematica.Image = (Image)resources.GetObject("BGestionTematica.Image");
             BGestionTematica.ImageAlign = ContentAlignment.MiddleLeft;
-            BGestionTematica.Location = new Point(10, 359);
+            BGestionTematica.Location = new Point(10, 267);
             BGestionTematica.Margin = new Padding(3, 2, 3, 2);
             BGestionTematica.Name = "BGestionTematica";
             BGestionTematica.Size = new Size(230, 70);
@@ -157,7 +157,7 @@
             BInformes.Font = new Font("Segoe UI", 10F);
             BInformes.Image = (Image)resources.GetObject("BInformes.Image");
             BInformes.ImageAlign = ContentAlignment.MiddleLeft;
-            BInformes.Location = new Point(10, 458);
+            BInformes.Location = new Point(10, 360);
             BInformes.Margin = new Padding(3, 2, 3, 2);
             BInformes.Name = "BInformes";
             BInformes.Size = new Size(230, 70);
@@ -175,7 +175,7 @@
             BUsuarios.Font = new Font("Segoe UI", 10F);
             BUsuarios.Image = (Image)resources.GetObject("BUsuarios.Image");
             BUsuarios.ImageAlign = ContentAlignment.MiddleLeft;
-            BUsuarios.Location = new Point(10, 261);
+            BUsuarios.Location = new Point(10, 163);
             BUsuarios.Margin = new Padding(3, 2, 3, 2);
             BUsuarios.Name = "BUsuarios";
             BUsuarios.Size = new Size(230, 70);
@@ -193,7 +193,7 @@
             BBackUp.Font = new Font("Segoe UI", 10F);
             BBackUp.Image = (Image)resources.GetObject("BBackUp.Image");
             BBackUp.ImageAlign = ContentAlignment.MiddleLeft;
-            BBackUp.Location = new Point(10, 171);
+            BBackUp.Location = new Point(10, 468);
             BBackUp.Margin = new Padding(3, 2, 3, 2);
             BBackUp.Name = "BBackUp";
             BBackUp.Size = new Size(230, 70);

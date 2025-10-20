@@ -108,6 +108,11 @@ namespace Tematika
 
             var usuario = SesionManager.UsuarioActual;
 
+            if (usuario !=null && usuario.IdPerfil == 1)
+            {
+                BBackUp.Visible = false;
+            }    
+
             if (usuario != null && usuario.IdPerfil == 2) // Docente
             {
                 BDashboard.Visible = false;
