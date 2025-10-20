@@ -44,6 +44,13 @@ namespace Tematika
                 SetActiveButton(BInformes);
             };
 
+            BSuscripciones.Click += (s, e) =>
+            {
+                OpenChildForm(new FormListaSuscriptos());
+                SetActiveButton(BSuscripciones);
+            };
+
+
         }
 
         private void OpenChildForm(Form childForm)

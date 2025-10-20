@@ -1,3 +1,4 @@
+﻿
 ﻿using System;
 using System.Drawing;
 using System.Linq;
@@ -67,6 +68,12 @@ namespace Tematika.Forms
             }
 
             MessageBox.Show("Tus datos han sido actualizados correctamente.");
+        }
+
+        private void btnSuscribirse_Click(object sender, EventArgs e)
+        {
+            Form nuevaSuscripcion = new FormSuscripcion();
+            nuevaSuscripcion.Show();
         }
     }
 }

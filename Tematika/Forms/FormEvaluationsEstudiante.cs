@@ -176,5 +176,10 @@ namespace Tematika.Forms
             var quiz = new FormQuizEstudiante(seleccionadas, tema?.Nombre ?? "Evaluación", historial.IdHistorial, modoLectura: true);
             quiz.Show();
         }
+
+        private void bActualizarHistorial_Click(object sender, EventArgs e)
+        {
+            CargarHistorial();
+        }
     }
 }
