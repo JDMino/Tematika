@@ -65,7 +65,14 @@
             DGVFavoritos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVFavoritos.BackgroundColor = SystemColors.ActiveBorder;
             DGVFavoritos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVFavoritos.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewButtonColumn1, dataGridViewButtonColumn2 });
+            DGVFavoritos.Columns.AddRange(new DataGridViewColumn[] {
+                new DataGridViewTextBoxColumn { Name = "Titulo", HeaderText = "Título", ReadOnly = true },
+                new DataGridViewTextBoxColumn { Name = "Tipo", HeaderText = "Tipo", ReadOnly = true },
+                new DataGridViewTextBoxColumn { Name = "Tema", HeaderText = "Tema", ReadOnly = true },
+                new DataGridViewTextBoxColumn { Name = "FechaAgregado", HeaderText = "Fecha Agregado", ReadOnly = true },
+                new DataGridViewButtonColumn { Name = "VerRecurso", HeaderText = "Ver", Text = "Ver", UseColumnTextForButtonValue = true },
+                new DataGridViewButtonColumn { Name = "EliminarFavorito", HeaderText = "Eliminar", Text = "Eliminar", UseColumnTextForButtonValue = true }
+            });
             DGVFavoritos.GridColor = Color.MidnightBlue;
             DGVFavoritos.Location = new Point(0, 67);
             DGVFavoritos.Margin = new Padding(3, 4, 3, 4);

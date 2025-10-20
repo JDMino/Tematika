@@ -6,9 +6,12 @@ namespace Tematika.Models
     {
         public int IdIntento { get; set; }
         public DateTime Fecha { get; set; }
-        public string Respuesta { get; set; } = string.Empty;
         public bool Correcta { get; set; }
+
         public int IdUsuario { get; set; }
         public int IdPregunta { get; set; }
+        public int IdOpcion { get; set; }
+
+        public int IdHistorial { get; set; } 
     }
 }

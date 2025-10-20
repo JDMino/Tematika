@@ -33,16 +33,17 @@
             btnEmpezarEvaluacion = new Button();
             labelRealizarEvaluacion = new Label();
             cmbTemas = new ComboBox();
-            cmbAsignaturas = new ComboBox();
+            cmbMaterias = new ComboBox();
             labelTema = new Label();
-            labelAsignatura = new Label();
+            labelMateria = new Label();
             panelHistorialEvaluaciones = new Panel();
             DGVHistorialEvaluaciones = new DataGridView();
+            labelHistorialEvaluaciones = new Label();
             Fecha = new DataGridViewTextBoxColumn();
-            Asignatura = new DataGridViewTextBoxColumn();
+            Materia = new DataGridViewTextBoxColumn();
             Tema = new DataGridViewTextBoxColumn();
             Puntuacion = new DataGridViewTextBoxColumn();
-            labelHistorialEvaluaciones = new Label();
+            Ver = new DataGridViewButtonColumn();
             panelFiltroRecursos.SuspendLayout();
             panelHistorialEvaluaciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DGVHistorialEvaluaciones).BeginInit();
@@ -54,14 +55,13 @@
             panelFiltroRecursos.Controls.Add(btnEmpezarEvaluacion);
             panelFiltroRecursos.Controls.Add(labelRealizarEvaluacion);
             panelFiltroRecursos.Controls.Add(cmbTemas);
-            panelFiltroRecursos.Controls.Add(cmbAsignaturas);
+            panelFiltroRecursos.Controls.Add(cmbMaterias);
             panelFiltroRecursos.Controls.Add(labelTema);
-            panelFiltroRecursos.Controls.Add(labelAsignatura);
+            panelFiltroRecursos.Controls.Add(labelMateria);
             panelFiltroRecursos.Dock = DockStyle.Top;
             panelFiltroRecursos.Location = new Point(0, 0);
-            panelFiltroRecursos.Margin = new Padding(3, 4, 3, 4);
             panelFiltroRecursos.Name = "panelFiltroRecursos";
-            panelFiltroRecursos.Size = new Size(882, 189);
+            panelFiltroRecursos.Size = new Size(772, 142);
             panelFiltroRecursos.TabIndex = 2;
             // 
             // btnEmpezarEvaluacion
@@ -72,23 +72,21 @@
             btnEmpezarEvaluacion.FlatStyle = FlatStyle.Flat;
             btnEmpezarEvaluacion.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEmpezarEvaluacion.ForeColor = SystemColors.ButtonHighlight;
-            btnEmpezarEvaluacion.Location = new Point(688, 149);
-            btnEmpezarEvaluacion.Margin = new Padding(3, 4, 3, 4);
+            btnEmpezarEvaluacion.Location = new Point(602, 112);
             btnEmpezarEvaluacion.Name = "btnEmpezarEvaluacion";
-            btnEmpezarEvaluacion.Size = new Size(174, 31);
+            btnEmpezarEvaluacion.Size = new Size(152, 23);
             btnEmpezarEvaluacion.TabIndex = 5;
             btnEmpezarEvaluacion.Text = "Empezar Evaluación";
             btnEmpezarEvaluacion.UseVisualStyleBackColor = false;
-            btnEmpezarEvaluacion.Click += btnEmpezarEvaluacion_Click;
             // 
             // labelRealizarEvaluacion
             // 
             labelRealizarEvaluacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelRealizarEvaluacion.AutoSize = true;
             labelRealizarEvaluacion.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelRealizarEvaluacion.Location = new Point(329, 12);
+            labelRealizarEvaluacion.Location = new Point(288, 9);
             labelRealizarEvaluacion.Name = "labelRealizarEvaluacion";
-            labelRealizarEvaluacion.Size = new Size(234, 32);
+            labelRealizarEvaluacion.Size = new Size(181, 25);
             labelRealizarEvaluacion.TabIndex = 4;
             labelRealizarEvaluacion.Text = "Realizar Evaluación";
             // 
@@ -96,41 +94,39 @@
             // 
             cmbTemas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cmbTemas.FormattingEnabled = true;
-            cmbTemas.Location = new Point(147, 103);
-            cmbTemas.Margin = new Padding(3, 4, 3, 4);
+            cmbTemas.Location = new Point(129, 77);
             cmbTemas.Name = "cmbTemas";
-            cmbTemas.Size = new Size(714, 28);
+            cmbTemas.Size = new Size(625, 23);
             cmbTemas.TabIndex = 3;
             // 
-            // cmbAsignaturas
+            // cmbMaterias
             // 
-            cmbAsignaturas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            cmbAsignaturas.FormattingEnabled = true;
-            cmbAsignaturas.Location = new Point(147, 63);
-            cmbAsignaturas.Margin = new Padding(3, 4, 3, 4);
-            cmbAsignaturas.Name = "cmbAsignaturas";
-            cmbAsignaturas.Size = new Size(714, 28);
-            cmbAsignaturas.TabIndex = 2;
+            cmbMaterias.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cmbMaterias.FormattingEnabled = true;
+            cmbMaterias.Location = new Point(129, 47);
+            cmbMaterias.Name = "cmbMaterias";
+            cmbMaterias.Size = new Size(625, 23);
+            cmbMaterias.TabIndex = 2;
             // 
             // labelTema
             // 
             labelTema.AutoSize = true;
             labelTema.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelTema.Location = new Point(47, 96);
+            labelTema.Location = new Point(41, 72);
             labelTema.Name = "labelTema";
-            labelTema.Size = new Size(81, 32);
+            labelTema.Size = new Size(63, 25);
             labelTema.TabIndex = 1;
             labelTema.Text = "Tema:";
             // 
-            // labelAsignatura
+            // labelMateria
             // 
-            labelAsignatura.AutoSize = true;
-            labelAsignatura.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelAsignatura.Location = new Point(0, 63);
-            labelAsignatura.Name = "labelAsignatura";
-            labelAsignatura.Size = new Size(146, 32);
-            labelAsignatura.TabIndex = 0;
-            labelAsignatura.Text = "Asignatura:";
+            labelMateria.AutoSize = true;
+            labelMateria.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelMateria.Location = new Point(19, 47);
+            labelMateria.Name = "labelMateria";
+            labelMateria.Size = new Size(85, 25);
+            labelMateria.TabIndex = 0;
+            labelMateria.Text = "Materia:";
             // 
             // panelHistorialEvaluaciones
             // 
@@ -138,10 +134,9 @@
             panelHistorialEvaluaciones.BackColor = SystemColors.ActiveCaption;
             panelHistorialEvaluaciones.Controls.Add(DGVHistorialEvaluaciones);
             panelHistorialEvaluaciones.Controls.Add(labelHistorialEvaluaciones);
-            panelHistorialEvaluaciones.Location = new Point(0, 188);
-            panelHistorialEvaluaciones.Margin = new Padding(3, 4, 3, 4);
+            panelHistorialEvaluaciones.Location = new Point(0, 141);
             panelHistorialEvaluaciones.Name = "panelHistorialEvaluaciones";
-            panelHistorialEvaluaciones.Size = new Size(882, 401);
+            panelHistorialEvaluaciones.Size = new Size(772, 301);
             panelHistorialEvaluaciones.TabIndex = 3;
             // 
             // DGVHistorialEvaluaciones
@@ -157,13 +152,23 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             DGVHistorialEvaluaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             DGVHistorialEvaluaciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVHistorialEvaluaciones.Columns.AddRange(new DataGridViewColumn[] { Fecha, Asignatura, Tema, Puntuacion });
-            DGVHistorialEvaluaciones.Location = new Point(0, 59);
-            DGVHistorialEvaluaciones.Margin = new Padding(3, 4, 3, 4);
+            DGVHistorialEvaluaciones.Columns.AddRange(new DataGridViewColumn[] { Fecha, Materia, Tema, Puntuacion, Ver });
+            DGVHistorialEvaluaciones.Location = new Point(0, 44);
             DGVHistorialEvaluaciones.Name = "DGVHistorialEvaluaciones";
             DGVHistorialEvaluaciones.RowHeadersWidth = 51;
-            DGVHistorialEvaluaciones.Size = new Size(882, 343);
+            DGVHistorialEvaluaciones.Size = new Size(772, 257);
             DGVHistorialEvaluaciones.TabIndex = 7;
+            // 
+            // labelHistorialEvaluaciones
+            // 
+            labelHistorialEvaluaciones.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            labelHistorialEvaluaciones.AutoSize = true;
+            labelHistorialEvaluaciones.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelHistorialEvaluaciones.Location = new Point(278, 4);
+            labelHistorialEvaluaciones.Name = "labelHistorialEvaluaciones";
+            labelHistorialEvaluaciones.Size = new Size(205, 25);
+            labelHistorialEvaluaciones.TabIndex = 6;
+            labelHistorialEvaluaciones.Text = "Historial Evaluaciones";
             // 
             // Fecha
             // 
@@ -172,12 +177,12 @@
             Fecha.Name = "Fecha";
             Fecha.ReadOnly = true;
             // 
-            // Asignatura
+            // Materia
             // 
-            Asignatura.HeaderText = "Asignatura";
-            Asignatura.MinimumWidth = 6;
-            Asignatura.Name = "Asignatura";
-            Asignatura.ReadOnly = true;
+            Materia.HeaderText = "Materia";
+            Materia.MinimumWidth = 6;
+            Materia.Name = "Materia";
+            Materia.ReadOnly = true;
             // 
             // Tema
             // 
@@ -192,26 +197,22 @@
             Puntuacion.MinimumWidth = 6;
             Puntuacion.Name = "Puntuacion";
             // 
-            // labelHistorialEvaluaciones
+            // Ver
             // 
-            labelHistorialEvaluaciones.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            labelHistorialEvaluaciones.AutoSize = true;
-            labelHistorialEvaluaciones.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelHistorialEvaluaciones.Location = new Point(318, 5);
-            labelHistorialEvaluaciones.Name = "labelHistorialEvaluaciones";
-            labelHistorialEvaluaciones.Size = new Size(265, 32);
-            labelHistorialEvaluaciones.TabIndex = 6;
-            labelHistorialEvaluaciones.Text = "Historial Evaluaciones";
+            Ver.HeaderText = "Ver";
+            Ver.Name = "Ver";
+            Ver.ReadOnly = true;
+            Ver.Text = "Ver";
+            Ver.UseColumnTextForButtonValue = true;
             // 
             // FormEvaluationsEstudiante
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(882, 588);
+            ClientSize = new Size(772, 441);
             Controls.Add(panelHistorialEvaluaciones);
             Controls.Add(panelFiltroRecursos);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FormEvaluationsEstudiante";
             Text = "FormEvaluationsEstudiante";
             Load += FormEvaluationsEstudiante_Load;
@@ -228,16 +229,17 @@
         private Panel panelFiltroRecursos;
         private Label labelRealizarEvaluacion;
         private ComboBox cmbTemas;
-        private ComboBox cmbAsignaturas;
+        private ComboBox cmbMaterias;
         private Label labelTema;
-        private Label labelAsignatura;
+        private Label labelMateria;
         private Panel panelHistorialEvaluaciones;
         private Button btnEmpezarEvaluacion;
         private Label labelHistorialEvaluaciones;
         private DataGridView DGVHistorialEvaluaciones;
         private DataGridViewTextBoxColumn Fecha;
-        private DataGridViewTextBoxColumn Asignatura;
+        private DataGridViewTextBoxColumn Materia;
         private DataGridViewTextBoxColumn Tema;
         private DataGridViewTextBoxColumn Puntuacion;
+        private DataGridViewButtonColumn Ver;
     }
 }

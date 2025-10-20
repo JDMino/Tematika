@@ -1,0 +1,31 @@
+Bootstrap 5
+
+Bootstrap 5 es la versión más reciente de Bootstrap, un framework de código abierto para el desarrollo web que utiliza HTML, CSS y JavaScript para crear sitios web de forma rápida y responsive.
+
+Facilita el diseño adaptable a diferentes dispositivos al proporcionar componentes preconstruidos y un sistema de cuadrícula. La versión 5 se destaca por integrar CSS Flexbox y eliminar la dependencia de jQuery, adoptando JavaScript moderno.
+
+Características principales:
+
+- Desarrollo responsive:
+  Bootstrap está diseñado bajo el enfoque "mobile-first", lo que significa que primero se optimiza para dispositivos móviles y luego se adapta a pantallas más grandes.
+
+- Sistema de cuadrícula:
+  Permite crear diseños fluidos y adaptables de forma sencilla mediante una estructura de filas y columnas.
+
+- Componentes predefinidos:
+  Incluye elementos reutilizables como botones, formularios, menús, modales y tarjetas.
+
+- Sistema de utilidades:
+  Proporciona clases CSS para manejar espaciado, visibilidad, posicionamiento, alineación, entre otras propiedades.
+
+- Eliminación de jQuery:
+  Bootstrap 5 elimina la dependencia de jQuery para mejorar el rendimiento y estandarizar el uso de JavaScript moderno.
+
+- CSS Flexbox:
+  Integra Flexbox para facilitar la creación de diseños complejos y flexibles.
+
+- Variables CSS:
+  Utiliza variables CSS para facilitar la personalización de estilos y temas.
+
+- Accesibilidad:
+  Los componentes están diseñados con roles semánticos y atributos ARIA para mejorar la accesibilidad.

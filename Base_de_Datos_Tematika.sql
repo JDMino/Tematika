@@ -208,6 +208,55 @@ CREATE TABLE docente_materia (
     CONSTRAINT FK_DocenteMateria_Materia FOREIGN KEY (id_materia) REFERENCES materia(id_materia)
 );
 
+-- Crear tabla historial_evaluacion
+CREATE TABLE historial_evaluacion (
+    id_historial INT IDENTITY(1,1),
+    id_usuario INT NOT NULL,
+    id_evaluacion INT NOT NULL,
+    fecha_inicio DATETIME NOT NULL DEFAULT GETDATE(),
+    fecha_fin DATETIME,
+    puntaje_total INT,
+    aprobado BIT,
+    CONSTRAINT PK_HistorialEvaluacion PRIMARY KEY (id_historial),
+    CONSTRAINT FK_HistorialEvaluacion_Usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    CONSTRAINT FK_HistorialEvaluacion_Evaluacion FOREIGN KEY (id_evaluacion) REFERENCES evaluacion(id_evaluacion)
+);
+
+--HISTORIAL DE EVALUCIONES
+-- Crear tabla historial_evaluacion
+CREATE TABLE historial_evaluacion (
+    id_historial INT IDENTITY(1,1),
+    id_usuario INT NOT NULL,
+    id_evaluacion INT NOT NULL,
+    fecha_inicio DATETIME NOT NULL DEFAULT GETDATE(),
+    fecha_fin DATETIME,
+    puntaje_total INT,
+    aprobado BIT,
+    CONSTRAINT PK_HistorialEvaluacion PRIMARY KEY (id_historial),
+    CONSTRAINT FK_HistorialEvaluacion_Usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    CONSTRAINT FK_HistorialEvaluacion_Evaluacion FOREIGN KEY (id_evaluacion) REFERENCES evaluacion(id_evaluacion)
+);
+
+-- Modificar tabla intento
+-- 1. Eliminar campo respuesta
+ALTER TABLE intento DROP COLUMN respuesta;
+
+-- 2. Agregar campo id_opcion
+ALTER TABLE intento ADD id_opcion INT NOT NULL;
+ALTER TABLE intento ADD CONSTRAINT FK_Intento_Opcion FOREIGN KEY (id_opcion) REFERENCES opcion_pregunta(id_opcion);
+
+-- 3. Agregar campo id_historial
+ALTER TABLE intento ADD id_historial INT NULL;
+ALTER TABLE intento ADD CONSTRAINT FK_Intento_Historial FOREIGN KEY (id_historial) REFERENCES historial_evaluacion(id_historial);
+
+-- Primero eliminar los intentos vinculados al historial
+--DELETE FROM intento
+--WHERE id_historial IS NOT NULL;
+
+-- Luego eliminar los registros del historial
+--DELETE FROM historial_evaluacion;
+
+
 -- Datos iniciales en perfil
 INSERT INTO perfil (nombre_perfil, descripcion)
 VALUES

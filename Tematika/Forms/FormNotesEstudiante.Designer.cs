@@ -81,7 +81,13 @@
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
             DGVMisNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             DGVMisNotas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVMisNotas.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewButtonColumn1, dataGridViewButtonColumn2 });
+            DGVMisNotas.Columns.AddRange(new DataGridViewColumn[] {
+                new DataGridViewTextBoxColumn { Name = "RecursoAsociado", HeaderText = "Recurso Asociado", ReadOnly = true },
+                new DataGridViewTextBoxColumn { Name = "Nota", HeaderText = "Nota", ReadOnly = true },
+                new DataGridViewButtonColumn { Name = "Acciones", HeaderText = "Ver", Text = "Ver", UseColumnTextForButtonValue = true },
+                new DataGridViewButtonColumn { Name = "EliminarNota", HeaderText = "Eliminar", Text = "Eliminar", UseColumnTextForButtonValue = true }
+            });
+
             DGVMisNotas.Location = new Point(0, 104);
             DGVMisNotas.Margin = new Padding(3, 4, 3, 4);
             DGVMisNotas.Name = "DGVMisNotas";
