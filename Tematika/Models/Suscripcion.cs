@@ -6,8 +6,10 @@ namespace Tematika.Models
     {
         public int IdSuscripcion { get; set; }
         public int IdUsuario { get; set; }
+        public int IdTipoSuscripcion { get; set; }
         public bool Activa { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
+        public TipoSuscripcion? Tipo { get; set; }
     }
 }
