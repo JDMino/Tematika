@@ -1,5 +1,4 @@
-﻿
-namespace Tematika.Forms;
+﻿namespace Tematika.Forms;
 
 partial class FormFactura
 {
@@ -21,11 +20,10 @@ partial class FormFactura
         lblNombre = new Label();
         lblEmail = new Label();
         dgvDetalle = new DataGridView();
-        colTipo = new DataGridViewTextBoxColumn();
-        colDuracion = new DataGridViewTextBoxColumn();
-        colPrecio = new DataGridViewTextBoxColumn();
         lblTotal = new Label();
         btnCerrar = new Button();
+        nombre = new DataGridViewTextBoxColumn();
+        precio = new DataGridViewTextBoxColumn();
         ((System.ComponentModel.ISupportInitialize)dgvDetalle).BeginInit();
         SuspendLayout();
         // 
@@ -72,30 +70,12 @@ partial class FormFactura
         dgvDetalle.AllowUserToDeleteRows = false;
         dgvDetalle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         dgvDetalle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        dgvDetalle.Columns.AddRange(new DataGridViewColumn[] { colTipo, colDuracion, colPrecio });
+        dgvDetalle.Columns.AddRange(new DataGridViewColumn[] { nombre, precio });
         dgvDetalle.Location = new Point(20, 160);
         dgvDetalle.Name = "dgvDetalle";
         dgvDetalle.ReadOnly = true;
         dgvDetalle.Size = new Size(500, 100);
         dgvDetalle.TabIndex = 4;
-        // 
-        // colTipo
-        // 
-        colTipo.HeaderText = "Tipo de suscripción";
-        colTipo.Name = "colTipo";
-        colTipo.ReadOnly = true;
-        // 
-        // colDuracion
-        // 
-        colDuracion.HeaderText = "Duración";
-        colDuracion.Name = "colDuracion";
-        colDuracion.ReadOnly = true;
-        // 
-        // colPrecio
-        // 
-        colPrecio.HeaderText = "Precio";
-        colPrecio.Name = "colPrecio";
-        colPrecio.ReadOnly = true;
         // 
         // lblTotal
         // 
@@ -115,7 +95,19 @@ partial class FormFactura
         btnCerrar.Size = new Size(100, 30);
         btnCerrar.TabIndex = 6;
         btnCerrar.Text = "Cerrar";
-        btnCerrar.Click += btnCerrar_Click;
+        //btnCerrar.Click += btnCerrar_Click;
+        // 
+        // nombre
+        // 
+        nombre.HeaderText = "Tipo de suscripción";
+        nombre.Name = "nombre";
+        nombre.ReadOnly = true;
+        // 
+        // precio
+        // 
+        precio.HeaderText = "Precio";
+        precio.Name = "precio";
+        precio.ReadOnly = true;
         // 
         // FormFactura
         // 
@@ -142,9 +134,8 @@ partial class FormFactura
     private System.Windows.Forms.Label lblNombre;
     private System.Windows.Forms.Label lblEmail;
     private System.Windows.Forms.DataGridView dgvDetalle;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colTipo;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colDuracion;
-    private System.Windows.Forms.DataGridViewTextBoxColumn colPrecio;
     private System.Windows.Forms.Label lblTotal;
     private System.Windows.Forms.Button btnCerrar;
+    private DataGridViewTextBoxColumn nombre;
+    private DataGridViewTextBoxColumn precio;
 }

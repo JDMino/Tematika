@@ -1,5 +1,4 @@
-﻿
-namespace Tematika.Forms;
+﻿namespace Tematika.Forms;
 
 partial class FormSuscripcion
 {
@@ -24,11 +23,10 @@ partial class FormSuscripcion
         lblDocumento = new Label();
         txtDocumento = new TextBox();
         groupServicio = new GroupBox();
+        txtPrecio = new TextBox();
         lblPlan = new Label();
         cmbPlan = new ComboBox();
         lblPrecio = new Label();
-        lblFechaInicio = new Label();
-        dtpInicio = new DateTimePicker();
         groupPago = new GroupBox();
         radioTransferencia = new RadioButton();
         radioTarjeta = new RadioButton();
@@ -82,7 +80,7 @@ partial class FormSuscripcion
         txtNombre.Font = new Font("Segoe UI", 9F);
         txtNombre.Location = new Point(150, 22);
         txtNombre.Name = "txtNombre";
-        txtNombre.Size = new Size(100, 27);
+        txtNombre.Size = new Size(100, 23);
         txtNombre.TabIndex = 1;
         // 
         // lblEmail
@@ -98,7 +96,7 @@ partial class FormSuscripcion
         txtEmail.Font = new Font("Segoe UI", 9F);
         txtEmail.Location = new Point(150, 52);
         txtEmail.Name = "txtEmail";
-        txtEmail.Size = new Size(100, 27);
+        txtEmail.Size = new Size(100, 23);
         txtEmail.TabIndex = 3;
         // 
         // lblDocumento
@@ -114,17 +112,16 @@ partial class FormSuscripcion
         txtDocumento.Font = new Font("Segoe UI", 9F);
         txtDocumento.Location = new Point(150, 82);
         txtDocumento.Name = "txtDocumento";
-        txtDocumento.Size = new Size(100, 27);
+        txtDocumento.Size = new Size(100, 23);
         txtDocumento.TabIndex = 5;
         // 
         // groupServicio
         // 
         groupServicio.BackColor = SystemColors.MenuHighlight;
+        groupServicio.Controls.Add(txtPrecio);
         groupServicio.Controls.Add(lblPlan);
         groupServicio.Controls.Add(cmbPlan);
         groupServicio.Controls.Add(lblPrecio);
-        groupServicio.Controls.Add(lblFechaInicio);
-        groupServicio.Controls.Add(dtpInicio);
         groupServicio.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
         groupServicio.Location = new Point(400, 20);
         groupServicio.Name = "groupServicio";
@@ -132,6 +129,14 @@ partial class FormSuscripcion
         groupServicio.TabIndex = 1;
         groupServicio.TabStop = false;
         groupServicio.Text = "Servicio académico";
+        // 
+        // txtPrecio
+        // 
+        txtPrecio.Font = new Font("Segoe UI", 9F);
+        txtPrecio.Location = new Point(150, 51);
+        txtPrecio.Name = "txtPrecio";
+        txtPrecio.Size = new Size(100, 23);
+        txtPrecio.TabIndex = 6;
         // 
         // lblPlan
         // 
@@ -144,10 +149,9 @@ partial class FormSuscripcion
         // cmbPlan
         // 
         cmbPlan.Font = new Font("Segoe UI", 9F);
-        cmbPlan.Items.AddRange(new object[] { "Mensual", "Semestral", "Anual" });
         cmbPlan.Location = new Point(150, 22);
         cmbPlan.Name = "cmbPlan";
-        cmbPlan.Size = new Size(121, 28);
+        cmbPlan.Size = new Size(121, 23);
         cmbPlan.TabIndex = 1;
         // 
         // lblPrecio
@@ -157,22 +161,6 @@ partial class FormSuscripcion
         lblPrecio.Size = new Size(100, 23);
         lblPrecio.TabIndex = 2;
         lblPrecio.Text = "Precio:";
-        // 
-        // lblFechaInicio
-        // 
-        lblFechaInicio.Location = new Point(10, 85);
-        lblFechaInicio.Name = "lblFechaInicio";
-        lblFechaInicio.Size = new Size(100, 23);
-        lblFechaInicio.TabIndex = 3;
-        lblFechaInicio.Text = "Fecha de inicio:";
-        // 
-        // dtpInicio
-        // 
-        dtpInicio.Font = new Font("Segoe UI", 9F);
-        dtpInicio.Location = new Point(150, 82);
-        dtpInicio.Name = "dtpInicio";
-        dtpInicio.Size = new Size(200, 27);
-        dtpInicio.TabIndex = 4;
         // 
         // groupPago
         // 
@@ -230,7 +218,7 @@ partial class FormSuscripcion
         txtCBU.Font = new Font("Segoe UI", 9F);
         txtCBU.Location = new Point(120, 67);
         txtCBU.Name = "txtCBU";
-        txtCBU.Size = new Size(100, 27);
+        txtCBU.Size = new Size(100, 23);
         txtCBU.TabIndex = 3;
         // 
         // lblBanco
@@ -246,7 +234,7 @@ partial class FormSuscripcion
         txtBanco.Font = new Font("Segoe UI", 9F);
         txtBanco.Location = new Point(120, 97);
         txtBanco.Name = "txtBanco";
-        txtBanco.Size = new Size(100, 27);
+        txtBanco.Size = new Size(100, 23);
         txtBanco.TabIndex = 5;
         // 
         // lblTitularTransferencia
@@ -262,7 +250,7 @@ partial class FormSuscripcion
         txtTitularTransferencia.Font = new Font("Segoe UI", 9F);
         txtTitularTransferencia.Location = new Point(120, 127);
         txtTitularTransferencia.Name = "txtTitularTransferencia";
-        txtTitularTransferencia.Size = new Size(100, 27);
+        txtTitularTransferencia.Size = new Size(100, 23);
         txtTitularTransferencia.TabIndex = 7;
         // 
         // lblNumeroTarjeta
@@ -278,7 +266,7 @@ partial class FormSuscripcion
         txtNumeroTarjeta.Font = new Font("Segoe UI", 9F);
         txtNumeroTarjeta.Location = new Point(520, 67);
         txtNumeroTarjeta.Name = "txtNumeroTarjeta";
-        txtNumeroTarjeta.Size = new Size(100, 27);
+        txtNumeroTarjeta.Size = new Size(100, 23);
         txtNumeroTarjeta.TabIndex = 9;
         // 
         // lblVencimiento
@@ -294,7 +282,7 @@ partial class FormSuscripcion
         txtVencimiento.Font = new Font("Segoe UI", 9F);
         txtVencimiento.Location = new Point(520, 97);
         txtVencimiento.Name = "txtVencimiento";
-        txtVencimiento.Size = new Size(100, 27);
+        txtVencimiento.Size = new Size(100, 23);
         txtVencimiento.TabIndex = 11;
         // 
         // lblCVV
@@ -310,7 +298,7 @@ partial class FormSuscripcion
         txtCVV.Font = new Font("Segoe UI", 9F);
         txtCVV.Location = new Point(520, 127);
         txtCVV.Name = "txtCVV";
-        txtCVV.Size = new Size(100, 27);
+        txtCVV.Size = new Size(100, 23);
         txtCVV.TabIndex = 13;
         // 
         // lblTitularTarjeta
@@ -326,7 +314,7 @@ partial class FormSuscripcion
         txtTitularTarjeta.Font = new Font("Segoe UI", 9F);
         txtTitularTarjeta.Location = new Point(520, 157);
         txtTitularTarjeta.Name = "txtTitularTarjeta";
-        txtTitularTarjeta.Size = new Size(100, 27);
+        txtTitularTarjeta.Size = new Size(100, 23);
         txtTitularTarjeta.TabIndex = 15;
         // 
         // btnConfirmar
@@ -357,6 +345,7 @@ partial class FormSuscripcion
         groupDatosPersonales.ResumeLayout(false);
         groupDatosPersonales.PerformLayout();
         groupServicio.ResumeLayout(false);
+        groupServicio.PerformLayout();
         groupPago.ResumeLayout(false);
         groupPago.PerformLayout();
         ResumeLayout(false);
@@ -376,8 +365,6 @@ partial class FormSuscripcion
     private System.Windows.Forms.ComboBox cmbPlan;
     private System.Windows.Forms.Label lblPlan;
     private System.Windows.Forms.Label lblPrecio;
-    private System.Windows.Forms.Label lblFechaInicio;
-    private System.Windows.Forms.DateTimePicker dtpInicio;
 
     private System.Windows.Forms.GroupBox groupPago;
     private System.Windows.Forms.RadioButton radioTransferencia;
@@ -400,5 +387,5 @@ partial class FormSuscripcion
     private System.Windows.Forms.Label lblTitularTarjeta;
 
     private System.Windows.Forms.Button btnConfirmar;
-
+    private TextBox txtPrecio;
 }

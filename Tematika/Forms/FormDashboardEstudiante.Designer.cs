@@ -1,5 +1,4 @@
-﻿
-namespace Tematika.Forms
+﻿namespace Tematika.Forms
 {
     partial class FormDashboardEstudiante
     {
