@@ -71,5 +71,51 @@ namespace Tematika.CapaDeDatos
             return lista;
         }
 
+        public List<Suscripcion> ObtenerTodas()
+        {
+            var lista = new List<Suscripcion>();
+            using var connection = new SqlConnection(_connectionString);
+            var query = @"SELECT s.*, t.nombre, t.precio, t.duracion_dias
+                  FROM suscripcion s
+                  JOIN tipo_suscripcion t ON s.id_tipo_suscripcion = t.id_tipo_suscripcion";
+
+            using var command = new SqlCommand(query, connection);
+            connection.Open();
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                lista.Add(new Suscripcion
+                {
+                    IdSuscripcion = (int)reader["id_suscripcion"],
+                    IdUsuario = (int)reader["id_usuario"],
+                    IdTipoSuscripcion = (int)reader["id_tipo_suscripcion"],
+                    Activa = (bool)reader["activa"],
+                    FechaInicio = (DateTime)reader["fecha_inicio"],
+                    FechaFin = reader["fecha_fin"] as DateTime?,
+                    Tipo = new TipoSuscripcion
+                    {
+                        IdTipoSuscripcion = (int)reader["id_tipo_suscripcion"],
+                        Nombre = reader["nombre"].ToString() ?? "",
+                        Precio = (decimal)reader["precio"],
+                        DuracionDias = (int)reader["duracion_dias"]
+                    }
+                });
+            }
+
+            return lista;
+        }
+
+        public void DarDeBaja(int idSuscripcion)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            var query = "UPDATE suscripcion SET activa = 0 WHERE id_suscripcion = @id";
+
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@id", idSuscripcion);
+            connection.Open();
+            command.ExecuteNonQuery();
+        }
+
     }
 }

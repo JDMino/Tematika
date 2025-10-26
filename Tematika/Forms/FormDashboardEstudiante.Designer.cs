@@ -58,6 +58,7 @@
             btnSuscribirse = new Button();
             labelSuscripcionDescripcion = new Label();
             labelSuscripcionTitulo = new Label();
+            labelAvisoBaja = new Label();
             pnlDashEstudianteDatos.SuspendLayout();
             panelDatosEstudiante.SuspendLayout();
             pnlDashEstudianteSuscripcion.SuspendLayout();
@@ -72,9 +73,8 @@
             pnlDashEstudianteDatos.Controls.Add(BUModificar);
             pnlDashEstudianteDatos.Controls.Add(panelDatosEstudiante);
             pnlDashEstudianteDatos.Location = new Point(0, 1);
-            pnlDashEstudianteDatos.Margin = new Padding(3, 4, 3, 4);
             pnlDashEstudianteDatos.Name = "pnlDashEstudianteDatos";
-            pnlDashEstudianteDatos.Size = new Size(895, 304);
+            pnlDashEstudianteDatos.Size = new Size(783, 228);
             pnlDashEstudianteDatos.TabIndex = 0;
             // 
             // BUModificar
@@ -87,9 +87,10 @@
             BUModificar.FlatStyle = FlatStyle.Flat;
             BUModificar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BUModificar.ForeColor = SystemColors.ButtonHighlight;
-            BUModificar.Location = new Point(665, 237);
+            BUModificar.Location = new Point(582, 178);
+            BUModificar.Margin = new Padding(3, 2, 3, 2);
             BUModificar.Name = "BUModificar";
-            BUModificar.Size = new Size(110, 40);
+            BUModificar.Size = new Size(96, 30);
             BUModificar.TabIndex = 90;
             BUModificar.Text = "Modificar";
             BUModificar.UseVisualStyleBackColor = false;
@@ -119,7 +120,8 @@
             panelDatosEstudiante.Controls.Add(LEmail, 0, 3);
             panelDatosEstudiante.Controls.Add(TBEmailUsuario, 1, 3);
             panelDatosEstudiante.Controls.Add(LTelefono, 4, 0);
-            panelDatosEstudiante.Location = new Point(27, 13);
+            panelDatosEstudiante.Location = new Point(24, 10);
+            panelDatosEstudiante.Margin = new Padding(3, 2, 3, 2);
             panelDatosEstudiante.Name = "panelDatosEstudiante";
             panelDatosEstudiante.RowCount = 6;
             panelDatosEstudiante.RowStyles.Add(new RowStyle(SizeType.Percent, 16.66667F));
@@ -128,7 +130,7 @@
             panelDatosEstudiante.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             panelDatosEstudiante.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             panelDatosEstudiante.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            panelDatosEstudiante.Size = new Size(747, 219);
+            panelDatosEstudiante.Size = new Size(654, 164);
             panelDatosEstudiante.TabIndex = 96;
             // 
             // LNombre
@@ -136,75 +138,79 @@
             LNombre.AutoSize = true;
             LNombre.Location = new Point(3, 0);
             LNombre.Name = "LNombre";
-            LNombre.Size = new Size(64, 20);
+            LNombre.Size = new Size(51, 15);
             LNombre.TabIndex = 65;
             LNombre.Text = "Nombre";
             // 
             // TBNombreUsuario
             // 
-            TBNombreUsuario.Location = new Point(205, 3);
+            TBNombreUsuario.Location = new Point(180, 2);
+            TBNombreUsuario.Margin = new Padding(3, 2, 3, 2);
             TBNombreUsuario.Name = "TBNombreUsuario";
-            TBNombreUsuario.Size = new Size(130, 27);
+            TBNombreUsuario.Size = new Size(114, 23);
             TBNombreUsuario.TabIndex = 76;
             TBNombreUsuario.Tag = "Nombre";
             // 
             // LApellido
             // 
             LApellido.AutoSize = true;
-            LApellido.Location = new Point(3, 36);
+            LApellido.Location = new Point(3, 27);
             LApellido.Name = "LApellido";
-            LApellido.Size = new Size(66, 20);
+            LApellido.Size = new Size(51, 15);
             LApellido.TabIndex = 66;
             LApellido.Text = "Apellido";
             // 
             // TBApellidoUsuario
             // 
-            TBApellidoUsuario.Location = new Point(205, 39);
+            TBApellidoUsuario.Location = new Point(180, 29);
+            TBApellidoUsuario.Margin = new Padding(3, 2, 3, 2);
             TBApellidoUsuario.Name = "TBApellidoUsuario";
-            TBApellidoUsuario.Size = new Size(130, 27);
+            TBApellidoUsuario.Size = new Size(114, 23);
             TBApellidoUsuario.TabIndex = 77;
             TBApellidoUsuario.Tag = "Apellido";
             // 
             // TBDNIUsuario
             // 
-            TBDNIUsuario.Location = new Point(579, 3);
+            TBDNIUsuario.Location = new Point(508, 2);
+            TBDNIUsuario.Margin = new Padding(3, 2, 3, 2);
             TBDNIUsuario.Name = "TBDNIUsuario";
-            TBDNIUsuario.Size = new Size(119, 27);
+            TBDNIUsuario.Size = new Size(105, 23);
             TBDNIUsuario.TabIndex = 81;
             TBDNIUsuario.Tag = "DNI";
             // 
             // LDNI
             // 
             LDNI.AutoSize = true;
-            LDNI.Location = new Point(408, 0);
+            LDNI.Location = new Point(358, 0);
             LDNI.Name = "LDNI";
-            LDNI.Size = new Size(35, 20);
+            LDNI.Size = new Size(27, 15);
             LDNI.TabIndex = 70;
             LDNI.Text = "DNI";
             // 
             // LDireccion
             // 
             LDireccion.AutoSize = true;
-            LDireccion.Location = new Point(408, 144);
+            LDireccion.Location = new Point(358, 108);
             LDireccion.Name = "LDireccion";
-            LDireccion.Size = new Size(0, 20);
+            LDireccion.Size = new Size(0, 15);
             LDireccion.TabIndex = 72;
             // 
             // LSexo
             // 
             LSexo.AutoSize = true;
-            LSexo.Location = new Point(408, 36);
+            LSexo.Location = new Point(358, 27);
             LSexo.Name = "LSexo";
-            LSexo.Size = new Size(41, 20);
+            LSexo.Size = new Size(32, 15);
             LSexo.TabIndex = 75;
             LSexo.Text = "Sexo";
             // 
             // RBHombre
             // 
             RBHombre.AutoSize = true;
-            RBHombre.Location = new Point(579, 39);
+            RBHombre.Location = new Point(508, 29);
+            RBHombre.Margin = new Padding(3, 2, 3, 2);
             RBHombre.Name = "RBHombre";
-            RBHombre.Size = new Size(43, 24);
+            RBHombre.Size = new Size(36, 19);
             RBHombre.TabIndex = 86;
             RBHombre.TabStop = true;
             RBHombre.Text = "m";
@@ -213,9 +219,10 @@
             // RBMujer
             // 
             RBMujer.AutoSize = true;
-            RBMujer.Location = new Point(706, 39);
+            RBMujer.Location = new Point(620, 29);
+            RBMujer.Margin = new Padding(3, 2, 3, 2);
             RBMujer.Name = "RBMujer";
-            RBMujer.Size = new Size(35, 24);
+            RBMujer.Size = new Size(29, 19);
             RBMujer.TabIndex = 85;
             RBMujer.TabStop = true;
             RBMujer.Text = "f";
@@ -224,43 +231,45 @@
             // LContraseña
             // 
             LContraseña.AutoSize = true;
-            LContraseña.Location = new Point(3, 72);
+            LContraseña.Location = new Point(3, 54);
             LContraseña.Name = "LContraseña";
-            LContraseña.Size = new Size(83, 20);
+            LContraseña.Size = new Size(67, 15);
             LContraseña.TabIndex = 68;
             LContraseña.Text = "Contraseña";
             // 
             // TBContraseñaUsuario
             // 
-            TBContraseñaUsuario.Location = new Point(205, 75);
+            TBContraseñaUsuario.Location = new Point(180, 56);
+            TBContraseñaUsuario.Margin = new Padding(3, 2, 3, 2);
             TBContraseñaUsuario.Name = "TBContraseñaUsuario";
-            TBContraseñaUsuario.Size = new Size(130, 27);
+            TBContraseñaUsuario.Size = new Size(114, 23);
             TBContraseñaUsuario.TabIndex = 79;
             TBContraseñaUsuario.Tag = "Contraseña";
             // 
             // LEmail
             // 
             LEmail.AutoSize = true;
-            LEmail.Location = new Point(3, 108);
+            LEmail.Location = new Point(3, 81);
             LEmail.Name = "LEmail";
-            LEmail.Size = new Size(46, 20);
+            LEmail.Size = new Size(36, 15);
             LEmail.TabIndex = 71;
             LEmail.Text = "Email";
             // 
             // TBEmailUsuario
             // 
-            TBEmailUsuario.Location = new Point(205, 111);
+            TBEmailUsuario.Location = new Point(180, 83);
+            TBEmailUsuario.Margin = new Padding(3, 2, 3, 2);
             TBEmailUsuario.Name = "TBEmailUsuario";
-            TBEmailUsuario.Size = new Size(130, 27);
+            TBEmailUsuario.Size = new Size(114, 23);
             TBEmailUsuario.TabIndex = 80;
             TBEmailUsuario.Tag = "Email";
             // 
             // LTelefono
             // 
             LTelefono.AutoSize = true;
-            LTelefono.Location = new Point(706, 0);
+            LTelefono.Location = new Point(620, 0);
             LTelefono.Name = "LTelefono";
-            LTelefono.Size = new Size(0, 20);
+            LTelefono.Size = new Size(0, 15);
             LTelefono.TabIndex = 73;
             // 
             // pnlDashEstudianteSuscripcion
@@ -268,15 +277,15 @@
             pnlDashEstudianteSuscripcion.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlDashEstudianteSuscripcion.AutoScroll = true;
             pnlDashEstudianteSuscripcion.BackColor = Color.SteelBlue;
+            pnlDashEstudianteSuscripcion.Controls.Add(labelAvisoBaja);
             pnlDashEstudianteSuscripcion.Controls.Add(dataGridView1);
             pnlDashEstudianteSuscripcion.Controls.Add(labelHistorialSuscripciones);
             pnlDashEstudianteSuscripcion.Controls.Add(btnSuscribirse);
             pnlDashEstudianteSuscripcion.Controls.Add(labelSuscripcionDescripcion);
             pnlDashEstudianteSuscripcion.Controls.Add(labelSuscripcionTitulo);
-            pnlDashEstudianteSuscripcion.Location = new Point(0, 313);
-            pnlDashEstudianteSuscripcion.Margin = new Padding(3, 4, 3, 4);
+            pnlDashEstudianteSuscripcion.Location = new Point(0, 235);
             pnlDashEstudianteSuscripcion.Name = "pnlDashEstudianteSuscripcion";
-            pnlDashEstudianteSuscripcion.Size = new Size(895, 287);
+            pnlDashEstudianteSuscripcion.Size = new Size(783, 238);
             pnlDashEstudianteSuscripcion.TabIndex = 1;
             // 
             // dataGridView1
@@ -284,11 +293,10 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { IdSuscripcion, Activa, Tipo, FechaInicio, FechaHasta, VerFactura });
-            dataGridView1.Location = new Point(32, 215);
-            dataGridView1.Margin = new Padding(3, 4, 3, 4);
+            dataGridView1.Location = new Point(24, 121);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(823, 200);
+            dataGridView1.Size = new Size(720, 138);
             dataGridView1.TabIndex = 4;
             // 
             // IdSuscripcion
@@ -338,9 +346,9 @@
             labelHistorialSuscripciones.AutoSize = true;
             labelHistorialSuscripciones.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelHistorialSuscripciones.ForeColor = Color.White;
-            labelHistorialSuscripciones.Location = new Point(27, 155);
+            labelHistorialSuscripciones.Location = new Point(20, 93);
             labelHistorialSuscripciones.Name = "labelHistorialSuscripciones";
-            labelHistorialSuscripciones.Size = new Size(274, 32);
+            labelHistorialSuscripciones.Size = new Size(213, 25);
             labelHistorialSuscripciones.TabIndex = 3;
             labelHistorialSuscripciones.Text = "Historial Suscripciones";
             // 
@@ -352,10 +360,9 @@
             btnSuscribirse.FlatStyle = FlatStyle.Flat;
             btnSuscribirse.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSuscribirse.ForeColor = Color.Black;
-            btnSuscribirse.Location = new Point(521, 35);
-            btnSuscribirse.Margin = new Padding(3, 4, 3, 4);
+            btnSuscribirse.Location = new Point(456, 3);
             btnSuscribirse.Name = "btnSuscribirse";
-            btnSuscribirse.Size = new Size(254, 103);
+            btnSuscribirse.Size = new Size(222, 77);
             btnSuscribirse.TabIndex = 2;
             btnSuscribirse.Text = "Suscribirse";
             btnSuscribirse.UseVisualStyleBackColor = false;
@@ -366,10 +373,10 @@
             labelSuscripcionDescripcion.AutoSize = true;
             labelSuscripcionDescripcion.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelSuscripcionDescripcion.ForeColor = Color.WhiteSmoke;
-            labelSuscripcionDescripcion.Location = new Point(23, 47);
-            labelSuscripcionDescripcion.MaximumSize = new Size(857, 0);
+            labelSuscripcionDescripcion.Location = new Point(24, 25);
+            labelSuscripcionDescripcion.MaximumSize = new Size(750, 0);
             labelSuscripcionDescripcion.Name = "labelSuscripcionDescripcion";
-            labelSuscripcionDescripcion.Size = new Size(403, 92);
+            labelSuscripcionDescripcion.Size = new Size(321, 68);
             labelSuscripcionDescripcion.TabIndex = 1;
             labelSuscripcionDescripcion.Text = "Al suscribirte podrás acceder a:\r\n• Marcar recursos como favoritos sin límite\r\n• Crear notas personales ilimitadas\r\n• Participar en los comentarios públicos de recursos";
             // 
@@ -378,22 +385,33 @@
             labelSuscripcionTitulo.AutoSize = true;
             labelSuscripcionTitulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelSuscripcionTitulo.ForeColor = Color.White;
-            labelSuscripcionTitulo.Location = new Point(23, 0);
+            labelSuscripcionTitulo.Location = new Point(20, 0);
             labelSuscripcionTitulo.Name = "labelSuscripcionTitulo";
-            labelSuscripcionTitulo.Size = new Size(257, 32);
+            labelSuscripcionTitulo.Size = new Size(201, 25);
             labelSuscripcionTitulo.TabIndex = 0;
             labelSuscripcionTitulo.Text = "Suscripción Premium";
             // 
+            // labelAvisoBaja
+            // 
+            labelAvisoBaja.AutoSize = true;
+            labelAvisoBaja.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelAvisoBaja.ForeColor = Color.White;
+            labelAvisoBaja.Location = new Point(26, 266);
+            labelAvisoBaja.Name = "labelAvisoBaja";
+            labelAvisoBaja.Size = new Size(614, 17);
+            labelAvisoBaja.TabIndex = 5;
+            labelAvisoBaja.Text = "Si su suscripción fue dada de baja, por favor consulte su email para informarse sobre los motivos.";
+            labelAvisoBaja.Click += label1_Click;
+            // 
             // FormDashboardEstudiante
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.White;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 473);
             Controls.Add(pnlDashEstudianteSuscripcion);
             Controls.Add(pnlDashEstudianteDatos);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FormDashboardEstudiante";
             Text = "FormDashboardEstudiante";
             Load += FormDashboardEstudiante_Load;
@@ -438,5 +456,6 @@
         private DataGridViewTextBoxColumn FechaInicio;
         private DataGridViewTextBoxColumn FechaHasta;
         private DataGridViewButtonColumn VerFactura;
+        private Label labelAvisoBaja;
     }
 }

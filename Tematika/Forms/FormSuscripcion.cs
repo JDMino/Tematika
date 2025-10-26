@@ -106,7 +106,7 @@ namespace Tematika.Forms
 
             detalleService.CrearDetalle(detalle);
 
-            var formFactura = new FormFactura(factura, detalle);
+            var formFactura = new FormFactura(factura, detalle, usuario);
             formFactura.Show();
             Close();
         }

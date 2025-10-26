@@ -13,14 +13,16 @@ namespace Tematika.Forms
         private readonly SuscripcionService suscripcionService = new SuscripcionService();
         private readonly FacturaService facturaService = new FacturaService();
         private readonly DetalleFacturaService detalleService = new DetalleFacturaService();
+        private readonly UsuarioService usuarioService = new UsuarioService();
 
         public FormDashboardEstudiante()
         {
             InitializeComponent();
             Load += FormDashboardEstudiante_Load;
             BUModificar.Click += BUModificar_Click;
-            //btnSuscribirse.Click += btnSuscribirse_Click;
+            btnSuscribirse.Click += btnSuscribirse_Click;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
         }
 
         private void FormDashboardEstudiante_Load(object sender, EventArgs e)
@@ -42,13 +44,15 @@ namespace Tematika.Forms
             RBMujer.Checked = usuario.Sexo == 'f';
 
             CargarHistorialSuscripciones();
-            //btnSuscribirse.Enabled = !TieneSuscripcionActiva();
+            btnSuscribirse.Enabled = !TieneSuscripcionActiva();
         }
 
         private void CargarHistorialSuscripciones()
         {
             var usuario = SesionManager.UsuarioActual!;
-            var suscripciones = suscripcionService.ObtenerPorUsuario(usuario.IdUsuario);
+            var suscripciones = suscripcionService.ObtenerPorUsuario(usuario.IdUsuario)
+                .OrderByDescending(s => s.FechaInicio)
+                .ToList();
 
             dataGridView1.Rows.Clear();
 
@@ -62,6 +66,25 @@ namespace Tematika.Forms
                     s.FechaFin?.ToString("dd/MM/yyyy") ?? "-",
                     "Ver factura"
                 );
+            }
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Activa" && e.Value != null)
+            {
+                string estado = e.Value.ToString()?.Trim().ToLower();
+
+                if (estado == "sí")
+                {
+                    e.CellStyle.BackColor = Color.LightGreen;
+                    e.CellStyle.ForeColor = Color.Black;
+                }
+                else if (estado == "no")
+                {
+                    e.CellStyle.BackColor = Color.LightCoral;
+                    e.CellStyle.ForeColor = Color.Black;
+                }
             }
         }
 
@@ -105,8 +128,7 @@ namespace Tematika.Forms
             usuarioActual.Sexo = RBHombre.Checked ? 'm' : 'f';
 
             var nuevaContrasena = TBContraseñaUsuario.Text;
-            var servicio = new UsuarioService();
-            var mensajeError = servicio.ActualizarUsuario(usuarioActual, string.IsNullOrWhiteSpace(nuevaContrasena) ? null : nuevaContrasena);
+            var mensajeError = usuarioService.ActualizarUsuario(usuarioActual, string.IsNullOrWhiteSpace(nuevaContrasena) ? null : nuevaContrasena);
 
             if (mensajeError != null)
             {
@@ -126,15 +148,21 @@ namespace Tematika.Forms
 
             var factura = facturaService.ObtenerPorSuscripcion(idSuscripcion);
             var detalle = detalleService.ObtenerPorFactura(factura.IdFactura);
+            var usuarioDueño = usuarioService.ObtenerUsuario(factura.IdUsuario);
 
-            if (factura == null || detalle == null)
+            if (factura == null || detalle == null || usuarioDueño == null)
             {
-                MessageBox.Show("No se encontró la factura asociada.");
+                MessageBox.Show("No se encontró la factura o el usuario asociado.");
                 return;
             }
 
-            var formFactura = new FormFactura(factura, detalle);
+            var formFactura = new FormFactura(factura, detalle, usuarioDueño);
             formFactura.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

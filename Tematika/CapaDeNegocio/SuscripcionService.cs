@@ -17,6 +17,15 @@ namespace Tematika.CapaDeNegocio
             return _repo.ObtenerPorUsuario(idUsuario);
         }
 
+        public List<Suscripcion> ObtenerTodas()
+        {
+            return _repo.ObtenerTodas();
+        }
+
+        public void DarDeBaja(int idSuscripcion)
+        {
+            _repo.DarDeBaja(idSuscripcion);
+        }
 
     }
 }
