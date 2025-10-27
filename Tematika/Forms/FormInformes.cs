@@ -30,42 +30,39 @@ namespace Tematika.Forms
             tabControlInformes.SelectedIndexChanged += TabControlInformes_SelectedIndexChanged;
 
             btnAlternarGraficoRecursos.Click += (s, e) => { esTortaRecursos = !esTortaRecursos; CargarGraficoRecursos(); };
-            btnReiniciarFiltroRecurso.Click += (s, e) => CargarGraficoRecursos();
+            //btnReiniciarFiltroRecurso.Click += (s, e) => CargarGraficoRecursos();
+            btnReiniciarFiltroRecurso.Click += reiniciarFiltros;
             btnExportarPDFRecursos.Click += (s, e) => ExportarPDF(chartRecursos, dtInicioRecursos.Value, dtFinRecursos.Value);
 
             btnAlternarGraficoInteraccion.Click += (s, e) => { esTortaInteraccion = !esTortaInteraccion; CargarGraficoInteraccion(); };
-            btnReiniciarFiltroInteraccionTema.Click += (s, e) => CargarGraficoInteraccion();
+            btnReiniciarFiltroInteraccionTema.Click += reiniciarFiltros;
             btnExportarPDFInteraccion.Click += (s, e) => ExportarPDF(chartInteraccion, dtInicioInteraccion.Value, dtFinInteraccion.Value);
 
             btnAlternarGraficoSuscripciones.Click += (s, e) => { esTortaSuscripciones = !esTortaSuscripciones; CargarGraficoSuscripciones(); };
-            btnReiniciarFiltroSuscripcion.Click += (s, e) => CargarGraficoSuscripciones();
+            btnReiniciarFiltroSuscripcion.Click += reiniciarFiltros;
             btnExportarPDFSuscripciones.Click += (s, e) => ExportarPDF(chartSuscripciones, dtInicioSuscripciones.Value, dtFinSuscripciones.Value);
+
+            dtInicioRecursos.CloseUp += DtInicioRecursos_CloseUp;
+            dtFinRecursos.CloseUp += dtFinRecursos_CloseUp;
+
+            dtInicioInteraccion.CloseUp += dtInicioInteraccion_CloseUp;
+            dtFinInteraccion.CloseUp += dtFinInteraccion_CloseUp;
+
+            dtInicioSuscripciones.CloseUp += dtInicioSuscripciones_CloseUp;
+            dtFinSuscripciones.CloseUp += dtFinSuscripciones_CloseUp;
         }
 
+        private void DtInicioRecursos_CloseUp(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         private void FormInformes_Load(object sender, EventArgs e)
         {
             AplicarEstiloEncabezado(panelEncabezado, LTituloInformes);
             panel1.BackColor = ColorTranslator.FromHtml("#cfd8dc");
 
-            var haceUnAño = DateTime.Now.AddYears(-1);
-
-            dtInicioRecursos.Value = haceUnAño;
-            dtFinRecursos.Value = DateTime.Now;
-
-            dtInicioInteraccion.Value = haceUnAño;
-            dtFinInteraccion.Value = DateTime.Now;
-
-            dtInicioSuscripciones.Value = haceUnAño;
-            dtFinSuscripciones.Value = DateTime.Now;
-
-            esTortaRecursos = false;
-            esTortaInteraccion = false;
-            esTortaSuscripciones = false;
-
-            CargarGraficoRecursos();
-            CargarGraficoInteraccion();
-            CargarGraficoSuscripciones();
+            reiniciarFiltros(null, null);
         }
 
         private void AplicarEstiloEncabezado(Control contenedor, Label titulo)
@@ -89,6 +86,12 @@ namespace Tematika.Forms
 
         private void CargarGraficoRecursos()
         {
+            if (!ComprobarFecha(dtInicioRecursos, dtFinRecursos))
+            {
+                MessageBox.Show("La fecha de inicio no puede ser mayor a la fecha de fin.", "Error de fechas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (chartRecursos == null)
             {
                 MessageBox.Show("chartRecursos no fue inicializado.");
@@ -118,7 +121,8 @@ namespace Tematika.Forms
                 .Where(r => visitas.ContainsKey(r.IdRecurso))
                 .Select(r => new { r.Titulo, Cantidad = visitas[r.IdRecurso] })
                 .OrderByDescending(v => v.Cantidad)
-                .ToList();
+                .ToList()
+                .Take(10);
 
             if (!datos.Any())
             {
@@ -142,7 +146,7 @@ namespace Tematika.Forms
             }
 
             chartRecursos.Series.Add(serie);
-            chartRecursos.Titles.Add(new Title("Recursos más consultados", Docking.Top, new Font("Ebrima", 14, FontStyle.Bold), Color.Black));
+            chartRecursos.Titles.Add(new Title("TOP 10 - Recursos más consultados", Docking.Top, new Font("Ebrima", 14, FontStyle.Bold), Color.Black));
 
             if (!esTortaRecursos)
             {
@@ -156,6 +160,12 @@ namespace Tematika.Forms
 
         private void CargarGraficoInteraccion()
         {
+            if (!ComprobarFecha(dtInicioInteraccion, dtFinInteraccion))
+            {
+                MessageBox.Show("La fecha de inicio no puede ser mayor a la fecha de fin.", "Error de fechas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (chartInteraccion == null)
             {
                 MessageBox.Show("chartRecursos no fue inicializado.");
@@ -191,7 +201,10 @@ namespace Tematika.Forms
                     .Count(v => v.Fecha >= dtInicioInteraccion.Value && v.Fecha <= dtFinInteraccion.Value));
 
                 return new { Tema = t.Nombre, Total = comentarios + notas + valoraciones };
-            }).Where(i => i.Total > 0).ToList();
+            }).Where(i => i.Total > 0)
+            .OrderByDescending(i => i.Total)   
+            .Take(10)                         
+            .ToList();
 
             if (!interacciones.Any())
             {
@@ -215,7 +228,7 @@ namespace Tematika.Forms
             }
 
             chartInteraccion.Series.Add(serie);
-            chartInteraccion.Titles.Add(new Title("Interacción por tema", Docking.Top, new Font("Ebrima", 14, FontStyle.Bold), Color.Black));
+            chartInteraccion.Titles.Add(new Title("TOP 10 - Interacción por tema", Docking.Top, new Font("Ebrima", 14, FontStyle.Bold), Color.Black));
 
             if (!esTortaInteraccion)
             {
@@ -229,6 +242,11 @@ namespace Tematika.Forms
 
         private void CargarGraficoSuscripciones()
         {
+            if (!ComprobarFecha(dtInicioSuscripciones, dtFinSuscripciones))             {
+                MessageBox.Show("La fecha de inicio no puede ser mayor a la fecha de fin.", "Error de fechas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (chartSuscripciones == null)
             {
                 MessageBox.Show("chartRecursos no fue inicializado.");
@@ -337,6 +355,64 @@ namespace Tematika.Forms
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void reiniciarFiltros(object sender, EventArgs e)
+        {
+            var haceUnAño = DateTime.Now.AddYears(-1);
+
+            dtInicioRecursos.Value = haceUnAño;
+            dtFinRecursos.Value = DateTime.Now;
+
+            dtInicioInteraccion.Value = haceUnAño;
+            dtFinInteraccion.Value = DateTime.Now;
+
+            dtInicioSuscripciones.Value = haceUnAño;
+            dtFinSuscripciones.Value = DateTime.Now;
+
+            esTortaRecursos = false;
+            esTortaInteraccion = false;
+            esTortaSuscripciones = false;
+
+            CargarGraficoRecursos();
+            CargarGraficoInteraccion();
+            CargarGraficoSuscripciones();
+        }
+
+
+        private void dtInicioRecursos_CloseUp(object sender, EventArgs e)
+        {
+            CargarGraficoRecursos();
+        }
+
+        private void dtFinRecursos_CloseUp(object sender, EventArgs e)
+        {
+            CargarGraficoRecursos();
+        }
+
+        private void dtInicioInteraccion_CloseUp(object sender, EventArgs e)
+        {
+            CargarGraficoInteraccion();
+        }
+
+        private void dtFinInteraccion_CloseUp(object sender, EventArgs e)
+        {
+            CargarGraficoInteraccion();
+        }
+
+        private void dtInicioSuscripciones_CloseUp(object sender, EventArgs e)
+        {
+            CargarGraficoSuscripciones();
+        }
+
+        private void dtFinSuscripciones_CloseUp(object sender, EventArgs e)
+        {
+            CargarGraficoSuscripciones();
+        }
+
+        private bool ComprobarFecha(DateTimePicker fechaInicio, DateTimePicker fechaFin)
+        {
+            return fechaInicio.Value <= fechaFin.Value;
         }
     }
 }
