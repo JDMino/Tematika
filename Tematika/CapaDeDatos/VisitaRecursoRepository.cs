@@ -66,5 +66,29 @@ namespace Tematika.CapaDeDatos
             return (int)command.ExecuteScalar();
         }
 
+        public List<VisitaRecurso> ObtenerTodas()
+        {
+            var lista = new List<VisitaRecurso>();
+            using var connection = new SqlConnection(_connectionString);
+            var query = "SELECT * FROM visita_recurso";
+
+            using var command = new SqlCommand(query, connection);
+            connection.Open();
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                lista.Add(new VisitaRecurso
+                {
+                    IdVisita = (int)reader["id_visita"],
+                    FechaHora = (DateTime)reader["fecha_hora"],
+                    IdUsuario = (int)reader["id_usuario"],
+                    IdRecurso = (int)reader["id_recurso"]
+                });
+            }
+
+            return lista;
+        }
+
     }
 }

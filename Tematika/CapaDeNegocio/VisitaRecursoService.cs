@@ -37,5 +37,10 @@ namespace Tematika.CapaDeNegocio
             return _repository.ContarVisitasPorRecurso(idRecurso);
         }
 
+        public List<VisitaRecurso> ListarTodas()
+        {
+            return _repository.ObtenerTodas();
+        }
+
     }
 }
