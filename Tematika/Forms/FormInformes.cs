@@ -26,7 +26,7 @@ namespace Tematika.Forms
         public FormInformes()
         {
             InitializeComponent();
-
+            Load += FormInformes_Load;
             tabControlInformes.SelectedIndexChanged += TabControlInformes_SelectedIndexChanged;
 
             btnAlternarGraficoRecursos.Click += (s, e) => { esTortaRecursos = !esTortaRecursos; CargarGraficoRecursos(); };
@@ -41,6 +41,7 @@ namespace Tematika.Forms
             btnReiniciarFiltroSuscripcion.Click += (s, e) => CargarGraficoSuscripciones();
             btnExportarPDFSuscripciones.Click += (s, e) => ExportarPDF(chartSuscripciones, dtInicioSuscripciones.Value, dtFinSuscripciones.Value);
         }
+
 
         private void FormInformes_Load(object sender, EventArgs e)
         {
@@ -88,6 +89,12 @@ namespace Tematika.Forms
 
         private void CargarGraficoRecursos()
         {
+            if (chartRecursos == null)
+            {
+                MessageBox.Show("chartRecursos no fue inicializado.");
+                return;
+            }
+
             chartRecursos.Series.Clear();
             chartRecursos.ChartAreas.Clear();
             chartRecursos.Titles.Clear();
@@ -149,6 +156,12 @@ namespace Tematika.Forms
 
         private void CargarGraficoInteraccion()
         {
+            if (chartInteraccion == null)
+            {
+                MessageBox.Show("chartRecursos no fue inicializado.");
+                return;
+            }
+
             chartInteraccion.Series.Clear();
             chartInteraccion.ChartAreas.Clear();
             chartInteraccion.Titles.Clear();
@@ -216,6 +229,12 @@ namespace Tematika.Forms
 
         private void CargarGraficoSuscripciones()
         {
+            if (chartSuscripciones == null)
+            {
+                MessageBox.Show("chartRecursos no fue inicializado.");
+                return;
+            }
+
             chartSuscripciones.Series.Clear();
             chartSuscripciones.ChartAreas.Clear();
             chartSuscripciones.Titles.Clear();
@@ -308,6 +327,16 @@ namespace Tematika.Forms
 
             doc.Save(dialog.FileName);
             MessageBox.Show("Informe exportado correctamente.", "Exportación PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void panelSuperiorInteraccion_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
