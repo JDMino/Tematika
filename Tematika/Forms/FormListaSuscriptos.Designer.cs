@@ -43,6 +43,7 @@
             TBCardsSuscripciones = new TableLayoutPanel();
             panelEncabezadoS = new FlowLayoutPanel();
             LTituloSuscripciones = new Label();
+            btnExportarPDF = new Button();
             panelSuscripcion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DGVGestionSuscripciones).BeginInit();
             panelCardsSuscripciones.SuspendLayout();
@@ -52,6 +53,7 @@
             // panelSuscripcion
             // 
             panelSuscripcion.BackColor = SystemColors.ActiveCaption;
+            panelSuscripcion.Controls.Add(btnExportarPDF);
             panelSuscripcion.Controls.Add(DGVGestionSuscripciones);
             panelSuscripcion.Controls.Add(panelCardsSuscripciones);
             panelSuscripcion.Controls.Add(panelEncabezadoS);
@@ -186,6 +188,16 @@
             LTituloSuscripciones.TabIndex = 1;
             LTituloSuscripciones.Text = "Gestion de Suscripciones";
             // 
+            // btnExportarPDF
+            // 
+            btnExportarPDF.Location = new Point(28, 239);
+            btnExportarPDF.Name = "btnExportarPDF";
+            btnExportarPDF.Size = new Size(126, 26);
+            btnExportarPDF.TabIndex = 108;
+            btnExportarPDF.Text = "Exportar a PDF";
+            btnExportarPDF.UseVisualStyleBackColor = true;
+            btnExportarPDF.Click += btnExportarPDF_Click;
+            // 
             // FormListaSuscriptos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -221,5 +233,6 @@
         private DataGridViewTextBoxColumn Precio;
         private DataGridViewButtonColumn verFactura;
         private DataGridViewButtonColumn darDeBaja;
+        private Button btnExportarPDF;
     }
 }

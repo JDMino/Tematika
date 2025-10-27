@@ -6,6 +6,10 @@ using Tematika.CapaDeNegocio;
 using Tematika.Models;
 using Tematika.Forms.Cards;
 using Tematika.Styles;
+using PdfSharpCore.Drawing;
+using PdfSharpCore.Pdf;
+using System.IO;
+
 
 namespace Tematika.Forms
 {
@@ -181,5 +185,138 @@ namespace Tematika.Forms
                 }
             }
         }
+
+        private void btnExportarPDF_Click(object sender, EventArgs e)
+        {
+            using var saveDialog = new SaveFileDialog
+            {
+                Filter = "Archivo PDF (*.pdf)|*.pdf",
+                Title = "Guardar informe de suscripciones",
+                FileName = "Suscripciones.pdf"
+            };
+
+            if (saveDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            var document = new PdfDocument();
+            var page = document.AddPage();
+            page.Size = PdfSharpCore.PageSize.A4;
+            var gfx = XGraphics.FromPdfPage(page);
+            var font = new XFont("Verdana", 10, XFontStyle.Regular);
+            var boldFont = new XFont("Verdana", 10, XFontStyle.Bold);
+            var titleFont = new XFont("Verdana", 14, XFontStyle.Bold);
+
+            double margin = 40;
+            double y = margin;
+            double lineHeight = 20;
+            double pageHeight = page.Height - margin;
+
+            // Título
+            gfx.DrawString("Informe de Suscripciones", titleFont, XBrushes.Black, new XRect(0, y, page.Width, lineHeight), XStringFormats.TopCenter);
+            y += lineHeight;
+
+            // Fecha de generación
+            gfx.DrawString($"Generado el {DateTime.Now:dd/MM/yyyy HH:mm}", font, XBrushes.Black, new XRect(0, y, page.Width, lineHeight), XStringFormats.TopCenter);
+            y += lineHeight + 10;
+
+            // Tarjetas resumen
+            gfx.DrawString("Resumen de suscripciones:", boldFont, XBrushes.Black, new XPoint(margin, y));
+            y += lineHeight;
+
+            int rows = TBCardsSuscripciones.RowCount;
+            int cols = TBCardsSuscripciones.ColumnCount;
+            double cellWidth = (page.Width - 2 * margin) / cols;
+
+            for (int row = 0; row < rows; row++)
+            {
+                double xCard = margin;
+                for (int col = 0; col < cols; col++)
+                {
+                    var control = TBCardsSuscripciones.GetControlFromPosition(col, row);
+                    if (control is DashboardUserControl1 card)
+                    {
+                        string titulo = card.TituloCard;
+                        string valor = card.InfoCard;
+
+                        gfx.DrawRectangle(XPens.Black, xCard, y, cellWidth, lineHeight * 2);
+                        gfx.DrawString(titulo, font, XBrushes.Black, new XRect(xCard + 5, y + 2, cellWidth - 10, lineHeight), XStringFormats.TopLeft);
+                        gfx.DrawString(valor, boldFont, XBrushes.Black, new XRect(xCard + 5, y + lineHeight, cellWidth - 10, lineHeight), XStringFormats.TopLeft);
+                    }
+                    xCard += cellWidth;
+                }
+                y += lineHeight * 2;
+
+                if (y + lineHeight * 2 > pageHeight)
+                {
+                    page = document.AddPage();
+                    page.Size = PdfSharpCore.PageSize.A4;
+                    gfx = XGraphics.FromPdfPage(page);
+                    y = margin;
+                }
+            }
+
+            y += 10;
+
+            // Tabla de suscripciones
+            gfx.DrawString("Detalle de suscripciones:", boldFont, XBrushes.Black, new XPoint(margin, y));
+            y += lineHeight;
+
+            string[] headers = { "ID", "Usuario", "Activa", "Inicio", "Fin", "Tipo", "Precio" };
+            double[] columnWidths = { 40, 120, 50, 70, 70, 80, 60 };
+            double xStart = margin;
+
+            // Encabezados
+            double xHeader = xStart;
+            for (int i = 0; i < headers.Length; i++)
+            {
+                gfx.DrawRectangle(XPens.Black, xHeader, y, columnWidths[i], lineHeight);
+                gfx.DrawString(headers[i], boldFont, XBrushes.Black, new XRect(xHeader + 2, y + 2, columnWidths[i], lineHeight), XStringFormats.TopLeft);
+                xHeader += columnWidths[i];
+            }
+
+            y += lineHeight;
+
+            // Filas
+            foreach (DataGridViewRow row in DGVGestionSuscripciones.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                double xRow = xStart;
+                string[] values = new string[]
+                {
+            row.Cells["id_suscripcion"].Value?.ToString() ?? "",
+            row.Cells["usuario"].Value?.ToString() ?? "",
+            row.Cells["activa"].Value?.ToString() ?? "",
+            row.Cells["fecha_inicio"].Value?.ToString() ?? "",
+            row.Cells["fecha_fin"].Value?.ToString() ?? "",
+            row.Cells["tipo"].Value?.ToString() ?? "",
+            row.Cells["Precio"].Value?.ToString() ?? ""
+                };
+
+                for (int i = 0; i < values.Length; i++)
+                {
+                    gfx.DrawRectangle(XPens.Black, xRow, y, columnWidths[i], lineHeight);
+                    gfx.DrawString(values[i], font, XBrushes.Black, new XRect(xRow + 2, y + 2, columnWidths[i], lineHeight), XStringFormats.TopLeft);
+                    xRow += columnWidths[i];
+                }
+
+                y += lineHeight;
+
+                if (y + lineHeight > pageHeight)
+                {
+                    page = document.AddPage();
+                    page.Size = PdfSharpCore.PageSize.A4;
+                    gfx = XGraphics.FromPdfPage(page);
+                    y = margin;
+                }
+            }
+
+            using var stream = new FileStream(saveDialog.FileName, FileMode.Create, FileAccess.Write);
+            document.Save(stream);
+            MessageBox.Show("PDF exportado correctamente.", "Exportación finalizada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+
     }
 }
