@@ -28,6 +28,11 @@ namespace Tematika.Forms
             BTemasActivos.Click += BTemasActivos_Click;
             BTemasInactivos.Click += BTemasInactivos_Click;
             CBFiltroMaterias.SelectedIndexChanged += CBFiltroMaterias_SelectedIndexChanged;
+            TBBuscadorTema.TextChanged += (s, e) =>
+            {
+                GridUtils.FiltrarFilasPorTexto(DGVTemas, TBBuscadorTema.Text);
+            };
+
         }
 
         private void FormGestionTemas_Load(object sender, EventArgs e)

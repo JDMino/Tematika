@@ -22,6 +22,10 @@ namespace Tematika.Forms
             BEliminarTema.Click += BEliminarTema_Click;
             BCancelarTema.Click += BCancelarTema_Click;
             DGVTemas.CellClick += DGVTemas_CellClick;
+            TBBuscadorDocente.TextChanged += (s, e) =>
+            {
+                GridUtils.FiltrarFilasPorTexto(DGVTemas, TBBuscadorDocente.Text);
+            };
         }
 
         private void FormGestionDocenteMateria_Load(object sender, EventArgs e)

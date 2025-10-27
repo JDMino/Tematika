@@ -20,6 +20,11 @@ namespace Tematika.Forms
         public FormGestionUsuarios()
         {
             InitializeComponent();
+            TBBuscadorUsuarios.TextChanged += (s, e) =>
+            {
+                GridUtils.FiltrarFilasPorTexto(DGVUsuarios, TBBuscadorUsuarios.Text);
+            };
+
         }
 
         private void FormGestionUsuarios_Load(object sender, EventArgs e)

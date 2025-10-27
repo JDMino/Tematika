@@ -35,6 +35,10 @@ namespace Tematika.Forms
             CBFiltrarMateria.SelectedIndexChanged += CBFiltrarMateria_SelectedIndexChanged;
             CBFiltrarTema.SelectedIndexChanged += CBFiltrarTema_SelectedIndexChanged;
             BRuta.Click += BRuta_Click;
+            TBBuscadorRecurso.TextChanged += (s, e) =>
+            {
+                GridUtils.FiltrarFilasPorTexto(DGVRecursos, TBBuscadorRecurso.Text);
+            };
         }
 
         private void FormGestionRecursos_Load(object sender, EventArgs e)

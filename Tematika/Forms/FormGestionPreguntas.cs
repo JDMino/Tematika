@@ -32,6 +32,10 @@ namespace Tematika.Forms
             BPActivos.Click += BPActivos_Click;
             BPInactivos.Click += BPInactivos_Click;
             DGVPreguntas.CellClick += DGVPreguntas_CellClick;
+            TBBuscador.TextChanged += (s, e) =>
+            {
+                GridUtils.FiltrarFilasPorTexto(DGVPreguntas, TBBuscador.Text);
+            };
         }
 
         private void FormGestionPreguntas_Load(object sender, EventArgs e)

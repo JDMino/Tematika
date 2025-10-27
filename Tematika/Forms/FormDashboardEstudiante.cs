@@ -20,7 +20,7 @@ namespace Tematika.Forms
             InitializeComponent();
             Load += FormDashboardEstudiante_Load;
             BUModificar.Click += BUModificar_Click;
-            btnSuscribirse.Click += btnSuscribirse_Click;
+            //btnSuscribirse.Click += btnSuscribirse_Click;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
         }
@@ -44,7 +44,7 @@ namespace Tematika.Forms
             RBMujer.Checked = usuario.Sexo == 'f';
 
             CargarHistorialSuscripciones();
-            btnSuscribirse.Enabled = !TieneSuscripcionActiva();
+            //btnSuscribirse.Enabled = !TieneSuscripcionActiva();
         }
 
         private void CargarHistorialSuscripciones()

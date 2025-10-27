@@ -35,7 +35,7 @@
             Materia = new Label();
             CBMaterias = new ComboBox();
             panelBuscador = new TableLayoutPanel();
-            TBBuscadorTema = new TextBox();
+            TBBuscadorDocente = new TextBox();
             panelBotones = new TableLayoutPanel();
             BGuardarTema = new Button();
             BEliminarTema = new Button();
@@ -132,7 +132,7 @@
             panelBuscador.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             panelBuscador.ColumnStyles.Add(new ColumnStyle());
             panelBuscador.ColumnStyles.Add(new ColumnStyle());
-            panelBuscador.Controls.Add(TBBuscadorTema, 0, 0);
+            panelBuscador.Controls.Add(TBBuscadorDocente, 0, 0);
             panelBuscador.Location = new Point(85, 333);
             panelBuscador.Name = "panelBuscador";
             panelBuscador.RowCount = 2;
@@ -141,13 +141,13 @@
             panelBuscador.Size = new Size(285, 43);
             panelBuscador.TabIndex = 104;
             // 
-            // TBBuscadorTema
+            // TBBuscadorDocente
             // 
-            TBBuscadorTema.Location = new Point(3, 3);
-            TBBuscadorTema.Name = "TBBuscadorTema";
-            TBBuscadorTema.PlaceholderText = "Buscar Docente..";
-            TBBuscadorTema.Size = new Size(236, 27);
-            TBBuscadorTema.TabIndex = 62;
+            TBBuscadorDocente.Location = new Point(3, 3);
+            TBBuscadorDocente.Name = "TBBuscadorDocente";
+            TBBuscadorDocente.PlaceholderText = "Buscar Docente..";
+            TBBuscadorDocente.Size = new Size(236, 27);
+            TBBuscadorDocente.TabIndex = 62;
             // 
             // panelBotones
             // 
@@ -288,7 +288,7 @@
         private Label Materia;
         private ComboBox CBMaterias;
         private TableLayoutPanel panelBuscador;
-        private TextBox TBBuscadorTema;
+        private TextBox TBBuscadorDocente;
         private TableLayoutPanel panelBotones;
         private Button BGuardarTema;
         private Button BEliminarTema;

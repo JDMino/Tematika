@@ -25,6 +25,10 @@ namespace Tematika.Forms
             BCancelarMateria.Click += BCancelarMateria_Click;
             BMateriasActivas.Click += BMateriasActivas_Click;
             BMateriasInactivas.Click += BMateriasInactivas_Click;
+            TBBuscadorMaterias.TextChanged += (s, e) =>
+            {
+                GridUtils.FiltrarFilasPorTexto(DGVMaterias, TBBuscadorMaterias.Text);
+            };
         }
 
         private void FormGestionMateria_Load(object sender, EventArgs e)
