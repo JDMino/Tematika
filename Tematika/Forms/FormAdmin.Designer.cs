@@ -37,7 +37,6 @@
             LTituloForm = new Label();
             BSalir = new Button();
             BGestionTematica = new Button();
-            BDashboard = new Button();
             BInformes = new Button();
             BUsuarios = new Button();
             panelMain = new Panel();
@@ -54,13 +53,12 @@
             sideBar.Controls.Add(LTituloForm);
             sideBar.Controls.Add(BSalir);
             sideBar.Controls.Add(BGestionTematica);
-            sideBar.Controls.Add(BDashboard);
             sideBar.Controls.Add(BInformes);
             sideBar.Controls.Add(BUsuarios);
             sideBar.Dock = DockStyle.Left;
             sideBar.Location = new Point(0, 0);
             sideBar.Name = "sideBar";
-            sideBar.Size = new Size(286, 749);
+            sideBar.Size = new Size(294, 749);
             sideBar.TabIndex = 0;
             // 
             // BSuscripciones
@@ -72,9 +70,9 @@
             BSuscripciones.Font = new Font("Segoe UI", 10F);
             BSuscripciones.Image = (Image)resources.GetObject("BSuscripciones.Image");
             BSuscripciones.ImageAlign = ContentAlignment.MiddleLeft;
-            BSuscripciones.Location = new Point(11, 601);
+            BSuscripciones.Location = new Point(12, 487);
             BSuscripciones.Name = "BSuscripciones";
-            BSuscripciones.Size = new Size(263, 70);
+            BSuscripciones.Size = new Size(257, 93);
             BSuscripciones.TabIndex = 14;
             BSuscripciones.Text = "Suscripciones";
             BSuscripciones.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -89,9 +87,9 @@
             BBackUp.Font = new Font("Segoe UI", 10F);
             BBackUp.Image = (Image)resources.GetObject("BBackUp.Image");
             BBackUp.ImageAlign = ContentAlignment.MiddleLeft;
-            BBackUp.Location = new Point(11, 699);
+            BBackUp.Location = new Point(12, 610);
             BBackUp.Name = "BBackUp";
-            BBackUp.Size = new Size(263, 93);
+            BBackUp.Size = new Size(257, 93);
             BBackUp.TabIndex = 0;
             BBackUp.Text = "Back Up";
             BBackUp.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -102,7 +100,7 @@
             LNombreUsuario.AutoSize = true;
             LNombreUsuario.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LNombreUsuario.ForeColor = Color.White;
-            LNombreUsuario.Location = new Point(31, 795);
+            LNombreUsuario.Location = new Point(31, 778);
             LNombreUsuario.Name = "LNombreUsuario";
             LNombreUsuario.Size = new Size(229, 37);
             LNombreUsuario.TabIndex = 13;
@@ -114,7 +112,7 @@
             LRol.AutoSize = true;
             LRol.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LRol.ForeColor = Color.White;
-            LRol.Location = new Point(31, 832);
+            LRol.Location = new Point(31, 815);
             LRol.Name = "LRol";
             LRol.Size = new Size(59, 37);
             LRol.TabIndex = 12;
@@ -157,30 +155,13 @@
             BGestionTematica.Font = new Font("Segoe UI", 10F);
             BGestionTematica.Image = (Image)resources.GetObject("BGestionTematica.Image");
             BGestionTematica.ImageAlign = ContentAlignment.MiddleLeft;
-            BGestionTematica.Location = new Point(3, 344);
+            BGestionTematica.Location = new Point(12, 231);
             BGestionTematica.Name = "BGestionTematica";
-            BGestionTematica.Size = new Size(294, 93);
+            BGestionTematica.Size = new Size(257, 93);
             BGestionTematica.TabIndex = 8;
             BGestionTematica.Text = "Organizacion Tematica";
             BGestionTematica.TextImageRelation = TextImageRelation.ImageBeforeText;
             BGestionTematica.UseVisualStyleBackColor = true;
-            // 
-            // BDashboard
-            // 
-            BDashboard.AutoSize = true;
-            BDashboard.FlatAppearance.BorderSize = 0;
-            BDashboard.FlatStyle = FlatStyle.Flat;
-            BDashboard.Font = new Font("Segoe UI", 10F);
-            BDashboard.ForeColor = SystemColors.ActiveCaptionText;
-            BDashboard.Image = (Image)resources.GetObject("BDashboard.Image");
-            BDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            BDashboard.Location = new Point(11, 97);
-            BDashboard.Name = "BDashboard";
-            BDashboard.Size = new Size(263, 93);
-            BDashboard.TabIndex = 7;
-            BDashboard.Text = "Dashboard";
-            BDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
-            BDashboard.UseVisualStyleBackColor = true;
             // 
             // BInformes
             // 
@@ -190,9 +171,9 @@
             BInformes.Font = new Font("Segoe UI", 10F);
             BInformes.Image = (Image)resources.GetObject("BInformes.Image");
             BInformes.ImageAlign = ContentAlignment.MiddleLeft;
-            BInformes.Location = new Point(11, 453);
+            BInformes.Location = new Point(12, 354);
             BInformes.Name = "BInformes";
-            BInformes.Size = new Size(263, 93);
+            BInformes.Size = new Size(257, 93);
             BInformes.TabIndex = 5;
             BInformes.Text = "Informes";
             BInformes.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -207,9 +188,9 @@
             BUsuarios.Font = new Font("Segoe UI", 10F);
             BUsuarios.Image = (Image)resources.GetObject("BUsuarios.Image");
             BUsuarios.ImageAlign = ContentAlignment.MiddleLeft;
-            BUsuarios.Location = new Point(11, 217);
+            BUsuarios.Location = new Point(12, 104);
             BUsuarios.Name = "BUsuarios";
-            BUsuarios.Size = new Size(263, 93);
+            BUsuarios.Size = new Size(257, 93);
             BUsuarios.TabIndex = 1;
             BUsuarios.Text = "Usuarios";
             BUsuarios.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -218,9 +199,9 @@
             // panelMain
             // 
             panelMain.Dock = DockStyle.Fill;
-            panelMain.Location = new Point(286, 0);
+            panelMain.Location = new Point(294, 0);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(1067, 749);
+            panelMain.Size = new Size(1059, 749);
             panelMain.TabIndex = 1;
             // 
             // FormAdmin
@@ -246,7 +227,6 @@
         private Button BBackUp;
         private Button BInformes;
         private Button BUsuarios;
-        private Button BDashboard;
         private Button BGestionTematica;
         private Button BSalir;
         private Label LTituloForm;

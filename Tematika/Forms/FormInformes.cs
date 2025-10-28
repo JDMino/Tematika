@@ -42,7 +42,7 @@ namespace Tematika.Forms
             btnReiniciarFiltroSuscripcion.Click += reiniciarFiltros;
             btnExportarPDFSuscripciones.Click += (s, e) => ExportarPDF(chartSuscripciones, dtInicioSuscripciones.Value, dtFinSuscripciones.Value);
 
-            dtInicioRecursos.CloseUp += DtInicioRecursos_CloseUp;
+            dtInicioRecursos.CloseUp += dtInicioRecursos_CloseUp;
             dtFinRecursos.CloseUp += dtFinRecursos_CloseUp;
 
             dtInicioInteraccion.CloseUp += dtInicioInteraccion_CloseUp;
@@ -52,10 +52,6 @@ namespace Tematika.Forms
             dtFinSuscripciones.CloseUp += dtFinSuscripciones_CloseUp;
         }
 
-        private void DtInicioRecursos_CloseUp(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         private void FormInformes_Load(object sender, EventArgs e)
         {

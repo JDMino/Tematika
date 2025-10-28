@@ -40,17 +40,37 @@ namespace Tematika.Forms
         private void CargarTarjetas()
         {
             var suscripciones = suscripcionService.ObtenerTodas();
-            var total = suscripciones.Count;
+            var total = suscripciones.Count(s => s.Activa != false );
             var mensuales = suscripciones.Count(s => s.Tipo?.Nombre == "Mensual");
             var semestrales = suscripciones.Count(s => s.Tipo?.Nombre == "Semestral");
             var anuales = suscripciones.Count(s => s.Tipo?.Nombre == "Anual");
 
-            var ingresosMensuales = suscripciones
-                .Where(s => s.Tipo?.Nombre == "Mensual")
-                .Sum(s => s.Tipo?.Precio ?? 0);
+            var fechaHoy = DateTime.Now;
 
+            // Rango del último mes completo
+            var primerDiaUltimoMes = DateTime.Today.AddMonths(-1);
+            var ultimoDiaUltimoMes = primerDiaUltimoMes.AddMonths(1).AddDays(-1);
+
+            // Rango del último año completo
+            var primerDiaUltimoAnio = DateTime.Today.AddYears(-1);
+            var ultimoDiaUltimoAnio = primerDiaUltimoAnio.AddYears(1).AddDays(-1);
+
+            // Ingresos del último mes (solo suscripciones mensuales)
+            var ingresosMensuales = suscripciones
+                .Where(s => s.Tipo != null
+                         && s.Tipo.Nombre == "Mensual"
+                         && s.FechaInicio >= primerDiaUltimoMes
+                         && s.FechaInicio <= ultimoDiaUltimoMes)
+                .Sum(s => s.Tipo!.Precio);
+
+            // Ingresos del último año (todas las suscripciones)
             var ingresosAnuales = suscripciones
-                .Sum(s => s.Tipo?.Precio ?? 0);
+                .Where(s => s.Tipo != null
+                         && s.FechaInicio >= primerDiaUltimoAnio
+                         && s.FechaInicio <= ultimoDiaUltimoAnio)
+                .Sum(s => s.Tipo!.Precio);
+
+
 
             var tarjetas = new[]
             {

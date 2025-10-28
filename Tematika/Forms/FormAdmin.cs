@@ -13,12 +13,6 @@ namespace Tematika
         {
             InitializeComponent();
 
-            BDashboard.Click += (s, e) =>
-            {
-                OpenChildForm(new FormDashboard());
-                SetActiveButton(BDashboard);
-            };
-
             BBackUp.Click += (s, e) =>
             {
                 OpenChildForm(new Back_Up());
@@ -122,7 +116,6 @@ namespace Tematika
 
             if (usuario != null && usuario.IdPerfil == 2) // Docente
             {
-                BDashboard.Visible = false;
                 BBackUp.Visible = false;
                 BUsuarios.Visible = false;
                 //BInformes.Visible = false;
