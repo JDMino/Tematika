@@ -118,7 +118,8 @@ namespace Tematika
             {
                 BBackUp.Visible = false;
                 BUsuarios.Visible = false;
-                //BInformes.Visible = false;
+                BInformes.Visible = false;
+                BSuscripciones.Visible = false;
                 LRol.Text = "Docente";
             }
             else if (usuario != null)

@@ -135,6 +135,7 @@ partial class FormSuscripcion
         txtPrecio.Font = new Font("Segoe UI", 9F);
         txtPrecio.Location = new Point(150, 51);
         txtPrecio.Name = "txtPrecio";
+        txtPrecio.ReadOnly = true;
         txtPrecio.Size = new Size(100, 23);
         txtPrecio.TabIndex = 6;
         // 
@@ -148,6 +149,7 @@ partial class FormSuscripcion
         // 
         // cmbPlan
         // 
+        cmbPlan.DropDownStyle = ComboBoxStyle.DropDownList;
         cmbPlan.Font = new Font("Segoe UI", 9F);
         cmbPlan.Location = new Point(150, 22);
         cmbPlan.Name = "cmbPlan";

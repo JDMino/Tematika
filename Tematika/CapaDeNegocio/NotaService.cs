@@ -36,5 +36,11 @@ namespace Tematika.CapaDeNegocio
         {
             _repository.Eliminar(idNota);
         }
+
+        public List<Nota> ListarTodas()
+        {
+            return _repository.ObtenerTodas();
+        }
+
     }
 }

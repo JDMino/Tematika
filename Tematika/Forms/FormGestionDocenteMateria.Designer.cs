@@ -63,9 +63,8 @@
             panelDocenteMateria.Controls.Add(panelEncabezadoDM);
             panelDocenteMateria.Dock = DockStyle.Fill;
             panelDocenteMateria.Location = new Point(0, 0);
-            panelDocenteMateria.Margin = new Padding(3, 4, 3, 4);
             panelDocenteMateria.Name = "panelDocenteMateria";
-            panelDocenteMateria.Size = new Size(914, 600);
+            panelDocenteMateria.Size = new Size(800, 450);
             panelDocenteMateria.TabIndex = 0;
             panelDocenteMateria.Paint += panelDocenteMateria_Paint;
             // 
@@ -78,21 +77,23 @@
             panelCamposTemas.Controls.Add(labelDocente, 0, 0);
             panelCamposTemas.Controls.Add(Materia, 0, 1);
             panelCamposTemas.Controls.Add(CBMaterias, 1, 1);
-            panelCamposTemas.Location = new Point(88, 69);
+            panelCamposTemas.Location = new Point(77, 52);
+            panelCamposTemas.Margin = new Padding(3, 2, 3, 2);
             panelCamposTemas.Name = "panelCamposTemas";
             panelCamposTemas.RowCount = 2;
             panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
-            panelCamposTemas.Size = new Size(550, 139);
+            panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            panelCamposTemas.Size = new Size(481, 104);
             panelCamposTemas.TabIndex = 105;
             // 
             // CBDocente
             // 
             CBDocente.FormattingEnabled = true;
-            CBDocente.Location = new Point(209, 3);
+            CBDocente.Location = new Point(183, 2);
+            CBDocente.Margin = new Padding(3, 2, 3, 2);
             CBDocente.Name = "CBDocente";
-            CBDocente.Size = new Size(337, 28);
+            CBDocente.Size = new Size(295, 23);
             CBDocente.TabIndex = 29;
             CBDocente.Tag = "Materia asociada";
             // 
@@ -101,7 +102,7 @@
             labelDocente.AutoSize = true;
             labelDocente.Location = new Point(3, 0);
             labelDocente.Name = "labelDocente";
-            labelDocente.Size = new Size(65, 20);
+            labelDocente.Size = new Size(51, 15);
             labelDocente.TabIndex = 28;
             labelDocente.Text = "Docente";
             labelDocente.TextAlign = ContentAlignment.MiddleCenter;
@@ -109,9 +110,9 @@
             // Materia
             // 
             Materia.AutoSize = true;
-            Materia.Location = new Point(3, 69);
+            Materia.Location = new Point(3, 52);
             Materia.Name = "Materia";
-            Materia.Size = new Size(123, 20);
+            Materia.Size = new Size(96, 15);
             Materia.TabIndex = 17;
             Materia.Text = "Materia asociada";
             Materia.TextAlign = ContentAlignment.MiddleCenter;
@@ -119,9 +120,10 @@
             // CBMaterias
             // 
             CBMaterias.FormattingEnabled = true;
-            CBMaterias.Location = new Point(209, 72);
+            CBMaterias.Location = new Point(183, 54);
+            CBMaterias.Margin = new Padding(3, 2, 3, 2);
             CBMaterias.Name = "CBMaterias";
-            CBMaterias.Size = new Size(337, 28);
+            CBMaterias.Size = new Size(295, 23);
             CBMaterias.TabIndex = 19;
             CBMaterias.Tag = "Materia asociada";
             // 
@@ -133,20 +135,22 @@
             panelBuscador.ColumnStyles.Add(new ColumnStyle());
             panelBuscador.ColumnStyles.Add(new ColumnStyle());
             panelBuscador.Controls.Add(TBBuscadorDocente, 0, 0);
-            panelBuscador.Location = new Point(85, 333);
+            panelBuscador.Location = new Point(74, 250);
+            panelBuscador.Margin = new Padding(3, 2, 3, 2);
             panelBuscador.Name = "panelBuscador";
             panelBuscador.RowCount = 2;
             panelBuscador.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             panelBuscador.RowStyles.Add(new RowStyle());
-            panelBuscador.Size = new Size(285, 43);
+            panelBuscador.Size = new Size(249, 32);
             panelBuscador.TabIndex = 104;
             // 
             // TBBuscadorDocente
             // 
-            TBBuscadorDocente.Location = new Point(3, 3);
+            TBBuscadorDocente.Location = new Point(3, 2);
+            TBBuscadorDocente.Margin = new Padding(3, 2, 3, 2);
             TBBuscadorDocente.Name = "TBBuscadorDocente";
             TBBuscadorDocente.PlaceholderText = "Buscar Docente..";
-            TBBuscadorDocente.Size = new Size(236, 27);
+            TBBuscadorDocente.Size = new Size(207, 23);
             TBBuscadorDocente.TabIndex = 62;
             // 
             // panelBotones
@@ -159,12 +163,13 @@
             panelBotones.Controls.Add(BGuardarTema, 0, 0);
             panelBotones.Controls.Add(BEliminarTema, 3, 0);
             panelBotones.Controls.Add(BCancelarTema, 1, 0);
-            panelBotones.Location = new Point(473, 232);
+            panelBotones.Location = new Point(414, 174);
+            panelBotones.Margin = new Padding(3, 2, 3, 2);
             panelBotones.Name = "panelBotones";
             panelBotones.RowCount = 1;
             panelBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            panelBotones.RowStyles.Add(new RowStyle(SizeType.Absolute, 51F));
-            panelBotones.Size = new Size(304, 51);
+            panelBotones.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
+            panelBotones.Size = new Size(266, 38);
             panelBotones.TabIndex = 103;
             // 
             // BGuardarTema
@@ -176,9 +181,10 @@
             BGuardarTema.FlatStyle = FlatStyle.Flat;
             BGuardarTema.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BGuardarTema.ForeColor = SystemColors.ButtonHighlight;
-            BGuardarTema.Location = new Point(3, 3);
+            BGuardarTema.Location = new Point(3, 2);
+            BGuardarTema.Margin = new Padding(3, 2, 3, 2);
             BGuardarTema.Name = "BGuardarTema";
-            BGuardarTema.Size = new Size(94, 29);
+            BGuardarTema.Size = new Size(82, 22);
             BGuardarTema.TabIndex = 88;
             BGuardarTema.Text = "Guardar";
             BGuardarTema.UseVisualStyleBackColor = false;
@@ -190,9 +196,10 @@
             BEliminarTema.FlatStyle = FlatStyle.Flat;
             BEliminarTema.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BEliminarTema.ForeColor = SystemColors.ButtonHighlight;
-            BEliminarTema.Location = new Point(203, 3);
+            BEliminarTema.Location = new Point(179, 2);
+            BEliminarTema.Margin = new Padding(3, 2, 3, 2);
             BEliminarTema.Name = "BEliminarTema";
-            BEliminarTema.Size = new Size(94, 29);
+            BEliminarTema.Size = new Size(82, 22);
             BEliminarTema.TabIndex = 91;
             BEliminarTema.Text = "Eliminar";
             BEliminarTema.UseVisualStyleBackColor = false;
@@ -205,9 +212,10 @@
             BCancelarTema.FlatStyle = FlatStyle.Flat;
             BCancelarTema.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BCancelarTema.ForeColor = SystemColors.ButtonHighlight;
-            BCancelarTema.Location = new Point(103, 3);
+            BCancelarTema.Location = new Point(91, 2);
+            BCancelarTema.Margin = new Padding(3, 2, 3, 2);
             BCancelarTema.Name = "BCancelarTema";
-            BCancelarTema.Size = new Size(94, 29);
+            BCancelarTema.Size = new Size(82, 22);
             BCancelarTema.TabIndex = 89;
             BCancelarTema.Text = "Cancelar";
             BCancelarTema.UseVisualStyleBackColor = false;
@@ -218,10 +226,11 @@
             DGVTemas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVTemas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGVTemas.Columns.AddRange(new DataGridViewColumn[] { NombreDocente, IdMateria });
-            DGVTemas.Location = new Point(85, 396);
+            DGVTemas.Location = new Point(74, 297);
+            DGVTemas.Margin = new Padding(3, 2, 3, 2);
             DGVTemas.Name = "DGVTemas";
             DGVTemas.RowHeadersWidth = 51;
-            DGVTemas.Size = new Size(811, 167);
+            DGVTemas.Size = new Size(710, 125);
             DGVTemas.TabIndex = 102;
             // 
             // NombreDocente
@@ -242,8 +251,9 @@
             panelEncabezadoDM.Controls.Add(LTituloDocenteMateria);
             panelEncabezadoDM.Dock = DockStyle.Top;
             panelEncabezadoDM.Location = new Point(0, 0);
+            panelEncabezadoDM.Margin = new Padding(3, 2, 3, 2);
             panelEncabezadoDM.Name = "panelEncabezadoDM";
-            panelEncabezadoDM.Size = new Size(914, 69);
+            panelEncabezadoDM.Size = new Size(800, 52);
             panelEncabezadoDM.TabIndex = 101;
             // 
             // LTituloDocenteMateria
@@ -253,19 +263,19 @@
             LTituloDocenteMateria.ForeColor = Color.Black;
             LTituloDocenteMateria.Location = new Point(3, 0);
             LTituloDocenteMateria.Name = "LTituloDocenteMateria";
-            LTituloDocenteMateria.Size = new Size(407, 38);
+            LTituloDocenteMateria.Size = new Size(320, 30);
             LTituloDocenteMateria.TabIndex = 1;
             LTituloDocenteMateria.Text = "Asignación Docente - Materia";
             LTituloDocenteMateria.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FormGestionDocenteMateria
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 450);
             Controls.Add(panelDocenteMateria);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FormGestionDocenteMateria";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormGestionDocenteMateria";
             panelDocenteMateria.ResumeLayout(false);
             panelCamposTemas.ResumeLayout(false);

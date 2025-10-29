@@ -68,5 +68,33 @@ namespace Tematika.CapaDeDatos
             connection.Open();
             command.ExecuteNonQuery();
         }
+
+
+        public List<Nota> ObtenerTodas()
+        {
+            var lista = new List<Nota>();
+            using var connection = new SqlConnection(_connectionString);
+            var query = "SELECT * FROM nota WHERE eliminado = 0";
+
+            using var command = new SqlCommand(query, connection);
+            connection.Open();
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                lista.Add(new Nota
+                {
+                    IdNota = (int)reader["id_nota"],
+                    Texto = reader["texto"].ToString() ?? "",
+                    Fecha = (DateTime)reader["fecha"],
+                    IdUsuario = (int)reader["id_usuario"],
+                    IdRecurso = (int)reader["id_recurso"],
+                    Eliminado = (bool)reader["eliminado"]
+                });
+            }
+
+            return lista;
+        }
+
     }
 }

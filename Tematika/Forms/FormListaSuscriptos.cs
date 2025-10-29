@@ -58,7 +58,7 @@ namespace Tematika.Forms
             // Ingresos del último mes (solo suscripciones mensuales)
             var ingresosMensuales = suscripciones
                 .Where(s => s.Tipo != null
-                         && s.Tipo.Nombre == "Mensual"
+                         //&& s.Tipo.Nombre == "Mensual"
                          && s.FechaInicio >= primerDiaUltimoMes
                          && s.FechaInicio <= ultimoDiaUltimoMes)
                 .Sum(s => s.Tipo!.Precio);

@@ -22,11 +22,15 @@ namespace Tematika.Forms.Cards
 
         public void SetDatos(Recurso recurso, int cantidadVisitas, double? promedioValoracion)
         {
+            //traemos el nombre del tema para cargar en la card del recurso
+            TemaService temaAux = new TemaService();
+            Tema temaRecurso = temaAux.ObtenerTema(recurso.IdTema);
+
             recursoActual = recurso;
 
             labelTituloCard.Text = recurso.Titulo;
             labelTipoRecurso.Text = recurso.Tipo;
-            labelTemaRecurso.Text = $"Tema: {recurso.IdTema}";
+            labelTemaRecurso.Text = $"Tema: {temaRecurso.Nombre}";
             labelVisitasRecurso.Text = $"Visitas: {(cantidadVisitas > 0 ? cantidadVisitas.ToString() : "Sin datos")}";
             labelValoracionRecurso.Text = $"Valoración: {(promedioValoracion.HasValue ? promedioValoracion.Value.ToString("0.0") : "Sin datos")}";
         }
