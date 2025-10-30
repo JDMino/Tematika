@@ -20,6 +20,8 @@ namespace Tematika.Forms
             //btnConfirmar.Click += btnConfirmar_Click;
             radioTransferencia.CheckedChanged += ActualizarCamposPago;
             radioTarjeta.CheckedChanged += ActualizarCamposPago;
+            txtTitularTransferencia.KeyPress += (s, e) => Validaciones.ValidarTextoConCaracteresEspeciales(e);
+            txtBanco.KeyPress += (s, e) => Validaciones.ValidarTextoConCaracteresEspeciales(e);
         }
 
         private void FormSuscripcion_Load(object sender, EventArgs e)
@@ -61,6 +63,20 @@ namespace Tematika.Forms
             if (!Validaciones.ValidarCamposObligatorios(groupDatosPersonales) ||
                 !Validaciones.ValidarCamposObligatorios(groupServicio))
                 //!Validaciones.ValidarCamposObligatorios(groupPago))
+                return;
+
+            var controlesObligatorios = new List<Control> { cmbPlan };
+
+            if (radioTransferencia.Checked)
+            {
+                controlesObligatorios.AddRange(new[] { txtCBU, txtBanco, txtTitularTransferencia });
+            }
+            else if (radioTarjeta.Checked)
+            {
+                controlesObligatorios.AddRange(new[] { txtNumeroTarjeta, txtVencimiento, txtCVV, txtTitularTarjeta });
+            }
+
+            if (!Validaciones.ValidarControlesObligatorios(controlesObligatorios))
                 return;
 
             var confirm = MessageBox.Show("¿Desea confirmar la suscripción?", "Confirmar", MessageBoxButtons.YesNo);

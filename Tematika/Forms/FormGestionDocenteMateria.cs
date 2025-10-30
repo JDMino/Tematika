@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Tematika.CapaDeNegocio;
 using Tematika.Models;
 using Tematika.Styles;
+using Tematika.Utils;
 
 namespace Tematika.Forms
 {
@@ -83,6 +84,9 @@ namespace Tematika.Forms
 
         private void BGuardarTema_Click(object sender, EventArgs e)
         {
+            if (!Validaciones.ValidarCamposObligatorios(panelCamposTemas))
+                return;
+
             if (CBDocente.SelectedValue is int idUsuario && CBMaterias.SelectedValue is int idMateria)
             {
                 var asignacion = new DocenteMateria
@@ -134,7 +138,7 @@ namespace Tematika.Forms
         {
             if (seleccionActualId == null) return;
 
-            var confirm = MessageBox.Show("¿Eliminar esta asignación?", "Confirmar", MessageBoxButtons.YesNo);
+            var confirm = MessageBox.Show("¿Eliminar esta asignación?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (confirm == DialogResult.Yes)
             {
                 _dmService.EliminarAsignacion(seleccionActualId.Value);

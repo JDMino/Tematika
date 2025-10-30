@@ -23,6 +23,10 @@ namespace Tematika.Forms
             //btnSuscribirse.Click += btnSuscribirse_Click;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+            TBNombreUsuario.KeyPress += (s, e) => Validaciones.ValidarSoloLetras(e);
+            TBApellidoUsuario.KeyPress += (s, e) => Validaciones.ValidarSoloLetras(e);
+            TBDNIUsuario.KeyPress += (s, e) => Validaciones.ValidarSoloNumeros(e);
+
         }
 
         private void FormDashboardEstudiante_Load(object sender, EventArgs e)
@@ -116,6 +120,14 @@ namespace Tematika.Forms
 
             if (!Validaciones.ValidarControlesObligatorios(controles))
                 return;
+
+            if (!Validaciones.ValidarEmail(TBEmailUsuario.Text))
+            {
+                MessageBox.Show("El correo electrónico ingresado no tiene un formato válido.");
+                TBEmailUsuario.Focus();
+                return;
+            }
+
 
             var usuarioActual = SesionManager.UsuarioActual;
             if (usuarioActual == null)

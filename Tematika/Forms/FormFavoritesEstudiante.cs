@@ -100,7 +100,8 @@ namespace Tematika.Forms
                     "¿Estás seguro de que querés eliminar este recurso de tus favoritos?",
                     "Confirmar eliminación",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
                 );
 
                 if (confirmacion == DialogResult.Yes)

@@ -78,5 +78,17 @@ namespace Tematika.Utils
             var regex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
             return regex.IsMatch(email);
         }
+
+        public static void ValidarTextoConCaracteresEspeciales(KeyPressEventArgs e)
+        {
+            char c = e.KeyChar;
+
+            if (!char.IsLetter(c) && !char.IsWhiteSpace(c) && !char.IsControl(c) &&
+                !"¿?¡!.,:;\"'()".Contains(c))
+            {
+                e.Handled = true;
+            }
+        }
+
     }
 }

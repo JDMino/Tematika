@@ -39,6 +39,13 @@ namespace Tematika.Forms
             {
                 GridUtils.FiltrarFilasPorTexto(DGVRecursos, TBBuscadorRecurso.Text);
             };
+            TBTituloRecurso.KeyPress += (s, e) => Validaciones.ValidarSoloLetras(e);
+            TBTexto.KeyPress += (s, e) => Validaciones.ValidarSoloLetras(e);
+            CBTipoRecurso.DropDownStyle = ComboBoxStyle.DropDownList;
+            CBMateriaRecurso.DropDownStyle = ComboBoxStyle.DropDownList;
+            CBTemaRecurso.DropDownStyle = ComboBoxStyle.DropDownList;
+
+
         }
 
         private void FormGestionRecursos_Load(object sender, EventArgs e)
@@ -354,7 +361,7 @@ namespace Tematika.Forms
                 return;
             }
 
-            var confirmacion = MessageBox.Show("¿Está seguro de que desea eliminar este recurso?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirmacion = MessageBox.Show("¿Está seguro de que desea eliminar este recurso?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (confirmacion == DialogResult.Yes)
             {
                 _recursoService.EliminarRecurso(recursoSeleccionadoId.Value);

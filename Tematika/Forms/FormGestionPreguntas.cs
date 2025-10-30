@@ -36,6 +36,7 @@ namespace Tematika.Forms
             {
                 GridUtils.FiltrarFilasPorTexto(DGVPreguntas, TBBuscador.Text);
             };
+            textBox5.KeyPress += (s, e) => Validaciones.ValidarTextoConCaracteresEspeciales(e);
         }
 
         private void FormGestionPreguntas_Load(object sender, EventArgs e)
@@ -399,7 +400,7 @@ namespace Tematika.Forms
                 return;
             }
 
-            var confirm = MessageBox.Show("¿Está seguro de marcar como eliminada la evaluación asociada a esta pregunta?", "Confirmar", MessageBoxButtons.YesNo);
+            var confirm = MessageBox.Show("¿Está seguro de marcar como eliminada la evaluación asociada a esta pregunta?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (confirm == DialogResult.Yes)
             {
                 _evaluacionService.EliminarEvaluacion(evaluacion.IdEvaluacion);

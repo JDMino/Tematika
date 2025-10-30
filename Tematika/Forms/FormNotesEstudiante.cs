@@ -161,7 +161,7 @@ namespace Tematika.Forms
             }
             else if (columna == "EliminarNota")
             {
-                var confirmacion = MessageBox.Show("¿Desea eliminar esta nota?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var confirmacion = MessageBox.Show("¿Desea eliminar esta nota?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (confirmacion == DialogResult.Yes)
                 {
                     notaService.EliminarNota(nota.IdNota);

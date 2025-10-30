@@ -185,7 +185,7 @@ namespace Tematika.Forms
                 return;
             }
 
-            var confirmacion = MessageBox.Show("¿Está seguro de que desea eliminar este usuario?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirmacion = MessageBox.Show("¿Está seguro de que desea eliminar este usuario?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (confirmacion == DialogResult.Yes)
             {
                 _usuarioService.EliminarUsuario(usuarioSeleccionadoId.Value);

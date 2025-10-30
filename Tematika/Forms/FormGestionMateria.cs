@@ -29,6 +29,9 @@ namespace Tematika.Forms
             {
                 GridUtils.FiltrarFilasPorTexto(DGVMaterias, TBBuscadorMaterias.Text);
             };
+            TBNombreMateria.KeyPress += (s, e) => Validaciones.ValidarSoloLetras(e);
+            TBDescripcionMateria.KeyPress += (s, e) => Validaciones.ValidarSoloLetras(e);
+
         }
 
         private void FormGestionMateria_Load(object sender, EventArgs e)
@@ -169,7 +172,7 @@ namespace Tematika.Forms
                 return;
             }
 
-            var confirmacion = MessageBox.Show("¿Está seguro de que desea eliminar esta materia?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirmacion = MessageBox.Show("¿Está seguro de que desea eliminar esta materia?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (confirmacion == DialogResult.Yes)
             {
                 _materiaService.EliminarMateria(materiaSeleccionadaId.Value);

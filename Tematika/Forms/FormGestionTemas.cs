@@ -32,6 +32,8 @@ namespace Tematika.Forms
             {
                 GridUtils.FiltrarFilasPorTexto(DGVTemas, TBBuscadorTema.Text);
             };
+            TBNombreTema.KeyPress += (s, e) => Validaciones.ValidarSoloLetras(e);
+
 
         }
 
@@ -212,7 +214,7 @@ namespace Tematika.Forms
                 return;
             }
 
-            var confirmacion = MessageBox.Show("¿Está seguro de que desea eliminar este tema?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirmacion = MessageBox.Show("¿Está seguro de que desea eliminar este tema?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (confirmacion == DialogResult.Yes)
             {
                 _temaService.EliminarTema(temaSeleccionadoId.Value);
