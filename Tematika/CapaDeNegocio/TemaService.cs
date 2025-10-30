@@ -33,6 +33,13 @@ namespace Tematika.CapaDeNegocio
             }
             catch (SqlException ex)
             {
+                if (ex.Number == 2627 || ex.Number == 2601)
+                {
+                    if (ex.Message.Contains("UQ_Tema_nombre"))
+                        return "Ya existe un tema con ese nombre.";
+                    return "Ya existe un tema con datos duplicados.";
+                }
+
                 return "Error al crear el tema: " + ex.Message;
             }
         }
@@ -46,9 +53,17 @@ namespace Tematika.CapaDeNegocio
             }
             catch (SqlException ex)
             {
+                if (ex.Number == 2627 || ex.Number == 2601)
+                {
+                    if (ex.Message.Contains("UQ_Tema_nombre"))
+                        return "Ya existe otro tema con ese nombre.";
+                    return "Ya existe otro tema con datos duplicados.";
+                }
+
                 return "Error al actualizar el tema: " + ex.Message;
             }
         }
+
 
         public void EliminarTema(int id)
         {

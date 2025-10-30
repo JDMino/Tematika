@@ -13,46 +13,67 @@ namespace Tematika.Forms
 {
     public partial class FormGestionRecursos : Form
     {
+        // Servicios para manejar la lógica de negocio
         private readonly DocenteMateriaService _docenteMateriaService = new DocenteMateriaService();
         private readonly RecursoService _recursoService = new RecursoService();
         private readonly TemaService _temaService = new TemaService();
         private readonly MateriaService _materiaService = new MateriaService();
+
+        // Variable para almacenar el ID del recurso actualmente seleccionado
         private int? recursoSeleccionadoId = null;
+
+        // Controla si se muestran recursos activos o inactivos
         private bool mostrarActivos = true;
 
         public FormGestionRecursos()
         {
             InitializeComponent();
+
+            // Se ejecuta cuando se carga el formulario
             Load += FormGestionRecursos_Load;
+
+            // Eventos de la grilla
             DGVRecursos.CellClick += DGVRecursos_CellClick;
+
+            // Eventos de los botones
             BGuardarRecurso.Click += BGuardarRecurso_Click;
             BModificarRecurso.Click += BModificarRecurso_Click;
             BEliminarRecurso.Click += BEliminarRecurso_Click;
             BCancelarRecurso.Click += BCancelarRecurso_Click;
             BRecursosActivos.Click += BRecursosActivos_Click;
             BRecursosInactivos.Click += BRecursosInactivos_Click;
+            BRuta.Click += BRuta_Click;
+
+            // Eventos de combos
             CBMateriaRecurso.SelectedIndexChanged += CBMateriaRecurso_SelectedIndexChanged;
             CBFiltrarMateria.SelectedIndexChanged += CBFiltrarMateria_SelectedIndexChanged;
             CBFiltrarTema.SelectedIndexChanged += CBFiltrarTema_SelectedIndexChanged;
-            BRuta.Click += BRuta_Click;
+
+            // Evento del buscador para filtrar la grilla en tiempo real
             TBBuscadorRecurso.TextChanged += (s, e) =>
             {
                 GridUtils.FiltrarFilasPorTexto(DGVRecursos, TBBuscadorRecurso.Text);
             };
+
+            // Validaciones para que ciertos campos acepten solo letras
             TBTituloRecurso.KeyPress += (s, e) => Validaciones.ValidarSoloLetras(e);
             TBTexto.KeyPress += (s, e) => Validaciones.ValidarSoloLetras(e);
+
+            // Configuración de combos para solo seleccionar valores predefinidos
             CBTipoRecurso.DropDownStyle = ComboBoxStyle.DropDownList;
             CBMateriaRecurso.DropDownStyle = ComboBoxStyle.DropDownList;
             CBTemaRecurso.DropDownStyle = ComboBoxStyle.DropDownList;
-
-
         }
 
         private void FormGestionRecursos_Load(object sender, EventArgs e)
         {
+            // Aplicar estilo al encabezado del panel
             EstiloEncabezado.Aplicar(panelEncabezadoR, LTituloRecursos);
+
+            // Color de fondo del panel de recursos
             panelRecurso.BackColor = ColorTranslator.FromHtml("#cfd8dc");
 
+            // Configuración del combo "Eliminado" (para marcar recursos como eliminados o no)
             CBEliminado.Items.Clear();
             CBEliminado.Items.Add("No");
             CBEliminado.Items.Add("Sí");
@@ -61,24 +82,29 @@ namespace Tematika.Forms
             labelEliminado.Visible = false;
             CBEliminado.Visible = false;
 
+            // Tipo de recurso por defecto
             CBTipoRecurso.SelectedIndex = 0;
 
+            // Cargar combos de materias y temas
             CargarMateriasCombo(CBMateriaRecurso);
             CargarMateriasCombo(CBFiltrarMateria);
 
             ReiniciarCombo<Tema>(CBTemaRecurso, "Seleccionar tema...");
             ReiniciarCombo<Tema>(CBFiltrarTema, "Seleccionar tema...");
 
+            // Cargar los recursos en la grilla
             CargarRecursos();
         }
 
+        // Carga materias en un ComboBox
         private void CargarMateriasCombo(ComboBox combo)
         {
             var materias = _materiaService.ListarMaterias()
-                .Where(m => !m.Eliminado)
+                .Where(m => !m.Eliminado) // Solo materias activas
                 .OrderBy(m => m.Nombre)
                 .ToList();
 
+            // Filtrar materias según perfil del usuario (docente)
             if (SesionManager.SesionActiva && SesionManager.UsuarioActual!.IdPerfil == 2)
             {
                 var asignadas = _docenteMateriaService.ListarAsignaciones()
@@ -90,6 +116,7 @@ namespace Tematika.Forms
                 materias = materias.Where(m => asignadas.Contains(m.IdMateria)).ToList();
             }
 
+            // Insertar opción por defecto
             materias.Insert(0, new Materia { IdMateria = 0, Nombre = "Seleccionar materia..." });
 
             combo.DisplayMember = "Nombre";
@@ -97,6 +124,7 @@ namespace Tematika.Forms
             combo.DataSource = materias;
         }
 
+        // Carga temas en un ComboBox según la materia seleccionada
         private void CargarTemasCombo(ComboBox combo, int idMateria)
         {
             var temas = _temaService.ListarTemas()
@@ -111,6 +139,7 @@ namespace Tematika.Forms
             combo.DataSource = temas;
         }
 
+        // Reinicia un combo con un placeholder
         private void ReiniciarCombo<T>(ComboBox combo, string placeholder) where T : new()
         {
             var tipo = typeof(T);
@@ -129,6 +158,7 @@ namespace Tematika.Forms
             combo.SelectedIndex = 0;
         }
 
+        // Evento al cambiar la materia del recurso (carga temas correspondientes)
         private void CBMateriaRecurso_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CBMateriaRecurso.SelectedValue is int idMateria && idMateria != 0)
@@ -137,6 +167,7 @@ namespace Tematika.Forms
                 ReiniciarCombo<Tema>(CBTemaRecurso, "Seleccionar tema...");
         }
 
+        // Evento al cambiar la materia en filtros
         private void CBFiltrarMateria_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CBFiltrarMateria.SelectedValue is int idMateria && idMateria != 0)
@@ -145,6 +176,7 @@ namespace Tematika.Forms
                 ReiniciarCombo<Tema>(CBFiltrarTema, "Seleccionar tema...");
         }
 
+        // Evento al cambiar el tema en filtros
         private void CBFiltrarTema_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CBFiltrarTema.SelectedValue is int idTema && idTema != 0)
@@ -163,12 +195,14 @@ namespace Tematika.Forms
             }
         }
 
+        // Carga todos los recursos según el estado (activo/inactivo)
         private void CargarRecursos()
         {
             var recursos = _recursoService.ListarRecursos()
                 .Where(r => r.Eliminado != mostrarActivos)
                 .ToList();
 
+            // Filtrar recursos para docentes
             if (SesionManager.SesionActiva && SesionManager.UsuarioActual!.IdPerfil == 2)
             {
                 var materiasAsignadas = _docenteMateriaService.ListarAsignaciones()
@@ -185,14 +219,15 @@ namespace Tematika.Forms
                 recursos = recursos.Where(r => temasPermitidos.Contains(r.IdTema)).ToList();
             }
 
+            // Limpiar grilla y cargar recursos
             DGVRecursos.Rows.Clear();
-
             foreach (var r in recursos)
             {
                 var tema = _temaService.ObtenerTema(r.IdTema);
                 DGVRecursos.Rows.Add(r.IdRecurso, r.Titulo, r.Texto, r.Ruta, r.Url, r.Tipo, tema?.Nombre ?? "Sin tema");
             }
 
+            // Configuración de botones
             BGuardarRecurso.Visible = true;
             BModificarRecurso.Visible = false;
             BEliminarRecurso.Visible = false;
@@ -200,11 +235,12 @@ namespace Tematika.Forms
             CBEliminado.Visible = false;
         }
 
+        // Evento al hacer clic en la grilla
         private void DGVRecursos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            // Si se hizo clic en el botón "Ver"
+            // Si se hizo clic en el botón "Ver" del recurso
             if (DGVRecursos.Columns[e.ColumnIndex].Name == "colAcciones")
             {
                 var fila = DGVRecursos.Rows[e.RowIndex];
@@ -223,7 +259,7 @@ namespace Tematika.Forms
                 visualizador.comboBox1.BackColor = Color.Gray;
                 visualizador.btnGuardarNota.Enabled = false;
                 visualizador.btnGuardarNota.BackColor = Color.Gray;
-                
+
                 if (SesionManager.SesionActiva && SesionManager.UsuarioActual!.IdPerfil != 2)
                 {
                     visualizador.button1.Enabled = false;
@@ -234,7 +270,7 @@ namespace Tematika.Forms
                 return;
             }
 
-            // Carga para edición
+            // Cargar datos del recurso para edición
             var filaEdicion = DGVRecursos.Rows[e.RowIndex];
             recursoSeleccionadoId = Convert.ToInt32(filaEdicion.Cells["IdRecurso"].Value);
             var recursoEdit = _recursoService.ObtenerRecurso(recursoSeleccionadoId.Value);
@@ -252,30 +288,28 @@ namespace Tematika.Forms
                 // Selecciona la materia correspondiente al tema
                 CBMateriaRecurso.SelectedValue = tema.IdMateria;
 
-                // Carga los temas de esa materia en el combo de temas
-                var temas = _temaService.ListarTemas()
-                    .Where(t => t.IdMateria == tema.IdMateria && !t.Eliminado)
-                    .OrderBy(t => t.Nombre)
-                    .ToList();
-
-                temas.Insert(0, new Tema { IdTema = 0, Nombre = "Seleccionar tema..." });
-
-                CBTemaRecurso.DisplayMember = "Nombre";
-                CBTemaRecurso.ValueMember = "IdTema";
+                // Carga los temas de esa materia
                 CargarTemasCombo(CBTemaRecurso, tema.IdMateria);
                 CBTemaRecurso.SelectedValue = recursoEdit.IdTema;
             }
 
             CBEliminado.SelectedItem = recursoEdit.Eliminado ? "Sí" : "No";
 
-            // Muestra los botones de edición y eliminación
+            // Muestra botones de edición
             BGuardarRecurso.Visible = false;
             BModificarRecurso.Visible = true;
             BEliminarRecurso.Visible = true;
             labelEliminado.Visible = true;
             CBEliminado.Visible = true;
+
+
+            if (recursoEdit.Eliminado)
+            {
+                BEliminarRecurso.Visible = false;
+            }
         }
 
+        // Guardar nuevo recurso
         private void BGuardarRecurso_Click(object sender, EventArgs e)
         {
             var controlesObligatorios = new List<Control> { TBTituloRecurso, CBTipoRecurso, CBTemaRecurso };
@@ -313,14 +347,13 @@ namespace Tematika.Forms
             LimpiarCampos();
         }
 
+        // Modificar recurso existente
         private void BModificarRecurso_Click(object sender, EventArgs e)
         {
             if (recursoSeleccionadoId == null) return;
 
             var controlesObligatorios = new List<Control> { TBTituloRecurso, CBTipoRecurso, CBTemaRecurso };
-
-            if (!Validaciones.ValidarControlesObligatorios(controlesObligatorios))
-                return;
+            if (!Validaciones.ValidarControlesObligatorios(controlesObligatorios)) return;
 
             if ((int)CBTemaRecurso.SelectedValue == 0)
             {
@@ -351,80 +384,107 @@ namespace Tematika.Forms
             MessageBox.Show("Recurso modificado correctamente.");
             CargarRecursos();
             LimpiarCampos();
-        }
 
+
+        }
+        // Evento que se dispara al hacer clic en el botón "Eliminar Recurso"
         private void BEliminarRecurso_Click(object sender, EventArgs e)
         {
+            // Verifica si se ha seleccionado algún recurso; si no, muestra advertencia
             if (recursoSeleccionadoId == null)
             {
                 MessageBox.Show("Debe seleccionar un recurso para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var confirmacion = MessageBox.Show("¿Está seguro de que desea eliminar este recurso?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            // Pregunta al usuario si realmente desea eliminar el recurso
+            var confirmacion = MessageBox.Show("¿Está seguro de que desea eliminar este recurso?",
+                "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            // Si el usuario confirma la eliminación
             if (confirmacion == DialogResult.Yes)
             {
+                // Llama al servicio para eliminar el recurso
                 _recursoService.EliminarRecurso(recursoSeleccionadoId.Value);
+
+                // Mensaje de éxito
                 MessageBox.Show("Recurso eliminado correctamente.");
+
+                // Recarga la lista de recursos para reflejar los cambios
                 CargarRecursos();
+
+                // Limpia los campos del formulario
                 LimpiarCampos();
             }
         }
 
+        // Evento del botón "Cancelar", limpia los campos del formulario
         private void BCancelarRecurso_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
         }
 
+        // Evento que muestra únicamente los recursos activos en la grilla
         private void BRecursosActivos_Click(object sender, EventArgs e)
         {
-            mostrarActivos = true;
-            CargarRecursos();
+            mostrarActivos = true;  // Indica que se deben mostrar recursos activos
+            CargarRecursos();        // Recarga la lista de recursos según el estado
         }
 
+        // Evento que muestra únicamente los recursos inactivos en la grilla
         private void BRecursosInactivos_Click(object sender, EventArgs e)
         {
-            mostrarActivos = false;
-            CargarRecursos();
+            mostrarActivos = false; // Indica que se deben mostrar recursos inactivos
+            CargarRecursos();        // Recarga la lista de recursos según el estado
         }
 
+        // Evento que abre un diálogo para seleccionar un archivo y asignarlo al recurso
         private void BRuta_Click(object sender, EventArgs e)
         {
             using var dialogo = new OpenFileDialog();
+
+            // Filtro de archivos permitidos
             dialogo.Filter = "Archivos permitidos|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.txt";
             dialogo.Title = "Seleccionar archivo de recurso";
 
+            // Si el usuario selecciona un archivo
             if (dialogo.ShowDialog() == DialogResult.OK)
             {
-                string origen = dialogo.FileName;
-                string nombreArchivo = Path.GetFileName(origen);
+                string origen = dialogo.FileName;               // Ruta del archivo seleccionado
+                string nombreArchivo = Path.GetFileName(origen);// Nombre del archivo
 
+                // Obtiene la ruta del proyecto y crea la carpeta "Recursos" si no existe
                 string rutaProyecto = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
                 string carpetaDestino = Path.Combine(rutaProyecto, "Recursos");
                 Directory.CreateDirectory(carpetaDestino);
 
+                // Copia el archivo seleccionado a la carpeta "Recursos" del proyecto
                 string destino = Path.Combine(carpetaDestino, nombreArchivo);
                 File.Copy(origen, destino, overwrite: true);
 
+                // Muestra la ruta relativa en el textbox correspondiente
                 TBRuta.Text = Path.Combine("Recursos", nombreArchivo).Replace("\\", "/");
             }
         }
 
+        // Función para limpiar todos los campos del formulario y reiniciar combos y botones
         private void LimpiarCampos()
         {
-            TBTituloRecurso.Clear();
-            TBTexto.Clear();
-            TBRuta.Clear();
-            TBUrl.Clear();
-            CBTipoRecurso.SelectedIndex = 0;
-            CBMateriaRecurso.SelectedIndex = 0;
-            ReiniciarCombo<Tema>(CBTemaRecurso, "Seleccionar tema...");
-            CBEliminado.SelectedIndex = 0;
-            recursoSeleccionadoId = null;
+            TBTituloRecurso.Clear();       // Limpia el título
+            TBTexto.Clear();               // Limpia el texto
+            TBRuta.Clear();                // Limpia la ruta
+            TBUrl.Clear();                 // Limpia la URL
+            CBTipoRecurso.SelectedIndex = 0;   // Selecciona el primer tipo de recurso
+            CBMateriaRecurso.SelectedIndex = 0; // Selecciona la primera materia
+            ReiniciarCombo<Tema>(CBTemaRecurso, "Seleccionar tema..."); // Reinicia combo de temas
+            CBEliminado.SelectedIndex = 0; // Marca "No eliminado"
+            recursoSeleccionadoId = null;  // Resetea el ID del recurso seleccionado
 
+            // Recarga los combos de materias
             CargarMateriasCombo(CBMateriaRecurso);
             CargarMateriasCombo(CBFiltrarMateria);
 
+            // Ajusta visibilidad de botones según el estado inicial
             BGuardarRecurso.Visible = true;
             BModificarRecurso.Visible = false;
             BEliminarRecurso.Visible = false;
@@ -432,14 +492,14 @@ namespace Tematika.Forms
             CBEliminado.Visible = false;
         }
 
+        // Evento generado automáticamente por el diseñador, actualmente no usado
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Evento del diseñador no utilizado
         }
 
+        // Evento generado automáticamente por el diseñador, actualmente no usado
         private void label1_Click(object sender, EventArgs e)
         {
-            // Evento del diseñador no utilizado
         }
     }
 }

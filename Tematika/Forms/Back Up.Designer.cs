@@ -109,6 +109,7 @@
             // 
             // CBBackUp
             // 
+            CBBackUp.DropDownStyle = ComboBoxStyle.DropDownList;
             CBBackUp.FormattingEnabled = true;
             CBBackUp.Location = new Point(239, 93);
             CBBackUp.Margin = new Padding(3, 2, 3, 2);

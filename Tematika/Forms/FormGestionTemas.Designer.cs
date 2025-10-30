@@ -70,9 +70,8 @@
             panelTema.Controls.Add(panelEncabezadoT);
             panelTema.Dock = DockStyle.Fill;
             panelTema.Location = new Point(0, 0);
-            panelTema.Margin = new Padding(3, 4, 3, 4);
             panelTema.Name = "panelTema";
-            panelTema.Size = new Size(914, 684);
+            panelTema.Size = new Size(800, 513);
             panelTema.TabIndex = 0;
             // 
             // panelCamposTemas
@@ -86,31 +85,34 @@
             panelCamposTemas.Controls.Add(Materia, 0, 1);
             panelCamposTemas.Controls.Add(TBNombreTema, 1, 0);
             panelCamposTemas.Controls.Add(CBMaterias, 1, 1);
-            panelCamposTemas.Location = new Point(88, 87);
+            panelCamposTemas.Location = new Point(77, 65);
+            panelCamposTemas.Margin = new Padding(3, 2, 3, 2);
             panelCamposTemas.Name = "panelCamposTemas";
             panelCamposTemas.RowCount = 3;
             panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
-            panelCamposTemas.Size = new Size(550, 139);
+            panelCamposTemas.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            panelCamposTemas.Size = new Size(481, 104);
             panelCamposTemas.TabIndex = 100;
             // 
             // CBEliminado
             // 
+            CBEliminado.DropDownStyle = ComboBoxStyle.DropDownList;
             CBEliminado.FormattingEnabled = true;
-            CBEliminado.Location = new Point(209, 95);
+            CBEliminado.Location = new Point(183, 70);
+            CBEliminado.Margin = new Padding(3, 2, 3, 2);
             CBEliminado.Name = "CBEliminado";
-            CBEliminado.Size = new Size(53, 28);
+            CBEliminado.Size = new Size(47, 23);
             CBEliminado.TabIndex = 27;
-            CBEliminado.Tag = "Materia asociada";
+            CBEliminado.Tag = "Eliminado";
             // 
             // labelEliminado
             // 
             labelEliminado.AutoSize = true;
-            labelEliminado.Location = new Point(3, 92);
+            labelEliminado.Location = new Point(3, 68);
             labelEliminado.Name = "labelEliminado";
-            labelEliminado.Size = new Size(76, 20);
+            labelEliminado.Size = new Size(60, 15);
             labelEliminado.TabIndex = 26;
             labelEliminado.Text = "Eliminado";
             labelEliminado.TextAlign = ContentAlignment.MiddleCenter;
@@ -120,7 +122,7 @@
             LNombreTema.AutoSize = true;
             LNombreTema.Location = new Point(3, 0);
             LNombreTema.Name = "LNombreTema";
-            LNombreTema.Size = new Size(68, 20);
+            LNombreTema.Size = new Size(54, 15);
             LNombreTema.TabIndex = 16;
             LNombreTema.Text = "Nombre ";
             LNombreTema.TextAlign = ContentAlignment.MiddleCenter;
@@ -128,27 +130,30 @@
             // Materia
             // 
             Materia.AutoSize = true;
-            Materia.Location = new Point(3, 46);
+            Materia.Location = new Point(3, 34);
             Materia.Name = "Materia";
-            Materia.Size = new Size(123, 20);
+            Materia.Size = new Size(96, 15);
             Materia.TabIndex = 17;
             Materia.Text = "Materia asociada";
             Materia.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // TBNombreTema
             // 
-            TBNombreTema.Location = new Point(209, 3);
+            TBNombreTema.Location = new Point(183, 2);
+            TBNombreTema.Margin = new Padding(3, 2, 3, 2);
             TBNombreTema.Name = "TBNombreTema";
-            TBNombreTema.Size = new Size(337, 27);
+            TBNombreTema.Size = new Size(295, 23);
             TBNombreTema.TabIndex = 18;
             TBNombreTema.Tag = "Nombre";
             // 
             // CBMaterias
             // 
+            CBMaterias.DropDownStyle = ComboBoxStyle.DropDownList;
             CBMaterias.FormattingEnabled = true;
-            CBMaterias.Location = new Point(209, 49);
+            CBMaterias.Location = new Point(183, 36);
+            CBMaterias.Margin = new Padding(3, 2, 3, 2);
             CBMaterias.Name = "CBMaterias";
-            CBMaterias.Size = new Size(337, 28);
+            CBMaterias.Size = new Size(295, 23);
             CBMaterias.TabIndex = 19;
             CBMaterias.Tag = "Materia asociada";
             // 
@@ -163,20 +168,22 @@
             panelBuscador.Controls.Add(BTemasActivos, 1, 0);
             panelBuscador.Controls.Add(BTemasInactivos, 2, 0);
             panelBuscador.Controls.Add(CBFiltroMaterias, 0, 1);
-            panelBuscador.Location = new Point(85, 351);
+            panelBuscador.Location = new Point(74, 263);
+            panelBuscador.Margin = new Padding(3, 2, 3, 2);
             panelBuscador.Name = "panelBuscador";
             panelBuscador.RowCount = 2;
             panelBuscador.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             panelBuscador.RowStyles.Add(new RowStyle());
-            panelBuscador.Size = new Size(811, 103);
+            panelBuscador.Size = new Size(710, 77);
             panelBuscador.TabIndex = 99;
             // 
             // TBBuscadorTema
             // 
-            TBBuscadorTema.Location = new Point(3, 3);
+            TBBuscadorTema.Location = new Point(3, 2);
+            TBBuscadorTema.Margin = new Padding(3, 2, 3, 2);
             TBBuscadorTema.Name = "TBBuscadorTema";
             TBBuscadorTema.PlaceholderText = "Buscar tema..";
-            TBBuscadorTema.Size = new Size(236, 27);
+            TBBuscadorTema.Size = new Size(207, 23);
             TBBuscadorTema.TabIndex = 62;
             // 
             // BTemasActivos
@@ -187,9 +194,10 @@
             BTemasActivos.FlatStyle = FlatStyle.Flat;
             BTemasActivos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             BTemasActivos.ForeColor = SystemColors.ButtonHighlight;
-            BTemasActivos.Location = new Point(614, 3);
+            BTemasActivos.Location = new Point(537, 2);
+            BTemasActivos.Margin = new Padding(3, 2, 3, 2);
             BTemasActivos.Name = "BTemasActivos";
-            BTemasActivos.Size = new Size(94, 29);
+            BTemasActivos.Size = new Size(82, 22);
             BTemasActivos.TabIndex = 63;
             BTemasActivos.Text = "Activos";
             BTemasActivos.UseVisualStyleBackColor = false;
@@ -202,19 +210,22 @@
             BTemasInactivos.FlatStyle = FlatStyle.Flat;
             BTemasInactivos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             BTemasInactivos.ForeColor = SystemColors.ButtonHighlight;
-            BTemasInactivos.Location = new Point(714, 3);
+            BTemasInactivos.Location = new Point(625, 2);
+            BTemasInactivos.Margin = new Padding(3, 2, 3, 2);
             BTemasInactivos.Name = "BTemasInactivos";
-            BTemasInactivos.Size = new Size(94, 29);
+            BTemasInactivos.Size = new Size(82, 22);
             BTemasInactivos.TabIndex = 64;
             BTemasInactivos.Text = "Inactivos";
             BTemasInactivos.UseVisualStyleBackColor = false;
             // 
             // CBFiltroMaterias
             // 
+            CBFiltroMaterias.DropDownStyle = ComboBoxStyle.DropDownList;
             CBFiltroMaterias.FormattingEnabled = true;
-            CBFiltroMaterias.Location = new Point(3, 72);
+            CBFiltroMaterias.Location = new Point(3, 52);
+            CBFiltroMaterias.Margin = new Padding(3, 2, 3, 2);
             CBFiltroMaterias.Name = "CBFiltroMaterias";
-            CBFiltroMaterias.Size = new Size(391, 28);
+            CBFiltroMaterias.Size = new Size(343, 23);
             CBFiltroMaterias.TabIndex = 28;
             // 
             // panelBotones
@@ -228,12 +239,13 @@
             panelBotones.Controls.Add(BEliminarTema, 3, 0);
             panelBotones.Controls.Add(BModificarTema, 2, 0);
             panelBotones.Controls.Add(BCancelarTema, 1, 0);
-            panelBotones.Location = new Point(473, 249);
+            panelBotones.Location = new Point(414, 187);
+            panelBotones.Margin = new Padding(3, 2, 3, 2);
             panelBotones.Name = "panelBotones";
             panelBotones.RowCount = 1;
             panelBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            panelBotones.RowStyles.Add(new RowStyle(SizeType.Absolute, 51F));
-            panelBotones.Size = new Size(421, 51);
+            panelBotones.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
+            panelBotones.Size = new Size(368, 38);
             panelBotones.TabIndex = 98;
             // 
             // BGuardarTema
@@ -245,9 +257,10 @@
             BGuardarTema.FlatStyle = FlatStyle.Flat;
             BGuardarTema.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BGuardarTema.ForeColor = SystemColors.ButtonHighlight;
-            BGuardarTema.Location = new Point(3, 3);
+            BGuardarTema.Location = new Point(3, 2);
+            BGuardarTema.Margin = new Padding(3, 2, 3, 2);
             BGuardarTema.Name = "BGuardarTema";
-            BGuardarTema.Size = new Size(94, 29);
+            BGuardarTema.Size = new Size(82, 22);
             BGuardarTema.TabIndex = 88;
             BGuardarTema.Text = "Guardar";
             BGuardarTema.UseVisualStyleBackColor = false;
@@ -259,9 +272,10 @@
             BEliminarTema.FlatStyle = FlatStyle.Flat;
             BEliminarTema.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BEliminarTema.ForeColor = SystemColors.ButtonHighlight;
-            BEliminarTema.Location = new Point(316, 3);
+            BEliminarTema.Location = new Point(279, 2);
+            BEliminarTema.Margin = new Padding(3, 2, 3, 2);
             BEliminarTema.Name = "BEliminarTema";
-            BEliminarTema.Size = new Size(94, 29);
+            BEliminarTema.Size = new Size(82, 22);
             BEliminarTema.TabIndex = 91;
             BEliminarTema.Text = "Eliminar";
             BEliminarTema.UseVisualStyleBackColor = false;
@@ -274,9 +288,10 @@
             BModificarTema.FlatStyle = FlatStyle.Flat;
             BModificarTema.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BModificarTema.ForeColor = SystemColors.ButtonHighlight;
-            BModificarTema.Location = new Point(203, 3);
+            BModificarTema.Location = new Point(179, 2);
+            BModificarTema.Margin = new Padding(3, 2, 3, 2);
             BModificarTema.Name = "BModificarTema";
-            BModificarTema.Size = new Size(107, 29);
+            BModificarTema.Size = new Size(94, 22);
             BModificarTema.TabIndex = 90;
             BModificarTema.Text = "Modificar";
             BModificarTema.UseVisualStyleBackColor = false;
@@ -289,9 +304,10 @@
             BCancelarTema.FlatStyle = FlatStyle.Flat;
             BCancelarTema.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BCancelarTema.ForeColor = SystemColors.ButtonHighlight;
-            BCancelarTema.Location = new Point(103, 3);
+            BCancelarTema.Location = new Point(91, 2);
+            BCancelarTema.Margin = new Padding(3, 2, 3, 2);
             BCancelarTema.Name = "BCancelarTema";
-            BCancelarTema.Size = new Size(94, 29);
+            BCancelarTema.Size = new Size(82, 22);
             BCancelarTema.TabIndex = 89;
             BCancelarTema.Text = "Cancelar";
             BCancelarTema.UseVisualStyleBackColor = false;
@@ -302,10 +318,11 @@
             DGVTemas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVTemas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGVTemas.Columns.AddRange(new DataGridViewColumn[] { idTema, Nombre, IdMateria });
-            DGVTemas.Location = new Point(85, 468);
+            DGVTemas.Location = new Point(74, 351);
+            DGVTemas.Margin = new Padding(3, 2, 3, 2);
             DGVTemas.Name = "DGVTemas";
             DGVTemas.RowHeadersWidth = 51;
-            DGVTemas.Size = new Size(811, 167);
+            DGVTemas.Size = new Size(710, 125);
             DGVTemas.TabIndex = 97;
             // 
             // idTema
@@ -332,8 +349,9 @@
             panelEncabezadoT.Controls.Add(LTituloTemas);
             panelEncabezadoT.Dock = DockStyle.Top;
             panelEncabezadoT.Location = new Point(0, 0);
+            panelEncabezadoT.Margin = new Padding(3, 2, 3, 2);
             panelEncabezadoT.Name = "panelEncabezadoT";
-            panelEncabezadoT.Size = new Size(914, 69);
+            panelEncabezadoT.Size = new Size(800, 52);
             panelEncabezadoT.TabIndex = 96;
             // 
             // LTituloTemas
@@ -343,18 +361,17 @@
             LTituloTemas.ForeColor = Color.Black;
             LTituloTemas.Location = new Point(3, 0);
             LTituloTemas.Name = "LTituloTemas";
-            LTituloTemas.Size = new Size(249, 38);
+            LTituloTemas.Size = new Size(197, 30);
             LTituloTemas.TabIndex = 1;
             LTituloTemas.Text = "Gestion de Temas";
             LTituloTemas.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FormGestionTemas
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 684);
+            ClientSize = new Size(800, 513);
             Controls.Add(panelTema);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FormGestionTemas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormGestionTemas";

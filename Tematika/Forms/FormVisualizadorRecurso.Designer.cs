@@ -35,8 +35,8 @@
             comboBox1 = new ComboBox();
             panelContenidoRecurso = new Panel();
             labelNotaRecurso = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            TBNota = new TextBox();
+            TBComentario = new TextBox();
             labelComentarioRecurso = new Label();
             btnGuardarNota = new Button();
             button1 = new Button();
@@ -97,6 +97,7 @@
             // 
             // comboBox1
             // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5" });
             comboBox1.Location = new Point(282, 54);
@@ -111,7 +112,7 @@
             panelContenidoRecurso.BackColor = SystemColors.ActiveBorder;
             panelContenidoRecurso.Location = new Point(20, 83);
             panelContenidoRecurso.Name = "panelContenidoRecurso";
-            panelContenidoRecurso.Size = new Size(824, 268);
+            panelContenidoRecurso.Size = new Size(790, 268);
             panelContenidoRecurso.TabIndex = 4;
             // 
             // labelNotaRecurso
@@ -124,25 +125,25 @@
             labelNotaRecurso.TabIndex = 11;
             labelNotaRecurso.Text = "Mi Nota Privada:";
             // 
-            // textBox1
+            // TBNota
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(20, 383);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ScrollBars = ScrollBars.Vertical;
-            textBox1.Size = new Size(792, 45);
-            textBox1.TabIndex = 12;
+            TBNota.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            TBNota.Location = new Point(20, 383);
+            TBNota.Multiline = true;
+            TBNota.Name = "TBNota";
+            TBNota.ScrollBars = ScrollBars.Vertical;
+            TBNota.Size = new Size(758, 45);
+            TBNota.TabIndex = 12;
             // 
-            // textBox2
+            // TBComentario
             // 
-            textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox2.Location = new Point(20, 488);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.ScrollBars = ScrollBars.Vertical;
-            textBox2.Size = new Size(792, 45);
-            textBox2.TabIndex = 14;
+            TBComentario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            TBComentario.Location = new Point(20, 488);
+            TBComentario.Multiline = true;
+            TBComentario.Name = "TBComentario";
+            TBComentario.ScrollBars = ScrollBars.Vertical;
+            TBComentario.Size = new Size(758, 45);
+            TBComentario.TabIndex = 14;
             // 
             // labelComentarioRecurso
             // 
@@ -191,7 +192,7 @@
             DGVComentariosRecursos.Location = new Point(20, 568);
             DGVComentariosRecursos.Name = "DGVComentariosRecursos";
             DGVComentariosRecursos.RowHeadersWidth = 51;
-            DGVComentariosRecursos.Size = new Size(792, 119);
+            DGVComentariosRecursos.Size = new Size(758, 119);
             DGVComentariosRecursos.TabIndex = 17;
             // 
             // FechaComentarioRecurso
@@ -241,9 +242,9 @@
             Controls.Add(DGVComentariosRecursos);
             Controls.Add(button1);
             Controls.Add(btnGuardarNota);
-            Controls.Add(textBox2);
+            Controls.Add(TBComentario);
             Controls.Add(labelComentarioRecurso);
-            Controls.Add(textBox1);
+            Controls.Add(TBNota);
             Controls.Add(labelNotaRecurso);
             Controls.Add(panelContenidoRecurso);
             Controls.Add(comboBox1);
@@ -269,8 +270,8 @@
         public ComboBox comboBox1;
         private Panel panelContenidoRecurso;
         private Label labelNotaRecurso;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox TBNota;
+        private TextBox TBComentario;
         private Label labelComentarioRecurso;
         public Button btnGuardarNota;
         public Button button1;

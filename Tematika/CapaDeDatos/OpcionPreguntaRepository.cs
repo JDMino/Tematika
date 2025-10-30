@@ -65,5 +65,21 @@ namespace Tematika.CapaDeDatos
             connection.Open();
             command.ExecuteNonQuery();
         }
+
+        public void Actualizar(OpcionPregunta opcion)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            var query = @"UPDATE opcion_pregunta SET texto = @texto, es_correcta = @esCorrecta
+                  WHERE id_opcion = @id";
+
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@id", opcion.IdOpcion);
+            command.Parameters.AddWithValue("@texto", opcion.Texto);
+            command.Parameters.AddWithValue("@esCorrecta", opcion.EsCorrecta);
+
+            connection.Open();
+            command.ExecuteNonQuery();
+        }
+
     }
 }

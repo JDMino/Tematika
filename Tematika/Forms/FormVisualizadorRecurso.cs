@@ -6,74 +6,90 @@ using Tematika.CapaDeNegocio;
 
 namespace Tematika.Forms
 {
+    // Formulario para visualizar un recurso, interactuar con favoritos, valoraciones, notas y comentarios
     public partial class FormVisualizadorRecurso : Form
     {
-        private readonly Recurso recurso;
-        private readonly FavoritoService favoritoService = new FavoritoService();
-        private readonly ValoracionService valoracionService = new ValoracionService();
-        private readonly ComentarioService comentarioService = new ComentarioService();
-        private readonly NotaService notaService = new NotaService();
-        private readonly Usuario? usuario = SesionManager.UsuarioActual;
+        private readonly Recurso recurso; // Recurso que se va a visualizar
+        private readonly FavoritoService favoritoService = new FavoritoService(); // Servicio para manejar favoritos
+        private readonly ValoracionService valoracionService = new ValoracionService(); // Servicio de valoraciones
+        private readonly ComentarioService comentarioService = new ComentarioService(); // Servicio de comentarios
+        private readonly NotaService notaService = new NotaService(); // Servicio de notas
+        private readonly Usuario? usuario = SesionManager.UsuarioActual; // Usuario logueado (puede ser null si es invitado)
 
+        // Constructor del formulario
         public FormVisualizadorRecurso(Recurso recurso)
         {
             InitializeComponent();
             this.recurso = recurso;
+
+            // Eventos
             Load += FormVisualizadorRecurso_Load;
             btnMarcarFavorito.Click += btnMarcarFavorito_Click;
             btnGuardarValoracion.Click += btnGuardarValoracion_Click;
             btnGuardarNota.Click += btnGuardarNota_Click;
-            button1.Click += buttonEnviarComentario_Click;
+            button1.Click += buttonEnviarComentario_Click; // Botón para enviar comentarios
         }
 
+        // Evento al cargar el formulario
         private void FormVisualizadorRecurso_Load(object sender, EventArgs e)
         {
+            // Mostrar título del recurso
             labelTituloVRecurso.Text = recurso.Titulo;
 
+            // Modo invitado: deshabilitar interacción
             if (!SesionManager.SesionActiva || usuario == null)
             {
-                // Deshabilita interacción en modo invitado
                 btnMarcarFavorito.Enabled = false;
                 btnGuardarValoracion.Enabled = false;
                 comboBox1.Enabled = false;
                 btnGuardarNota.Enabled = false;
-                textBox1.Enabled = false;
+                TBNota.Enabled = false;
                 button1.Enabled = false;
-                textBox2.Enabled = false;
+                TBComentario.Enabled = false;
 
                 MessageBox.Show("Estás en modo invitado. Algunas funciones están deshabilitadas.", "Modo Invitado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Solo mostrar contenido del recurso
                 VisualizarContenido();
                 return;
             }
 
-            // Cargar favoritos y valoración propia
+            // Cargar estado de favoritos del usuario
             var favoritos = favoritoService.ListarPorUsuario(usuario.IdUsuario);
             var favorito = favoritos.FirstOrDefault(f => f.IdRecurso == recurso.IdRecurso);
             btnMarcarFavorito.Text = favorito != null ? "Desmarcar como Favorito" : "Marcar como Favorito";
 
+            // Cargar valoración propia del usuario
             var valoraciones = valoracionService.ListarPorRecurso(recurso.IdRecurso);
             var propia = valoraciones.FirstOrDefault(v => v.IdUsuario == usuario.IdUsuario);
             comboBox1.SelectedItem = propia?.Puntuacion.ToString();
 
-            // Cargar comentarios con nombres
+            // Cargar comentarios en el DataGridView
             ActualizarComentarios();
+
+            // Mostrar el contenido del recurso
             VisualizarContenido();
         }
 
+        // Actualiza el DataGridView con los comentarios del recurso
         private void ActualizarComentarios()
         {
             var comentarios = comentarioService.ListarPorRecurso(recurso.IdRecurso);
-            var usuarios = new UsuarioService().ListarUsuarios();
+            var usuarios = new UsuarioService().ListarUsuarios(); // Para mostrar nombres
 
             DGVComentariosRecursos.Rows.Clear();
             foreach (var c in comentarios)
             {
+                // Obtener nombre del autor
                 var autor = usuarios.FirstOrDefault(u => u.IdUsuario == c.IdUsuario);
                 var nombre = autor != null ? $"{autor.Nombre} {autor.Apellido}" : $"Usuario {c.IdUsuario}";
+
+                // Añadir fila con fecha, autor y texto
                 DGVComentariosRecursos.Rows.Add(c.Fecha.ToShortDateString(), nombre, c.Texto);
             }
         }
 
+        // Marcar o desmarcar como favorito
         private void btnMarcarFavorito_Click(object sender, EventArgs e)
         {
             if (usuario == null) return;
@@ -83,12 +99,14 @@ namespace Tematika.Forms
 
             if (favorito != null)
             {
+                // Desmarcar favorito
                 favoritoService.EliminarFavorito(favorito.IdFavorito);
                 btnMarcarFavorito.Text = "Marcar como Favorito";
                 MessageBox.Show("Recurso desmarcado como favorito.");
             }
             else
             {
+                // Marcar como favorito
                 var nuevo = new Favorito
                 {
                     IdUsuario = usuario.IdUsuario,
@@ -101,6 +119,7 @@ namespace Tematika.Forms
             }
         }
 
+        // Guardar valoración del recurso
         private void btnGuardarValoracion_Click(object sender, EventArgs e)
         {
             if (usuario == null) return;
@@ -127,15 +146,23 @@ namespace Tematika.Forms
                 MessageBox.Show(error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
+        // Guardar nota personal del recurso
         private void btnGuardarNota_Click(object sender, EventArgs e)
         {
             if (usuario == null) return;
+
+            // Verifica que haya contenido en la nota
+            if (string.IsNullOrWhiteSpace(TBNota.Text))
+            {
+                MessageBox.Show("Debe ingresar contenido para la nota.");
+                return;
+            }
 
             var nota = new Nota
             {
                 IdUsuario = usuario.IdUsuario,
                 IdRecurso = recurso.IdRecurso,
-                Texto = textBox1.Text,
+                Texto = TBNota.Text,
                 Fecha = DateTime.Now
             };
 
@@ -143,15 +170,23 @@ namespace Tematika.Forms
             MessageBox.Show("Nota guardada.");
         }
 
+        // Enviar comentario público sobre el recurso
         private void buttonEnviarComentario_Click(object sender, EventArgs e)
         {
             if (usuario == null) return;
+
+            // Verifica que haya contenido en la nota
+            if (string.IsNullOrWhiteSpace(TBComentario.Text))
+            {
+                MessageBox.Show("Debe ingresar contenido para el comentario.");
+                return;
+            }
 
             var comentario = new Comentario
             {
                 IdUsuario = usuario.IdUsuario,
                 IdRecurso = recurso.IdRecurso,
-                Texto = textBox2.Text,
+                Texto = TBComentario.Text,
                 Fecha = DateTime.Now
             };
 
@@ -159,8 +194,8 @@ namespace Tematika.Forms
             if (error == null)
             {
                 MessageBox.Show("Comentario enviado.");
-                textBox2.Clear();
-                ActualizarComentarios(); // 🔄 Refresca el DataGrid
+                TBComentario.Clear();
+                ActualizarComentarios(); // 🔄 Refresca la lista de comentarios
             }
             else
             {
@@ -168,13 +203,14 @@ namespace Tematika.Forms
             }
         }
 
-
+        // Visualiza el contenido del recurso: texto, URL o archivo (imagen/texto)
         private void VisualizarContenido()
         {
             panelContenidoRecurso.Controls.Clear();
 
             if (!string.IsNullOrWhiteSpace(recurso.Texto))
             {
+                // Mostrar texto en un TextBox
                 var tb = new TextBox
                 {
                     Multiline = true,
@@ -189,6 +225,7 @@ namespace Tematika.Forms
 
             if (!string.IsNullOrWhiteSpace(recurso.Url))
             {
+                // Mostrar URL como LinkLabel
                 var link = new LinkLabel
                 {
                     Text = recurso.Url,
@@ -206,7 +243,7 @@ namespace Tematika.Forms
 
             if (!string.IsNullOrWhiteSpace(recurso.Ruta))
             {
-                // Reconstruir ruta absoluta desde ruta relativa
+                // Construir ruta absoluta del archivo
                 string rutaProyecto = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
                 string rutaCompleta = Path.Combine(rutaProyecto, recurso.Ruta);
 
@@ -214,6 +251,7 @@ namespace Tematika.Forms
 
                 if (ext == ".txt")
                 {
+                    // Mostrar contenido de archivo de texto
                     if (File.Exists(rutaCompleta))
                     {
                         var contenido = File.ReadAllText(rutaCompleta);
@@ -234,6 +272,7 @@ namespace Tematika.Forms
                 }
                 else if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif")
                 {
+                    // Mostrar imagen
                     if (File.Exists(rutaCompleta))
                     {
                         var pb = new PictureBox
@@ -256,10 +295,12 @@ namespace Tematika.Forms
             }
             else
             {
+                // Si no hay contenido disponible
                 MostrarError("No hay contenido disponible.");
             }
         }
 
+        // Muestra mensaje de error en el panel de contenido
         private void MostrarError(string mensaje)
         {
             var label = new Label
@@ -272,7 +313,5 @@ namespace Tematika.Forms
             };
             panelContenidoRecurso.Controls.Add(label);
         }
-
-
     }
 }

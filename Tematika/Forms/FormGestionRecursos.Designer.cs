@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panelRecurso = new Panel();
             panelCamposRecursos = new TableLayoutPanel();
             CBMateriaRecurso = new ComboBox();
@@ -127,12 +127,14 @@
             // 
             // CBMateriaRecurso
             // 
+            CBMateriaRecurso.DropDownStyle = ComboBoxStyle.DropDownList;
             CBMateriaRecurso.FormattingEnabled = true;
             CBMateriaRecurso.Location = new Point(500, 30);
             CBMateriaRecurso.Margin = new Padding(3, 2, 3, 2);
             CBMateriaRecurso.Name = "CBMateriaRecurso";
             CBMateriaRecurso.Size = new Size(157, 23);
             CBMateriaRecurso.TabIndex = 50;
+            CBMateriaRecurso.Tag = "Materia";
             CBMateriaRecurso.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // TBRuta
@@ -142,6 +144,7 @@
             TBRuta.Name = "TBRuta";
             TBRuta.Size = new Size(137, 23);
             TBRuta.TabIndex = 48;
+            TBRuta.Tag = "Ruta";
             // 
             // TBUrl
             // 
@@ -150,6 +153,7 @@
             TBUrl.Name = "TBUrl";
             TBUrl.Size = new Size(157, 23);
             TBUrl.TabIndex = 46;
+            TBUrl.Tag = "URL";
             // 
             // LMateriaRecurso
             // 
@@ -168,6 +172,7 @@
             TBTexto.Name = "TBTexto";
             TBTexto.Size = new Size(137, 23);
             TBTexto.TabIndex = 43;
+            TBTexto.Tag = "Texto";
             // 
             // LTexto
             // 
@@ -183,7 +188,7 @@
             LNombreRecurso.AutoSize = true;
             LNombreRecurso.Location = new Point(3, 0);
             LNombreRecurso.Name = "LNombreRecurso";
-            LNombreRecurso.Size = new Size(37, 15);
+            LNombreRecurso.Size = new Size(38, 15);
             LNombreRecurso.TabIndex = 22;
             LNombreRecurso.Text = "Titulo";
             // 
@@ -194,18 +199,20 @@
             TBTituloRecurso.Name = "TBTituloRecurso";
             TBTituloRecurso.Size = new Size(137, 23);
             TBTituloRecurso.TabIndex = 28;
+            TBTituloRecurso.Tag = "Titulo";
             // 
             // LTipoRecurso
             // 
             LTipoRecurso.AutoSize = true;
             LTipoRecurso.Location = new Point(3, 28);
             LTipoRecurso.Name = "LTipoRecurso";
-            LTipoRecurso.Size = new Size(91, 15);
+            LTipoRecurso.Size = new Size(92, 15);
             LTipoRecurso.TabIndex = 23;
             LTipoRecurso.Text = "Tipo de Recurso";
             // 
             // CBTipoRecurso
             // 
+            CBTipoRecurso.DropDownStyle = ComboBoxStyle.DropDownList;
             CBTipoRecurso.FormattingEnabled = true;
             CBTipoRecurso.Items.AddRange(new object[] { "Texto", "Imagen", "Recurso Web" });
             CBTipoRecurso.Location = new Point(145, 30);
@@ -213,6 +220,7 @@
             CBTipoRecurso.Name = "CBTipoRecurso";
             CBTipoRecurso.Size = new Size(137, 23);
             CBTipoRecurso.TabIndex = 39;
+            CBTipoRecurso.Tag = "TipoRecurso";
             // 
             // LURL
             // 
@@ -248,30 +256,34 @@
             // 
             // CBEliminado
             // 
+            CBEliminado.DropDownStyle = ComboBoxStyle.DropDownList;
             CBEliminado.FormattingEnabled = true;
             CBEliminado.Location = new Point(500, 91);
             CBEliminado.Margin = new Padding(3, 2, 3, 2);
             CBEliminado.Name = "CBEliminado";
             CBEliminado.Size = new Size(133, 23);
             CBEliminado.TabIndex = 45;
+            CBEliminado.Tag = "Eliminado";
             // 
             // LTemaRecurso
             // 
             LTemaRecurso.AutoSize = true;
             LTemaRecurso.Location = new Point(358, 56);
             LTemaRecurso.Name = "LTemaRecurso";
-            LTemaRecurso.Size = new Size(35, 15);
+            LTemaRecurso.Size = new Size(36, 15);
             LTemaRecurso.TabIndex = 25;
             LTemaRecurso.Text = "Tema";
             // 
             // CBTemaRecurso
             // 
+            CBTemaRecurso.DropDownStyle = ComboBoxStyle.DropDownList;
             CBTemaRecurso.FormattingEnabled = true;
             CBTemaRecurso.Location = new Point(500, 58);
             CBTemaRecurso.Margin = new Padding(3, 2, 3, 2);
             CBTemaRecurso.Name = "CBTemaRecurso";
             CBTemaRecurso.Size = new Size(157, 23);
             CBTemaRecurso.TabIndex = 32;
+            CBTemaRecurso.Tag = "Tema";
             // 
             // tableLayoutPanel2
             // 
@@ -500,12 +512,12 @@
             // 
             // colAcciones
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.SteelBlue;
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.SlateGray;
-            colAcciones.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.SteelBlue;
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.SlateGray;
+            colAcciones.DefaultCellStyle = dataGridViewCellStyle3;
             colAcciones.FlatStyle = FlatStyle.Flat;
             colAcciones.HeaderText = "Acciones";
             colAcciones.MinimumWidth = 6;

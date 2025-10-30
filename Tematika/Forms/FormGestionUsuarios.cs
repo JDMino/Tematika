@@ -124,9 +124,21 @@ namespace Tematika.Forms
             if (!validacionExitosa)
                 return;
 
+            // DNI debe tener entre 7 y 9 dígitos
+            string dniTexto = TBDNIUsuario.Text.Trim();
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(dniTexto, @"^\d{7,9}$"))
+            {
+                MessageBox.Show("El DNI debe contener solo números y tener entre 7 y 9 dígitos.",
+                                "Validación de DNI", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TBDNIUsuario.Focus();
+                return;
+            }
+
+            // Si la validación pasa, continúa normalmente
             var usuario = new Usuario
             {
-                Dni = int.Parse(TBDNIUsuario.Text),
+                Dni = int.Parse(dniTexto),
                 Nombre = TBNombreUsuario.Text,
                 Apellido = TBApellidoUsuario.Text,
                 Correo = TBEmailUsuario.Text,
@@ -152,7 +164,10 @@ namespace Tematika.Forms
             else
             {
                 usuario.IdUsuario = usuarioSeleccionadoId.Value;
-                var mensajeError = _usuarioService.ActualizarUsuario(usuario, string.IsNullOrWhiteSpace(contrasenaPlano) ? null : contrasenaPlano);
+                var mensajeError = _usuarioService.ActualizarUsuario(
+                    usuario,
+                    string.IsNullOrWhiteSpace(contrasenaPlano) ? null : contrasenaPlano
+                );
 
                 if (mensajeError != null)
                 {
@@ -166,6 +181,7 @@ namespace Tematika.Forms
             LimpiarCampos();
             CargarUsuarios();
         }
+
 
 
 
@@ -223,6 +239,9 @@ namespace Tematika.Forms
 
         private void DGVUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //desactivar boton eliminar si estamos 
+            if (!mostrarActivos ? BUEliminar.Visible = false : BUEliminar.Visible = true) ;
+
             if (e.RowIndex >= 0)
             {
                 var fila = DGVUsuarios.Rows[e.RowIndex];
@@ -258,6 +277,11 @@ namespace Tematika.Forms
                     BUEliminar.Visible = esSuperAdmin || (esAdmin && !objetivoEsAdminOSuper && !esUsuarioActual);
                     LEliminado.Visible = true;
                     CBEliminado.Visible = true;
+
+                    if (usuario.Eliminado)
+                    {
+                        BUEliminar.Visible = false;
+                    }
                 }
             }
         }

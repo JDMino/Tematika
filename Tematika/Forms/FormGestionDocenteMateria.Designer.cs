@@ -89,6 +89,7 @@
             // 
             // CBDocente
             // 
+            CBDocente.DropDownStyle = ComboBoxStyle.DropDownList;
             CBDocente.FormattingEnabled = true;
             CBDocente.Location = new Point(183, 2);
             CBDocente.Margin = new Padding(3, 2, 3, 2);
@@ -119,6 +120,7 @@
             // 
             // CBMaterias
             // 
+            CBMaterias.DropDownStyle = ComboBoxStyle.DropDownList;
             CBMaterias.FormattingEnabled = true;
             CBMaterias.Location = new Point(183, 54);
             CBMaterias.Margin = new Padding(3, 2, 3, 2);

@@ -36,6 +36,13 @@ namespace Tematika.CapaDeNegocio
             }
             catch (SqlException ex)
             {
+                if (ex.Number == 2627 || ex.Number == 2601)
+                {
+                    if (ex.Message.Contains("UQ_Recurso_titulo"))
+                        return "Ya existe un recurso con ese título.";
+                    return "Ya existe un recurso con datos duplicados.";
+                }
+
                 return "Error al crear el recurso: " + ex.Message;
             }
         }
@@ -50,9 +57,17 @@ namespace Tematika.CapaDeNegocio
             }
             catch (SqlException ex)
             {
+                if (ex.Number == 2627 || ex.Number == 2601)
+                {
+                    if (ex.Message.Contains("UQ_Recurso_titulo"))
+                        return "Ya existe otro recurso con ese título.";
+                    return "Ya existe otro recurso con datos duplicados.";
+                }
+
                 return "Error al actualizar el recurso: " + ex.Message;
             }
         }
+
 
         public void EliminarRecurso(int id)
         {

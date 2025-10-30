@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panelMisNotas = new Panel();
             DGVMisNotas = new DataGridView();
             labelMisNotas = new Label();
@@ -50,6 +50,10 @@
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewButtonColumn1 = new DataGridViewButtonColumn();
             dataGridViewButtonColumn2 = new DataGridViewButtonColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewButtonColumn3 = new DataGridViewButtonColumn();
+            dataGridViewButtonColumn4 = new DataGridViewButtonColumn();
             panelMisNotas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DGVMisNotas).BeginInit();
             panelNuevaNota.SuspendLayout();
@@ -62,9 +66,8 @@
             panelMisNotas.Controls.Add(DGVMisNotas);
             panelMisNotas.Controls.Add(labelMisNotas);
             panelMisNotas.Location = new Point(0, 0);
-            panelMisNotas.Margin = new Padding(3, 4, 3, 4);
             panelMisNotas.Name = "panelMisNotas";
-            panelMisNotas.Size = new Size(914, 329);
+            panelMisNotas.Size = new Size(800, 247);
             panelMisNotas.TabIndex = 0;
             // 
             // DGVMisNotas
@@ -72,27 +75,20 @@
             DGVMisNotas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             DGVMisNotas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVMisNotas.BackgroundColor = SystemColors.ActiveBorder;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            DGVMisNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            DGVMisNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             DGVMisNotas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVMisNotas.Columns.AddRange(new DataGridViewColumn[] {
-                new DataGridViewTextBoxColumn { Name = "RecursoAsociado", HeaderText = "Recurso Asociado", ReadOnly = true },
-                new DataGridViewTextBoxColumn { Name = "Nota", HeaderText = "Nota", ReadOnly = true },
-                new DataGridViewButtonColumn { Name = "Acciones", HeaderText = "Ver", Text = "Ver", UseColumnTextForButtonValue = true },
-                new DataGridViewButtonColumn { Name = "EliminarNota", HeaderText = "Eliminar", Text = "Eliminar", UseColumnTextForButtonValue = true }
-            });
-
-            DGVMisNotas.Location = new Point(0, 104);
-            DGVMisNotas.Margin = new Padding(3, 4, 3, 4);
+            DGVMisNotas.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewButtonColumn3, dataGridViewButtonColumn4 });
+            DGVMisNotas.Location = new Point(0, 78);
             DGVMisNotas.Name = "DGVMisNotas";
             DGVMisNotas.RowHeadersWidth = 51;
-            DGVMisNotas.Size = new Size(914, 185);
+            DGVMisNotas.Size = new Size(800, 139);
             DGVMisNotas.TabIndex = 8;
             // 
             // labelMisNotas
@@ -100,9 +96,9 @@
             labelMisNotas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelMisNotas.AutoSize = true;
             labelMisNotas.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelMisNotas.Location = new Point(337, 12);
+            labelMisNotas.Location = new Point(295, 9);
             labelMisNotas.Name = "labelMisNotas";
-            labelMisNotas.Size = new Size(233, 32);
+            labelMisNotas.Size = new Size(180, 25);
             labelMisNotas.TabIndex = 5;
             labelMisNotas.Text = "Mis Notas Privadas";
             // 
@@ -144,10 +140,9 @@
             panelNuevaNota.Controls.Add(labelTemaMisNotas);
             panelNuevaNota.Controls.Add(cmbTemasMisNotas);
             panelNuevaNota.Controls.Add(label1);
-            panelNuevaNota.Location = new Point(0, 328);
-            panelNuevaNota.Margin = new Padding(3, 4, 3, 4);
+            panelNuevaNota.Location = new Point(0, 246);
             panelNuevaNota.Name = "panelNuevaNota";
-            panelNuevaNota.Size = new Size(914, 317);
+            panelNuevaNota.Size = new Size(800, 238);
             panelNuevaNota.TabIndex = 1;
             // 
             // btnGuardarMisNotas
@@ -157,10 +152,9 @@
             btnGuardarMisNotas.FlatStyle = FlatStyle.Flat;
             btnGuardarMisNotas.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnGuardarMisNotas.ForeColor = SystemColors.ButtonHighlight;
-            btnGuardarMisNotas.Location = new Point(165, 271);
-            btnGuardarMisNotas.Margin = new Padding(3, 4, 3, 4);
+            btnGuardarMisNotas.Location = new Point(144, 203);
             btnGuardarMisNotas.Name = "btnGuardarMisNotas";
-            btnGuardarMisNotas.Size = new Size(163, 31);
+            btnGuardarMisNotas.Size = new Size(143, 23);
             btnGuardarMisNotas.TabIndex = 15;
             btnGuardarMisNotas.Text = "Guardar Nueva Nota";
             btnGuardarMisNotas.UseVisualStyleBackColor = false;
@@ -168,20 +162,19 @@
             // TBContenidoMisNotas
             // 
             TBContenidoMisNotas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            TBContenidoMisNotas.Location = new Point(165, 171);
-            TBContenidoMisNotas.Margin = new Padding(3, 4, 3, 4);
+            TBContenidoMisNotas.Location = new Point(144, 128);
             TBContenidoMisNotas.Multiline = true;
             TBContenidoMisNotas.Name = "TBContenidoMisNotas";
-            TBContenidoMisNotas.Size = new Size(735, 91);
+            TBContenidoMisNotas.Size = new Size(644, 69);
             TBContenidoMisNotas.TabIndex = 14;
             // 
             // labelContenidoMisNotas
             // 
             labelContenidoMisNotas.AutoSize = true;
             labelContenidoMisNotas.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelContenidoMisNotas.Location = new Point(3, 157);
+            labelContenidoMisNotas.Location = new Point(3, 118);
             labelContenidoMisNotas.Name = "labelContenidoMisNotas";
-            labelContenidoMisNotas.Size = new Size(140, 32);
+            labelContenidoMisNotas.Size = new Size(111, 25);
             labelContenidoMisNotas.TabIndex = 13;
             labelContenidoMisNotas.Text = "Contenido:";
             // 
@@ -189,60 +182,60 @@
             // 
             labelRecursoMisNotas.AutoSize = true;
             labelRecursoMisNotas.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelRecursoMisNotas.Location = new Point(3, 124);
+            labelRecursoMisNotas.Location = new Point(3, 93);
             labelRecursoMisNotas.Name = "labelRecursoMisNotas";
-            labelRecursoMisNotas.Size = new Size(112, 32);
+            labelRecursoMisNotas.Size = new Size(88, 25);
             labelRecursoMisNotas.TabIndex = 12;
             labelRecursoMisNotas.Text = "Recurso:";
             // 
             // cmbRecursosMisNotas
             // 
             cmbRecursosMisNotas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cmbRecursosMisNotas.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbRecursosMisNotas.FormattingEnabled = true;
-            cmbRecursosMisNotas.Location = new Point(165, 124);
-            cmbRecursosMisNotas.Margin = new Padding(3, 4, 3, 4);
+            cmbRecursosMisNotas.Location = new Point(144, 93);
             cmbRecursosMisNotas.Name = "cmbRecursosMisNotas";
-            cmbRecursosMisNotas.Size = new Size(735, 28);
+            cmbRecursosMisNotas.Size = new Size(644, 23);
             cmbRecursosMisNotas.TabIndex = 11;
             // 
             // labelAsignaturaMisNotas
             // 
             labelAsignaturaMisNotas.AutoSize = true;
             labelAsignaturaMisNotas.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelAsignaturaMisNotas.Location = new Point(3, 47);
+            labelAsignaturaMisNotas.Location = new Point(3, 35);
             labelAsignaturaMisNotas.Name = "labelAsignaturaMisNotas";
-            labelAsignaturaMisNotas.Size = new Size(146, 32);
+            labelAsignaturaMisNotas.Size = new Size(114, 25);
             labelAsignaturaMisNotas.TabIndex = 10;
             labelAsignaturaMisNotas.Text = "Asignatura:";
             // 
             // cmbAsignaturasMisNotas
             // 
             cmbAsignaturasMisNotas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cmbAsignaturasMisNotas.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAsignaturasMisNotas.FormattingEnabled = true;
-            cmbAsignaturasMisNotas.Location = new Point(165, 47);
-            cmbAsignaturasMisNotas.Margin = new Padding(3, 4, 3, 4);
+            cmbAsignaturasMisNotas.Location = new Point(144, 35);
             cmbAsignaturasMisNotas.Name = "cmbAsignaturasMisNotas";
-            cmbAsignaturasMisNotas.Size = new Size(735, 28);
+            cmbAsignaturasMisNotas.Size = new Size(644, 23);
             cmbAsignaturasMisNotas.TabIndex = 9;
             // 
             // labelTemaMisNotas
             // 
             labelTemaMisNotas.AutoSize = true;
             labelTemaMisNotas.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelTemaMisNotas.Location = new Point(3, 85);
+            labelTemaMisNotas.Location = new Point(3, 64);
             labelTemaMisNotas.Name = "labelTemaMisNotas";
-            labelTemaMisNotas.Size = new Size(81, 32);
+            labelTemaMisNotas.Size = new Size(63, 25);
             labelTemaMisNotas.TabIndex = 8;
             labelTemaMisNotas.Text = "Tema:";
             // 
             // cmbTemasMisNotas
             // 
             cmbTemasMisNotas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cmbTemasMisNotas.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTemasMisNotas.FormattingEnabled = true;
-            cmbTemasMisNotas.Location = new Point(165, 85);
-            cmbTemasMisNotas.Margin = new Padding(3, 4, 3, 4);
+            cmbTemasMisNotas.Location = new Point(144, 64);
             cmbTemasMisNotas.Name = "cmbTemasMisNotas";
-            cmbTemasMisNotas.Size = new Size(735, 28);
+            cmbTemasMisNotas.Size = new Size(644, 23);
             cmbTemasMisNotas.TabIndex = 7;
             // 
             // label1
@@ -250,9 +243,9 @@
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(337, 5);
+            label1.Location = new Point(295, 4);
             label1.Name = "label1";
-            label1.Size = new Size(234, 32);
+            label1.Size = new Size(183, 25);
             label1.TabIndex = 6;
             label1.Text = "Añadir Nueva Nota";
             // 
@@ -276,15 +269,30 @@
             dataGridViewButtonColumn2.MinimumWidth = 6;
             dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
             // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewButtonColumn3
+            // 
+            dataGridViewButtonColumn3.Name = "dataGridViewButtonColumn3";
+            // 
+            // dataGridViewButtonColumn4
+            // 
+            dataGridViewButtonColumn4.Name = "dataGridViewButtonColumn4";
+            // 
             // FormNotesEstudiante
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(914, 645);
+            ClientSize = new Size(800, 484);
             Controls.Add(panelNuevaNota);
             Controls.Add(panelMisNotas);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FormNotesEstudiante";
             Text = "FormNotesEstudiante";
             panelMisNotas.ResumeLayout(false);
@@ -318,5 +326,9 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewButtonColumn dataGridViewButtonColumn1;
         private DataGridViewButtonColumn dataGridViewButtonColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewButtonColumn dataGridViewButtonColumn3;
+        private DataGridViewButtonColumn dataGridViewButtonColumn4;
     }
 }

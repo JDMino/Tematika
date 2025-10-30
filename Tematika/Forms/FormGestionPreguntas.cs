@@ -11,19 +11,23 @@ namespace Tematika.Forms
 {
     public partial class FormGestionPreguntas : Form
     {
+        // Servicios para manejar las operaciones de negocio
         private readonly OpcionPreguntaService _opcionService = new OpcionPreguntaService();
         private readonly PreguntaService _preguntaService = new PreguntaService();
         private readonly EvaluacionService _evaluacionService = new EvaluacionService();
         private readonly MateriaService _materiaService = new MateriaService();
         private readonly TemaService _temaService = new TemaService();
 
+        // ID de la pregunta seleccionada y control para mostrar activas/inactivas
         private int? preguntaSeleccionadaId = null;
         private bool mostrarActivos = true;
 
         public FormGestionPreguntas()
         {
             InitializeComponent();
-            Load += FormGestionPreguntas_Load;
+
+            // Asociar eventos a los controles del formulario
+            Load += FormGestionPreguntas_Load; // Evento al cargar el formulario
             CBMateria.SelectedIndexChanged += CBMateria_SelectedIndexChanged;
             BGuardarPreg.Click += BGuardarPreg_Click;
             BModificarPreg.Click += BModificarPreg_Click;
@@ -32,23 +36,30 @@ namespace Tematika.Forms
             BPActivos.Click += BPActivos_Click;
             BPInactivos.Click += BPInactivos_Click;
             DGVPreguntas.CellClick += DGVPreguntas_CellClick;
+
+            // Filtro en tiempo real al escribir en el buscador
             TBBuscador.TextChanged += (s, e) =>
             {
                 GridUtils.FiltrarFilasPorTexto(DGVPreguntas, TBBuscador.Text);
             };
+
+            // Validación de caracteres permitidos
             textBox5.KeyPress += (s, e) => Validaciones.ValidarTextoConCaracteresEspeciales(e);
         }
 
         private void FormGestionPreguntas_Load(object sender, EventArgs e)
         {
+            // Aplicar estilo al encabezado y fondo del panel
             EstiloEncabezado.Aplicar(panelEncabezadoP, LTituloPreguntas);
             panelPreguntas.BackColor = ColorTranslator.FromHtml("#cfd8dc");
 
+            // Inicializar comboBox para marcar eliminadas
             comboBox1.Items.Clear();
             comboBox1.Items.Add("No");
             comboBox1.Items.Add("Sí");
             comboBox1.SelectedIndex = 0;
 
+            // Cargar datos iniciales
             CargarMaterias();
             CargarOpcionesCorrectas();
             CargarPreguntas();
@@ -60,28 +71,30 @@ namespace Tematika.Forms
 
             if (SesionManager.SesionActiva && SesionManager.UsuarioActual!.IdPerfil == 2)
             {
-                // Docente: solo sus materias
+                // Docente: solo se muestran las materias asignadas
                 materias = _materiaService.ListarMateriasPorDocente(SesionManager.UsuarioActual.IdUsuario);
             }
             else
             {
-                // Admin u otro perfil: todas las materias
+                // Admin u otros perfiles: se muestran todas las materias activas
                 materias = _materiaService.ListarMaterias()
                     .Where(m => !m.Eliminado)
                     .OrderBy(m => m.Nombre)
                     .ToList();
             }
 
+            // Configurar ComboBox de materias
             CBMateria.DisplayMember = "Nombre";
             CBMateria.ValueMember = "IdMateria";
             CBMateria.DataSource = materias;
 
+            // Limpiar ComboBox de temas al cambiar la materia
             CBTemas.DataSource = null;
         }
 
-
         private void CBMateria_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Al cambiar la materia seleccionada, cargar los temas relacionados
             if (CBMateria.SelectedValue is int idMateria)
             {
                 var temas = _temaService.ListarTemas()
@@ -97,6 +110,7 @@ namespace Tematika.Forms
 
         private void CargarOpcionesCorrectas()
         {
+            // Configurar ComboBox de opciones correctas
             CBOpcionCorrecta.Items.Clear();
             CBOpcionCorrecta.Items.Add("Opción 1");
             CBOpcionCorrecta.Items.Add("Opción 2");
@@ -106,9 +120,11 @@ namespace Tematika.Forms
 
         private void CargarPreguntas()
         {
+            // Obtener todas las preguntas
             var preguntas = _preguntaService.ListarPreguntas();
             var materiasPermitidas = new List<int>();
 
+            // Si es docente, limitar preguntas a sus materias
             if (SesionManager.SesionActiva && SesionManager.UsuarioActual!.IdPerfil == 2)
             {
                 materiasPermitidas = new DocenteMateriaService().ListarAsignaciones()
@@ -119,6 +135,7 @@ namespace Tematika.Forms
 
             DGVPreguntas.Rows.Clear();
 
+            // Llenar el DataGridView con las preguntas filtradas
             foreach (var p in preguntas)
             {
                 var evaluacion = _evaluacionService.ObtenerEvaluacion(p.IdEvaluacion);
@@ -134,14 +151,15 @@ namespace Tematika.Forms
                 }
             }
 
+            // Ajustar visibilidad de botones
             BGuardarPreg.Visible = true;
             BModificarPreg.Visible = false;
             BEliminarEvaluacion.Visible = false;
         }
 
-
         private void LimpiarCampos()
         {
+            // Limpiar todos los campos del formulario
             textBox5.Clear();
             TBOp1.Clear();
             TBOp2.Clear();
@@ -159,19 +177,22 @@ namespace Tematika.Forms
 
         private void BGuardarPreg_Click(object sender, EventArgs e)
         {
+            // Validar campos obligatorios
             if (!Validaciones.ValidarCamposObligatorios(panelCamposPreguntas))
                 return;
 
+            // Verificar que se haya seleccionado un tema válido
             if (CBTemas.SelectedValue is not int idTema)
             {
                 MessageBox.Show("Debe seleccionar un tema válido.");
                 return;
             }
 
-            // Verificar si ya existe una evaluación para el tema
+            // Verificar si existe una evaluación para el tema
             var evaluacion = _evaluacionService.ObtenerPorTema(idTema);
             if (evaluacion == null)
             {
+                // Crear nueva evaluación si no existe
                 var nuevaEvaluacion = new Evaluacion
                 {
                     IdTema = idTema,
@@ -188,6 +209,16 @@ namespace Tematika.Forms
                 evaluacion = _evaluacionService.ObtenerPorTema(idTema);
             }
 
+            // Validar que no exista una pregunta con el mismo enunciado en esta evaluación
+            if (_preguntaService.ListarPreguntas()
+                .Any(p => p.IdEvaluacion == evaluacion.IdEvaluacion &&
+                          p.Enunciado.Trim().ToLower() == textBox5.Text.Trim().ToLower()))
+            {
+                MessageBox.Show("Ya existe una pregunta con ese enunciado en esta evaluación.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Crear la pregunta
             var pregunta = new Pregunta
             {
                 Enunciado = textBox5.Text,
@@ -208,6 +239,7 @@ namespace Tematika.Forms
 
             if (preguntaGuardada != null)
             {
+                // Crear las opciones de la pregunta
                 var opciones = new List<OpcionPregunta>
         {
             new OpcionPregunta { Texto = TBOp1.Text, EsCorrecta = CBOpcionCorrecta.SelectedItem?.ToString() == "Opción 1", IdPregunta = preguntaGuardada.IdPregunta },
@@ -216,7 +248,14 @@ namespace Tematika.Forms
         };
 
                 foreach (var op in opciones)
-                    _opcionService.CrearOpcion(op);
+                {
+                    var errorOp = _opcionService.CrearOpcion(op);
+                    if (errorOp != null)
+                    {
+                        MessageBox.Show(errorOp, "Error al crear opción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
             }
 
             MessageBox.Show("Pregunta guardada correctamente.");
@@ -227,44 +266,58 @@ namespace Tematika.Forms
 
         private void DGVPreguntas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Si se hace clic fuera de las filas válidas, salir
             if (e.RowIndex < 0) return;
 
+            // Obtener la fila seleccionada
             var fila = DGVPreguntas.Rows[e.RowIndex];
+
+            // Guardar el ID de la pregunta seleccionada
             preguntaSeleccionadaId = Convert.ToInt32(fila.Cells["IDPreg"].Value);
 
+            // Buscar la pregunta completa en el servicio
             var pregunta = _preguntaService.ListarPreguntas()
                 .FirstOrDefault(p => p.IdPregunta == preguntaSeleccionadaId);
 
-            if (pregunta == null) return;
+            if (pregunta == null) return; // Salir si no se encuentra la pregunta
 
+            // Obtener la evaluación, tema y materia asociados
             var evaluacion = _evaluacionService.ObtenerEvaluacion(pregunta.IdEvaluacion);
             var tema = evaluacion != null ? _temaService.ObtenerTema(evaluacion.IdTema) : null;
             var materia = tema != null ? _materiaService.ObtenerMateria(tema.IdMateria) : null;
 
+
+            // Configurar ComboBoxes según la materia y tema
             if (materia != null)
             {
                 CBMateria.SelectedValue = materia.IdMateria;
 
                 var temas = _temaService.ListarTemas()
-                    .Where(t => t.IdMateria == materia.IdMateria && !t.Eliminado)
+                    .Where(t => t.IdMateria == materia.IdMateria && !t.Eliminado) // solo temas activos
                     .OrderBy(t => t.Nombre)
                     .ToList();
 
                 CBTemas.DisplayMember = "Nombre";
                 CBTemas.ValueMember = "IdTema";
                 CBTemas.DataSource = temas;
-                CBTemas.SelectedValue = tema?.IdTema ?? 0;
+                CBTemas.SelectedValue = tema?.IdTema ?? 0; // Seleccionar el tema correspondiente
             }
 
+            // Rellenar el enunciado de la pregunta
             textBox5.Text = pregunta.Enunciado;
+
+            // Mostrar si la evaluación está eliminada
             comboBox1.SelectedItem = evaluacion?.Eliminado == true ? "Sí" : "No";
 
+            // Obtener opciones de la pregunta
             var opciones = _opcionService.ListarPorPregunta(pregunta.IdPregunta);
 
+            // Rellenar los TextBoxes con las opciones
             TBOp1.Text = opciones.ElementAtOrDefault(0)?.Texto ?? "";
             TBOp2.Text = opciones.ElementAtOrDefault(1)?.Texto ?? "";
             TBOp3.Text = opciones.ElementAtOrDefault(2)?.Texto ?? "";
 
+            // Determinar cuál opción es correcta
             var correcta = opciones.FirstOrDefault(o => o.EsCorrecta);
             if (correcta != null)
             {
@@ -273,11 +326,17 @@ namespace Tematika.Forms
                 else if (correcta.Texto == TBOp3.Text) CBOpcionCorrecta.SelectedItem = "Opción 3";
             }
 
+            // Ajustar botones: deshabilitar guardar, habilitar modificar y eliminar
             BGuardarPreg.Visible = false;
             BModificarPreg.Visible = true;
             BEliminarEvaluacion.Visible = true;
-        }
 
+
+            if (evaluacion.Eliminado)
+            {
+                BEliminarEvaluacion.Visible = false;
+            }
+        }
 
         private void BModificarPreg_Click(object sender, EventArgs e)
         {
@@ -296,7 +355,6 @@ namespace Tematika.Forms
                 return;
             }
 
-            // Recuperar la pregunta original
             var preguntaOriginal = _preguntaService.ListarPreguntas()
                 .FirstOrDefault(p => p.IdPregunta == preguntaSeleccionadaId.Value);
 
@@ -306,7 +364,6 @@ namespace Tematika.Forms
                 return;
             }
 
-            // Recuperar evaluación asociada
             var evaluacion = _evaluacionService.ObtenerEvaluacion(preguntaOriginal.IdEvaluacion);
             if (evaluacion == null)
             {
@@ -314,7 +371,14 @@ namespace Tematika.Forms
                 return;
             }
 
-            // Actualizar evaluación existente
+            // Validar enunciado duplicado reutilizando el método del servicio
+            if (_preguntaService.ExisteEnunciadoEnEvaluacion(textBox5.Text, evaluacion.IdEvaluacion, preguntaSeleccionadaId))
+            {
+                MessageBox.Show("Ya existe otra pregunta con ese enunciado en esta evaluación.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Actualizar evaluación
             evaluacion.IdTema = idTema;
             evaluacion.Eliminado = comboBox1.SelectedItem?.ToString() == "Sí";
 
@@ -341,33 +405,45 @@ namespace Tematika.Forms
                 return;
             }
 
-            // Actualizar opciones
-            _opcionService.EliminarOpcionesDePregunta(preguntaSeleccionadaId.Value);
+            // Obtener opciones existentes
+            var opcionesExistentes = _opcionService.ListarPorPregunta(preguntaSeleccionadaId.Value);
 
+            // Preparar nuevas opciones
             var nuevasOpciones = new List<OpcionPregunta>
-    {
-        new OpcionPregunta
-        {
-            Texto = TBOp1.Text,
-            EsCorrecta = CBOpcionCorrecta.SelectedItem?.ToString() == "Opción 1",
-            IdPregunta = preguntaSeleccionadaId.Value
-        },
-        new OpcionPregunta
-        {
-            Texto = TBOp2.Text,
-            EsCorrecta = CBOpcionCorrecta.SelectedItem?.ToString() == "Opción 2",
-            IdPregunta = preguntaSeleccionadaId.Value
-        },
-        new OpcionPregunta
-        {
-            Texto = TBOp3.Text,
-            EsCorrecta = CBOpcionCorrecta.SelectedItem?.ToString() == "Opción 3",
-            IdPregunta = preguntaSeleccionadaId.Value
-        }
-    };
+            {
+                new OpcionPregunta
+                {
+                    Texto = TBOp1.Text,
+                    EsCorrecta = CBOpcionCorrecta.SelectedItem?.ToString() == "Opción 1",
+                    IdPregunta = preguntaSeleccionadaId.Value
+                },
+                new OpcionPregunta
+                {
+                    Texto = TBOp2.Text,
+                    EsCorrecta = CBOpcionCorrecta.SelectedItem?.ToString() == "Opción 2",
+                    IdPregunta = preguntaSeleccionadaId.Value
+                },
+                new OpcionPregunta
+                {
+                    Texto = TBOp3.Text,
+                    EsCorrecta = CBOpcionCorrecta.SelectedItem?.ToString() == "Opción 3",
+                    IdPregunta = preguntaSeleccionadaId.Value
+                }
+            };
 
-            foreach (var op in nuevasOpciones)
-                _opcionService.CrearOpcion(op);
+            // Actualizar o crear opciones
+            for (int i = 0; i < nuevasOpciones.Count; i++)
+            {
+                if (i < opcionesExistentes.Count)
+                {
+                    nuevasOpciones[i].IdOpcion = opcionesExistentes[i].IdOpcion;
+                    _opcionService.ActualizarOpcion(nuevasOpciones[i]);
+                }
+                else
+                {
+                    _opcionService.CrearOpcion(nuevasOpciones[i]);
+                }
+            }
 
             MessageBox.Show("Pregunta modificada correctamente.");
             CargarPreguntas();
@@ -376,14 +452,17 @@ namespace Tematika.Forms
 
 
 
+
         private void BEliminarEvaluacion_Click(object sender, EventArgs e)
         {
+            // Verificar que haya una pregunta seleccionada
             if (preguntaSeleccionadaId == null)
             {
                 MessageBox.Show("Debe seleccionar una pregunta para eliminar.");
                 return;
             }
 
+            // Obtener la pregunta seleccionada
             var pregunta = _preguntaService.ListarPreguntas()
                 .FirstOrDefault(p => p.IdPregunta == preguntaSeleccionadaId.Value);
 
@@ -393,6 +472,7 @@ namespace Tematika.Forms
                 return;
             }
 
+            // Obtener la evaluación asociada
             var evaluacion = _evaluacionService.ObtenerEvaluacion(pregunta.IdEvaluacion);
             if (evaluacion == null)
             {
@@ -400,31 +480,43 @@ namespace Tematika.Forms
                 return;
             }
 
-            var confirm = MessageBox.Show("¿Está seguro de marcar como eliminada la evaluación asociada a esta pregunta?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            // Confirmar eliminación con el usuario
+            var confirm = MessageBox.Show(
+                "¿Está seguro de marcar como eliminada la evaluación asociada a esta pregunta?",
+                "Confirmar",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
+
             if (confirm == DialogResult.Yes)
             {
+                // Marcar la evaluación como eliminada
                 _evaluacionService.EliminarEvaluacion(evaluacion.IdEvaluacion);
 
                 MessageBox.Show("Evaluación marcada como eliminada.");
+
+                // Recargar preguntas y limpiar campos
                 CargarPreguntas();
                 LimpiarCampos();
             }
         }
 
-
         private void BCancelarPreg_Click(object sender, EventArgs e)
         {
+            // Limpiar todos los campos del formulario y resetear botones
             LimpiarCampos();
         }
 
         private void BPActivos_Click(object sender, EventArgs e)
         {
+            // Mostrar solo preguntas/evaluaciones activas
             mostrarActivos = true;
             CargarPreguntas();
         }
 
         private void BPInactivos_Click(object sender, EventArgs e)
         {
+            // Mostrar solo preguntas/evaluaciones eliminadas
             mostrarActivos = false;
             CargarPreguntas();
         }

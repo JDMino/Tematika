@@ -10,11 +10,11 @@ using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
 using System.IO;
 
-
 namespace Tematika.Forms
 {
     public partial class FormListaSuscriptos : Form
     {
+        // Servicios para acceder a la lógica de negocio y datos
         private readonly SuscripcionService suscripcionService = new SuscripcionService();
         private readonly UsuarioService usuarioService = new UsuarioService();
         private readonly FacturaService facturaService = new FacturaService();
@@ -22,7 +22,9 @@ namespace Tematika.Forms
 
         public FormListaSuscriptos()
         {
-            InitializeComponent();
+            InitializeComponent(); // Inicializa componentes del formulario
+
+            // Eventos de carga y manejo de DataGridView
             Load += FormListaSuscriptos_Load;
             DGVGestionSuscripciones.CellContentClick += DGVGestionSuscripciones_CellContentClick;
             DGVGestionSuscripciones.CellFormatting += DGVGestionSuscripciones_CellFormatting;
@@ -30,35 +32,41 @@ namespace Tematika.Forms
 
         private void FormListaSuscriptos_Load(object sender, EventArgs e)
         {
+            // Aplicar estilo al encabezado del formulario
             EstiloEncabezado.Aplicar(panelEncabezadoS, LTituloSuscripciones);
+
+            // Color de fondo del panel de suscripciones
             panelSuscripcion.BackColor = ColorTranslator.FromHtml("#cfd8dc");
 
+            // Cargar tarjetas resumen y lista de suscripciones
             CargarTarjetas();
             CargarSuscripciones();
         }
 
         private void CargarTarjetas()
         {
-            var suscripciones = suscripcionService.ObtenerTodas();
-            var total = suscripciones.Count(s => s.Activa != false );
+            var suscripciones = suscripcionService.ObtenerTodas(); // Obtener todas las suscripciones
+
+            // Contadores por tipo de suscripción
+            var total = suscripciones.Count(s => s.Activa != false);
             var mensuales = suscripciones.Count(s => s.Tipo?.Nombre == "Mensual");
             var semestrales = suscripciones.Count(s => s.Tipo?.Nombre == "Semestral");
             var anuales = suscripciones.Count(s => s.Tipo?.Nombre == "Anual");
 
+            // Fechas para cálculo de ingresos
             var fechaHoy = DateTime.Now;
 
             // Rango del último mes completo
             var primerDiaUltimoMes = DateTime.Today.AddMonths(-1);
-            var ultimoDiaUltimoMes = primerDiaUltimoMes.AddMonths(1).AddDays(-1);
+            var ultimoDiaUltimoMes = primerDiaUltimoMes.AddMonths(1).AddDays(1);
 
             // Rango del último año completo
             var primerDiaUltimoAnio = DateTime.Today.AddYears(-1);
-            var ultimoDiaUltimoAnio = primerDiaUltimoAnio.AddYears(1).AddDays(-1);
+            var ultimoDiaUltimoAnio = primerDiaUltimoAnio.AddYears(1).AddDays(1);
 
             // Ingresos del último mes (solo suscripciones mensuales)
             var ingresosMensuales = suscripciones
                 .Where(s => s.Tipo != null
-                         //&& s.Tipo.Nombre == "Mensual"
                          && s.FechaInicio >= primerDiaUltimoMes
                          && s.FechaInicio <= ultimoDiaUltimoMes)
                 .Sum(s => s.Tipo!.Precio);
@@ -70,8 +78,7 @@ namespace Tematika.Forms
                          && s.FechaInicio <= ultimoDiaUltimoAnio)
                 .Sum(s => s.Tipo!.Precio);
 
-
-
+            // Crear tarjetas de resumen (DashboardUserControl1)
             var tarjetas = new[]
             {
                 new DashboardUserControl1 { InfoCard = total.ToString(), TituloCard = "Total Suscripciones", CardBackColor = ColorTranslator.FromHtml("#34495e"), Dock = DockStyle.Fill, Margin = new Padding(10) },
@@ -82,6 +89,7 @@ namespace Tematika.Forms
                 new DashboardUserControl1 { InfoCard = $"${ingresosAnuales:0.00}", TituloCard = "Ingresos Anuales", CardBackColor = ColorTranslator.FromHtml("#34495e"), Dock = DockStyle.Fill, Margin = new Padding(10) }
             };
 
+            // Limpiar panel y agregar tarjetas en 2 filas x 3 columnas
             TBCardsSuscripciones.Controls.Clear();
             int i = 0;
             for (int row = 0; row < 2; row++)
@@ -98,12 +106,13 @@ namespace Tematika.Forms
         {
             var suscripciones = suscripcionService.ObtenerTodas()
                 .OrderByDescending(s => s.FechaInicio)
-                .ToList();
+                .ToList(); // Obtener suscripciones ordenadas por fecha de inicio
 
-            var usuarios = usuarioService.ListarUsuarios();
+            var usuarios = usuarioService.ListarUsuarios(); // Obtener lista de usuarios
 
-            DGVGestionSuscripciones.Rows.Clear();
+            DGVGestionSuscripciones.Rows.Clear(); // Limpiar DataGridView
 
+            // Llenar DataGridView con información de cada suscripción
             foreach (var s in suscripciones)
             {
                 var usuario = usuarios.FirstOrDefault(u => u.IdUsuario == s.IdUsuario);
@@ -123,9 +132,10 @@ namespace Tematika.Forms
             }
         }
 
+        // Evento al hacer click en botones de la tabla
         private void DGVGestionSuscripciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0) return; // Evitar cabecera
 
             var grid = DGVGestionSuscripciones;
             int idSuscripcion = Convert.ToInt32(grid.Rows[e.RowIndex].Cells["id_suscripcion"].Value);
@@ -133,6 +143,7 @@ namespace Tematika.Forms
             var usuarioDueño = usuarioService.ObtenerUsuarioPorSuscripcion(idSuscripcion);
             string email = usuarioDueño?.Correo ?? "desconocido@correo.com";
 
+            // Ver factura
             if (grid.Columns[e.ColumnIndex].Name == "verFactura")
             {
                 var factura = facturaService.ObtenerPorSuscripcion(idSuscripcion);
@@ -148,6 +159,7 @@ namespace Tematika.Forms
                 formFactura.Show();
             }
 
+            // Dar de baja
             if (grid.Columns[e.ColumnIndex].Name == "darDeBaja")
             {
                 if (estado == "no")
@@ -156,15 +168,16 @@ namespace Tematika.Forms
                     return;
                 }
 
-                var motivo = PromptMotivoBaja();
+                var motivo = PromptMotivoBaja(); // Solicitar motivo de baja
                 if (motivo == null) return;
 
                 suscripcionService.DarDeBaja(idSuscripcion);
                 MessageBox.Show($"La suscripción fue dada de baja.\nSe notificó al usuario por correo: {email}", "Suscripción cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CargarSuscripciones();
+                CargarSuscripciones(); // Recargar DataGridView
             }
         }
 
+        // Ventana emergente para ingresar motivo de baja
         private string? PromptMotivoBaja()
         {
             var prompt = new Form
@@ -187,6 +200,7 @@ namespace Tematika.Forms
             return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : null;
         }
 
+        // Cambiar color de las celdas según estado de suscripción
         private void DGVGestionSuscripciones_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (DGVGestionSuscripciones.Columns[e.ColumnIndex].Name == "activa" && e.Value != null)
@@ -206,6 +220,7 @@ namespace Tematika.Forms
             }
         }
 
+        // Exportar la lista de suscripciones y resumen a PDF
         private void btnExportarPDF_Click(object sender, EventArgs e)
         {
             using var saveDialog = new SaveFileDialog
@@ -231,7 +246,7 @@ namespace Tematika.Forms
             double lineHeight = 20;
             double pageHeight = page.Height - margin;
 
-            // Título
+            // Título del PDF
             gfx.DrawString("Informe de Suscripciones", titleFont, XBrushes.Black, new XRect(0, y, page.Width, lineHeight), XStringFormats.TopCenter);
             y += lineHeight;
 
@@ -239,7 +254,7 @@ namespace Tematika.Forms
             gfx.DrawString($"Generado el {DateTime.Now:dd/MM/yyyy HH:mm}", font, XBrushes.Black, new XRect(0, y, page.Width, lineHeight), XStringFormats.TopCenter);
             y += lineHeight + 10;
 
-            // Tarjetas resumen
+            // Dibujar tarjetas de resumen en el PDF
             gfx.DrawString("Resumen de suscripciones:", boldFont, XBrushes.Black, new XPoint(margin, y));
             y += lineHeight;
 
@@ -277,7 +292,7 @@ namespace Tematika.Forms
 
             y += 10;
 
-            // Tabla de suscripciones
+            // Tabla de detalle de suscripciones
             gfx.DrawString("Detalle de suscripciones:", boldFont, XBrushes.Black, new XPoint(margin, y));
             y += lineHeight;
 
@@ -285,7 +300,7 @@ namespace Tematika.Forms
             double[] columnWidths = { 40, 120, 50, 70, 70, 80, 60 };
             double xStart = margin;
 
-            // Encabezados
+            // Dibujar encabezados de tabla
             double xHeader = xStart;
             for (int i = 0; i < headers.Length; i++)
             {
@@ -296,7 +311,7 @@ namespace Tematika.Forms
 
             y += lineHeight;
 
-            // Filas
+            // Dibujar filas de la tabla
             foreach (DataGridViewRow row in DGVGestionSuscripciones.Rows)
             {
                 if (row.IsNewRow) continue;
@@ -304,13 +319,13 @@ namespace Tematika.Forms
                 double xRow = xStart;
                 string[] values = new string[]
                 {
-            row.Cells["id_suscripcion"].Value?.ToString() ?? "",
-            row.Cells["usuario"].Value?.ToString() ?? "",
-            row.Cells["activa"].Value?.ToString() ?? "",
-            row.Cells["fecha_inicio"].Value?.ToString() ?? "",
-            row.Cells["fecha_fin"].Value?.ToString() ?? "",
-            row.Cells["tipo"].Value?.ToString() ?? "",
-            row.Cells["Precio"].Value?.ToString() ?? ""
+                    row.Cells["id_suscripcion"].Value?.ToString() ?? "",
+                    row.Cells["usuario"].Value?.ToString() ?? "",
+                    row.Cells["activa"].Value?.ToString() ?? "",
+                    row.Cells["fecha_inicio"].Value?.ToString() ?? "",
+                    row.Cells["fecha_fin"].Value?.ToString() ?? "",
+                    row.Cells["tipo"].Value?.ToString() ?? "",
+                    row.Cells["Precio"].Value?.ToString() ?? ""
                 };
 
                 for (int i = 0; i < values.Length; i++)
@@ -331,12 +346,10 @@ namespace Tematika.Forms
                 }
             }
 
+            // Guardar PDF
             using var stream = new FileStream(saveDialog.FileName, FileMode.Create, FileAccess.Write);
             document.Save(stream);
             MessageBox.Show("PDF exportado correctamente.", "Exportación finalizada", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-
-
     }
 }

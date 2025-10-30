@@ -33,9 +33,17 @@ namespace Tematika.CapaDeNegocio
             }
             catch (SqlException ex)
             {
+                if (ex.Number == 2627 || ex.Number == 2601)
+                {
+                    if (ex.Message.Contains("UQ_Materia_nombre"))
+                        return "Ya existe una materia con ese nombre.";
+                    return "Ya existe una materia con datos duplicados.";
+                }
+
                 return "Error al crear la materia: " + ex.Message;
             }
         }
+
 
         public string? ActualizarMateria(Materia materia)
         {
@@ -46,9 +54,17 @@ namespace Tematika.CapaDeNegocio
             }
             catch (SqlException ex)
             {
+                if (ex.Number == 2627 || ex.Number == 2601)
+                {
+                    if (ex.Message.Contains("UQ_Materia_nombre"))
+                        return "Ya existe otra materia con ese nombre.";
+                    return "Ya existe otra materia con datos duplicados.";
+                }
+
                 return "Error al actualizar la materia: " + ex.Message;
             }
         }
+
 
         public void EliminarMateria(int id)
         {

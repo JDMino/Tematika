@@ -11,10 +11,12 @@ namespace Tematika.Forms
 {
     public partial class FormInformes : Form
     {
+        // Variables para controlar si los gráficos se muestran como torta o barra
         private bool esTortaRecursos = false;
         private bool esTortaInteraccion = false;
         private bool esTortaSuscripciones = false;
 
+        // Servicios para obtener datos de la base de datos o negocio
         private readonly RecursoService recursoService = new RecursoService();
         private readonly VisitaRecursoService visitaService = new VisitaRecursoService();
         private readonly TemaService temaService = new TemaService();
@@ -26,11 +28,15 @@ namespace Tematika.Forms
         public FormInformes()
         {
             InitializeComponent();
+
+            // Evento que se ejecuta al cargar el formulario
             Load += FormInformes_Load;
+
+            // Evento al cambiar de pestaña
             tabControlInformes.SelectedIndexChanged += TabControlInformes_SelectedIndexChanged;
 
+            // Configuración de botones de alternar gráfico (barra/torta) y exportación
             btnAlternarGraficoRecursos.Click += (s, e) => { esTortaRecursos = !esTortaRecursos; CargarGraficoRecursos(); };
-            //btnReiniciarFiltroRecurso.Click += (s, e) => CargarGraficoRecursos();
             btnReiniciarFiltroRecurso.Click += reiniciarFiltros;
             btnExportarPDFRecursos.Click += (s, e) => ExportarPDF(chartRecursos, dtInicioRecursos.Value, dtFinRecursos.Value);
 
@@ -42,6 +48,7 @@ namespace Tematika.Forms
             btnReiniciarFiltroSuscripcion.Click += reiniciarFiltros;
             btnExportarPDFSuscripciones.Click += (s, e) => ExportarPDF(chartSuscripciones, dtInicioSuscripciones.Value, dtFinSuscripciones.Value);
 
+            // Eventos para actualizar gráficos al cerrar los DateTimePickers
             dtInicioRecursos.CloseUp += dtInicioRecursos_CloseUp;
             dtFinRecursos.CloseUp += dtFinRecursos_CloseUp;
 
@@ -52,15 +59,20 @@ namespace Tematika.Forms
             dtFinSuscripciones.CloseUp += dtFinSuscripciones_CloseUp;
         }
 
-
+        // Evento al cargar el formulario
         private void FormInformes_Load(object sender, EventArgs e)
         {
+            // Aplica estilo personalizado al encabezado
             AplicarEstiloEncabezado(panelEncabezado, LTituloInformes);
+
+            // Color de fondo del panel
             panel1.BackColor = ColorTranslator.FromHtml("#cfd8dc");
 
+            // Reinicia filtros y carga gráficos
             reiniciarFiltros(null, null);
         }
 
+        // Método para estilizar encabezados de panel
         private void AplicarEstiloEncabezado(Control contenedor, Label titulo)
         {
             contenedor.BackColor = Color.SteelBlue;
@@ -70,6 +82,7 @@ namespace Tematika.Forms
             titulo.Dock = DockStyle.Fill;
         }
 
+        // Evento que detecta cambio de pestaña y carga el gráfico correspondiente
         private void TabControlInformes_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (tabControlInformes.SelectedTab.Name)

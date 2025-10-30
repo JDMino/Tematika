@@ -36,5 +36,20 @@ namespace Tematika.CapaDeNegocio
         {
             _repository.EliminarPorPregunta(idPregunta);
         }
+
+
+        public string? ActualizarOpcion(OpcionPregunta opcion)
+        {
+            try
+            {
+                _repository.Actualizar(opcion);
+                return null;
+            }
+            catch (SqlException ex)
+            {
+                return "Error al actualizar opción: " + ex.Message;
+            }
+        }
+
     }
 }

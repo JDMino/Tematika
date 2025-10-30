@@ -49,5 +49,22 @@ namespace Tematika.CapaDeNegocio
         {
             _repository.Eliminar(id);
         }
+
+        public bool ExisteEnunciadoEnEvaluacion(string enunciado, int idEvaluacion)
+        {
+            return _repository.ObtenerTodas()
+                .Any(p => p.IdEvaluacion == idEvaluacion && p.Enunciado.Trim().ToLower() == enunciado.Trim().ToLower());
+        }
+
+        public bool ExisteEnunciadoEnEvaluacion(string enunciado, int idEvaluacion, int? ignorarIdPregunta = null)
+        {
+            return _repository.ObtenerTodas()
+                .Any(p =>
+                    p.IdEvaluacion == idEvaluacion &&
+                    p.Enunciado.Trim().ToLower() == enunciado.Trim().ToLower() &&
+                    (!ignorarIdPregunta.HasValue || p.IdPregunta != ignorarIdPregunta.Value));
+        }
+
+
     }
 }

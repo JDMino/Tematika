@@ -62,6 +62,7 @@
             // CBTema
             // 
             CBTema.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            CBTema.DropDownStyle = ComboBoxStyle.DropDownList;
             CBTema.FormattingEnabled = true;
             CBTema.Location = new Point(136, 39);
             CBTema.Name = "CBTema";
@@ -71,6 +72,7 @@
             // CBMateria
             // 
             CBMateria.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            CBMateria.DropDownStyle = ComboBoxStyle.DropDownList;
             CBMateria.FormattingEnabled = true;
             CBMateria.Location = new Point(136, 9);
             CBMateria.Name = "CBMateria";
