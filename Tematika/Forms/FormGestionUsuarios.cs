@@ -135,6 +135,15 @@ namespace Tematika.Forms
                 return;
             }
 
+            string correo = TBEmailUsuario.Text.Trim();
+            if (!Validaciones.ValidarEmail(correo))
+            {
+                MessageBox.Show("El formato del correo electrónico no es válido.",
+                                "Validación de Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TBEmailUsuario.Focus();
+                return;
+            }
+
             // Si la validación pasa, continúa normalmente
             var usuario = new Usuario
             {

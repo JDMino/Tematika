@@ -50,16 +50,16 @@
             pnlDashEstudianteSuscripcion = new Panel();
             labelAvisoBaja = new Label();
             dataGridView1 = new DataGridView();
-            labelHistorialSuscripciones = new Label();
-            btnSuscribirse = new Button();
-            labelSuscripcionDescripcion = new Label();
-            labelSuscripcionTitulo = new Label();
             IdSuscripcion = new DataGridViewTextBoxColumn();
             Activa = new DataGridViewTextBoxColumn();
             Tipo = new DataGridViewTextBoxColumn();
             FechaInicio = new DataGridViewTextBoxColumn();
             FechaHasta = new DataGridViewTextBoxColumn();
             VerFactura = new DataGridViewButtonColumn();
+            labelHistorialSuscripciones = new Label();
+            btnSuscribirse = new Button();
+            labelSuscripcionDescripcion = new Label();
+            labelSuscripcionTitulo = new Label();
             pnlDashEstudianteDatos.SuspendLayout();
             panelDatosEstudiante.SuspendLayout();
             pnlDashEstudianteSuscripcion.SuspendLayout();
@@ -303,9 +303,58 @@
             dataGridView1.Location = new Point(27, 161);
             dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(823, 184);
             dataGridView1.TabIndex = 4;
+            // 
+            // IdSuscripcion
+            // 
+            IdSuscripcion.HeaderText = "ID Suscripción";
+            IdSuscripcion.MinimumWidth = 6;
+            IdSuscripcion.Name = "IdSuscripcion";
+            IdSuscripcion.ReadOnly = true;
+            // 
+            // Activa
+            // 
+            Activa.HeaderText = "Activa";
+            Activa.MinimumWidth = 6;
+            Activa.Name = "Activa";
+            Activa.ReadOnly = true;
+            // 
+            // Tipo
+            // 
+            Tipo.HeaderText = "Tipo";
+            Tipo.MinimumWidth = 6;
+            Tipo.Name = "Tipo";
+            Tipo.ReadOnly = true;
+            // 
+            // FechaInicio
+            // 
+            FechaInicio.HeaderText = "Fecha Inicio";
+            FechaInicio.MinimumWidth = 6;
+            FechaInicio.Name = "FechaInicio";
+            FechaInicio.ReadOnly = true;
+            // 
+            // FechaHasta
+            // 
+            FechaHasta.HeaderText = "Fecha Hasta";
+            FechaHasta.MinimumWidth = 6;
+            FechaHasta.Name = "FechaHasta";
+            FechaHasta.ReadOnly = true;
+            // 
+            // VerFactura
+            // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.Green;
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Green;
+            VerFactura.DefaultCellStyle = dataGridViewCellStyle1;
+            VerFactura.FlatStyle = FlatStyle.Flat;
+            VerFactura.HeaderText = "Ver Factura";
+            VerFactura.MinimumWidth = 6;
+            VerFactura.Name = "VerFactura";
+            VerFactura.ReadOnly = true;
             // 
             // labelHistorialSuscripciones
             // 
@@ -357,54 +406,6 @@
             labelSuscripcionTitulo.Size = new Size(257, 32);
             labelSuscripcionTitulo.TabIndex = 0;
             labelSuscripcionTitulo.Text = "Suscripción Premium";
-            // 
-            // IdSuscripcion
-            // 
-            IdSuscripcion.HeaderText = "ID Suscripción";
-            IdSuscripcion.MinimumWidth = 6;
-            IdSuscripcion.Name = "IdSuscripcion";
-            IdSuscripcion.ReadOnly = true;
-            // 
-            // Activa
-            // 
-            Activa.HeaderText = "Activa";
-            Activa.MinimumWidth = 6;
-            Activa.Name = "Activa";
-            Activa.ReadOnly = true;
-            // 
-            // Tipo
-            // 
-            Tipo.HeaderText = "Tipo";
-            Tipo.MinimumWidth = 6;
-            Tipo.Name = "Tipo";
-            Tipo.ReadOnly = true;
-            // 
-            // FechaInicio
-            // 
-            FechaInicio.HeaderText = "Fecha Inicio";
-            FechaInicio.MinimumWidth = 6;
-            FechaInicio.Name = "FechaInicio";
-            FechaInicio.ReadOnly = true;
-            // 
-            // FechaHasta
-            // 
-            FechaHasta.HeaderText = "Fecha Hasta";
-            FechaHasta.MinimumWidth = 6;
-            FechaHasta.Name = "FechaHasta";
-            FechaHasta.ReadOnly = true;
-            // 
-            // VerFactura
-            // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.Green;
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.Green;
-            VerFactura.DefaultCellStyle = dataGridViewCellStyle1;
-            VerFactura.FlatStyle = FlatStyle.Flat;
-            VerFactura.HeaderText = "Ver Factura";
-            VerFactura.MinimumWidth = 6;
-            VerFactura.Name = "VerFactura";
-            VerFactura.ReadOnly = true;
             // 
             // FormDashboardEstudiante
             // 

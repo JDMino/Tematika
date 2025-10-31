@@ -22,7 +22,7 @@ namespace Tematika.Forms
 
             // --- Suscripción de eventos ---
             Load += FormDashboardEstudiante_Load;          // Se ejecuta al cargar el formulario
-            BUModificar.Click += BUModificar_Click;        // Botón para modificar datos del estudiante
+            //BUModificar.Click += BUModificar_Click;        // Botón para modificar datos del estudiante
             //btnSuscribirse.Click += btnSuscribirse_Click; // Botón de suscripción (actualmente deshabilitado)
             dataGridView1.CellContentClick += dataGridView1_CellContentClick; // Clic en las celdas del historial
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;     // Formato visual de las celdas

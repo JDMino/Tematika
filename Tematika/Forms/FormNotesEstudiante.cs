@@ -28,6 +28,10 @@ namespace Tematika.Forms
             cmbTemasMisNotas.SelectedIndexChanged += cmbTemasMisNotas_SelectedIndexChanged;
             btnGuardarMisNotas.Click += btnGuardarMisNotas_Click;
             DGVMisNotas.CellContentClick += DGVMisNotas_CellContentClick;
+            cmbAsignaturasMisNotas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTemasMisNotas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbRecursosMisNotas.DropDownStyle = ComboBoxStyle.DropDownList;
+
         }
 
         // Evento al cargar el formulario

@@ -23,6 +23,7 @@ namespace Tematika.Forms
             // Asignar eventos a los manejadores correspondientes
             Load += FormFavoritesEstudiante_Load;             // Evento que se ejecuta al cargar el formulario
             DGVFavoritos.CellContentClick += DGVFavoritos_CellContentClick;  // Evento que maneja los clics dentro de la tabla
+            DGVFavoritos.ReadOnly = true;
         }
 
         // --- Evento que se ejecuta cuando el formulario se carga ---

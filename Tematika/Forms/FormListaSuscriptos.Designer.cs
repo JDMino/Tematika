@@ -33,10 +33,6 @@
             panelSuscripcion = new Panel();
             btnExportarPDF = new Button();
             DGVGestionSuscripciones = new DataGridView();
-            panelCardsSuscripciones = new Panel();
-            TBCardsSuscripciones = new TableLayoutPanel();
-            panelEncabezadoS = new FlowLayoutPanel();
-            LTituloSuscripciones = new Label();
             id_suscripcion = new DataGridViewTextBoxColumn();
             usuario = new DataGridViewTextBoxColumn();
             activa = new DataGridViewTextBoxColumn();
@@ -46,6 +42,10 @@
             Precio = new DataGridViewTextBoxColumn();
             verFactura = new DataGridViewButtonColumn();
             darDeBaja = new DataGridViewButtonColumn();
+            panelCardsSuscripciones = new Panel();
+            TBCardsSuscripciones = new TableLayoutPanel();
+            panelEncabezadoS = new FlowLayoutPanel();
+            LTituloSuscripciones = new Label();
             panelSuscripcion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DGVGestionSuscripciones).BeginInit();
             panelCardsSuscripciones.SuspendLayout();
@@ -91,53 +91,10 @@
             DGVGestionSuscripciones.Columns.AddRange(new DataGridViewColumn[] { id_suscripcion, usuario, activa, fecha_inicio, fecha_fin, tipo, Precio, verFactura, darDeBaja });
             DGVGestionSuscripciones.Location = new Point(11, 367);
             DGVGestionSuscripciones.Name = "DGVGestionSuscripciones";
+            DGVGestionSuscripciones.ReadOnly = true;
             DGVGestionSuscripciones.RowHeadersWidth = 51;
             DGVGestionSuscripciones.Size = new Size(1001, 81);
             DGVGestionSuscripciones.TabIndex = 107;
-            // 
-            // panelCardsSuscripciones
-            // 
-            panelCardsSuscripciones.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panelCardsSuscripciones.Controls.Add(TBCardsSuscripciones);
-            panelCardsSuscripciones.Location = new Point(21, 81);
-            panelCardsSuscripciones.Name = "panelCardsSuscripciones";
-            panelCardsSuscripciones.Size = new Size(984, 205);
-            panelCardsSuscripciones.TabIndex = 106;
-            // 
-            // TBCardsSuscripciones
-            // 
-            TBCardsSuscripciones.ColumnCount = 3;
-            TBCardsSuscripciones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            TBCardsSuscripciones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            TBCardsSuscripciones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            TBCardsSuscripciones.Dock = DockStyle.Fill;
-            TBCardsSuscripciones.Location = new Point(0, 0);
-            TBCardsSuscripciones.Name = "TBCardsSuscripciones";
-            TBCardsSuscripciones.RowCount = 2;
-            TBCardsSuscripciones.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            TBCardsSuscripciones.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            TBCardsSuscripciones.Size = new Size(984, 205);
-            TBCardsSuscripciones.TabIndex = 105;
-            // 
-            // panelEncabezadoS
-            // 
-            panelEncabezadoS.Controls.Add(LTituloSuscripciones);
-            panelEncabezadoS.Dock = DockStyle.Top;
-            panelEncabezadoS.Location = new Point(0, 0);
-            panelEncabezadoS.Name = "panelEncabezadoS";
-            panelEncabezadoS.Size = new Size(1026, 64);
-            panelEncabezadoS.TabIndex = 104;
-            // 
-            // LTituloSuscripciones
-            // 
-            LTituloSuscripciones.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            LTituloSuscripciones.AutoSize = true;
-            LTituloSuscripciones.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LTituloSuscripciones.Location = new Point(3, 0);
-            LTituloSuscripciones.Name = "LTituloSuscripciones";
-            LTituloSuscripciones.Size = new Size(341, 38);
-            LTituloSuscripciones.TabIndex = 1;
-            LTituloSuscripciones.Text = "Gestion de Suscripciones";
             // 
             // id_suscripcion
             // 
@@ -200,6 +157,7 @@
             verFactura.HeaderText = "Ver Factura";
             verFactura.MinimumWidth = 6;
             verFactura.Name = "verFactura";
+            verFactura.ReadOnly = true;
             verFactura.Text = "Ver factura";
             verFactura.UseColumnTextForButtonValue = true;
             // 
@@ -215,8 +173,53 @@
             darDeBaja.HeaderText = "Dar de Baja";
             darDeBaja.MinimumWidth = 6;
             darDeBaja.Name = "darDeBaja";
+            darDeBaja.ReadOnly = true;
             darDeBaja.Text = "Dar de Baja";
             darDeBaja.UseColumnTextForButtonValue = true;
+            // 
+            // panelCardsSuscripciones
+            // 
+            panelCardsSuscripciones.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panelCardsSuscripciones.Controls.Add(TBCardsSuscripciones);
+            panelCardsSuscripciones.Location = new Point(21, 81);
+            panelCardsSuscripciones.Name = "panelCardsSuscripciones";
+            panelCardsSuscripciones.Size = new Size(984, 205);
+            panelCardsSuscripciones.TabIndex = 106;
+            // 
+            // TBCardsSuscripciones
+            // 
+            TBCardsSuscripciones.ColumnCount = 3;
+            TBCardsSuscripciones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            TBCardsSuscripciones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            TBCardsSuscripciones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            TBCardsSuscripciones.Dock = DockStyle.Fill;
+            TBCardsSuscripciones.Location = new Point(0, 0);
+            TBCardsSuscripciones.Name = "TBCardsSuscripciones";
+            TBCardsSuscripciones.RowCount = 2;
+            TBCardsSuscripciones.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            TBCardsSuscripciones.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            TBCardsSuscripciones.Size = new Size(984, 205);
+            TBCardsSuscripciones.TabIndex = 105;
+            // 
+            // panelEncabezadoS
+            // 
+            panelEncabezadoS.Controls.Add(LTituloSuscripciones);
+            panelEncabezadoS.Dock = DockStyle.Top;
+            panelEncabezadoS.Location = new Point(0, 0);
+            panelEncabezadoS.Name = "panelEncabezadoS";
+            panelEncabezadoS.Size = new Size(1026, 64);
+            panelEncabezadoS.TabIndex = 104;
+            // 
+            // LTituloSuscripciones
+            // 
+            LTituloSuscripciones.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            LTituloSuscripciones.AutoSize = true;
+            LTituloSuscripciones.Font = new Font("Ebrima", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LTituloSuscripciones.Location = new Point(3, 0);
+            LTituloSuscripciones.Name = "LTituloSuscripciones";
+            LTituloSuscripciones.Size = new Size(341, 38);
+            LTituloSuscripciones.TabIndex = 1;
+            LTituloSuscripciones.Text = "Gestion de Suscripciones";
             // 
             // FormListaSuscriptos
             // 
