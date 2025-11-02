@@ -119,7 +119,7 @@ namespace Tematika.Forms
             return suscripciones.Any(s => s.Activa); // Retorna true si existe una activa
         }
 
-        // --- Evento para el botón "Suscribirse" (actualmente comentado) ---
+        // --- Evento para el botón "Suscribirse" ---
         private void btnSuscribirse_Click(object sender, EventArgs e)
         {
             if (TieneSuscripcionActiva())

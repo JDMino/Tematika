@@ -14,6 +14,7 @@ namespace Tematika.Forms
         private readonly TemaService temaService = new TemaService();
         private readonly RecursoService recursoService = new RecursoService();
         private readonly NotaService notaService = new NotaService();
+        private readonly SuscripcionService suscripcionService = new SuscripcionService();
 
         // Usuario actualmente logueado
         private readonly Usuario? usuario = SesionManager.UsuarioActual;
@@ -121,6 +122,17 @@ namespace Tematika.Forms
                 return;
             }
 
+            //Verificar si es suscripto o no, y limite de notas
+
+            int cantidadNotasHechas = notaService.ListarPorUsuario(usuario.IdUsuario).Count;
+
+            if (cantidadNotasHechas >= 5 && !TieneSuscripcionActiva())
+            {
+                MessageBox.Show("Debe tener una suscripción activa para realizar más de 5 notas");
+                TBContenidoMisNotas.Clear();
+                return;
+            }
+
             // Confirmación del usuario
             var confirmacion = MessageBox.Show(
                 "¿Desea guardar esta nota?",
@@ -157,8 +169,22 @@ namespace Tematika.Forms
         // Carga las notas del usuario en el DataGridView
         private void CargarNotas()
         {
+            //Traer ids de materias no eliminados
+            var idMateriasNoEliminadas = materiaService.ListarMaterias()
+                .Where(m => !m.Eliminado)
+                .Select(m => m.IdMateria);
+
+            //Traer ids de temas no eliminados
+            var idTemasNoEliminados = temaService.ListarTemas()
+                .Where(t => !t.Eliminado &&
+                        idMateriasNoEliminadas.Contains(t.IdMateria))
+                .Select(t => t.IdTema);
+
             var notas = notaService.ListarPorUsuario(usuario!.IdUsuario);
-            var recursos = recursoService.ListarRecursos();
+
+            var recursos = recursoService.ListarRecursos()
+                .Where(r => !r.Eliminado &&
+                        idTemasNoEliminados.Contains(r.IdTema));
 
             DGVMisNotas.Rows.Clear(); // Limpia el grid antes de cargar
 
@@ -215,6 +241,14 @@ namespace Tematika.Forms
                     CargarNotas(); // Actualiza el DataGridView
                 }
             }
+        }
+
+        // --- Verifica si el estudiante tiene una suscripción activa ---
+        private bool TieneSuscripcionActiva()
+        {
+            var usuario = SesionManager.UsuarioActual!;
+            var suscripciones = suscripcionService.ObtenerPorUsuario(usuario.IdUsuario);
+            return suscripciones.Any(s => s.Activa); // Retorna true si existe una activa
         }
     }
 }

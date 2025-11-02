@@ -12,6 +12,7 @@ namespace Tematika.Forms
         // --- Servicios para acceder a los datos del sistema ---
         private readonly FavoritoService favoritoService = new FavoritoService();  // Maneja las operaciones relacionadas con los recursos marcados como favoritos
         private readonly RecursoService recursoService = new RecursoService();     // Permite obtener información de los recursos educativos
+        private readonly MateriaService materiaService = new MateriaService();
         private readonly TemaService temaService = new TemaService();              // Permite obtener información de los temas de cada materia
         private readonly Usuario? usuario = SesionManager.UsuarioActual;           // Obtiene el usuario actualmente logueado en la sesión
 
@@ -36,8 +37,27 @@ namespace Tematika.Forms
                 return;
             }
 
+            //Traer ids de materias no eliminados
+            var idMateriasNoEliminadas = materiaService.ListarMaterias()
+                .Where(m => !m.Eliminado)
+                .Select(m => m.IdMateria);
+
+            //Traer ids de temas no eliminados
+            var idTemasNoEliminados = temaService.ListarTemas()
+                .Where(t => !t.Eliminado &&
+                        idMateriasNoEliminadas.Contains(t.IdMateria))
+                .Select(t => t.IdTema);
+
+            var idRecursosNoEliminados = recursoService.ListarRecursos()
+                .Where(r => !r.Eliminado &&
+                        idTemasNoEliminados.Contains(r.IdTema))
+                .Select(r => r.IdRecurso);
+
             // Obtener listas desde los servicios
-            var favoritos = favoritoService.ListarPorUsuario(usuario.IdUsuario);  // Todos los recursos favoritos del usuario
+            var favoritos = favoritoService.ListarPorUsuario(usuario.IdUsuario)  // Todos los recursos favoritos del usuario
+                .Where(f => !f.Eliminado &&
+                        idRecursosNoEliminados.Contains(f.IdRecurso));
+
             var recursos = recursoService.ListarRecursos();                       // Lista completa de recursos
             var temas = temaService.ListarTemas();                                // Lista completa de temas
 

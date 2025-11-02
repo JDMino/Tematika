@@ -9,6 +9,7 @@ namespace Tematika.Forms
     // Formulario para visualizar un recurso, interactuar con favoritos, valoraciones, notas y comentarios
     public partial class FormVisualizadorRecurso : Form
     {
+        private readonly SuscripcionService suscripcionService = new SuscripcionService();
         private readonly Recurso recurso; // Recurso que se va a visualizar
         private readonly FavoritoService favoritoService = new FavoritoService(); // Servicio para manejar favoritos
         private readonly ValoracionService valoracionService = new ValoracionService(); // Servicio de valoraciones
@@ -94,6 +95,14 @@ namespace Tematika.Forms
         {
             if (usuario == null) return;
 
+            int cantidadFavoritosMarcados = favoritoService.ListarPorUsuario(usuario.IdUsuario).Count();
+
+            if (cantidadFavoritosMarcados >= 2 && !TieneSuscripcionActiva())
+            {
+                MessageBox.Show("Debe tener una suscripción activa para marcar más de 2 favoritos");
+                return;
+            }
+
             var favoritos = favoritoService.ListarPorUsuario(usuario.IdUsuario);
             var favorito = favoritos.FirstOrDefault(f => f.IdRecurso == recurso.IdRecurso);
 
@@ -151,6 +160,17 @@ namespace Tematika.Forms
         {
             if (usuario == null) return;
 
+            //Verificar si es suscripto o no, y limite de notas
+
+            int cantidadNotasHechas = notaService.ListarPorUsuario(usuario.IdUsuario).Count;
+
+            if (cantidadNotasHechas >= 5 && !TieneSuscripcionActiva())
+            {
+                MessageBox.Show("Debe tener una suscripción activa para realizar más de 5 notas");
+                TBNota.Clear();
+                return;
+            }
+
             // Verifica que haya contenido en la nota
             if (string.IsNullOrWhiteSpace(TBNota.Text))
             {
@@ -174,6 +194,15 @@ namespace Tematika.Forms
         private void buttonEnviarComentario_Click(object sender, EventArgs e)
         {
             if (usuario == null) return;
+
+            bool noDocente = usuario.IdPerfil != 2;
+
+            if (!TieneSuscripcionActiva() && noDocente)
+            {
+                MessageBox.Show("Debe tener una suscripción activa para hacer comentarios públicos");
+                TBComentario.Clear();
+                return;
+            }
 
             // Verifica que haya contenido en la nota
             if (string.IsNullOrWhiteSpace(TBComentario.Text))
@@ -312,6 +341,15 @@ namespace Tematika.Forms
                 Font = new Font("Segoe UI", 12, FontStyle.Italic)
             };
             panelContenidoRecurso.Controls.Add(label);
+        }
+
+
+        // --- Verifica si el estudiante tiene una suscripción activa ---
+        private bool TieneSuscripcionActiva()
+        {
+            var usuario = SesionManager.UsuarioActual!;
+            var suscripciones = suscripcionService.ObtenerPorUsuario(usuario.IdUsuario);
+            return suscripciones.Any(s => s.Activa); // Retorna true si existe una activa
         }
     }
 }
