@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
 using Tematika.CapaDeDatos;
 using Tematika.Models;
 
@@ -23,5 +24,19 @@ namespace Tematika.CapaDeNegocio
             // Llama al repositorio para obtener el tipo de suscripción correspondiente
             return _repo.ObtenerPorId(id);
         }
+
+        public string? ActualizarPrecio(int idTipo, decimal nuevoPrecio)
+        {
+            try
+            {
+                _repo.ActualizarPrecio(idTipo, nuevoPrecio);
+                return null;
+            }
+            catch (SqlException ex)
+            {
+                return "Error al actualizar el precio";
+            }
+        }
+
     }
 }

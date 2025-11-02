@@ -85,5 +85,20 @@ namespace Tematika.CapaDeDatos
             // Retorna null si no se encontró el tipo de suscripción
             return null;
         }
+
+
+        public void ActualizarPrecio(int idTipo, decimal nuevoPrecio)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            var query = "UPDATE tipo_suscripcion SET precio = @precio WHERE id_tipo_suscripcion = @id";
+
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@id", idTipo);
+            command.Parameters.AddWithValue("@precio", nuevoPrecio);
+
+            connection.Open();
+            command.ExecuteNonQuery();
+        }
+
     }
 }

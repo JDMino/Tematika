@@ -1,14 +1,15 @@
-﻿using System;
+﻿using PdfSharpCore.Drawing;
+using PdfSharpCore.Pdf;
+using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Tematika.CapaDeNegocio;
-using Tematika.Models;
 using Tematika.Forms.Cards;
+using Tematika.Models;
 using Tematika.Styles;
-using PdfSharpCore.Drawing;
-using PdfSharpCore.Pdf;
-using System.IO;
+using Tematika.Utils;
 
 namespace Tematika.Forms
 {
@@ -19,6 +20,8 @@ namespace Tematika.Forms
         private readonly UsuarioService usuarioService = new UsuarioService();
         private readonly FacturaService facturaService = new FacturaService();
         private readonly DetalleFacturaService detalleService = new DetalleFacturaService();
+        private readonly TipoSuscripcionService tipoService = new TipoSuscripcionService();
+
 
         public FormListaSuscriptos()
         {
@@ -32,20 +35,44 @@ namespace Tematika.Forms
 
         private void FormListaSuscriptos_Load(object sender, EventArgs e)
         {
-            // Aplicar estilo al encabezado del formulario
             EstiloEncabezado.Aplicar(panelEncabezadoS, LTituloSuscripciones);
-
-            // Color de fondo del panel de suscripciones
             panelSuscripcion.BackColor = ColorTranslator.FromHtml("#cfd8dc");
 
-            // Cargar tarjetas resumen y lista de suscripciones
+            // Configurar ComboBox
+            CBTiposSuscripcion.DropDownStyle = ComboBoxStyle.DropDownList;
+            RecargarTiposSuscripcion();
+
+            // Evento: al seleccionar tipo, mostrar precio
+            CBTiposSuscripcion.SelectedIndexChanged += (s, e) =>
+            {
+                if (CBTiposSuscripcion.SelectedItem is TipoSuscripcion tipo && tipo.IdTipoSuscripcion != 0)
+                {
+                    TBPrecio.Text = tipo.Precio.ToString("0.00");
+                }
+                else
+                {
+                    TBPrecio.Clear();
+                }
+            };
+
+            // Validar solo números en TBPrecio
+            TBPrecio.KeyPress += (s, e) => Validaciones.ValidarSoloNumeros(e);
+
+            // Evitar duplicación de eventos
+            buttonActualizar.Click -= ButtonActualizar_Click;
+            buttonActualizar.Click += ButtonActualizar_Click;
+
             CargarTarjetas();
             CargarSuscripciones();
         }
 
+
+
+
         private void CargarTarjetas()
         {
             var suscripciones = suscripcionService.ObtenerTodas(); // Obtener todas las suscripciones
+
 
             // Contadores por tipo de suscripción
             var total = suscripciones.Count(s => s.Activa != false);
@@ -64,24 +91,27 @@ namespace Tematika.Forms
             var primerDiaUltimoAnio = DateTime.Today.AddYears(-1);
             var ultimoDiaUltimoAnio = primerDiaUltimoAnio.AddYears(1).AddDays(1);
 
-            // Ingresos del último mes (solo suscripciones mensuales)
-            var ingresosMensuales = suscripciones
-                .Where(s => s.Tipo != null
-                         && s.FechaInicio >= primerDiaUltimoMes
-                         && s.FechaInicio <= ultimoDiaUltimoMes)
-                .Sum(s => s.Tipo!.Precio);
+            var facturas = suscripciones
+                .Select(s =>
+                {
+                    try { return facturaService.ObtenerPorSuscripcion(s.IdSuscripcion); }
+                    catch { return null; }
+                })
+                .Where(f => f != null)
+                .ToList();
 
-            // Ingresos del último año (todas las suscripciones)
-            var ingresosAnuales = suscripciones
-                .Where(s => s.Tipo != null
-                         && s.FechaInicio >= primerDiaUltimoAnio
-                         && s.FechaInicio <= ultimoDiaUltimoAnio)
-                .Sum(s => s.Tipo!.Precio);
+            var ingresosMensuales = facturas
+                .Where(f => f.FechaEmision >= primerDiaUltimoMes && f.FechaEmision <= ultimoDiaUltimoMes)
+                .Sum(f => f.Total);
+
+            var ingresosAnuales = facturas
+                .Where(f => f.FechaEmision >= primerDiaUltimoAnio && f.FechaEmision <= ultimoDiaUltimoAnio)
+                .Sum(f => f.Total);
 
             // Crear tarjetas de resumen (DashboardUserControl1)
             var tarjetas = new[]
             {
-                new DashboardUserControl1 { InfoCard = total.ToString(), TituloCard = "Total Suscripciones", CardBackColor = ColorTranslator.FromHtml("#34495e"), Dock = DockStyle.Fill, Margin = new Padding(10) },
+                new DashboardUserControl1 { InfoCard = total.ToString(), TituloCard = "Suscripciones Activas", CardBackColor = ColorTranslator.FromHtml("#34495e"), Dock = DockStyle.Fill, Margin = new Padding(10) },
                 new DashboardUserControl1 { InfoCard = mensuales.ToString(), TituloCard = "Mensual", CardBackColor = ColorTranslator.FromHtml("#34495e"), Dock = DockStyle.Fill, Margin = new Padding(10) },
                 new DashboardUserControl1 { InfoCard = semestrales.ToString(), TituloCard = "Semestral", CardBackColor = ColorTranslator.FromHtml("#34495e"), Dock = DockStyle.Fill, Margin = new Padding(10) },
                 new DashboardUserControl1 { InfoCard = anuales.ToString(), TituloCard = "Anual", CardBackColor = ColorTranslator.FromHtml("#34495e"), Dock = DockStyle.Fill, Margin = new Padding(10) },
@@ -102,6 +132,63 @@ namespace Tematika.Forms
             }
         }
 
+
+        private void ButtonActualizar_Click(object sender, EventArgs e)
+        {
+            if (CBTiposSuscripcion.SelectedItem is not TipoSuscripcion tipo || tipo.IdTipoSuscripcion == 0)
+            {
+                MessageBox.Show("Debe seleccionar un tipo de suscripción válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!decimal.TryParse(TBPrecio.Text.Trim(), out decimal nuevoPrecio))
+            {
+                MessageBox.Show("El precio ingresado no es válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var confirm = MessageBox.Show(
+                $"¿Está seguro de actualizar el precio de '{tipo.Nombre}' a ${nuevoPrecio:0.00}?",
+                "Confirmar actualización",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirm != DialogResult.Yes) return;
+
+            var error = tipoService.ActualizarPrecio(tipo.IdTipoSuscripcion, nuevoPrecio);
+            if (error != null)
+            {
+                MessageBox.Show(error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            MessageBox.Show("Precio actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Recargar ComboBox con precios actualizados
+            RecargarTiposSuscripcion();
+        }
+
+        private void RecargarTiposSuscripcion()
+        {
+            var tipos = tipoService.ObtenerPlanes();
+
+            tipos.Insert(0, new TipoSuscripcion
+            {
+                IdTipoSuscripcion = 0,
+                Nombre = "Seleccionar tipo...",
+                Precio = 0,
+                DuracionDias = 0
+            });
+
+            CBTiposSuscripcion.DataSource = null;
+            CBTiposSuscripcion.DataSource = tipos;
+            CBTiposSuscripcion.DisplayMember = "Nombre";
+            CBTiposSuscripcion.ValueMember = "IdTipoSuscripcion";
+            CBTiposSuscripcion.SelectedIndex = 0;
+        }
+
+
         private void CargarSuscripciones()
         {
             var suscripciones = suscripcionService.ObtenerTodas()
@@ -117,6 +204,16 @@ namespace Tematika.Forms
             {
                 var usuario = usuarios.FirstOrDefault(u => u.IdUsuario == s.IdUsuario);
                 string nombreCompleto = usuario != null ? $"{usuario.Nombre} {usuario.Apellido}" : "Desconocido";
+                string totalFactura = "0.00";
+                try
+                {
+                    var factura = facturaService.ObtenerPorSuscripcion(s.IdSuscripcion);
+                    totalFactura = factura.Total.ToString("0.00");
+                }
+                catch
+                {
+                    totalFactura = "0.00";
+                }
 
                 DGVGestionSuscripciones.Rows.Add(
                     s.IdSuscripcion,
@@ -125,7 +222,7 @@ namespace Tematika.Forms
                     s.FechaInicio.ToString("dd/MM/yyyy"),
                     s.FechaFin?.ToString("dd/MM/yyyy") ?? "-",
                     s.Tipo?.Nombre ?? "",
-                    s.Tipo?.Precio.ToString("0.00") ?? "0.00",
+                    totalFactura,
                     "Ver factura",
                     "Dar de Baja"
                 );
@@ -370,6 +467,13 @@ namespace Tematika.Forms
             using var stream = new FileStream(saveDialog.FileName, FileMode.Create, FileAccess.Write);
             document.Save(stream);
             MessageBox.Show("PDF exportado correctamente.", "Exportación finalizada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
