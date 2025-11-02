@@ -198,8 +198,20 @@ namespace Tematika.Forms
         // Carga todos los recursos según el estado (activo/inactivo)
         private void CargarRecursos()
         {
+            //Traer ids de materias no eliminados
+            var idMateriasNoEliminadas = _materiaService.ListarMaterias()
+                .Where(m => !m.Eliminado)
+                .Select(m => m.IdMateria);
+
+            //Traer ids de temas no eliminados
+            var idTemasNoEliminados = _temaService.ListarTemas()
+                .Where(t => !t.Eliminado &&
+                        idMateriasNoEliminadas.Contains(t.IdMateria))
+                .Select(t => t.IdTema);
+
             var recursos = _recursoService.ListarRecursos()
-                .Where(r => r.Eliminado != mostrarActivos)
+                .Where(r => r.Eliminado != mostrarActivos &&
+                        idTemasNoEliminados.Contains(r.IdTema))
                 .ToList();
 
             // Filtrar recursos para docentes
@@ -500,6 +512,17 @@ namespace Tematika.Forms
         // Evento generado automáticamente por el diseñador, actualmente no usado
         private void label1_Click(object sender, EventArgs e)
         {
+        }
+
+        private void btnReiniciarFiltro_Click(object sender, EventArgs e)
+        {
+            ReiniciarCombo<Materia>(CBFiltrarMateria, "Seleccionar Materia...");
+            ReiniciarCombo<Tema>(CBFiltrarTema, "Seleccionar tema...");
+            // Cargar combos de materias y temas
+            CargarMateriasCombo(CBMateriaRecurso);
+            CargarMateriasCombo(CBFiltrarMateria);
+            // Cargar los recursos en la grilla
+            CargarRecursos();
         }
     }
 }

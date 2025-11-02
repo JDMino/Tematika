@@ -96,9 +96,21 @@ namespace Tematika.Forms
             // Limpia todos los recursos mostrados previamente
             flpRecursos.Controls.Clear();
 
+            //Traer ids de materias no eliminados
+            var idMateriasNoEliminadas = _materiaService.ListarMaterias()
+                .Where(m => !m.Eliminado)
+                .Select(m => m.IdMateria);
+
+            //Traer ids de temas no eliminados
+            var idTemasNoEliminados = _temaService.ListarTemas()
+                .Where(t => !t.Eliminado &&
+                        idMateriasNoEliminadas.Contains(t.IdMateria))
+                .Select(t => t.IdTema);
+
             // Obtiene la lista de recursos activos (no eliminados)
             var recursos = _recursoService.ListarRecursos()
-                .Where(r => !r.Eliminado)
+                .Where(r => !r.Eliminado &&
+                        idTemasNoEliminados.Contains(r.IdTema))
                 .ToList();
 
             // Si hay una materia y un tema seleccionados, filtra los recursos

@@ -28,6 +28,8 @@ partial class FormSuscripcion
         cmbPlan = new ComboBox();
         lblPrecio = new Label();
         groupPago = new GroupBox();
+        DTPVencimiento = new DateTimePicker();
+        labelPlataformaTarjeta = new Label();
         radioTransferencia = new RadioButton();
         radioTarjeta = new RadioButton();
         lblCBU = new Label();
@@ -39,7 +41,6 @@ partial class FormSuscripcion
         lblNumeroTarjeta = new Label();
         txtNumeroTarjeta = new TextBox();
         lblVencimiento = new Label();
-        txtVencimiento = new TextBox();
         lblCVV = new Label();
         txtCVV = new TextBox();
         lblTitularTarjeta = new Label();
@@ -138,6 +139,7 @@ partial class FormSuscripcion
         txtPrecio.ReadOnly = true;
         txtPrecio.Size = new Size(100, 23);
         txtPrecio.TabIndex = 6;
+        txtPrecio.Tag = "Precio";
         // 
         // lblPlan
         // 
@@ -155,6 +157,7 @@ partial class FormSuscripcion
         cmbPlan.Name = "cmbPlan";
         cmbPlan.Size = new Size(121, 23);
         cmbPlan.TabIndex = 1;
+        cmbPlan.Tag = "Plan";
         // 
         // lblPrecio
         // 
@@ -167,6 +170,8 @@ partial class FormSuscripcion
         // groupPago
         // 
         groupPago.BackColor = SystemColors.MenuHighlight;
+        groupPago.Controls.Add(DTPVencimiento);
+        groupPago.Controls.Add(labelPlataformaTarjeta);
         groupPago.Controls.Add(radioTransferencia);
         groupPago.Controls.Add(radioTarjeta);
         groupPago.Controls.Add(lblCBU);
@@ -178,7 +183,6 @@ partial class FormSuscripcion
         groupPago.Controls.Add(lblNumeroTarjeta);
         groupPago.Controls.Add(txtNumeroTarjeta);
         groupPago.Controls.Add(lblVencimiento);
-        groupPago.Controls.Add(txtVencimiento);
         groupPago.Controls.Add(lblCVV);
         groupPago.Controls.Add(txtCVV);
         groupPago.Controls.Add(lblTitularTarjeta);
@@ -191,12 +195,33 @@ partial class FormSuscripcion
         groupPago.TabStop = false;
         groupPago.Text = "Método de pago";
         // 
+        // DTPVencimiento
+        // 
+        DTPVencimiento.Format = DateTimePickerFormat.Short;
+        DTPVencimiento.Location = new Point(520, 98);
+        DTPVencimiento.Name = "DTPVencimiento";
+        DTPVencimiento.Size = new Size(100, 23);
+        DTPVencimiento.TabIndex = 17;
+        DTPVencimiento.Tag = "Vencimiento";
+        // 
+        // labelPlataformaTarjeta
+        // 
+        labelPlataformaTarjeta.AutoSize = true;
+        labelPlataformaTarjeta.BackColor = Color.Silver;
+        labelPlataformaTarjeta.Location = new Point(400, 35);
+        labelPlataformaTarjeta.Name = "labelPlataformaTarjeta";
+        labelPlataformaTarjeta.Size = new Size(89, 15);
+        labelPlataformaTarjeta.TabIndex = 16;
+        labelPlataformaTarjeta.Text = "Mercado Pago:";
+        // 
         // radioTransferencia
         // 
+        radioTransferencia.Checked = true;
         radioTransferencia.Location = new Point(20, 30);
         radioTransferencia.Name = "radioTransferencia";
         radioTransferencia.Size = new Size(200, 24);
         radioTransferencia.TabIndex = 0;
+        radioTransferencia.TabStop = true;
         radioTransferencia.Text = "Transferencia bancaria";
         // 
         // radioTarjeta
@@ -220,8 +245,10 @@ partial class FormSuscripcion
         txtCBU.Font = new Font("Segoe UI", 9F);
         txtCBU.Location = new Point(120, 67);
         txtCBU.Name = "txtCBU";
-        txtCBU.Size = new Size(100, 23);
+        txtCBU.ReadOnly = true;
+        txtCBU.Size = new Size(114, 23);
         txtCBU.TabIndex = 3;
+        txtCBU.Text = "46546346546465";
         // 
         // lblBanco
         // 
@@ -236,8 +263,10 @@ partial class FormSuscripcion
         txtBanco.Font = new Font("Segoe UI", 9F);
         txtBanco.Location = new Point(120, 97);
         txtBanco.Name = "txtBanco";
-        txtBanco.Size = new Size(100, 23);
+        txtBanco.ReadOnly = true;
+        txtBanco.Size = new Size(114, 23);
         txtBanco.TabIndex = 5;
+        txtBanco.Text = "Banco de Corrientes";
         // 
         // lblTitularTransferencia
         // 
@@ -252,8 +281,10 @@ partial class FormSuscripcion
         txtTitularTransferencia.Font = new Font("Segoe UI", 9F);
         txtTitularTransferencia.Location = new Point(120, 127);
         txtTitularTransferencia.Name = "txtTitularTransferencia";
-        txtTitularTransferencia.Size = new Size(100, 23);
+        txtTitularTransferencia.ReadOnly = true;
+        txtTitularTransferencia.Size = new Size(114, 23);
         txtTitularTransferencia.TabIndex = 7;
+        txtTitularTransferencia.Text = "Tematika S.A.";
         // 
         // lblNumeroTarjeta
         // 
@@ -270,6 +301,8 @@ partial class FormSuscripcion
         txtNumeroTarjeta.Name = "txtNumeroTarjeta";
         txtNumeroTarjeta.Size = new Size(100, 23);
         txtNumeroTarjeta.TabIndex = 9;
+        txtNumeroTarjeta.Tag = "Número";
+        txtNumeroTarjeta.KeyPress += txtNumeroTarjeta_KeyPress;
         // 
         // lblVencimiento
         // 
@@ -278,14 +311,6 @@ partial class FormSuscripcion
         lblVencimiento.Size = new Size(100, 23);
         lblVencimiento.TabIndex = 10;
         lblVencimiento.Text = "Vencimiento:";
-        // 
-        // txtVencimiento
-        // 
-        txtVencimiento.Font = new Font("Segoe UI", 9F);
-        txtVencimiento.Location = new Point(520, 97);
-        txtVencimiento.Name = "txtVencimiento";
-        txtVencimiento.Size = new Size(100, 23);
-        txtVencimiento.TabIndex = 11;
         // 
         // lblCVV
         // 
@@ -302,6 +327,8 @@ partial class FormSuscripcion
         txtCVV.Name = "txtCVV";
         txtCVV.Size = new Size(100, 23);
         txtCVV.TabIndex = 13;
+        txtCVV.Tag = "CVV";
+        txtCVV.KeyPress += txtCVV_KeyPress;
         // 
         // lblTitularTarjeta
         // 
@@ -318,6 +345,8 @@ partial class FormSuscripcion
         txtTitularTarjeta.Name = "txtTitularTarjeta";
         txtTitularTarjeta.Size = new Size(100, 23);
         txtTitularTarjeta.TabIndex = 15;
+        txtTitularTarjeta.Tag = "Titular";
+        txtTitularTarjeta.KeyPress += txtTitularTarjeta_KeyPress;
         // 
         // btnConfirmar
         // 
@@ -380,7 +409,6 @@ partial class FormSuscripcion
     private System.Windows.Forms.Label lblTitularTransferencia;
 
     private System.Windows.Forms.TextBox txtNumeroTarjeta;
-    private System.Windows.Forms.TextBox txtVencimiento;
     private System.Windows.Forms.TextBox txtCVV;
     private System.Windows.Forms.TextBox txtTitularTarjeta;
     private System.Windows.Forms.Label lblNumeroTarjeta;
@@ -390,4 +418,6 @@ partial class FormSuscripcion
 
     private System.Windows.Forms.Button btnConfirmar;
     private TextBox txtPrecio;
+    private Label labelPlataformaTarjeta;
+    private DateTimePicker DTPVencimiento;
 }

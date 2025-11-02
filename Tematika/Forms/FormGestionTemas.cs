@@ -110,9 +110,15 @@ namespace Tematika.Forms
         // Carga los temas en el DataGridView
         private void CargarTemas()
         {
+            //Traer IDs de materias que no estan eliminadas
+            var idMateriasNoEliminadas = _materiaService.ListarMaterias()
+                .Where(m => !m.Eliminado)
+                .Select(m => m.IdMateria);
+
             // Obtiene los temas según si se muestran activos o eliminados
             var temas = _temaService.ListarTemas()
-                .Where(t => t.Eliminado != mostrarActivos)
+                .Where(t => t.Eliminado != mostrarActivos &&
+                            idMateriasNoEliminadas.Contains(t.IdMateria))
                 .ToList();
 
             // Si es docente, filtra solo los temas de sus materias asignadas

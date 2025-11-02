@@ -120,8 +120,28 @@ namespace Tematika.Forms
 
         private void CargarPreguntas()
         {
+            //Traer ids de materias no eliminados
+            var idMateriasNoEliminadas = _materiaService.ListarMaterias()
+                .Where(m => !m.Eliminado)
+                .Select(m => m.IdMateria);
+
+            //Traer ids de temas no eliminados
+            var idTemasNoEliminados = _temaService.ListarTemas()
+                .Where(t => !t.Eliminado &&
+                        idMateriasNoEliminadas.Contains(t.IdMateria))
+                .Select(t => t.IdTema);
+
+            //Traer ids de evaluaciones no eliminadas
+            //esto depende en realidad supongo
+            var idEvaluacionesNoEliminadas = _evaluacionService.ListarEvaluaciones()
+                .Where(e => e.Eliminado != mostrarActivos &&
+                        idTemasNoEliminados.Contains(e.IdTema))
+                .Select(e => e.IdEvaluacion);
+
             // Obtener todas las preguntas
-            var preguntas = _preguntaService.ListarPreguntas();
+            var preguntas = _preguntaService.ListarPreguntas()
+                .Where(p => idEvaluacionesNoEliminadas.Contains(p.IdEvaluacion));
+            
             var materiasPermitidas = new List<int>();
 
             // Si es docente, limitar preguntas a sus materias

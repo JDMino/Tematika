@@ -82,7 +82,22 @@ namespace Tematika.Forms
         // --- Carga todas las asignaciones Docente–Materia ---
         private void CargarAsignaciones()
         {
-            var asignaciones = _dmService.ListarAsignaciones();
+            //Traer ids de usuarios no eliminados
+            var idUsuariosNoEliminados = _usuarioService.ListarUsuarios()
+                .Where(u => !u.Eliminado)
+                .Select(u => u.IdUsuario);
+
+            ////Traer IDs de materias que no estan eliminadas
+            var idMateriasNoEliminadas = _materiaService.ListarMaterias()
+                .Where(m => !m.Eliminado)
+                .Select(m => m.IdMateria);
+
+            var asignaciones = _dmService.ListarAsignaciones()
+                .Where(a => (idUsuariosNoEliminados.Contains(a.IdUsuario))
+                            &&
+                            (idMateriasNoEliminadas.Contains(a.IdMateria)));
+            
+
             DGVTemas.Rows.Clear();
 
             foreach (var dm in asignaciones)

@@ -191,14 +191,34 @@ namespace Tematika.Forms
 
             var label = new Label { Left = 20, Top = 20, Text = "Ingrese el motivo de baja:", Width = 350 };
             var textBox = new TextBox { Left = 20, Top = 50, Width = 350 };
-            var confirm = new Button { Text = "Confirmar", Left = 270, Width = 100, Top = 90, DialogResult = DialogResult.OK };
+            var confirm = new Button { Text = "Confirmar", Left = 270, Width = 100, Top = 90, DialogResult = DialogResult.None };
+            var cancel = new Button { Text = "Cancelar", Left = 160, Width = 100, Top = 90, DialogResult = DialogResult.Cancel };
+
+            // Acción del botón Confirmar
+            confirm.Click += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    MessageBox.Show("Debe ingresar un motivo para dar de baja la suscripción.", "Campo obligatorio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    textBox.Focus();
+                    return; // No cierra el formulario
+                }
+
+                // Si hay texto, cerrar con OK
+                prompt.DialogResult = DialogResult.OK;
+                prompt.Close();
+            };
+
             prompt.Controls.Add(label);
             prompt.Controls.Add(textBox);
             prompt.Controls.Add(confirm);
+            prompt.Controls.Add(cancel);
             prompt.AcceptButton = confirm;
+            prompt.CancelButton = cancel;
 
-            return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : null;
+            return prompt.ShowDialog() == DialogResult.OK ? textBox.Text.Trim() : null;
         }
+
 
         // Cambiar color de las celdas según estado de suscripción
         private void DGVGestionSuscripciones_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
