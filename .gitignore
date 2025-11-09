@@ -8,5 +8,4 @@ Tematika/*.user
 *.dbmdl
 *.mdf
 *.ldf
-*.bak
 *.trn
